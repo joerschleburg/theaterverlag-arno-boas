@@ -1,5 +1,4 @@
 ---
-import { path } from "../lib/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -371,25 +370,6 @@ const faqLd = {
           ))
         }
       </div>
-
-      <div class="cta-band">
-        <div>
-          <h2>Erst lesen, dann entscheiden.</h2>
-          <p>
-            Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als
-            PDF – rund die Hälfte des Stücks.
-          </p>
-        </div>
-        <div class="btns">
-          <a class="prim" href={path("/kontakt")}
-            ><i class="ti ti-mail" aria-hidden="true"></i> Für Aufführung
-            anfragen</a
-          >
-          <a class="ghost" href={path("/theaterstuecke")}
-            ><i class="ti ti-search" aria-hidden="true"></i> Stücke durchsuchen</a
-          >
-        </div>
-      </div>
     </div>
   </section>
 
@@ -609,59 +589,6 @@ const faqLd = {
   .tlist li p {
     margin: 0;
     font-size: 16px;
-  }
-  .cta-band {
-    margin: 64px 0 0;
-    background: var(--ink);
-    color: #efe6d8;
-    border-radius: 16px;
-    padding: 44px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .cta-band h2 {
-    color: #fff;
-    font-size: clamp(24px, 3vw, 34px);
-  }
-  .cta-band p {
-    color: #c6bcac;
-    margin: 8px 0 0;
-    font-size: 15px;
-  }
-  .cta-band .btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .cta-band a {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 14px 24px;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 8px;
-    text-decoration: none;
-  }
-  .cta-band a.prim {
-    background: var(--wine);
-    color: #fff;
-  }
-  .cta-band a.prim:hover {
-    background: var(--wine-dark);
-  }
-  .cta-band a.ghost {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #fff;
-  }
-  .cta-band a.ghost:hover {
-    background: #fff;
-    color: var(--ink);
   }
   .steps {
     display: grid;
@@ -888,10 +815,6 @@ const faqLd = {
     .prow {
       grid-template-columns: 1fr;
       gap: 14px;
-    }
-    .cta-band {
-      flex-direction: column;
-      align-items: flex-start;
     }
     .steps {
       grid-template-columns: 1fr;
