@@ -1,0 +1,3 @@
+# Preview — nicht indexieren. Vor Go-live anpassen bzw. SITE.indexable = true.
+User-agent: *
+Disallow: /

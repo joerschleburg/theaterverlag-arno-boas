@@ -35,6 +35,11 @@ const schemas = jsonLd
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {
+      !SITE.indexable && (
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+      )
+    }
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
