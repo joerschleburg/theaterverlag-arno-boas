@@ -1,10 +1,10 @@
 {
   "meta": {
     "verlag": "Theaterverlag Arno Boas",
-    "quelle": "theaterverlag-arno-boas.de (Kategorieseiten)",
-    "stand": "2026-07",
-    "anzahl_stuecke": 227,
-    "hinweis": "untertitel = Gattungszeile aus der Listenansicht. spielart_geschaetzt aus dieser Zeile abgeleitet (zu pruefen). kuerzel = Katalog-Kuerzel; nur bei einigen Stuecken aus dem Slug ableitbar, der Rest muss aus Arnos Bestandsliste ergaenzt werden. Kuerzel MUSS immer angezeigt und in jeder Anfrage mitgeschickt werden. Besetzung, Dauer, Preis, Klappentext folgen aus den Detailseiten/Backend.",
+    "quelle": "https://theaterverlag-arno-boas.de/uebersicht-ueber-alle-stuecke",
+    "stand": "2026-07-30",
+    "anzahl_stuecke": 230,
+    "hinweis": "Besetzung (m/w), Spieldauer und Kürzel aus der Live-Übersicht importiert. Spielort folgt aus Detailseiten, sofern vorhanden.",
     "kategorien_taxonomie": [
       "Komödie",
       "Lustspiel",
@@ -23,30 +23,45 @@
       "Einakter",
       "Kurzstück",
       "Sketch"
-    ]
+    ],
+    "import": {
+      "scraped_rows": 233,
+      "matched": 230,
+      "updated": 227,
+      "unmatched": 3,
+      "local_without_overview": 0
+    }
   },
   "stuecke": [
     {
       "titel": "Abends, wenn die Ahnfrau geistert",
       "slug": "abends-wenn-die-ahnfrau-geistert",
       "url": "https://theaterverlag-arno-boas.de/stuecke/abends-wenn-die-ahnfrau-geistert",
-      "kuerzel": "",
+      "kuerzel": "af-06",
       "untertitel": "Spuk-Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Abgesägt!",
       "slug": "abgesagt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/abgesagt",
-      "kuerzel": "",
+      "kuerzel": "e-21",
       "untertitel": "Öko-Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 40,
+      "spieldauer_text": "40"
     },
     {
       "titel": "Abseits",
@@ -57,1205 +72,1711 @@
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "besetzung_hinweis": "plus Stimme im Hintergrund",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Abseits",
       "slug": "abseits",
       "url": "https://theaterverlag-arno-boas.de/stuecke/abseits",
-      "kuerzel": "",
+      "kuerzel": "k-16",
       "untertitel": "Komödie über die (verkehrte) Fußballwelt",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Achtung, Nikolaus",
       "slug": "achtung-nikolaus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/achtung-nikolaus",
-      "kuerzel": "",
+      "kuerzel": "w-13",
       "untertitel": "Einakter von Christian Ziegler",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "1 Doppelbesetzung (m) möglich",
+      "spieldauer_min": 45,
+      "spieldauer_text": "45"
     },
     {
       "titel": "Adlig sein ist ganz schön schwer",
       "slug": "adlig-sein-ist-ganz-schon-schwer",
       "url": "https://theaterverlag-arno-boas.de/stuecke/adlig-sein-ist-ganz-schon-schwer",
-      "kuerzel": "",
+      "kuerzel": "e-40",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 3,
+      "spieldauer_min": 45,
+      "spieldauer_text": "45"
     },
     {
       "titel": "Agentur Weihnachtsengel",
       "slug": "agentur-weihnachtsengel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/agentur-weihnachtsengel",
-      "kuerzel": "",
+      "kuerzel": "w-04",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 0,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "auch möglich mit 1m/2w",
+      "spieldauer_min": 8,
+      "spieldauer_text": "8"
+    },
+    {
+      "titel": "Alle(s) unter Druck",
+      "slug": "alles-unter-druck",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/alles-unter-druck",
+      "kuerzel": "gn-78",
+      "untertitel": "",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich 5m/7w, 4m/8w oder 7m/5w",
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Allen alles recht gemacht",
       "slug": "allen-alles-recht-gemacht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/allen-alles-recht-gemacht",
-      "kuerzel": "",
+      "kuerzel": "e-57",
       "untertitel": "Einakter über eine verunglückte Geburtstagsfeten-Vorbereitung",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Alles bloß Theater?",
       "slug": "alles-blos-theater",
       "url": "https://theaterverlag-arno-boas.de/stuecke/alles-blos-theater",
-      "kuerzel": "",
+      "kuerzel": "af-17",
       "untertitel": "Komödie ums Theater im Theater",
       "kategorien": [
         "Komödie",
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 6m/5w",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Allmächt",
       "slug": "allmacht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/allmacht",
-      "kuerzel": "",
+      "kuerzel": "gn-11",
       "untertitel": "Zeitkritische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 4m/6w",
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Allmächt – Episode II",
       "slug": "allmacht-episode-ii",
       "url": "https://theaterverlag-arno-boas.de/stuecke/allmacht-episode-ii",
-      "kuerzel": "",
+      "kuerzel": "gn-12",
       "untertitel": "Zeitkritische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 4m/6w oder 6m/4w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Alte Hähne, kampferprobt",
       "slug": "alte-hahne-kampferprobt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/alte-hahne-kampferprobt",
-      "kuerzel": "",
+      "kuerzel": "sen-07",
       "untertitel": "Komödie für Senioren",
       "kategorien": [
         "Komödie",
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 65,
+      "spieldauer_text": "65"
     },
     {
       "titel": "Am Bahnschalter",
       "slug": "am-bahnschalter",
       "url": "https://theaterverlag-arno-boas.de/stuecke/am-bahnschalter",
-      "kuerzel": "",
+      "kuerzel": "k-06",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 3,
+      "besetzung_w": 2,
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "An einem Tag im März",
       "slug": "an-einem-tag-im-marz",
       "url": "https://theaterverlag-arno-boas.de/stuecke/an-einem-tag-im-marz",
-      "kuerzel": "",
+      "kuerzel": "gn-36",
       "untertitel": "Drama nach einer wahren Begebenheit",
       "kategorien": [
         "Drama"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Angies Ausflug",
       "slug": "angies-ausflug",
       "url": "https://theaterverlag-arno-boas.de/stuecke/angies-ausflug",
-      "kuerzel": "",
+      "kuerzel": "af-53",
       "untertitel": "Komödie (ca. 75 Minuten)",
       "kategorien": [
         "Komödie",
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 5m/4w",
+      "spieldauer_min": 75,
+      "spieldauer_text": "75"
     },
     {
       "titel": "App ins Märchenland",
       "slug": "app-ins-marchenland",
       "url": "https://theaterverlag-arno-boas.de/stuecke/app-ins-marchenland",
-      "kuerzel": "",
+      "kuerzel": "gn-50",
       "untertitel": "Modernes Märchen",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich 4m/8w oder 6m/6w",
+      "spieldauer_min": 80,
+      "spieldauer_text": "80"
     },
     {
       "titel": "Aspirin & Bratkartoffeln",
       "slug": "aspirin-bratkartoffeln",
       "url": "https://theaterverlag-arno-boas.de/stuecke/aspirin-bratkartoffeln",
-      "kuerzel": "",
+      "kuerzel": "gn-30",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 4,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Auch der Herbst hat schöne Tage",
       "slug": "auch-der-herbst-hat-schone-tage",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auch-der-herbst-hat-schone-tage",
-      "kuerzel": "",
+      "kuerzel": "sen-02",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Auch Drachen sind nur Menschen",
       "slug": "auch-drachen-sind-nur-menschen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auch-drachen-sind-nur-menschen",
-      "kuerzel": "",
+      "kuerzel": "af-58",
       "untertitel": "Modernes Märchen",
       "kategorien": [
         "Komödie",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 7,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "plus 2 Sprechrollen",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Auf den letzten Drücker",
       "slug": "auf-den-letzten-drucker",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auf-den-letzten-drucker",
-      "kuerzel": "",
+      "kuerzel": "e-52",
       "untertitel": "Einakter über eine missglückte Entführung",
       "kategorien": [
         "Drama"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 0,
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Auf der Autobahn",
       "slug": "auf-der-autobahn",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auf-der-autobahn",
-      "kuerzel": "",
+      "kuerzel": "e-01",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Auf der Schönheitsfarm",
       "slug": "auf-der-schonheitsfarm",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auf-der-schonheitsfarm",
-      "kuerzel": "",
+      "kuerzel": "af-57",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 0,
+      "besetzung_w": 10,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Auf gute Feindschaft",
       "slug": "auf-gute-feindschaft",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auf-gute-feindschaft",
-      "kuerzel": "",
+      "kuerzel": "gn-02",
       "untertitel": "Komödie in drei Akten",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Aufs Herrchen kommt's an",
       "slug": "aufs-herrchen-kommts-an",
       "url": "https://theaterverlag-arno-boas.de/stuecke/aufs-herrchen-kommts-an",
-      "kuerzel": "",
+      "kuerzel": "s-07",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 4,
+      "spieldauer_text": "4"
     },
     {
       "titel": "Aufs Kreuz gelegt",
       "slug": "aufs-kreuz-gelegt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/aufs-kreuz-gelegt",
-      "kuerzel": "",
+      "kuerzel": "af-52",
       "untertitel": "Tragikomödie",
       "kategorien": [
         "Komödie",
         "Drama",
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich mit 5m/6w",
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Aufstand im Olymp",
       "slug": "aufstand-im-olymp",
       "url": "https://theaterverlag-arno-boas.de/stuecke/aufstand-im-olymp",
-      "kuerzel": "",
+      "kuerzel": "gn-55",
       "untertitel": "Göttliche Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich 7m / 6w",
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Bauer sucht Sau",
       "slug": "bauer-sucht-sau",
       "url": "https://theaterverlag-arno-boas.de/stuecke/bauer-sucht-sau",
-      "kuerzel": "",
+      "kuerzel": "e-47",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "zusätzlich eine 6-köpfige Schülergruppe möglich",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Bei uns daham",
       "slug": "bei-uns-daham",
       "url": "https://theaterverlag-arno-boas.de/stuecke/bei-uns-daham",
-      "kuerzel": "",
+      "kuerzel": "e-07",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 4m/3w",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Beim Franko ist was los",
       "slug": "beim-franko-ist-was-los",
       "url": "https://theaterverlag-arno-boas.de/stuecke/beim-franko-ist-was-los",
-      "kuerzel": "",
+      "kuerzel": "gn-06",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 115,
+      "spieldauer_text": "115"
     },
     {
       "titel": "Bescherung ohne Geschenk",
       "slug": "bescherung-ohne-geschenk",
       "url": "https://theaterverlag-arno-boas.de/stuecke/bescherung-ohne-geschenk",
-      "kuerzel": "",
+      "kuerzel": "w-09",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Komödie",
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich mit 2m/1w",
+      "spieldauer_min": 3,
+      "spieldauer_text": "3"
     },
     {
       "titel": "Bier, Bits und ein Baby",
       "slug": "bier-bits-und-ein-baby",
       "url": "https://theaterverlag-arno-boas.de/stuecke/bier-bits-und-ein-baby",
-      "kuerzel": "",
+      "kuerzel": "af-12",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 3m/6w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Bis dass der Tod uns scheidet",
       "slug": "bis-dass-der-tod-uns-scheidet",
       "url": "https://theaterverlag-arno-boas.de/stuecke/bis-dass-der-tod-uns-scheidet",
-      "kuerzel": "",
+      "kuerzel": "af-35",
       "untertitel": "Tragikomödie",
       "kategorien": [
         "Komödie",
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 8,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "benötigt werden zusätzlich 4w für Mini-Rollen",
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Bürger Franz",
       "slug": "buerger-franz",
       "url": "https://theaterverlag-arno-boas.de/stuecke/buerger-franz",
-      "kuerzel": "",
+      "kuerzel": "e-63",
       "untertitel": "Komödie über einen Spießbürger par excellence",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "besetzung_hinweis": "auch möglich mit 1m/2w",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Chaos auf dem Bauernhof",
       "slug": "chaos-auf-dem-bauernhof",
       "url": "https://theaterverlag-arno-boas.de/stuecke/chaos-auf-dem-bauernhof",
-      "kuerzel": "",
+      "kuerzel": "af-21",
       "untertitel": "Ländliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
+    },
+    {
+      "titel": "D(r)amen an der Friedhofsmauer",
+      "slug": "dramen-an-der-friedhofsmauer",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/dramen-an-der-friedhofsmauer",
+      "kuerzel": "e-54",
+      "untertitel": "",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Das Beziehungsprinzip",
       "slug": "das-beziehungsprinzip",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-beziehungsprinzip",
-      "kuerzel": "",
+      "kuerzel": "e-61",
       "untertitel": "Komödie über das, was Beziehungen auch sein können",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30 - 35"
     },
     {
       "titel": "Das bisschen Haushalt",
       "slug": "das-bisschen-haushalt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-bisschen-haushalt",
-      "kuerzel": "",
+      "kuerzel": "e-48",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Das Bruderherz",
       "slug": "das-bruderherz",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-bruderherz",
-      "kuerzel": "",
+      "kuerzel": "af-50",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 7m/5w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Das Eigentor",
       "slug": "das-eigentor",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-eigentor",
-      "kuerzel": "",
+      "kuerzel": "af-48",
       "untertitel": "Sportliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Das Familienfest",
       "slug": "das-familienfest",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-familienfest",
-      "kuerzel": "",
+      "kuerzel": "w-01",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "spieldauer_min": 6,
+      "spieldauer_text": "6"
     },
     {
       "titel": "Das Geburtstagsgeschenk",
       "slug": "das-geburtstagsgeschenk",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-geburtstagsgeschenk",
-      "kuerzel": "",
+      "kuerzel": "sen-06",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 8,
+      "spieldauer_text": "8"
     },
     {
       "titel": "Das klösterliche Wickelkind",
       "slug": "das-klosterliche-wickelkind",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-klosterliche-wickelkind",
-      "kuerzel": "",
+      "kuerzel": "gn-17",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 3,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Das Miststück",
       "slug": "das-miststuck",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-miststuck",
-      "kuerzel": "",
+      "kuerzel": "af-49",
       "untertitel": "Ländliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Das verrückte Haus",
       "slug": "das-verruckte-haus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/das-verruckte-haus",
-      "kuerzel": "",
+      "kuerzel": "af-27",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 4m/5w (Doppelbesetzung)",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Dass ich in den Himmel komm",
       "slug": "dass-ich-in-den-himmel-komm",
       "url": "https://theaterverlag-arno-boas.de/stuecke/dass-ich-in-den-himmel-komm",
-      "kuerzel": "",
+      "kuerzel": "af-30",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 85,
+      "spieldauer_text": "85"
     },
     {
       "titel": "Der (fast) vergessene Weihnachtsengel",
       "slug": "der-fast-vergessene-weihnachtsengel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-fast-vergessene-weihnachtsengel",
-      "kuerzel": "",
+      "kuerzel": "w-07",
       "untertitel": "Einakter",
       "kategorien": [
         "Komödie",
         "Für Jugendliche",
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "zusätzlich Statisten möglich, die nur singen",
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Der 31. November",
       "slug": "der-31-november",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-31-november",
-      "kuerzel": "",
+      "kuerzel": "af-26",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Der Aufstieg",
       "slug": "der-aufstieg",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-aufstieg",
-      "kuerzel": "",
+      "kuerzel": "s-14",
       "untertitel": "Komödie um eine missglückte Bergwanderung",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Der doppelte Onkel",
       "slug": "der-doppelte-onkel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-doppelte-onkel",
-      "kuerzel": "",
+      "kuerzel": "e-18",
       "untertitel": "Schwank (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 6,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "auch möglich mit 7m/3w oder 6m/4w",
+      "spieldauer_min": 40,
+      "spieldauer_text": "40"
     },
     {
       "titel": "Der Ehrendoktorhut",
       "slug": "der-ehrendoktorhut",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-ehrendoktorhut",
-      "kuerzel": "",
+      "kuerzel": "n-24",
       "untertitel": "Komödie über den provinziellen Ehrenkäs",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 5m/6w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Der Erbschaftsjodler",
       "slug": "der-erbschaftsjodler",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-erbschaftsjodler",
-      "kuerzel": "",
+      "kuerzel": "af-45",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "1 Mini-Rolle (m) zusätzlich erforderlich",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Der Erlebnisbericht",
       "slug": "der-erlebnisbericht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-erlebnisbericht",
-      "kuerzel": "",
+      "kuerzel": "e-12",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich mit 2m/1w",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Der Experte",
       "slug": "der-experte",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-experte",
-      "kuerzel": "",
+      "kuerzel": "k-10",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Der Frosch-König oder Wenn's Handy in den Brunnen fällt",
       "slug": "der-frosch-konig-oder-wenns-handy-in-den-brunnen-fallt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-frosch-konig-oder-wenns-handy-in-den-brunnen-fallt",
-      "kuerzel": "",
+      "kuerzel": "e-29",
       "untertitel": "Modernes Märchen (Einakter)",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 12,
+      "besetzung_hinweis": "variable Besetzung bis zu 19 Personen möglich",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Der glückliche Hans",
       "slug": "der-gluckliche-hans",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-gluckliche-hans",
-      "kuerzel": "",
+      "kuerzel": "e-03",
       "untertitel": "Parabel für Kinder (Einakter)",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "Geschlechter variabel",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Der große Coup von Wickenham",
       "slug": "der-grose-coup-von-wickenham",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-grose-coup-von-wickenham",
-      "kuerzel": "",
+      "kuerzel": "gn-39",
       "untertitel": "Westernkomödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 115,
+      "spieldauer_text": "115"
     },
     {
       "titel": "Der Hansibub",
       "slug": "der-hansibub",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-hansibub",
-      "kuerzel": "",
+      "kuerzel": "k-08",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Der Hecht im Karpfenteich",
       "slug": "der-hecht-im-karpfenteich",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-hecht-im-karpfenteich",
-      "kuerzel": "",
+      "kuerzel": "af-10",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Der Held der Kieselsteine",
       "slug": "der-held-der-kieselsteine",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-held-der-kieselsteine",
-      "kuerzel": "",
+      "kuerzel": "gn53",
       "untertitel": "Jugendtheaterstück",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Der Herr liebt auch die kleinen Boxer",
       "slug": "der-herr-liebt-auch-die-kleinen-boxer",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-herr-liebt-auch-die-kleinen-boxer",
-      "kuerzel": "",
+      "kuerzel": "gn-54",
       "untertitel": "Lustspiel von Jochen Wiltschko",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Der Hexenschuss",
       "slug": "der-hexenschuss",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-hexenschuss",
-      "kuerzel": "",
+      "kuerzel": "e-05",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 4,
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Der Jubiläums-Zinnober",
       "slug": "der-jubilaums-zinnober",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-jubilaums-zinnober",
-      "kuerzel": "",
+      "kuerzel": "af-16",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Der Lenz, der Bengel",
       "slug": "der-lenz-der-bengel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-lenz-der-bengel",
-      "kuerzel": "",
+      "kuerzel": "s-10",
       "untertitel": "Komödie aus einer fränkisch-hochdeutschen Mischehe",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Der letzte Schrei",
       "slug": "der-letzte-schrei",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-letzte-schrei",
-      "kuerzel": "",
+      "kuerzel": "af-34",
       "untertitel": "Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich mit 7m/6w",
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Der letzte Spießer",
       "slug": "der-letzte-spieser",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-letzte-spieser",
-      "kuerzel": "",
+      "kuerzel": "gn-38",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Der letzte Tag",
       "slug": "der-letzte-tag",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-letzte-tag",
-      "kuerzel": "",
+      "kuerzel": "gn-77",
       "untertitel": "Komödie über den letzten Arbeitstag, der fast im Chaos endet",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Der letzte Vorhang",
       "slug": "der-letzte-vorhang",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-letzte-vorhang",
-      "kuerzel": "",
+      "kuerzel": "af-02",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Der liebevolle Friedrich",
       "slug": "der-liebevolle-friedrich",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-liebevolle-friedrich",
-      "kuerzel": "",
+      "kuerzel": "sen-04",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "spieldauer_min": 3,
+      "spieldauer_text": "3"
     },
     {
       "titel": "Der Machtkampf",
       "slug": "der-machtkampf",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-machtkampf",
-      "kuerzel": "",
+      "kuerzel": "gn-18",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "zusätzlich 2 Mini-Rollen",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Der Meisterfotograf",
       "slug": "der-meisterfotograf",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-meisterfotograf",
-      "kuerzel": "",
+      "kuerzel": "e-26",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "plus 2 Kinder",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Der mit dem King tanzt",
       "slug": "der-mit-dem-king-tanzt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-mit-dem-king-tanzt",
-      "kuerzel": "",
+      "kuerzel": "gn-04",
       "untertitel": "Komödie über den King of Rock'n'Roll",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
-    },
-    {
-      "titel": "Der neue Freund",
-      "slug": "der-neue-freund",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/der-neue-freund",
-      "kuerzel": "",
-      "untertitel": "Komödie (Einakter)",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Einakter"
-    },
-    {
-      "titel": "Der Niemandshof",
-      "slug": "der-niemandshof",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/der-niemandshof",
-      "kuerzel": "",
-      "untertitel": "Ländliches Lustspiel",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Der Nächste, bitte",
       "slug": "der-nachste-bitte",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-nachste-bitte",
-      "kuerzel": "",
+      "kuerzel": "ks-04",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 4m/3w sowie generell mit wneiger Spielern",
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
+    },
+    {
+      "titel": "Der neue Freund",
+      "slug": "der-neue-freund",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/der-neue-freund",
+      "kuerzel": "e-02",
+      "untertitel": "Komödie (Einakter)",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
+    },
+    {
+      "titel": "Der Niemandshof",
+      "slug": "der-niemandshof",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/der-niemandshof",
+      "kuerzel": "af-44",
+      "untertitel": "Ländliches Lustspiel",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 6m/3w",
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Der Spürhund von Sankt Anton",
       "slug": "der-spurhund-von-sankt-anton",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-spurhund-von-sankt-anton",
-      "kuerzel": "",
+      "kuerzel": "af-38",
       "untertitel": "Katholische Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Der Tod ist auch nur ein Mensch",
       "slug": "der-tod-ist-auch-nur-ein-mensch",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-tod-ist-auch-nur-ein-mensch",
-      "kuerzel": "",
+      "kuerzel": "gn-73",
       "untertitel": "Komödie mit schwarzem Humor über die Liebe, den Tod, aber nicht den Teufel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Der Traumjob",
       "slug": "der-traumjob",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-traumjob",
-      "kuerzel": "",
+      "kuerzel": "w-02",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 4,
+      "spieldauer_text": "4"
     },
     {
       "titel": "Der verflixte Jungbrunnen",
       "slug": "der-verflixte-jungbrunnen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-verflixte-jungbrunnen",
-      "kuerzel": "",
+      "kuerzel": "gn-64",
       "untertitel": "Komödie über ein besonderes Elexier",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "3m/5w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Der weibliche Zwilling",
       "slug": "der-weibliche-zwilling",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-weibliche-zwilling",
-      "kuerzel": "",
+      "kuerzel": "s-03",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 5,
+      "spieldauer_text": "5"
     },
     {
       "titel": "Der Westentaschen-Gigolo",
       "slug": "der-westentaschen-gigolo",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-westentaschen-gigolo",
-      "kuerzel": "",
+      "kuerzel": "gn-07",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 4,
+      "spieldauer_min": 80,
+      "spieldauer_text": "80"
     },
     {
       "titel": "Die Aischgrund-Cops",
       "slug": "die-aischgrund-cops",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-aischgrund-cops",
-      "kuerzel": "",
+      "kuerzel": "4-49",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "zusätzlich 8-köpfige Schülergruppe, optional",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Die Bänkler",
       "slug": "die-bankler",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-bankler",
-      "kuerzel": "",
+      "kuerzel": "sen-05",
       "untertitel": "Komödie für Senioren (Einakter)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Die Dichterlesung",
       "slug": "die-dichterlesung",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-dichterlesung",
-      "kuerzel": "",
+      "kuerzel": "k-12",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 4m/4w",
+      "spieldauer_min": 18,
+      "spieldauer_text": "18"
     },
     {
       "titel": "Die dicksten Bauern (60 Min.)",
       "slug": "die-dicksten-bauern-60-min",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-dicksten-bauern-60-min",
-      "kuerzel": "",
+      "kuerzel": "gn-25a",
       "untertitel": "Komödie nach einer alten Volkserzählung (Kurzfassung)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 60,
+      "spieldauer_text": "60"
     },
     {
       "titel": "Die dicksten Bauern (95 Min.)",
       "slug": "die-dicksten-bauern-95-min",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-dicksten-bauern-95-min",
-      "kuerzel": "",
+      "kuerzel": "gn-25",
       "untertitel": "Komödie nach einer alten Volkserzählung",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Die falsche Erbtante",
       "slug": "die-falsche-erbtante",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-falsche-erbtante",
-      "kuerzel": "",
+      "kuerzel": "gn-22",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Die giftige Verwandtschaft",
       "slug": "die-giftige-verwandtschaft",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-giftige-verwandtschaft",
-      "kuerzel": "",
+      "kuerzel": "af-23",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 5m/4, außerdem mit der Besetzung 7m/7w und einer Spieldauer von 120 Minuten",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Die junge Mutter",
       "slug": "die-junge-mutter",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-junge-mutter",
-      "kuerzel": "",
+      "kuerzel": "sen-03",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 0,
+      "besetzung_w": 3,
+      "spieldauer_min": 4,
+      "spieldauer_text": "4"
     },
     {
       "titel": "Die Kaffeefahrt",
       "slug": "die-kaffeefahrt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-kaffeefahrt",
-      "kuerzel": "",
+      "kuerzel": "e-11",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "variable Besetzung möglich",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Die Kneipe zur Sanduhr",
       "slug": "die-kneipe-zur-sanduhr",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-kneipe-zur-sanduhr",
-      "kuerzel": "",
+      "kuerzel": "gn37",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 130,
+      "spieldauer_text": "130"
     },
     {
       "titel": "Die kunterbunte Wunderkuh",
       "slug": "die-kunterbunte-wunderkuh",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-kunterbunte-wunderkuh",
-      "kuerzel": "",
+      "kuerzel": "gn-58",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Die Permanente Frau",
       "slug": "die-permanente-frau",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-permanente-frau",
-      "kuerzel": "",
+      "kuerzel": "e-45",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 4,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Die Retter der Märchenwelt",
       "slug": "die-retter-der-marchenwelt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-retter-der-marchenwelt",
-      "kuerzel": "",
+      "kuerzel": "e-32",
       "untertitel": "Modernes Märchen (Einakter)",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 12,
+      "besetzung_hinweis": "variable Besetzung möglich",
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Die Schafkopf-Gang und ihr Prophet",
       "slug": "die-schafkopf-gang-und-ihr-prophet",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-schafkopf-gang-und-ihr-prophet",
-      "kuerzel": "",
+      "kuerzel": "gn-74",
       "untertitel": "Komödie über eine außergewöhnliche Begabung",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Die Schneiders-Hochzeit",
       "slug": "die-schneiders-hochzeit",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-schneiders-hochzeit",
-      "kuerzel": "",
+      "kuerzel": "gn-10",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 80,
+      "spieldauer_text": "80"
     },
     {
       "titel": "Die steinreiche Lumpenbande",
       "slug": "die-steinreiche-lumpenbande",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-steinreiche-lumpenbande",
-      "kuerzel": "",
+      "kuerzel": "af-24",
       "untertitel": "Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Die Treibjagd",
       "slug": "die-treibjagd",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-treibjagd",
-      "kuerzel": "",
+      "kuerzel": "gn-27",
       "untertitel": "Tragikomödie für ambitionierte Bühnen",
       "kategorien": [
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "12",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Die vierte Glocke",
       "slug": "die-vierte-glocke",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-vierte-glocke",
-      "kuerzel": "",
+      "kuerzel": "af-40",
       "untertitel": "Ländliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 3,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Die Wahrheit zum Dessert",
       "slug": "die-wahrheit-zum-dessert",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-wahrheit-zum-dessert",
-      "kuerzel": "",
+      "kuerzel": "gn-68",
       "untertitel": "Drama",
       "kategorien": [
         "Drama"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Die zweite Chance",
       "slug": "die-zweite-chance",
       "url": "https://theaterverlag-arno-boas.de/stuecke/die-zweite-chance",
-      "kuerzel": "",
+      "kuerzel": "e-53",
       "untertitel": "Zumba, Zoff und Zickenkrieg",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Diebesgut und Spitzenhöschen",
       "slug": "diebesgut-und-spitzenhoeschen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/diebesgut-und-spitzenhoeschen",
-      "kuerzel": "",
+      "kuerzel": "gn-70",
       "untertitel": "Gauner-Komödie über einen an sich sympathischen Diamantendieb",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Dinner for Four",
       "slug": "dinner-for-four",
       "url": "https://theaterverlag-arno-boas.de/stuecke/dinner-for-four",
-      "kuerzel": "",
+      "kuerzel": "af-22",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Drei Pfund zuviel",
       "slug": "drei-pfund-zuviel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/drei-pfund-zuviel",
-      "kuerzel": "",
+      "kuerzel": "e-36",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich 2m/3w",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Drei Typen von vorgestern",
       "slug": "drei-typen-von-vorgestern",
       "url": "https://theaterverlag-arno-boas.de/stuecke/drei-typen-von-vorgestern",
-      "kuerzel": "",
+      "kuerzel": "gn-21",
       "untertitel": "Zeitübergreifende Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Drei und drei macht glücklich",
       "slug": "drei-und-drei-macht-glucklich",
       "url": "https://theaterverlag-arno-boas.de/stuecke/drei-und-drei-macht-glucklich",
-      "kuerzel": "",
+      "kuerzel": "e-16",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 0,
+      "besetzung_w": 5,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Ein Amt auf Abwegen",
       "slug": "ein-amt-auf-abwegen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-amt-auf-abwegen",
-      "kuerzel": "",
+      "kuerzel": "af-01",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 7m/4w oder 5m/6w",
+      "spieldauer_min": 115,
+      "spieldauer_text": "115"
     },
     {
       "titel": "Ein Boomerang auf zwei Beinen",
       "slug": "ein-boomerang-auf-zwei-beinen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-boomerang-auf-zwei-beinen",
-      "kuerzel": "",
+      "kuerzel": "gn-60",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich mit 5m/6w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Ein Dorf im Theaterfieber",
       "slug": "ein-dorf-im-theaterfieber",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-dorf-im-theaterfieber",
-      "kuerzel": "",
+      "kuerzel": "e-43",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "spieldauer_min": 40,
+      "spieldauer_text": "40"
     },
     {
       "titel": "Ein Paar zuviel",
       "slug": "ein-paar-zuviel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-paar-zuviel",
-      "kuerzel": "",
+      "kuerzel": "gn-20",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Ein Sommer voller Träume",
       "slug": "ein-sommer-voller-traume",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-sommer-voller-traume",
-      "kuerzel": "",
+      "kuerzel": "gn-26",
       "untertitel": "Hippie-Komödie mit tragischen Zügen",
       "kategorien": [
         "Komödie",
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 13,
+      "besetzung_w": 13,
+      "besetzung_hinweis": "auch möglich mit insgesamt nur 23 Darstellern",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Ein superbes Mahl",
       "slug": "ein-superbes-mahl",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-superbes-mahl",
-      "kuerzel": "",
+      "kuerzel": "e-46",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 1,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Ein Tag und drei Leben",
@@ -1266,1244 +1787,1776 @@
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 8,
+      "besetzung_w": 14,
+      "besetzung_hinweis": "auch möglich mit 13w/9m oder 12w/10m oder 11w/11m",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Ein Teppich voller Leichen",
       "slug": "ein-teppich-voller-leichen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-teppich-voller-leichen",
-      "kuerzel": "",
+      "kuerzel": "gn-44",
       "untertitel": "Kriminalkomödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich 5m/6w",
+      "spieldauer_min": 130,
+      "spieldauer_text": "130"
     },
     {
       "titel": "Eine Familie steht Kopf",
       "slug": "eine-familie-steht-kopf",
       "url": "https://theaterverlag-arno-boas.de/stuecke/eine-familie-steht-kopf",
-      "kuerzel": "",
+      "kuerzel": "gn-48",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 5,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Eine Frau für Willi",
       "slug": "eine-frau-fur-willi",
       "url": "https://theaterverlag-arno-boas.de/stuecke/eine-frau-fur-willi",
-      "kuerzel": "",
+      "kuerzel": "gn-47",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Endlich Pause",
       "slug": "endlich-pause",
       "url": "https://theaterverlag-arno-boas.de/stuecke/endlich-pause",
-      "kuerzel": "",
+      "kuerzel": "k-15",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "Geschlechter variabel",
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
+    },
+    {
+      "titel": "Er klemmt oder „Hand am Po“",
+      "slug": "er-klemmt-oder-hand-am-po",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/er-klemmt-oder-hand-am-po",
+      "kuerzel": "e-42",
+      "untertitel": "",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "zusätzlich 1 Kind",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Es weihnachtet sehr",
       "slug": "es-weihnachtet-sehr",
       "url": "https://theaterverlag-arno-boas.de/stuecke/es-weihnachtet-sehr",
-      "kuerzel": "",
+      "kuerzel": "w-08",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 8,
+      "spieldauer_text": "8"
     },
     {
       "titel": "Fauler Zauber",
       "slug": "fauler-zauber",
       "url": "https://theaterverlag-arno-boas.de/stuecke/fauler-zauber",
-      "kuerzel": "",
+      "kuerzel": "gn-56",
       "untertitel": "Eine eso-hyst-erische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Faust aufs Auge",
       "slug": "faust-aufs-auge",
       "url": "https://theaterverlag-arno-boas.de/stuecke/faust-aufs-auge",
-      "kuerzel": "",
+      "kuerzel": "s-12",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 3,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Geist ist geil",
       "slug": "geist-ist-geil",
       "url": "https://theaterverlag-arno-boas.de/stuecke/geist-ist-geil",
-      "kuerzel": "",
+      "kuerzel": "gn-34",
       "untertitel": "Komödie über die menschliche Gier",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 9,
+      "besetzung_w": 14,
+      "besetzung_hinweis": "auch mlt Besetzung 8m/15w oder 10m/13w möglich",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Geld muss her",
       "slug": "geld-muss-her",
       "url": "https://theaterverlag-arno-boas.de/stuecke/geld-muss-her",
-      "kuerzel": "",
+      "kuerzel": "gn-01",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Geteiltes Glück ist gar kein Glück",
       "slug": "geteiltes-glueck-ist-gar-kein-glueck",
       "url": "https://theaterverlag-arno-boas.de/stuecke/geteiltes-glueck-ist-gar-kein-glueck",
-      "kuerzel": "",
+      "kuerzel": "e-64",
       "untertitel": "Einakter über eine gute Tat, die nach hinten los geht",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Gibt's im Himmel Kartoffeln? oder De Grumbeerkeenisch vun Ruchem",
       "slug": "gibts-im-himmel-kartoffeln",
       "url": "https://theaterverlag-arno-boas.de/stuecke/gibts-im-himmel-kartoffeln",
-      "kuerzel": "",
+      "kuerzel": "gn-32",
       "untertitel": "Himmlisch-höllische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 3,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Gleichg'macht ganz leichtg'macht",
       "slug": "gleichgmacht-ganz-leichtgmacht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/gleichgmacht-ganz-leichtgmacht",
-      "kuerzel": "",
+      "kuerzel": "af-43",
       "untertitel": "Zeitkritisches ländliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "möglich auch mit 4m/5w",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Goldregen aus Übersee",
       "slug": "goldregen-aus-ubersee",
       "url": "https://theaterverlag-arno-boas.de/stuecke/goldregen-aus-ubersee",
-      "kuerzel": "",
+      "kuerzel": "af-28",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Groß, blond, blauäugig!",
       "slug": "gros-blond-blauaugig",
       "url": "https://theaterverlag-arno-boas.de/stuecke/gros-blond-blauaugig",
-      "kuerzel": "",
+      "kuerzel": "e-41",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Gründungsfieber",
       "slug": "grundungsfieber",
       "url": "https://theaterverlag-arno-boas.de/stuecke/grundungsfieber",
-      "kuerzel": "",
+      "kuerzel": "af-56",
       "untertitel": "Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 9,
+      "besetzung_hinweis": "außerdem 2 Kinder (in Doppelrollen)",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Gut gehext ist halb gewonnen",
       "slug": "gut-gehext-ist-halb-gewonnen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/gut-gehext-ist-halb-gewonnen",
-      "kuerzel": "",
+      "kuerzel": "gn-57",
       "untertitel": "Eine Fantasy-Komödie in drei Akten",
       "kategorien": [
         "Komödie",
         "Krimi"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Hau mich nicht (How mich nett)",
       "slug": "hau-mich-nicht-how-mich-nett",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hau-mich-nicht-how-mich-nett",
-      "kuerzel": "",
+      "kuerzel": "af-07",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Hectors tödliches Vermächtnis",
       "slug": "hectors-toedliches-vermaechtnis",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hectors-toedliches-vermaechtnis",
-      "kuerzel": "",
+      "kuerzel": "gn-72",
       "untertitel": "Schwarzhumorige Krimi-Komödie über vier Möchtegern-Killer",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "weitere Rollen möglich, wenn Doppelbesetzungen reduziert werden",
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Heimatfront",
       "slug": "heimatfront",
       "url": "https://theaterverlag-arno-boas.de/stuecke/heimatfront",
-      "kuerzel": "",
+      "kuerzel": "gn-19",
       "untertitel": "Drama aus den letzten Kriegstagen",
       "kategorien": [
         "Drama"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 13,
+      "besetzung_w": 12,
+      "besetzung_hinweis": "außerdem 4 - 5 Statisten",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Heiratsfieber",
       "slug": "heiratsfieber",
       "url": "https://theaterverlag-arno-boas.de/stuecke/heiratsfieber",
-      "kuerzel": "",
+      "kuerzel": "af-11",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Herr im Haus bin ich",
       "slug": "herr-im-haus-bin-ich",
       "url": "https://theaterverlag-arno-boas.de/stuecke/herr-im-haus-bin-ich",
-      "kuerzel": "",
+      "kuerzel": "gn-03",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Herr Leopold",
       "slug": "herr-leopold",
       "url": "https://theaterverlag-arno-boas.de/stuecke/herr-leopold",
-      "kuerzel": "",
+      "kuerzel": "e-62",
       "untertitel": "Einakter über den alltäglichen Irrsinn eines Versicherungsvertreters",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "besetzung_hinweis": "auch möglich 1m/2w",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Herzlichen Glückwunsch, Julius",
       "slug": "herzlichen-gluckwunsch-julius",
       "url": "https://theaterverlag-arno-boas.de/stuecke/herzlichen-gluckwunsch-julius",
-      "kuerzel": "",
+      "kuerzel": "gn-05",
       "untertitel": "Bitterböse Kriminalkomödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Hier ist Eden",
       "slug": "hier-ist-eden",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hier-ist-eden",
-      "kuerzel": "",
+      "kuerzel": "e-09",
       "untertitel": "Einakter",
       "kategorien": [
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 4m/3w",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Hintergrubers Blautanne",
       "slug": "hintergrubers-blautanne",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hintergrubers-blautanne",
-      "kuerzel": "",
+      "kuerzel": "w-06",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Einakter"
-    },
-    {
-      "titel": "Hochzeit mit Leichen im Keller",
-      "slug": "hochzeit-mit-leichen-im-keller",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/hochzeit-mit-leichen-im-keller",
-      "kuerzel": "",
-      "untertitel": "Komödie über eine Hochzeit, die in einem Fiasko endet",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend"
-    },
-    {
-      "titel": "Hotel Sonnenschein: Vollpension mit Stromausfall",
-      "slug": "hotel-sonnenschein-vollpension-mit-stromausfall",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/hotel-sonnenschein-vollpension-mit-stromausfall",
-      "kuerzel": "",
-      "untertitel": "Urlaubs-Komödie",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Höchststrafe: Kurschatten",
       "slug": "hochststrafe-kurschatten",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hochststrafe-kurschatten",
-      "kuerzel": "",
+      "kuerzel": "k-13",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
+    },
+    {
+      "titel": "Hochzeit mit Leichen im Keller",
+      "slug": "hochzeit-mit-leichen-im-keller",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/hochzeit-mit-leichen-im-keller",
+      "kuerzel": "gn-65",
+      "untertitel": "Komödie über eine Hochzeit, die in einem Fiasko endet",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95 - 100"
+    },
+    {
+      "titel": "Hotel Sonnenschein: Vollpension mit Stromausfall",
+      "slug": "hotel-sonnenschein-vollpension-mit-stromausfall",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/hotel-sonnenschein-vollpension-mit-stromausfall",
+      "kuerzel": "af-33",
+      "untertitel": "Urlaubs-Komödie",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 7m/5w",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Im Himmel trifft man sich wieder",
       "slug": "im-himmel-trifft-man-sich-wieder",
       "url": "https://theaterverlag-arno-boas.de/stuecke/im-himmel-trifft-man-sich-wieder",
-      "kuerzel": "",
+      "kuerzel": "af-55",
       "untertitel": "Historische Komödie aus dem 16. Jahrhundert",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 9,
+      "besetzung_w": 11,
+      "besetzung_hinweis": "zusätzlich 2 Statisten",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Im Reisebüro",
       "slug": "im-reiseburo",
       "url": "https://theaterverlag-arno-boas.de/stuecke/im-reiseburo",
-      "kuerzel": "",
+      "kuerzel": "e-38",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "Besetzung bis 9 Personen möglich",
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Im verrückten Wilden Westen",
       "slug": "im-verruckten-wilden-westen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/im-verruckten-wilden-westen",
-      "kuerzel": "",
+      "kuerzel": "gn-33",
       "untertitel": "Western-Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich mit 5m/6w",
+      "spieldauer_min": 130,
+      "spieldauer_text": "130"
     },
     {
       "titel": "Immer dasselbe",
       "slug": "immer-dasselbe",
       "url": "https://theaterverlag-arno-boas.de/stuecke/immer-dasselbe",
-      "kuerzel": "",
+      "kuerzel": "af-05",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Immer der Ärger mit diesen Lehren",
       "slug": "immer-der-arger-mit-diesen-lehren",
       "url": "https://theaterverlag-arno-boas.de/stuecke/immer-der-arger-mit-diesen-lehren",
-      "kuerzel": "",
+      "kuerzel": "e-37",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 6,
+      "besetzung_w": 13,
+      "besetzung_hinweis": "Besetzung kann durch Doppelbesetzungen auf 13 reduziert werden",
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "In der Tür geirrt",
       "slug": "in-der-tur-geirrt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/in-der-tur-geirrt",
-      "kuerzel": "",
+      "kuerzel": "e-56",
       "untertitel": "Einakter über den Wahnsinn bei der Wohnungssuche",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 4,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "In Schottland sind die Nächte lang",
       "slug": "in-schottland-sind-die-nachte-lang",
       "url": "https://theaterverlag-arno-boas.de/stuecke/in-schottland-sind-die-nachte-lang",
-      "kuerzel": "",
+      "kuerzel": "gn-29",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Ja, Mama",
       "slug": "ja-mama",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ja-mama",
-      "kuerzel": "",
+      "kuerzel": "af-32",
       "untertitel": "Boulevard-Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Josef kennt sich nicht mehr aus",
       "slug": "josef-kennt-sich-nicht-mehr-aus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/josef-kennt-sich-nicht-mehr-aus",
-      "kuerzel": "",
+      "kuerzel": "gn-49",
       "untertitel": "Turbulenter Bauernschwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 7,
+      "besetzung_w": 6,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Kaltgestellt",
       "slug": "kaltgestellt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/kaltgestellt",
-      "kuerzel": "",
+      "kuerzel": "gn-08",
       "untertitel": "Tragikomödie, ausgezeichnet mit dem Oskarle",
       "kategorien": [
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Katharina und das ewige Leben",
       "slug": "katharina-und-das-ewige-leben",
       "url": "https://theaterverlag-arno-boas.de/stuecke/katharina-und-das-ewige-leben",
-      "kuerzel": "",
+      "kuerzel": "gn-14",
       "untertitel": "Himmlisch-höllisches Volksstück",
       "kategorien": [
         "Komödie",
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 4m/5w",
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Kaufhaus zum Glück",
       "slug": "kaufhaus-zum-gluck",
       "url": "https://theaterverlag-arno-boas.de/stuecke/kaufhaus-zum-gluck",
-      "kuerzel": "",
+      "kuerzel": "k-14",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 3,
+      "besetzung_w": 3,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Killer im Doppelpack",
       "slug": "ein-killer-kommt-selten-allein",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ein-killer-kommt-selten-allein",
-      "kuerzel": "",
+      "kuerzel": "gn-63",
       "untertitel": "Schwarzhumorige Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Kinderwahnsinn",
       "slug": "kinderwahnsinn",
       "url": "https://theaterverlag-arno-boas.de/stuecke/kinderwahnsinn",
-      "kuerzel": "",
+      "kuerzel": "k-05",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Lauter Spinner",
       "slug": "lauter-spinner",
       "url": "https://theaterverlag-arno-boas.de/stuecke/lauter-spinner",
-      "kuerzel": "",
+      "kuerzel": "af-51",
       "untertitel": "Zeitkritisches ländliches Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "außerdem 7 kleine Nebenrollen, die bei Bedarf auf vier reduziert werden können",
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Lied oder Gedicht",
       "slug": "lied-oder-gedicht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/lied-oder-gedicht",
-      "kuerzel": "",
+      "kuerzel": "w-11",
       "untertitel": "Weihnachtskomödie",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Mach Dein Testament, Franz",
       "slug": "mach-dein-testament-franz",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mach-dein-testament-franz",
-      "kuerzel": "",
+      "kuerzel": "af-29",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Magische Marken",
       "slug": "magische-marken",
       "url": "https://theaterverlag-arno-boas.de/stuecke/magische-marken",
-      "kuerzel": "",
+      "kuerzel": "e-31",
       "untertitel": "Modernes Märchen (Einakter)",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 3,
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Mann in der Mitte",
       "slug": "mann-in-der-mitte",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mann-in-der-mitte",
-      "kuerzel": "",
+      "kuerzel": "sen-08",
       "untertitel": "Komödie für Senioren",
       "kategorien": [
         "Komödie",
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "spieldauer_min": 70,
+      "spieldauer_text": "70"
     },
     {
       "titel": "Matroschka",
       "slug": "matroschka",
       "url": "https://theaterverlag-arno-boas.de/stuecke/matroschka",
-      "kuerzel": "",
+      "kuerzel": "gn-51",
       "untertitel": "Krimi-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 5,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Mein lieber Schwan",
       "slug": "mein-lieber-schwan",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mein-lieber-schwan",
-      "kuerzel": "",
+      "kuerzel": "k-09",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Meister Lampe wird vermisst",
       "slug": "meister-lampe-wird-vermisst",
       "url": "https://theaterverlag-arno-boas.de/stuecke/meister-lampe-wird-vermisst",
-      "kuerzel": "",
+      "kuerzel": "gn-52",
       "untertitel": "Kindertheaterstück von Klaus Tröbs, angelehnt an die Geschichte von Hase und Igel",
       "kategorien": [
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 9,
+      "besetzung_hinweis": "Geschlechter sind komplett variabel",
+      "spieldauer_min": 65,
+      "spieldauer_text": "65"
     },
     {
       "titel": "Millen ze verkaafen (Müllers Mühle)",
       "slug": "millen-ze-verkaafen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/millen-ze-verkaafen",
-      "kuerzel": "",
+      "kuerzel": "gn-13a",
       "untertitel": "Komödie von Christian Lange, in einer luxemburgischen Übersetzung von Georges Neuen",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Minderheitenschutz",
       "slug": "minderheitenschutz",
       "url": "https://theaterverlag-arno-boas.de/stuecke/minderheitenschutz",
-      "kuerzel": "",
+      "kuerzel": "e-35",
       "untertitel": "Visionär-groteske Komödie (Einakter)",
       "kategorien": [
         "Tragikomödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Mit Himmelsmacht und Höllenfeuer",
       "slug": "mit-himmelsmacht-und-hollenfeuer",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mit-himmelsmacht-und-hollenfeuer",
-      "kuerzel": "",
+      "kuerzel": "gn-43",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "zusätzlich 2 Statisten und eine Stimme aus dem Off",
+      "spieldauer_min": 140,
+      "spieldauer_text": "140"
     },
     {
       "titel": "Mit Ta-Tü-Trara zum Superstar",
       "slug": "mit-ta-tue-trara-zum-superstar",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mit-ta-tue-trara-zum-superstar",
-      "kuerzel": "",
+      "kuerzel": "gn-66",
       "untertitel": "Eine Komödie über eine aus dem Ruder laufende Casting-Show",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Mobbing – aber richtig",
       "slug": "mobbing-aber-richtig",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mobbing-aber-richtig",
-      "kuerzel": "",
+      "kuerzel": "e-59",
       "untertitel": "Komödie über den täglichen Bürowahnsinn",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 0,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich 3w/1m oder 2w/2m",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Mord im Moor",
       "slug": "mord-im-moor",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mord-im-moor",
-      "kuerzel": "",
+      "kuerzel": "gn-28",
       "untertitel": "Kriminalkomödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Muggebatsche oum Mistbrialouch",
       "slug": "muggebatsche-oum-mistbrialouch",
       "url": "https://theaterverlag-arno-boas.de/stuecke/muggebatsche-oum-mistbrialouch",
-      "kuerzel": "",
+      "kuerzel": "af-42",
       "untertitel": "Zeitkritische Komödie / Lustspiel (Neuauflage)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 5m/5w oder 3m/7w",
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Müllers Mühle",
       "slug": "mullers-muhle",
       "url": "https://theaterverlag-arno-boas.de/stuecke/mullers-muhle",
-      "kuerzel": "",
+      "kuerzel": "gn-13",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 4,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Nala und die Reifeprüfung",
       "slug": "nala-und-die-reifepruefung",
       "url": "https://theaterverlag-arno-boas.de/stuecke/nala-und-die-reifepruefung",
-      "kuerzel": "",
+      "kuerzel": "gn-71",
       "untertitel": "Modernes Märchen",
       "kategorien": [
         "Märchen"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich 5m/3w, außerdem Doppelbesetzungen möglich",
+      "spieldauer_min": 65,
+      "spieldauer_text": "65 - 75"
     },
     {
       "titel": "Netzwerkfehler",
       "slug": "netzwerkfehler",
       "url": "https://theaterverlag-arno-boas.de/stuecke/netzwerkfehler",
-      "kuerzel": "",
+      "kuerzel": "gn-41",
       "untertitel": "Jugend-Komödie",
       "kategorien": [
         "Komödie",
         "Für Jugendliche"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "spieldauer_min": 80,
+      "spieldauer_text": "80"
     },
     {
       "titel": "Nidd woahr",
       "slug": "nidd-woahr",
       "url": "https://theaterverlag-arno-boas.de/stuecke/nidd-woahr",
-      "kuerzel": "",
+      "kuerzel": "af-39",
       "untertitel": "Komödie über die Wahrheit, und was wir darunter verstehen",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 5m/3 w oder 3m/5w",
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Nur eine Nummer",
       "slug": "nur-eine-nummer",
       "url": "https://theaterverlag-arno-boas.de/stuecke/nur-eine-nummer",
-      "kuerzel": "",
+      "kuerzel": "s-08",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "besetzung_hinweis": "auch möglich mit 2m/0w",
+      "spieldauer_min": 6,
+      "spieldauer_text": "6"
     },
     {
       "titel": "Nussknacker und Compagnie",
       "slug": "nussknacker-und-compagnie",
       "url": "https://theaterverlag-arno-boas.de/stuecke/nussknacker-und-compagnie",
-      "kuerzel": "",
+      "kuerzel": "af-36",
       "untertitel": "Boulevard-Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Obacht Erbschleicher",
       "slug": "obacht-erbschleicher",
       "url": "https://theaterverlag-arno-boas.de/stuecke/obacht-erbschleicher",
-      "kuerzel": "",
+      "kuerzel": "gn-31",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
+    },
+    {
+      "titel": "Öchsle",
+      "slug": "ochsle",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/ochsle",
+      "kuerzel": "gn-23",
+      "untertitel": "Historische Komödie aus dem 17. Jahrhundert",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 3,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Onoldia oder Mein lieber Herr Gesangsverein",
       "slug": "onoldia-oder-mein-lieber-herr-gesangsverein",
       "url": "https://theaterverlag-arno-boas.de/stuecke/onoldia-oder-mein-lieber-herr-gesangsverein",
-      "kuerzel": "",
+      "kuerzel": "e-39",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 6,
+      "besetzung_w": 1,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Pardon, mein Freund",
       "slug": "pardon-mein-freund",
       "url": "https://theaterverlag-arno-boas.de/stuecke/pardon-mein-freund",
-      "kuerzel": "",
+      "kuerzel": "af-31",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 4,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Pension Rhönblick",
       "slug": "pension-rhonblick",
       "url": "https://theaterverlag-arno-boas.de/stuecke/pension-rhonblick",
-      "kuerzel": "",
+      "kuerzel": "gn-09",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie",
         "Krimi"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 90,
+      "spieldauer_text": "90"
     },
     {
       "titel": "Pfingsten kann sehr lang sein",
       "slug": "pfingsten-kann-sehr-lang-sein",
       "url": "https://theaterverlag-arno-boas.de/stuecke/pfingsten-kann-sehr-lang-sein",
-      "kuerzel": "",
+      "kuerzel": "e-33",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 5,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Pia allein zuhaus",
       "slug": "pia-allein-zuhaus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/pia-allein-zuhaus",
-      "kuerzel": "",
+      "kuerzel": "w-10",
       "untertitel": "Weihnachtskomödie",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Pizza vs. Lerberkäs",
       "slug": "pizza-vs-lerberkas",
       "url": "https://theaterverlag-arno-boas.de/stuecke/pizza-vs-lerberkas",
-      "kuerzel": "",
+      "kuerzel": "gn-62",
       "untertitel": "Eine deutsch-italienische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Radio MuK",
       "slug": "radio-muk",
       "url": "https://theaterverlag-arno-boas.de/stuecke/radio-muk",
-      "kuerzel": "",
+      "kuerzel": "gn-40",
       "untertitel": "oder der mediale Kampf ums Überleben",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
-    },
-    {
-      "titel": "Rechts vor Links(?)",
-      "slug": "rechts-vor-links",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/rechts-vor-links",
-      "kuerzel": "",
-      "untertitel": "Zeitkritische Komödie (Einakter)",
-      "kategorien": [
-        "Tragikomödie"
-      ],
-      "spielart_geschaetzt": "Einakter"
-    },
-    {
-      "titel": "Reif für die Insel",
-      "slug": "reif-fur-die-insel",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/reif-fur-die-insel",
-      "kuerzel": "",
-      "untertitel": "Komödie (Einakter)",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Einakter"
-    },
-    {
-      "titel": "Reise nach Jerusalem",
-      "slug": "reise-nach-jerusalem",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/reise-nach-jerusalem",
-      "kuerzel": "",
-      "untertitel": "Boulevard-Komödie",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend"
-    },
-    {
-      "titel": "Rosa gibt nicht auf",
-      "slug": "rosa-gibt-nicht-auf",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/rosa-gibt-nicht-auf",
-      "kuerzel": "",
-      "untertitel": "Komödie für Senioren (Einakter)",
-      "kategorien": [
-        "Für Senioren"
-      ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "auch möglich mit 6m/6w",
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Räuber im Rock",
       "slug": "rauber-im-rock",
       "url": "https://theaterverlag-arno-boas.de/stuecke/rauber-im-rock",
-      "kuerzel": "",
+      "kuerzel": "af-13",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 6m/5w",
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
+    },
+    {
+      "titel": "Rechts vor Links(?)",
+      "slug": "rechts-vor-links",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/rechts-vor-links",
+      "kuerzel": "e-10",
+      "untertitel": "Zeitkritische Komödie (Einakter)",
+      "kategorien": [
+        "Tragikomödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 3,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
+    },
+    {
+      "titel": "Reif für die Insel",
+      "slug": "reif-fur-die-insel",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/reif-fur-die-insel",
+      "kuerzel": "e-50",
+      "untertitel": "Komödie (Einakter)",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 10,
+      "besetzung_hinweis": "Besetzung zum Teil variabel",
+      "spieldauer_min": 45,
+      "spieldauer_text": "45"
+    },
+    {
+      "titel": "Reise nach Jerusalem",
+      "slug": "reise-nach-jerusalem",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/reise-nach-jerusalem",
+      "kuerzel": "af-20",
+      "untertitel": "Boulevard-Komödie",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 6m/4w oder 4m/6w",
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
+    },
+    {
+      "titel": "Rosa gibt nicht auf",
+      "slug": "rosa-gibt-nicht-auf",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/rosa-gibt-nicht-auf",
+      "kuerzel": "sen-01",
+      "untertitel": "Komödie für Senioren (Einakter)",
+      "kategorien": [
+        "Für Senioren"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 5,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     },
     {
       "titel": "Saustall beim Amtsgericht",
       "slug": "saustall-beim-amtsgericht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/saustall-beim-amtsgericht",
-      "kuerzel": "",
+      "kuerzel": "gn-45",
       "untertitel": "Gerichts-Komödie",
       "kategorien": [
         "Komödie",
         "Krimi"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 5m/4w",
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Scheinheiligkeit hat einen Namen",
       "slug": "scheinheiligkeit-hat-einen-namen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/scheinheiligkeit-hat-einen-namen",
-      "kuerzel": "",
+      "kuerzel": "af-19",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Schicksalsschläge",
       "slug": "schicksalsschlage",
       "url": "https://theaterverlag-arno-boas.de/stuecke/schicksalsschlage",
-      "kuerzel": "",
+      "kuerzel": "s-05",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 0,
+      "besetzung_w": 4,
+      "spieldauer_min": 7,
+      "spieldauer_text": "7"
     },
     {
       "titel": "Schwarzer Blitz und roter Hahn",
       "slug": "schwarzer-blitz-und-roter-hahn",
       "url": "https://theaterverlag-arno-boas.de/stuecke/schwarzer-blitz-und-roter-hahn",
-      "kuerzel": "",
+      "kuerzel": "gn-35",
       "untertitel": "Kirchlich-kommunistische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 110,
+      "spieldauer_text": "110"
     },
     {
       "titel": "Showdown im Park",
       "slug": "showdown-im-park",
       "url": "https://theaterverlag-arno-boas.de/stuecke/showdown-im-park",
-      "kuerzel": "",
+      "kuerzel": "gn-76",
       "untertitel": "Satirische Kriminalkomödie",
       "kategorien": [
         "Komödie",
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Sicher ist sicher",
       "slug": "sicher-ist-sicher",
       "url": "https://theaterverlag-arno-boas.de/stuecke/sicher-ist-sicher",
-      "kuerzel": "",
+      "kuerzel": "e-25",
       "untertitel": "Krimi-Komödie (Einakter)",
       "kategorien": [
         "Krimi",
         "Krimikomödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 40,
+      "spieldauer_text": "40"
     },
     {
       "titel": "Silvestergeister",
       "slug": "silvestergeister",
       "url": "https://theaterverlag-arno-boas.de/stuecke/silvestergeister",
-      "kuerzel": "",
+      "kuerzel": "s-09",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 4,
+      "besetzung_hinweis": "auch möglich mit 2m/3w oder 3m/2w",
+      "spieldauer_min": 7,
+      "spieldauer_text": "7"
     },
     {
       "titel": "So ein Durcheinander",
       "slug": "so-ein-durcheinander",
       "url": "https://theaterverlag-arno-boas.de/stuecke/so-ein-durcheinander",
-      "kuerzel": "",
+      "kuerzel": "af-08",
       "untertitel": "Schwank",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 6m/4w",
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "So ein Sauhaufen",
       "slug": "so-ein-sauhaufen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/so-ein-sauhaufen",
-      "kuerzel": "",
+      "kuerzel": "e-58",
       "untertitel": "Tierische Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "auch möglich 4w/0m oder 2w/2m",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Spinatulus Wachtulus",
       "slug": "spinatulus-wachtulus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/spinatulus-wachtulus",
-      "kuerzel": "",
+      "kuerzel": "s-11",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Stadtführung",
       "slug": "stadtfuhrung",
       "url": "https://theaterverlag-arno-boas.de/stuecke/stadtfuhrung",
-      "kuerzel": "",
+      "kuerzel": "s-06",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch möglich mit 2m/4w oder 3m/3w",
+      "spieldauer_min": 4,
+      "spieldauer_text": "4"
     },
     {
       "titel": "Super-Kollege Schmitt",
       "slug": "super-kollege-schmitt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/super-kollege-schmitt",
-      "kuerzel": "",
+      "kuerzel": "e-34",
       "untertitel": "Komödie (Einakter, Spieldauer ca. 60 Min.)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich mit 3m/2w durch Doppelbesetzung oder mit 2m/3w",
+      "spieldauer_min": 60,
+      "spieldauer_text": "60"
     },
     {
       "titel": "Tee oder Kaffee",
       "slug": "tee-oder-kaffee",
       "url": "https://theaterverlag-arno-boas.de/stuecke/tee-oder-kaffee",
-      "kuerzel": "",
+      "kuerzel": "e-60",
       "untertitel": "Komödie über (Text)probleme bei einer Theaterprobe",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 1,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich 1w/2m",
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Topf und Deckel",
       "slug": "topf-und-deckel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/topf-und-deckel",
-      "kuerzel": "",
+      "kuerzel": "k-02",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Tradition",
       "slug": "tradition",
       "url": "https://theaterverlag-arno-boas.de/stuecke/tradition",
-      "kuerzel": "",
+      "kuerzel": "w-05",
       "untertitel": "Komödie (Sketch)",
       "kategorien": [
         "Weihnachten"
       ],
-      "spielart_geschaetzt": "Sketch"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 2,
+      "besetzung_w": 2,
+      "spieldauer_min": 7,
+      "spieldauer_text": "7"
+    },
+    {
+      "titel": "Üb immer Treu und Redlichkeit",
+      "slug": "ub-immer-treu-und-redlichkeit",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/ub-immer-treu-und-redlichkeit",
+      "kuerzel": "e-55",
+      "untertitel": "Einakter von Christian Lange",
+      "kategorien": [
+        "Komödie"
+      ],
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 2,
+      "besetzung_hinweis": "auch möglich mit 3m/3w",
+      "spieldauer_min": 45,
+      "spieldauer_text": "45"
     },
     {
       "titel": "und dess am hellichten Dooch",
       "slug": "und-dess-am-hellichten-dooch",
       "url": "https://theaterverlag-arno-boas.de/stuecke/und-dess-am-hellichten-dooch",
-      "kuerzel": "",
+      "kuerzel": "af-47",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Unsere Freundin Ingrid",
       "slug": "unsere-freundin-ingrid",
       "url": "https://theaterverlag-arno-boas.de/stuecke/unsere-freundin-ingrid",
-      "kuerzel": "",
+      "kuerzel": "s-01",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 0,
+      "besetzung_w": 4,
+      "spieldauer_min": 6,
+      "spieldauer_text": "6"
     },
     {
       "titel": "Unter Schwestern",
       "slug": "unter-schwestern",
       "url": "https://theaterverlag-arno-boas.de/stuecke/unter-schwestern",
-      "kuerzel": "",
+      "kuerzel": "gn61",
       "untertitel": "Komödie über eine Erbschaft und deren unerwartete Folgen",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "auch 4m/4w oder 2m/6w",
+      "spieldauer_min": 105,
+      "spieldauer_text": "105"
     },
     {
       "titel": "Verflixt, verhext, verzaubert",
       "slug": "verflixt-verhext-verzaubert",
       "url": "https://theaterverlag-arno-boas.de/stuecke/verflixt-verhext-verzaubert",
-      "kuerzel": "",
+      "kuerzel": "gn-42",
       "untertitel": "Modernes Märchen",
       "kategorien": [
         "Komödie",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 6,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120 Minuten"
     },
     {
       "titel": "Vernagelt und verbohrt",
       "slug": "vernagelt-und-verbohrt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/vernagelt-und-verbohrt",
-      "kuerzel": "",
+      "kuerzel": "k-03",
       "untertitel": "",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 2,
+      "besetzung_w": 1,
+      "spieldauer_min": 10,
+      "spieldauer_text": "10"
     },
     {
       "titel": "Vier Hammel auf Brautschau",
       "slug": "vier-hammel-auf-brautschau",
       "url": "https://theaterverlag-arno-boas.de/stuecke/vier-hammel-auf-brautschau",
-      "kuerzel": "",
+      "kuerzel": "af-41",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 4,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Vollgas für die Kranken",
       "slug": "vollgas-fuer-die-kranken",
       "url": "https://theaterverlag-arno-boas.de/stuecke/vollgas-fuer-die-kranken",
-      "kuerzel": "",
+      "kuerzel": "gn-69",
       "untertitel": "Eine ärztliche Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 7,
+      "besetzung_w": 6,
+      "besetzung_hinweis": "auch möglich mit 6m/6w",
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Vor dem großen Auftritt",
       "slug": "vor-dem-grosen-auftritt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/vor-dem-grosen-auftritt",
-      "kuerzel": "",
+      "kuerzel": "s-13",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 1,
+      "besetzung_w": 1,
+      "spieldauer_min": 5,
+      "spieldauer_text": "5"
     },
     {
       "titel": "Vorsicht Tango",
       "slug": "vorsicht-tango",
       "url": "https://theaterverlag-arno-boas.de/stuecke/vorsicht-tango",
-      "kuerzel": "",
+      "kuerzel": "e-06",
       "untertitel": "Spätsommerliche Romanze (Einakter)",
       "kategorien": [
         "Für Senioren"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "plus 1 Mini-Rolle ohne Text",
+      "spieldauer_min": 35,
+      "spieldauer_text": "35"
     },
     {
       "titel": "Wartezimmer-Gschmarri",
       "slug": "wartezimmer-gschmarri",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wartezimmer-gschmarri",
-      "kuerzel": "",
+      "kuerzel": "e-22",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Wartezimmer-Gschmarri II",
       "slug": "wartezimmer-gschmarri-ii",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wartezimmer-gschmarri-ii",
-      "kuerzel": "",
+      "kuerzel": "e-30",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 6,
+      "spieldauer_min": 20,
+      "spieldauer_text": "20"
     },
     {
       "titel": "Was denn nun: Sein oder Schein",
       "slug": "was-denn-nun-sein-oder-schein",
       "url": "https://theaterverlag-arno-boas.de/stuecke/was-denn-nun-sein-oder-schein",
-      "kuerzel": "",
+      "kuerzel": "e-08",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 4,
+      "besetzung_w": 3,
+      "spieldauer_min": 45,
+      "spieldauer_text": "45"
     },
     {
       "titel": "Weihnachtsüberraschung Tante Anna",
       "slug": "weihnachtsuberraschung-tante-anna",
       "url": "https://theaterverlag-arno-boas.de/stuecke/weihnachtsuberraschung-tante-anna",
-      "kuerzel": "",
+      "kuerzel": "af-09",
       "untertitel": "Lustspiel",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 6,
+      "besetzung_w": 8,
+      "besetzung_hinweis": "Doppelbesetzungen möglich",
+      "spieldauer_min": 125,
+      "spieldauer_text": "125"
     },
     {
       "titel": "Wellness now",
       "slug": "wellness-now",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wellness-now",
-      "kuerzel": "",
+      "kuerzel": "af-14",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 7,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Wenn erst einmal die schönen Blüten blühen",
       "slug": "wenn-erst-einmal-die-schonen-bluten-bluhen",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wenn-erst-einmal-die-schonen-bluten-bluhen",
-      "kuerzel": "",
+      "kuerzel": "af-18",
       "untertitel": "Boulevard-Komödie mit Krimi-Touch",
       "kategorien": [
         "Komödie",
         "Krimi"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 3,
+      "spieldauer_min": 100,
+      "spieldauer_text": "100"
     },
     {
       "titel": "Wer berühmt sein will, muss sterben",
       "slug": "wer-beruhmt-sein-will-muss-sterben",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wer-beruhmt-sein-will-muss-sterben",
-      "kuerzel": "",
+      "kuerzel": "af-15",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 5,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Wer küsst die Braut?",
       "slug": "wer-kusst-die-braut",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wer-kusst-die-braut",
-      "kuerzel": "",
+      "kuerzel": "af-03",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 3,
+      "besetzung_w": 5,
+      "spieldauer_min": 120,
+      "spieldauer_text": "120"
     },
     {
       "titel": "Wie verhext",
       "slug": "wie-verhext",
       "url": "https://theaterverlag-arno-boas.de/stuecke/wie-verhext",
-      "kuerzel": "",
+      "kuerzel": "k-11",
       "untertitel": "Märchen (Einakter)",
       "kategorien": [
         "Für Jugendliche",
         "Märchen"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Kurzstück",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "besetzung_hinweis": "zusätzlich 1 Sprechrolle und 2 Statisten",
+      "spieldauer_min": 15,
+      "spieldauer_text": "15"
     },
     {
       "titel": "Willkommen im Glubb",
       "slug": "willkommen-im-club",
       "url": "https://theaterverlag-arno-boas.de/stuecke/willkommen-im-club",
-      "kuerzel": "",
+      "kuerzel": "e-51",
       "untertitel": "Komödie (Einakter) für FC Nürnberg-Fans",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 5,
+      "besetzung_w": 5,
+      "besetzung_hinweis": "zusätzlich 5-köpfige Kinder-Cheerleader-Gruppe (optional)",
+      "spieldauer_min": 25,
+      "spieldauer_text": "25"
     },
     {
       "titel": "Zuckerguss und Kräuterkekse",
@@ -2514,62 +3567,59 @@
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 4,
+      "besetzung_w": 8,
+      "besetzung_hinweis": "auch möglich 5m/7w",
+      "spieldauer_min": 130,
+      "spieldauer_text": "130"
     },
     {
       "titel": "Zum Teufel mit der Familie",
       "slug": "familie-fuer-fortgeschrittene",
       "url": "https://theaterverlag-arno-boas.de/stuecke/familie-fuer-fortgeschrittene",
-      "kuerzel": "",
+      "kuerzel": "gn-75",
       "untertitel": "Komödie über den ganz normalen Familienwahnsinn",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Abendfüllend",
+      "besetzung_m": 5,
+      "besetzung_w": 7,
+      "besetzung_hinweis": "ohne Doppelbesetzungen sind bis zu 25 Rollen möglich",
+      "spieldauer_min": 95,
+      "spieldauer_text": "95"
     },
     {
       "titel": "Zwei im selben Boot",
       "slug": "zwei-im-selben-boot",
       "url": "https://theaterverlag-arno-boas.de/stuecke/zwei-im-selben-boot",
-      "kuerzel": "",
+      "kuerzel": "s-02",
       "untertitel": "Komödie",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Abendfüllend"
+      "spielart_geschaetzt": "Sketch",
+      "besetzung_m": 2,
+      "besetzung_w": 0,
+      "besetzung_hinweis": "auch möglich mit 0m/2w",
+      "spieldauer_min": 6,
+      "spieldauer_text": "6"
     },
     {
       "titel": "Zwei verschwiegene Töchter",
       "slug": "zwei-verschwiegene-tochter",
       "url": "https://theaterverlag-arno-boas.de/stuecke/zwei-verschwiegene-tochter",
-      "kuerzel": "",
+      "kuerzel": "e-04",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
         "Komödie"
       ],
-      "spielart_geschaetzt": "Einakter"
-    },
-    {
-      "titel": "Öchsle",
-      "slug": "ochsle",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/ochsle",
-      "kuerzel": "",
-      "untertitel": "Historische Komödie aus dem 17. Jahrhundert",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend"
-    },
-    {
-      "titel": "Üb immer Treu und Redlichkeit",
-      "slug": "ub-immer-treu-und-redlichkeit",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/ub-immer-treu-und-redlichkeit",
-      "kuerzel": "",
-      "untertitel": "Einakter von Christian Lange",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Einakter"
+      "spielart_geschaetzt": "Einakter",
+      "besetzung_m": 2,
+      "besetzung_w": 3,
+      "spieldauer_min": 30,
+      "spieldauer_text": "30"
     }
   ]
 }

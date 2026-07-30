@@ -169,11 +169,10 @@ const genres = [
         </div>
       </div>
       {
-        (!hasCastData || !hasVenueData) && (
+        (!hasVenueData) && (
           <p class="filter-note" id="filter-note">
-            Genre, Dauer und Freitextsuche sind aktiv.
-            {!hasCastData && " Herren-/Damenrollen folgen mit den Besetzungsdaten."}
-            {!hasVenueData && " Spielort-Filter folgt mit den Stammdaten."}
+            Freitextsuche, Genre, Dauer sowie Herren- und Damenrollen sind aktiv.
+            Spielort-Filter folgt, sobald die Angaben in den Stammdaten vorliegen.
           </p>
         )
       }
@@ -206,8 +205,11 @@ const genres = [
               <div class="ls">{s.untertitel}</div>
               <div class="lb">
                 <span class="lm">
-                  {s.kategorien.join(" · ")}
+                  {typeof s.besetzung_m === "number" || typeof s.besetzung_w === "number"
+                    ? `${s.besetzung_m ?? "–"} Herren · ${s.besetzung_w ?? "–"} Damen`
+                    : s.kategorien.join(" · ")}
                   {s.kuerzel ? ` · ${s.kuerzel}` : ""}
+                  {typeof s.spieldauer_min === "number" ? ` · ca. ${s.spieldauer_min} Min.` : ""}
                 </span>
                 <span class="la">
                   <button

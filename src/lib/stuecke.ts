@@ -10,11 +10,12 @@ export type Stueck = {
   untertitel: string;
   kategorien: string[];
   spielart_geschaetzt: string;
-  /** Felder folgen aus Backend / Migration */
   autor?: string;
   besetzung_m?: number;
   besetzung_w?: number;
+  besetzung_hinweis?: string;
   spieldauer_min?: number;
+  spieldauer_text?: string;
   buehnenbild?: string;
   preis_rollensatz?: number;
   inhalt?: string;
