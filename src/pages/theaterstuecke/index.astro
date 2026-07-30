@@ -1,0 +1,319 @@
+---
+import { path } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import StickyKatalog from "../../components/StickyKatalog.astro";
+import { getStuecke, overviewHref, stueckHref } from "../../lib/stuecke";
+
+const stuecke = getStuecke();
+const q = Astro.url.searchParams.get("q")?.trim() ?? "";
+const genre = Astro.url.searchParams.get("genre") ?? "alle";
+const dauer = Astro.url.searchParams.get("dauer") ?? "alle";
+const ensemble = Astro.url.searchParams.get("ensemble") ?? "beliebig";
+const spielort = Astro.url.searchParams.get("spielort") ?? "egal";
+
+let filtered = stuecke;
+if (q) {
+  const needle = q.toLowerCase();
+  filtered = filtered.filter(
+    (s) =>
+      s.titel.toLowerCase().includes(needle) ||
+      s.untertitel.toLowerCase().includes(needle) ||
+      s.kategorien.some((k) => k.toLowerCase().includes(needle)) ||
+      s.kuerzel.toLowerCase().includes(needle),
+  );
+}
+if (genre && genre !== "alle") {
+  if (genre === "Kinder & Jugend" || genre === "Für Jugendliche") {
+    filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
+  } else {
+    filtered = filtered.filter((s) => s.kategorien.includes(genre));
+  }
+}
+if (dauer && dauer !== "alle") {
+  filtered = filtered.filter((s) => s.spielart_geschaetzt === dauer);
+}
+// ensemble / spielort: UI-Parameter vorhanden, Daten folgen — Kinder & Jugend bereits über Genre
+if (ensemble === "kinder-jugend") {
+  filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
+}
+
+filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
+---
+
+<BaseLayout
+  title="Theaterstücke"
+  description="Über 250 Bühnenstücke durchsuchen und filtern — Theaterverlag Arno Boas."
+>
+  <SiteHeader active="/theaterstuecke" />
+
+  <section class="ihero">
+    <div class="wrap">
+      <span class="cap-label">Repertoire</span>
+      <h1>Theaterstücke</h1>
+      <p>
+        Über 250 Bühnenstücke fürs Amateurtheater — suchen und filtern Sie nach
+        Genre, Ensemblegröße, Spielort und Dauer.
+      </p>
+    </div>
+  </section>
+
+  <div class="filterbar">
+    <form class="wrap fb" method="get" action={path("/theaterstuecke")}>
+      <div class="f grow">
+        <label for="q">Suche</label>
+        <input id="q" name="q" type="search" value={q} placeholder="Titel, Stichwort …" />
+      </div>
+      <div class="f">
+        <label for="genre">Genre</label>
+        <select id="genre" name="genre">
+          {
+            ["alle", "Komödie", "Krimi", "Krimikomödie", "Märchen", "Drama", "Weihnachten", "Tragikomödie", "Für Jugendliche", "Für Senioren"].map((opt) => (
+              <option value={opt} selected={genre === opt || (opt === "Für Jugendliche" && genre === "Kinder & Jugend")}>
+                {opt}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      <div class="f">
+        <label for="dauer">Dauer</label>
+        <select id="dauer" name="dauer">
+          {
+            ["alle", "Abendfüllend", "Einakter", "Kurzstück"].map((opt) => (
+              <option value={opt} selected={dauer === opt}>
+                {opt}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      {
+        ensemble !== "beliebig" && (
+          <input type="hidden" name="ensemble" value={ensemble} />
+        )
+      }
+      {
+        spielort !== "egal" && (
+          <input type="hidden" name="spielort" value={spielort} />
+        )
+      }
+      <button type="submit">Filtern</button>
+    </form>
+  </div>
+
+  <div class="wrap results">
+    <div class="result-meta">
+      <span>
+        <b>{filtered.length}</b>{" "}
+        {filtered.length === 1 ? "Stück" : "Stücke"}
+        {q && <> zu „{q}"</>}
+      </span>
+      {(ensemble !== "beliebig" || spielort !== "egal") && (
+        <span class="hint">
+          Feintuning Herren-/Damenrollen und Spielort folgt, sobald die
+          Besetzungsdaten vorliegen.
+        </span>
+      )}
+    </div>
+
+    <div class="list">
+      {
+        filtered.map((s) => (
+          <div class="row-wrap">
+            <a class="row" href={stueckHref(s.slug)}>
+              <div class="meta">
+                <span class="g">{s.kategorien[0]}</span>
+                {s.kuerzel && <span class="kz">{s.kuerzel}</span>}
+                <span class="d">{s.spielart_geschaetzt}</span>
+              </div>
+              <div class="title">{s.titel}</div>
+              <div class="sub">{s.untertitel}</div>
+            </a>
+            <button
+              type="button"
+              class="mk"
+              data-bookmark={s.slug}
+              aria-label={`${s.titel} merken`}
+            >
+              <i class="ti ti-bookmark" aria-hidden="true" />
+              <span class="tip">Merken</span>
+            </button>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      filtered.length === 0 && (
+        <p class="empty">
+          Keine Treffer.{" "}
+          <a href={overviewHref()}>Filter zurücksetzen</a>
+        </p>
+      )
+    }
+  </div>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .ihero {
+    padding: 56px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ihero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    margin: 10px 0 14px;
+  }
+  .ihero p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 58ch;
+  }
+  .filterbar {
+    position: sticky;
+    top: 74px;
+    z-index: 30;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(20, 12, 6, 0.09);
+  }
+  .fb {
+    display: flex;
+    gap: 12px;
+    align-items: end;
+    padding: 16px var(--pad-x);
+    flex-wrap: wrap;
+  }
+  .f {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 140px;
+  }
+  .f.grow {
+    flex: 1;
+    min-width: 200px;
+  }
+  .f label {
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .f input,
+  .f select {
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  button {
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 22px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  button:hover {
+    background: var(--wine-dark);
+  }
+  .results {
+    padding: 36px var(--pad-x) 80px;
+  }
+  .result-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .result-meta b {
+    color: var(--ink);
+  }
+  .hint {
+    font-size: 13px;
+  }
+  .list {
+    border-top: 2px solid var(--ink);
+  }
+  .row-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .row {
+    display: block;
+    padding: 22px 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding 0.15s;
+    min-width: 0;
+  }
+  .row-wrap:hover .row {
+    padding-left: 10px;
+  }
+  .meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 11.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .g {
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .kz {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: none;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 7px;
+  }
+  .title {
+    font-family: var(--font-head);
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1;
+  }
+  .row:hover .title {
+    color: var(--wine);
+  }
+  .sub {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  .empty {
+    padding: 40px 0;
+    color: var(--muted);
+  }
+  .empty a {
+    color: var(--wine);
+  }
+</style>

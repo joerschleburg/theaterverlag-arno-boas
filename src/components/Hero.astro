@@ -1,0 +1,80 @@
+---
+import SiteHeader from "./SiteHeader.astro";
+import HeroSearch from "./HeroSearch.astro";
+import { path } from "../lib/paths";
+
+const heroBase = path("/images");
+const heroFallback = `${heroBase}/hero_1.jpg`;
+---
+
+<div
+  class="hero"
+  data-hero
+  data-hero-base={heroBase}
+  style={`background-image: linear-gradient(100deg,rgba(12,8,5,.82) 0%,rgba(12,8,5,.42) 46%,rgba(12,8,5,.12) 72%,rgba(12,8,5,.3) 100%), linear-gradient(180deg,rgba(12,8,5,0) 40%,rgba(12,8,5,.55) 100%), url('${heroFallback}')`}
+>
+  <SiteHeader variant="hero" />
+  <div class="hero-inner">
+    <h1>Bereit für den <em>Applaus</em>?</h1>
+    <span class="kick">Über 250 Bühnenstücke fürs Amateurtheater · gegründet 1997</span>
+    <HeroSearch />
+  </div>
+</div>
+
+<script>
+  const hero = document.querySelector<HTMLElement>("[data-hero]");
+  const base = hero?.dataset.heroBase || "/images";
+  const imgs = [1, 2, 3, 4, 5].map((n) => `${base}/hero_${n}.jpg`);
+  const pick = imgs[Math.floor(Math.random() * imgs.length)];
+  if (hero) {
+    hero.style.backgroundImage =
+      "linear-gradient(100deg,rgba(12,8,5,.82) 0%,rgba(12,8,5,.42) 46%,rgba(12,8,5,.12) 72%,rgba(12,8,5,.3) 100%)," +
+      "linear-gradient(180deg,rgba(12,8,5,0) 40%,rgba(12,8,5,.55) 100%)," +
+      `url('${pick}')`;
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    padding-bottom: 6vh;
+    background-color: #17130f;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .hero-inner {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 var(--pad-x);
+  }
+  .kick {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--yellow);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  h1 {
+    font-family: var(--font-head);
+    color: #fff;
+    font-size: clamp(46px, 7.2vw, 104px);
+    line-height: 1;
+    font-weight: 800;
+    margin: 16px 0 0;
+    max-width: 15ch;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,497 @@
+---
+import { path } from "../lib/paths";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import StickyKatalog from "../components/StickyKatalog.astro";
+
+const faqs = [
+  {
+    question: "Seit wann gibt es den Theaterverlag Arno Boas?",
+    answer: 'Seit 1997 – anfangs unter dem Namen „Arnos Theaterladen".',
+  },
+  {
+    question: "Wer ist Arno Boas?",
+    answer:
+      "Jahrgang 1960, Autor und Journalist, seit 1985 im Amateurtheater aktiv und mehrfach ausgezeichnet – u. a. mit dem Gottlob-Haag-Ehrenring und dem Theaterpreis „Lamathea\".",
+  },
+  {
+    question: "Was zeichnet den Verlag aus?",
+    answer:
+      "Vielfalt: über 250 Stücke aller Genres in verständlicher Umgangssprache, leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar.",
+  },
+  {
+    question: "Kann ich als Autorin oder Autor mitmachen?",
+    answer:
+      "Ja. Gerade unbekannten Autorinnen und Autoren gibt der Verlag eine Chance – Manuskripte sind jederzeit willkommen und werden zeitnah geprüft.",
+  },
+];
+
+const friends = [
+  {
+    href: "https://www.amateurtheater-bw.de/",
+    name: "Landesverband Amateurtheater BW",
+    desc: "Dachverband des Amateurtheaters in Baden-Württemberg.",
+    host: "amateurtheater-bw.de",
+  },
+  {
+    href: "https://www.amateurtheater-netz.de/",
+    name: "Amateurtheater-Netz",
+    desc: "Portal mit allem rund ums Amateurtheater.",
+    host: "amateurtheater-netz.de",
+  },
+  {
+    href: "https://www.mundart-theater-franken.de/",
+    name: "AG Mundarttheater Franken e.V.",
+    desc: "Netzwerk fürs fränkische Mundarttheater.",
+    host: "mundart-theater-franken.de",
+  },
+  {
+    href: "https://www.buehnenzinnober.de/",
+    name: "Reinsbronner Bühnenzinnober e.V.",
+    desc: "Amateurbühne aus Reinsbronn.",
+    host: "buehnenzinnober.de",
+  },
+  {
+    href: "https://www.doredraewer.de/",
+    name: "Doredräwer e.V.",
+    desc: "Theaterverein und Amateurbühne.",
+    host: "doredraewer.de",
+  },
+  {
+    href: "https://www.stoark-stoeck.de/",
+    name: "Theatergruppe „Stoark Stoeck\"",
+    desc: "Amateurtheatergruppe.",
+    host: "stoark-stoeck.de",
+  },
+  {
+    href: "https://www.theater-mfr.de/",
+    name: "Theater Mittelfranken",
+    desc: "Regionales Theaterportal für Mittelfranken.",
+    host: "theater-mfr.de",
+  },
+  {
+    href: "https://www.tulpi-gehring.de/",
+    name: "Thomas Gehring",
+    desc: "Autor fürs Amateurtheater.",
+    host: "tulpi-gehring.de",
+  },
+  {
+    href: "https://www.wilhelm-wolpert.de/",
+    name: "Wilhelm Wolpert",
+    desc: "Autor und Mundart-Bühnenautor.",
+    host: "wilhelm-wolpert.de",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="Über den Verlag"
+  description="Theaterverlag Arno Boas — gegründet 1997. Vielfalt fürs Amateurtheater."
+  jsonLd={faqLd}
+>
+  <SiteHeader active="/ueber-den-verlag" />
+
+  <section class="intro">
+    <div class="wrap narrow">
+      <span class="cap-label">Seit 1997</span>
+      <h1>Über den Verlag</h1>
+    </div>
+  </section>
+
+  <section class="wrap narrow lead-txt">
+    <p class="big">
+      1997 startete der Theaterverlag Arno Boas — damals noch unter dem Namen
+      „Arnos Theaterladen" — als Verlag für das Laien- und Amateurtheater. Schon
+      zu Beginn hatten sich über 20 Autorinnen und Autoren angeschlossen.
+    </p>
+    <p>
+      In den Jahren seither ist unser Repertoire kontinuierlich auf über 250
+      Bühnenstücke gewachsen. Alle Werke sind in verständlicher Umgangssprache
+      verfasst und dadurch leicht in jeden Dialekt übertragbar oder auf
+      Hochdeutsch spielbar — von der Komödie über den Krimi bis zum Drama.
+    </p>
+    <p>
+      Vielfalt war und bleibt auch in Zukunft Trumpf unseres Verlages. Ob
+      abendfüllendes Stück, Einakter oder Kurzstück: Schauen Sie sich um — wir
+      würden uns freuen.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><b>250+</b><span>Bühnenstücke</span></div>
+      <div class="stat"><b>40</b><span>Autorinnen und Autoren</span></div>
+      <div class="stat"><b>1997</b><span>gegründet</span></div>
+    </div>
+  </section>
+
+  <section class="wrap publisher">
+    <img
+      src={path("/images/arno.jpg")}
+      alt="Arno Boas"
+      width="320"
+      height="390"
+      loading="lazy"
+    />
+    <div>
+      <span class="cap-label">Der Verleger</span>
+      <h2>Verleger aus Leidenschaft — und selbst Autor.</h2>
+      <p>
+        Arno Boas, Jahrgang 1960, schreibt seit 1985 Stücke fürs Amateurtheater.
+        Als Autor und Journalist versteht er sich nicht nur als Verleger,
+        sondern als Bindeglied zwischen den Gruppen und den schreibenden
+        Kolleginnen und Kollegen. Gerade unbekannten Talenten möchte er eine
+        Chance geben, ihre Stücke bekannter zu machen.
+      </p>
+      <p>Für seine Theaterarbeit wurde er mehrfach ausgezeichnet:</p>
+      <ul class="awards">
+        <li>
+          <div>
+            <span class="yr">1990</span>
+            <span>Regionaler Kulturpreis des Main-Tauber-Kreises</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="yr">1999</span>
+            <span>Gottlob-Haag-Ehrenring</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="yr">2011</span>
+            <span
+              >Goldene Ehrennadel des Amateurtheaterverbandes Baden-Württemberg</span
+            >
+          </div>
+        </li>
+        <li>
+          <div>
+            <span class="yr">zuletzt</span>
+            <span
+              >Theaterpreis „Lamathea" des Landes Baden-Württemberg für sein
+              Drama „An einem Tag im März"</span
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="wrap">
+      <blockquote>
+        „Vielfalt war und bleibt auch in Zukunft Trumpf unseres Verlages."
+      </blockquote>
+      <cite>Arno Boas · Verlagsgründer</cite>
+    </div>
+  </section>
+
+  <section class="friends">
+    <div class="wrap">
+      <span class="cap-label">Verlagsfreunde</span>
+      <h2>Befreundete Bühnen, Verbände und Autoren</h2>
+      <p class="sub">
+        Links zu Theaterverbänden, Amateurbühnen und Autorinnen und Autoren, mit
+        denen wir verbunden sind — schauen Sie gern vorbei.
+      </p>
+      <div class="fgrid">
+        {
+          friends.map((f) => (
+            <a class="fr" href={f.href} target="_blank" rel="noopener noreferrer">
+              <div class="nm">
+                <i class="ti ti-external-link" aria-hidden="true" />
+                {f.name}
+              </div>
+              <div class="ds">{f.desc}</div>
+              <div class="ur">{f.host}</div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap narrow faq-sec">
+    <div class="faq-h">
+      <span class="cap-label">Häufige Fragen</span>
+      <h2>Gut zu wissen</h2>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((item) => (
+          <details>
+            <summary>
+              {item.question}
+              <span class="ic">
+                <i class="ti ti-plus" aria-hidden="true" />
+              </span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 820px;
+  }
+  .intro {
+    padding: 52px 0 8px;
+  }
+  .intro h1 {
+    font-size: clamp(40px, 6.4vw, 80px);
+    line-height: 0.94;
+    margin: 12px 0 0;
+  }
+  .lead-txt {
+    padding: 26px 0 0;
+  }
+  .lead-txt p {
+    margin: 0 0 18px;
+    font-size: 18px;
+  }
+  .lead-txt p.big::first-letter {
+    font-family: var(--font-head);
+    font-size: 74px;
+    float: left;
+    line-height: 0.72;
+    padding: 8px 14px 0 0;
+    color: var(--wine);
+  }
+  .stats {
+    display: flex;
+    gap: 54px;
+    flex-wrap: wrap;
+    border-top: 2.5px solid var(--ink);
+    border-bottom: 2.5px solid var(--ink);
+    padding: 26px 0;
+    margin: 34px 0;
+  }
+  .stat b {
+    font-family: var(--font-head);
+    font-size: 52px;
+    color: var(--wine);
+    display: block;
+    line-height: 0.8;
+  }
+  .stat span {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .publisher {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 56px;
+    align-items: start;
+    padding: 36px 0;
+  }
+  .publisher img {
+    width: 320px;
+    height: 390px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 20px 44px rgba(20, 12, 6, 0.2);
+  }
+  .publisher h2 {
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 0.98;
+    margin: 12px 0 18px;
+  }
+  .publisher p {
+    margin: 0 0 16px;
+  }
+  .awards {
+    margin: 22px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    list-style: none;
+  }
+  .awards div {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .awards .yr {
+    font-family: var(--font-head);
+    font-weight: 700;
+    color: var(--wine);
+    width: 70px;
+    flex: none;
+  }
+  .quote {
+    text-align: center;
+    padding: 80px 0;
+    border-top: 1px solid var(--ink);
+    margin-top: 20px;
+  }
+  .quote blockquote {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3.8vw, 46px);
+    line-height: 1.1;
+    margin: 0 auto;
+    max-width: 20ch;
+    color: var(--ink);
+  }
+  .quote cite {
+    display: block;
+    margin-top: 20px;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .friends {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 0;
+  }
+  .friends :global(.cap-label) {
+    color: var(--muted);
+  }
+  .friends h2 {
+    font-size: clamp(22px, 2.6vw, 32px);
+    margin: 10px 0 6px;
+  }
+  .friends .sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 28px;
+    max-width: 60ch;
+  }
+  .fgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .fr {
+    display: block;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+  }
+  .fr:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+  .fr .nm {
+    font-family: var(--font-head);
+    font-size: 18px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fr .nm i {
+    color: var(--wine);
+    font-size: 15px;
+  }
+  .fr:hover .nm {
+    color: var(--wine);
+  }
+  .fr .ds {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .fr .ur {
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+  .faq-sec {
+    padding: 64px 0 8px;
+  }
+  .faq-h {
+    margin-bottom: 22px;
+  }
+  .faq-h h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1;
+    margin-top: 10px;
+  }
+  .faq {
+    border-top: 2px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 23px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 22px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 22px;
+    font-size: 16px;
+    color: var(--text);
+    max-width: 78ch;
+  }
+  @media (max-width: 900px) {
+    .publisher {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+    .publisher img {
+      width: 100%;
+      height: 320px;
+    }
+    .fgrid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

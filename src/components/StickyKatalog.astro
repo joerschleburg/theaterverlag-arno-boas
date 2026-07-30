@@ -1,0 +1,52 @@
+---
+import { path } from "../lib/paths";
+---
+
+<a
+  class="cat-sticky"
+  href={path("/katalog/Katalog_Theaterverlag_Arno_Boas.pdf")}
+  download
+>
+  <i class="ti ti-file-download" aria-hidden="true"></i>
+  Katalog herunterladen
+</a>
+
+<style>
+  .cat-sticky {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--wine);
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 14px 34px rgba(20, 12, 6, 0.4);
+    transition:
+      background 0.18s,
+      transform 0.18s;
+  }
+  .cat-sticky:hover {
+    background: var(--wine-dark);
+    transform: translateY(-2px);
+  }
+  .cat-sticky i {
+    font-size: 18px;
+  }
+  @media (max-width: 560px) {
+    .cat-sticky {
+      right: 14px;
+      bottom: 14px;
+      padding: 12px 16px;
+      font-size: 11px;
+    }
+  }
+</style>

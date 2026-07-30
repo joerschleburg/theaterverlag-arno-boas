@@ -1,0 +1,696 @@
+---
+import { path } from "../lib/paths";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import FaqAccordion from "../components/FaqAccordion.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import StickyKatalog from "../components/StickyKatalog.astro";
+import { SITE } from "../lib/site";
+import {
+  getGenreIndexWithCounts,
+  getStueckBySlug,
+  overviewHref,
+  stueckHref,
+} from "../lib/stuecke";
+
+const genreIndex = getGenreIndexWithCounts();
+
+/** Platzhalter bis Backend-Auswahl — echte Slugs, nur belegbare Meta */
+const feature = getStueckBySlug("mord-im-moor");
+const neuSlugs = [
+  "pension-rhonblick",
+  "an-einem-tag-im-marz",
+  "verflixt-verhext-verzaubert",
+  "agentur-weihnachtsengel",
+];
+const neu = neuSlugs
+  .map((slug) => getStueckBySlug(slug))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const faqs = [
+  {
+    question: "Was ist der Theaterverlag Arno Boas?",
+    answer:
+      "Ein 1997 gegründeter Bühnenverlag für das Amateurtheater mit über 250 Stücken von rund 40 Autorinnen und Autoren — von der Komödie über den Krimi bis zum Drama.",
+  },
+  {
+    question: "Für wen sind die Stücke geeignet?",
+    answer:
+      "Für Theatervereine, Amateurbühnen, Schul- und Jugendgruppen sowie Seniorentheater. Alle Werke sind in verständlicher Umgangssprache verfasst und dadurch leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar.",
+  },
+  {
+    question: "Wie finde ich ein passendes Stück?",
+    answer:
+      "Über die Suche und die Filter nach Genre, Ensemblegröße (Herren- und Damenrollen), Spielort und Dauer. Gemerkte Stücke lassen sich anschließend gebündelt anfragen.",
+  },
+  {
+    question: "Kann ich ein Stück vor der Aufführung lesen?",
+    answer:
+      "Ja. Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar können Sie vier Wochen unverbindlich anfordern.",
+  },
+  {
+    question: "Was kostet eine Aufführung?",
+    answer:
+      "Die Gebühr richtet sich nach Spielart und Zahl der Aufführungen — bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt). Alle Details finden Sie unter „Preise & Bedingungen\".",
+  },
+  {
+    question: "Wie kann ich ein Stück anfragen oder bestellen?",
+    answer:
+      "Merken Sie sich Stücke über die Merkliste und senden Sie eine gebündelte Anfrage — wahlweise mit Wunsch nach Leseprobe, Ansichtsexemplar, gedrucktem Rollensatz oder Aufführung.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  telephone: SITE.phone,
+  foundingDate: String(SITE.founded),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.zip,
+    addressLocality: SITE.address.city,
+    addressCountry: "DE",
+  },
+};
+
+function genreLabel(s: { kategorien: string[] }) {
+  return s.kategorien[0] ?? "";
+}
+---
+
+<BaseLayout
+  title={SITE.name + " — Repertoire"}
+  description="Über 250 Bühnenstücke fürs Amateurtheater. Theaterverlag Arno Boas — gegründet 1997."
+  headerVariant="hero"
+  jsonLd={[orgLd, faqLd]}
+>
+  <Hero />
+
+  <!-- FEATURE -->
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead folio="№&nbsp;01" title="Im Rampenlicht" />
+      {
+        feature && (
+          <div class="feature">
+            <div class="fpo">
+              <i class="ti ti-detective ic" aria-hidden="true" />
+              <span class="t">
+                {feature.untertitel}
+                {feature.kuerzel ? ` · ${feature.kuerzel}` : ""}
+              </span>
+              <span class="n">
+                {feature.titel.includes(" ") ? (
+                  <>
+                    {feature.titel.split(" ").slice(0, -1).join(" ")}
+                    <br />
+                    {feature.titel.split(" ").slice(-1)[0]}
+                  </>
+                ) : (
+                  feature.titel
+                )}
+              </span>
+            </div>
+            <div class="ftx">
+              <span class="cap-label">Empfehlung</span>
+              <h3>{feature.untertitel}</h3>
+              <p class="dek">
+                Ausführlicher Klappentext und Besetzungsangaben folgen. Bis dahin
+                finden Sie alle bekannten Eckdaten auf der Stückseite.
+              </p>
+              <ul class="specs">
+                <li>
+                  <span>Genre</span>
+                  <span>{feature.kategorien.join(" · ")}</span>
+                </li>
+                <li>
+                  <span>Spielart</span>
+                  <span>{feature.spielart_geschaetzt}</span>
+                </li>
+              </ul>
+              <div class="flinks">
+                <a href={stueckHref(feature.slug)}>Zum Stück</a>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <div class="endmark"><i class="ti ti-masks-theater" aria-hidden="true"></i></div>
+
+  <!-- NEU -->
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead folio="№&nbsp;02" title="Neu im Repertoire" />
+      <div class="list">
+        {
+          neu.map((s) => (
+            <a class="li" href={stueckHref(s.slug)}>
+              <div class="lt">
+                <span class="g">{genreLabel(s)}</span>
+                <span>{s.spielart_geschaetzt.toLowerCase()}</span>
+              </div>
+              <div class="lh">{s.titel}</div>
+              <div class="lm">
+                <span>{s.untertitel}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="more">
+        <a href={path("/theaterstuecke")}>Alle Stücke ansehen →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="endmark"><i class="ti ti-masks-theater" aria-hidden="true"></i></div>
+
+  <!-- INDEX -->
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead folio="№&nbsp;03" title="Nach Genre stöbern" />
+      <div class="idx">
+        {
+          genreIndex.map((g) => (
+            <a href={overviewHref({ genre: g.label === "Kinder & Jugend" ? "Für Jugendliche" : g.label })}>
+              <span class="n">{g.n}</span>
+              <span class="nm">{g.label}</span>
+              <span class="ld" />
+              <span class="ct">{g.count}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="wrap">
+    <div class="pq">
+      <div class="pq-inner">
+        <img
+          class="pq-portrait"
+          src={path("/images/arno.jpg")}
+          alt="Arno Boas"
+          width="280"
+          height="340"
+          loading="lazy"
+        />
+        <div class="pq-text">
+          <blockquote>
+            „Vielfalt war und bleibt Trumpf unseres Verlages."
+          </blockquote>
+          <div class="sig">Arno Boas</div>
+          <cite>Verlagsgründer · Autor · Theatermensch</cite>
+          <a class="tlink" href={path("/autoren/arno-boas")}>Mehr über Arno Boas erfahren →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER -->
+  <section class="about">
+    <div class="wrap about-inner">
+      <div>
+        <span class="cap-label">Über den Verlag</span>
+        <h2>Von Theaterleuten, für Theaterleute.</h2>
+        <p class="lead">
+          Seit 1997 stehen wir für lebendige Bühnenstücke in verständlicher
+          Umgangssprache – leicht in jeden Dialekt übertragbar und auf Hochdeutsch
+          spielbar. Vom abendfüllenden Stück über Einakter bis zum Sketch: Vielfalt
+          ist unser Markenzeichen.
+        </p>
+        <div class="stats">
+          <div class="stat"><b>250+</b><span>Theaterstücke</span></div>
+          <div class="stat"><b>40</b><span>Autorinnen und Autoren</span></div>
+          <div class="stat"><b>1997</b><span>gegründet</span></div>
+        </div>
+        <a class="tlink" href={path("/ueber-den-verlag")}>Mehr über den Verlag →</a>
+      </div>
+      <div>
+        <div
+          class="about-img"
+          role="img"
+          aria-label="Aufführung aus dem Verlagsrepertoire"
+          style={`--about-img: url('${path("/images/hero_2.jpg")}')`}
+        ></div>
+        <p class="cap">Aus einer Aufführung im Verlagsrepertoire</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter: Modul sichtbar, noch nicht angebunden -->
+  <section class="news" aria-labelledby="nl-title">
+    <div class="news-inner">
+      <div class="nl-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
+      <span class="cap-label">Newsletter</span>
+      <h2 id="nl-title">Bleiben wir in Kontakt</h2>
+      <p>
+        Neue Stücke und Aktuelles aus dem Verlag – ein paar Mal im Jahr, herzlich
+        und ganz ohne Werbeflut.
+      </p>
+      <form class="nl-form" onsubmit="return false;" aria-disabled="true">
+        <input
+          type="email"
+          placeholder="Ihre E-Mail-Adresse"
+          disabled
+          aria-label="E-Mail-Adresse (Anmeldung folgt in Kürze)"
+        />
+        <button type="button" disabled>Demnächst</button>
+      </form>
+      <div class="nl-note">Anmeldung folgt in Kürze. Kein Spam. Jederzeit abbestellbar.</div>
+    </div>
+  </section>
+
+  <FaqAccordion items={faqs} />
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .sec {
+    padding: 104px 0 0;
+  }
+
+  /* Feature */
+  .feature {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    border: 1px solid var(--ink);
+  }
+  .fpo {
+    position: relative;
+    min-height: 460px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    overflow: hidden;
+    background: var(--g-krimi);
+  }
+  .fpo .ic {
+    position: absolute;
+    bottom: -30px;
+    right: -14px;
+    font-size: 230px;
+    opacity: 0.12;
+  }
+  .fpo .t {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-weight: 600;
+    opacity: 0.85;
+  }
+  .fpo .n {
+    position: relative;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 66px);
+    line-height: 1;
+  }
+  .ftx {
+    padding: 44px 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--surface);
+  }
+  .ftx h3 {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 0.98;
+    margin: 12px 0 16px;
+  }
+  .dek {
+    font-size: 17px;
+    color: var(--text);
+    margin: 0 0 24px;
+  }
+  .specs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    border-top: 1px solid var(--ink);
+  }
+  .specs li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .specs li span:first-child {
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .specs li span:last-child {
+    font-weight: 500;
+  }
+  .flinks {
+    display: flex;
+    gap: 26px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .flinks a {
+    color: var(--wine);
+    text-decoration: none;
+    border-bottom: 2px solid var(--wine);
+    padding-bottom: 3px;
+  }
+
+  /* Liste */
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 64px;
+  }
+  .li {
+    display: block;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding 0.15s;
+  }
+  .li:hover {
+    padding-left: 12px;
+  }
+  .lt {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+  .lt .g {
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .lh {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 2.8vw, 40px);
+    line-height: 0.94;
+  }
+  .li:hover .lh {
+    color: var(--wine);
+  }
+  .lm {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    gap: 18px;
+  }
+  .more {
+    margin-top: 38px;
+  }
+  .more a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--wine);
+    padding-bottom: 4px;
+  }
+
+  /* Index */
+  .idx {
+    border-top: 1px solid var(--ink);
+  }
+  .idx a {
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+    padding: 24px 4px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--ink);
+    transition:
+      padding 0.15s,
+      color 0.15s;
+  }
+  .idx a:hover {
+    padding-left: 16px;
+    color: var(--wine);
+  }
+  .idx .n {
+    font-family: var(--font-head);
+    font-size: 15px;
+    color: var(--wine);
+    width: 36px;
+    flex: none;
+  }
+  .idx .nm {
+    font-family: var(--font-head);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .idx .ld {
+    flex: 1;
+    border-bottom: 1px dotted var(--hair);
+    margin: 0 8px 6px;
+  }
+  .idx .ct {
+    font-size: 14px;
+    color: var(--muted);
+    flex: none;
+  }
+  .idx a:hover .ct {
+    color: var(--wine);
+  }
+
+  /* Quote */
+  .pq {
+    margin: 100px 0 0;
+    padding: 56px 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .pq-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .pq-portrait {
+    width: 280px;
+    height: 340px;
+    object-fit: cover;
+    filter: grayscale(0.15);
+  }
+  .pq-text blockquote {
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .sig {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(22px, 2.3vw, 30px);
+    color: var(--wine);
+    line-height: 1;
+    margin-top: 22px;
+  }
+  .pq-text cite {
+    display: block;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .pq-text :global(.tlink) {
+    margin-top: 26px;
+  }
+
+  /* About */
+  .about {
+    padding: 100px 0;
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about h2 {
+    font-size: clamp(34px, 4.2vw, 52px);
+    line-height: 1;
+    margin: 14px 0 22px;
+    max-width: 14ch;
+  }
+  .lead {
+    font-size: 18px;
+    margin: 0 0 28px;
+    max-width: 48ch;
+  }
+  .lead::first-letter {
+    font-family: var(--font-head);
+    font-size: 74px;
+    float: left;
+    line-height: 0.72;
+    padding: 8px 14px 0 0;
+    color: var(--wine);
+  }
+  .stats {
+    display: flex;
+    gap: 36px;
+    margin: 10px 0 30px;
+    flex-wrap: wrap;
+  }
+  .stat b {
+    font-family: var(--font-head);
+    font-size: 48px;
+    color: var(--wine);
+    display: block;
+    line-height: 0.8;
+  }
+  .stat span {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+  }
+  .about-img {
+    aspect-ratio: 4 / 5;
+    background:
+      linear-gradient(160deg, rgba(26, 22, 17, 0.35), rgba(26, 22, 17, 0.55)),
+      var(--about-img) center / cover;
+    border: 1px solid var(--ink);
+  }
+  .cap {
+    margin: 12px 0 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Newsletter */
+  .news {
+    background: var(--ink);
+    color: #e8dcc8;
+    text-align: center;
+    padding: 88px 24px;
+  }
+  .news-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .nl-ic {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--wine);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 20px rgba(207, 85, 26, 0.3);
+  }
+  .news :global(.cap-label) {
+    color: var(--wine);
+  }
+  .news h2 {
+    color: #f7efe0;
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 12px 0 14px;
+  }
+  .news p {
+    margin: 0 0 28px;
+    color: #b7aa96;
+  }
+  .nl-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nl-form input {
+    flex: 1;
+    min-width: 220px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: #f7efe0;
+    border-radius: 100px;
+    padding: 14px 22px;
+    font: inherit;
+    font-size: 15px;
+  }
+  .nl-form input:disabled,
+  .nl-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  .nl-form button {
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    padding: 13px 28px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .nl-note {
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: #8a7d6b;
+  }
+
+  @media (max-width: 900px) {
+    .feature,
+    .list,
+    .pq-inner,
+    .about-inner {
+      grid-template-columns: 1fr;
+    }
+    .pq-portrait {
+      width: 240px;
+      height: 290px;
+    }
+    .fpo {
+      min-height: 320px;
+    }
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import { path } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import StickyKatalog from "../../components/StickyKatalog.astro";
+
+const authors = [
+  { slug: "arno-boas", name: "Arno Boas", hasPhoto: true },
+  { slug: "jochen-wiltschko", name: "Jochen Wiltschko", hasPhoto: false },
+  { slug: "christian-lange", name: "Christian Lange", hasPhoto: false },
+  { slug: "thorsten-boehner", name: "Thorsten Böhner", hasPhoto: false },
+  { slug: "klaus-troebs", name: "Klaus Tröbs", hasPhoto: false },
+  { slug: "christian-ziegler", name: "Christian Ziegler", hasPhoto: false },
+  { slug: "georges-neuen", name: "Georges Neuen", hasPhoto: false },
+  { slug: "wilhelm-wolpert", name: "Wilhelm Wolpert", hasPhoto: false },
+  { slug: "thomas-gehring", name: "Thomas Gehring", hasPhoto: false },
+];
+---
+
+<BaseLayout
+  title="Autorinnen und Autoren"
+  description="Rund 40 Autorinnen und Autoren schreiben für den Theaterverlag Arno Boas."
+>
+  <SiteHeader active="/autoren" />
+
+  <section class="wrap page">
+    <span class="cap-label">Repertoire</span>
+    <h1>Autorinnen und Autoren</h1>
+    <p class="lead">
+      Rund 40 Autorinnen und Autoren — Fotos und Kurztexte folgen. Hier die
+      bereits bekannten Namen.
+    </p>
+
+    <div class="grid">
+      {
+        authors.map((a) => (
+          <a class="ac" href={path(`/autoren/${a.slug}`)}>
+            <div class="ph">
+              {a.hasPhoto ? (
+                <img src={path("/images/arno.jpg")} alt={a.name} loading="lazy" />
+              ) : (
+                <i class="ti ti-user" aria-hidden="true" />
+              )}
+            </div>
+            <div class="nm">{a.name}</div>
+          </a>
+        ))
+      }
+      {
+        Array.from({ length: 6 }).map(() => (
+          <div class="ac tbd">
+            <div class="ph">
+              <i class="ti ti-user" aria-hidden="true" />
+            </div>
+            <div class="nm">Name &amp; Foto folgen</div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 56px var(--pad-x) 90px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 0.95;
+    margin: 10px 0 16px;
+  }
+  .lead {
+    color: var(--muted);
+    max-width: 56ch;
+    margin: 0 0 48px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px 22px;
+  }
+  .ac {
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .ph {
+    aspect-ratio: 3 / 4;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--hair);
+    font-size: 42px;
+  }
+  .ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .nm {
+    margin-top: 12px;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .tbd {
+    opacity: 0.55;
+  }
+  .tbd .nm {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

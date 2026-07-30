@@ -1,0 +1,198 @@
+---
+import { path } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import StickyKatalog from "../../components/StickyKatalog.astro";
+import { getStueckBySlug, getStuecke } from "../../lib/stuecke";
+
+export function getStaticPaths() {
+  return getStuecke().map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const stueck = getStueckBySlug(slug!);
+if (!stueck) {
+  return Astro.redirect("/theaterstuecke");
+}
+
+const creativeWorkLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: stueck.titel,
+  genre: stueck.kategorien,
+  description: stueck.untertitel,
+  url: `https://theaterverlag-arno-boas.de/stuecke/${stueck.slug}`,
+  publisher: {
+    "@type": "Organization",
+    name: "Theaterverlag Arno Boas",
+  },
+};
+---
+
+<BaseLayout
+  title={stueck.titel}
+  description={`${stueck.titel} — ${stueck.untertitel}. Theaterverlag Arno Boas.`}
+  jsonLd={creativeWorkLd}
+>
+  <SiteHeader active="/theaterstuecke" />
+
+  <article class="wrap detail">
+    <a class="back" href={path("/theaterstuecke")}>← Zur Übersicht</a>
+    <div class="meta">
+      <span class="g">{stueck.kategorien.join(" · ")}</span>
+      {stueck.kuerzel && <span class="kz">{stueck.kuerzel}</span>}
+      <span>{stueck.spielart_geschaetzt}</span>
+    </div>
+    <h1>{stueck.titel}</h1>
+    <p class="sub">{stueck.untertitel}</p>
+
+    <ul class="specs">
+      <li><span>Genre</span><span>{stueck.kategorien.join(", ")}</span></li>
+      <li><span>Spielart</span><span>{stueck.spielart_geschaetzt}</span></li>
+      {
+        stueck.kuerzel ? (
+          <li>
+            <span>Kürzel</span>
+            <span>{stueck.kuerzel}</span>
+          </li>
+        ) : (
+          <li>
+            <span>Kürzel</span>
+            <span>folgt</span>
+          </li>
+        )
+      }
+    </ul>
+
+    <p class="note">
+      Besetzung, Spieldauer, Preis, Klappentext und Leseprobe werden ergänzt,
+      sobald die Daten vorliegen. Bitte nichts als verbindlich annehmen, was hier
+      noch fehlt.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={path("/kontakt")}>Aufführung anfragen</a>
+      <button type="button" class="btn ghost bookmark" data-bookmark={stueck.slug}>
+        <i class="ti ti-bookmark" aria-hidden="true"></i>
+        Merken
+        <span class="tip">Merken</span>
+      </button>
+    </div>
+  </article>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .detail {
+    padding: 48px var(--pad-x) 90px;
+    max-width: 860px;
+  }
+  .back {
+    display: inline-block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .back:hover {
+    color: var(--wine);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .g {
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .kz {
+    text-transform: none;
+    letter-spacing: 0.4px;
+    font-weight: 700;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 0.95;
+  }
+  .sub {
+    font-size: 19px;
+    color: var(--muted);
+    margin: 16px 0 36px;
+  }
+  .specs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    border-top: 2px solid var(--ink);
+  }
+  .specs li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .specs li span:first-child {
+    color: var(--muted);
+  }
+  .note {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 62ch;
+  }
+  .actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    background: var(--wine);
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid var(--wine);
+    padding: 13px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 6px;
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+    position: relative;
+  }
+  .btn.ghost.bookmark {
+    border-radius: 6px;
+    width: auto;
+    height: auto;
+    padding: 13px 22px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .btn.ghost.bookmark.on {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: #fff;
+  }
+</style>

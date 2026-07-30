@@ -1,0 +1,130 @@
+---
+import { path } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import StickyKatalog from "../../components/StickyKatalog.astro";
+
+const authors = [
+  { slug: "arno-boas", name: "Arno Boas", role: "Verlagsgründer · Autor · Theatermensch" },
+  { slug: "jochen-wiltschko", name: "Jochen Wiltschko", role: "Autor" },
+  { slug: "christian-lange", name: "Christian Lange", role: "Autor" },
+  { slug: "thorsten-boehner", name: "Thorsten Böhner", role: "Autor" },
+  { slug: "klaus-troebs", name: "Klaus Tröbs", role: "Autor" },
+  { slug: "christian-ziegler", name: "Christian Ziegler", role: "Autor" },
+  { slug: "georges-neuen", name: "Georges Neuen", role: "Autor · Übersetzer" },
+  { slug: "wilhelm-wolpert", name: "Wilhelm Wolpert", role: "Autor" },
+  { slug: "thomas-gehring", name: "Thomas Gehring", role: "Autor" },
+];
+
+export function getStaticPaths() {
+  return [
+    "arno-boas",
+    "jochen-wiltschko",
+    "christian-lange",
+    "thorsten-boehner",
+    "klaus-troebs",
+    "christian-ziegler",
+    "georges-neuen",
+    "wilhelm-wolpert",
+    "thomas-gehring",
+  ].map((slug) => ({ params: { slug } }));
+}
+
+const author = authors.find((a) => a.slug === Astro.params.slug)!;
+---
+
+<BaseLayout title={author.name} description={`${author.name} — Theaterverlag Arno Boas.`}>
+  <SiteHeader active="/autoren" />
+
+  <article class="wrap page">
+    <a class="back" href={path("/autoren")}>← Alle Autorinnen und Autoren</a>
+    <div class="hero-row">
+      <div class="ph">
+        {
+          author.slug === "arno-boas" ? (
+            <img src={path("/images/arno.jpg")} alt={author.name} />
+          ) : (
+            <i class="ti ti-user" aria-hidden="true" />
+          )
+        }
+      </div>
+      <div>
+        <span class="cap-label">Autorin / Autor</span>
+        <h1>{author.name}</h1>
+        <p class="role">{author.role}</p>
+        <p class="bio">
+          {
+            author.slug === "arno-boas"
+              ? "Gründer des Verlags (1997). Schreibt seit 1985 Stücke fürs Amateurtheater. Kurzbio und Werkverzeichnis werden ergänzt."
+              : "Kurzbio, Foto und Werkverzeichnis folgen."
+          }
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 48px var(--pad-x) 90px;
+  }
+  .back {
+    display: inline-block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .back:hover {
+    color: var(--wine);
+  }
+  .hero-row {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .ph {
+    aspect-ratio: 3 / 4;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: var(--hair);
+    overflow: hidden;
+  }
+  .ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 0.95;
+    margin: 10px 0 12px;
+  }
+  .role {
+    color: var(--wine);
+    font-weight: 600;
+    margin: 0 0 18px;
+  }
+  .bio {
+    color: var(--muted);
+    max-width: 52ch;
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .hero-row {
+      grid-template-columns: 1fr;
+    }
+    .ph {
+      max-width: 260px;
+    }
+  }
+</style>

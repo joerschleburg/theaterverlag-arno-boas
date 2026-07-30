@@ -1,0 +1,183 @@
+---
+import { path } from "../lib/paths";
+/** Grobe Startseiten-Suche → vorkonfigurierte Übersicht */
+---
+
+<form class="search" action={path("/theaterstuecke")} method="get" role="search">
+  <div class="scell field">
+    <label class="slab" for="q">Suche</label>
+    <div class="ctrl">
+      <input
+        id="q"
+        name="q"
+        type="search"
+        placeholder="Stück, Autor, Stichwort …"
+        autocomplete="off"
+      />
+    </div>
+  </div>
+  <div class="scell">
+    <label class="slab" for="genre">Genre</label>
+    <div class="ctrl">
+      <select id="genre" name="genre">
+        <option value="alle">alle</option>
+        <option value="Komödie">Komödie</option>
+        <option value="Krimi">Krimi</option>
+        <option value="Krimikomödie">Krimikomödie</option>
+        <option value="Märchen">Märchen</option>
+        <option value="Drama">Drama</option>
+        <option value="Weihnachten">Weihnachten</option>
+      </select>
+      <i class="ti ti-chevron-down ch" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="scell">
+    <label class="slab" for="ensemble">Ensemble</label>
+    <div class="ctrl">
+      <select id="ensemble" name="ensemble">
+        <option value="beliebig">beliebig</option>
+        <option value="bis-6">bis 6</option>
+        <option value="7-10">7–10</option>
+        <option value="ueber-10">über 10</option>
+        <option value="kinder-jugend">Kinder &amp; Jugend</option>
+      </select>
+      <i class="ti ti-chevron-down ch" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="scell">
+    <label class="slab" for="spielort">Spielort</label>
+    <div class="ctrl">
+      <select id="spielort" name="spielort">
+        <option value="egal">egal</option>
+        <option value="Saal">Saal</option>
+        <option value="Freilicht">Freilicht</option>
+        <option value="beides">beides</option>
+      </select>
+      <i class="ti ti-chevron-down ch" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="scell">
+    <label class="slab" for="dauer">Dauer</label>
+    <div class="ctrl">
+      <select id="dauer" name="dauer">
+        <option value="alle">alle</option>
+        <option value="Abendfüllend">Abendfüllend</option>
+        <option value="Einakter">Einakter</option>
+        <option value="Kurzstück">Kurzstück</option>
+      </select>
+      <i class="ti ti-chevron-down ch" aria-hidden="true"></i>
+    </div>
+  </div>
+  <button class="go" type="submit" aria-label="Suchen">
+    <i class="ti ti-search" aria-hidden="true"></i>
+  </button>
+</form>
+
+<style>
+  .search {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: var(--surface);
+    color: var(--text);
+    margin-top: 36px;
+    max-width: 1150px;
+    box-shadow: 0 24px 60px rgba(15, 8, 4, 0.42);
+  }
+  .scell {
+    flex: 1;
+    min-width: 148px;
+    padding: 16px 18px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .scell.field {
+    flex: 2;
+    min-width: 220px;
+  }
+  .scell:focus-within {
+    background: #fbf6ea;
+  }
+  .slab {
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+  .ctrl {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+  }
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--ink);
+    background: transparent;
+    width: 100%;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    flex: 1;
+    padding-right: 22px;
+    width: 100%;
+  }
+  .ch {
+    position: absolute;
+    right: 0;
+    color: var(--wine);
+    font-size: 18px;
+    pointer-events: none;
+  }
+  .go {
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    padding: 0 38px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    min-height: 72px;
+  }
+  .go i {
+    font-size: 27px;
+    transition: transform 0.18s;
+  }
+  .go:hover {
+    background: var(--wine-dark);
+  }
+  .go:hover i {
+    transform: scale(1.1);
+  }
+  @media (max-width: 900px) {
+    .scell {
+      min-width: 46%;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .go {
+      width: 100%;
+      min-height: 56px;
+    }
+  }
+</style>

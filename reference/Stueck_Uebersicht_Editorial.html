@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alle Theaterstücke — Theaterverlag Arno Boas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --wine:#CF551A; --wine-dark:#A8410F; --gold:#B98526; --yellow:#F2A81D;
+    --ink:#1A1611; --text:#2C2620; --muted:#645B4D;
+    --paper:#F1EBDD; --paper-2:#EAE2D1; --surface:#FBF7EE;
+    --border:#D6CCB8; --hair:#C7BCA4;
+    --font-head:'Playfair Display',Georgia,serif; --font-body:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-head);color:var(--ink);margin:0;font-weight:800;}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 40px;}
+  .cap-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--wine);}
+
+  /* Header (Innenseite) */
+  .ihead{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--border);}
+  .ihead .row{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .ihead .brand img{height:38px;display:block;}
+  .inav{display:flex;gap:30px;align-items:center;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);}
+  .inav a:hover{color:var(--wine);}
+  .inav .merk{display:inline-flex;align-items:center;gap:7px;padding-left:22px;border-left:1px solid var(--border);}
+  .inav .merk .cnt{background:var(--wine);color:#fff;border-radius:100px;min-width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+  /* Intro (Titelbereich, orange hinterlegt) */
+  .intro{background:var(--wine);padding:44px 0 40px;}
+  .intro .cap-label{color:#fff;opacity:.82;}
+  .intro h1{color:#fff;font-size:clamp(38px,6vw,72px);line-height:.96;margin:12px 0 0;}
+  .intro p{color:rgba(255,255,255,.9);margin:14px 0 0;max-width:60ch;font-size:17px;}
+
+  /* Filterleiste (sticky) */
+  .filterbar{position:sticky;top:74px;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:0 12px 28px rgba(20,12,6,.09);}
+  .fb{display:flex;align-items:stretch;gap:0;flex-wrap:nowrap;}
+  .fb .f{padding:14px 18px;display:flex;flex-direction:column;justify-content:center;gap:5px;flex:1;min-width:138px;transition:background .15s;}
+  .fb .f + .f{border-left:1px solid var(--border);}
+  .fb .f:hover{background:#FFFCF4;}
+  .fb .f.wide{flex:1.9;min-width:210px;}
+  .fb .f.sm{flex:.82;min-width:120px;}
+  .fb .f label{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .fb .f input,.fb .f select{border:none;background:transparent;outline:none;font-family:var(--font-body);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;width:100%;}
+  .fb .f input{font-weight:500;cursor:text;}
+  .fb .f select{appearance:none;-webkit-appearance:none;padding-right:22px;background-repeat:no-repeat;background-position:right center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23CF551A' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");}
+  .fb .go{background:var(--wine);color:#fff;border:none;padding:0 32px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;transition:background .15s;}
+  .fb .go:hover{background:var(--wine-dark);}
+  .fb .go i{font-size:19px;}
+  .fb2{display:flex;align-items:center;justify-content:space-between;padding:12px 0;flex-wrap:wrap;gap:12px;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .chips .lbl{font-size:12px;color:var(--muted);}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper-2);border:1px solid var(--border);border-radius:100px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink);}
+  .chip i{font-size:14px;color:var(--muted);cursor:pointer;}
+  .chip.clear{background:transparent;border:none;color:var(--wine);text-decoration:underline;padding:5px 4px;}
+  .result-meta{display:flex;align-items:center;gap:18px;font-size:13px;color:var(--muted);}
+  .result-meta b{font-family:var(--font-head);color:var(--ink);font-size:16px;}
+  .result-meta select{border:1px solid var(--border);background:var(--surface);border-radius:4px;padding:6px 10px;font-family:var(--font-body);font-size:13px;color:var(--ink);}
+
+  /* Ergebnisliste */
+  .results{padding:30px 0 40px;}
+  .list{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;}
+  .li{display:block;padding:26px 0;border-bottom:1px solid var(--border);transition:padding .15s;position:relative;}
+  .li:hover{padding-left:12px;}
+  .li .lt{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;gap:12px;}
+  .li .lt .g{color:var(--wine);font-weight:700;}
+  .li .lh{font-family:var(--font-head);font-size:clamp(24px,2.4vw,32px);line-height:.98;color:var(--ink);}
+  .li:hover .lh{color:var(--wine);}
+  .li .ls{margin-top:9px;font-size:14.5px;color:var(--text);}
+  .li .lb{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .li .lm{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);}
+  .li .la{display:flex;gap:10px;align-items:center;}
+  .li .la .mk{width:34px;height:34px;border:1px solid var(--hair);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);font-size:16px;transition:.15s;}
+  .li .la .mk:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .li .la .zu{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--wine);display:inline-flex;align-items:center;gap:6px;}
+
+  .loadmore{text-align:center;padding:40px 0 0;}
+  .loadmore button{background:transparent;border:1px solid var(--ink);border-radius:100px;padding:13px 30px;font-family:var(--font-body);font-size:12.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:.2s;}
+  .loadmore button:hover{background:var(--ink);color:#fff;}
+
+  /* Footer (kompakt) */
+  footer{background:#141009;color:#b0a795;font-size:14px;margin-top:30px;}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:40px 0;}
+  .foot-inner img{height:34px;}
+  footer a{color:#b0a795;} footer a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid #2e2820;padding:18px 0;font-size:11.5px;letter-spacing:.5px;color:#7f7669;text-transform:uppercase;}
+
+  .cat-sticky{position:fixed;right:22px;bottom:22px;z-index:60;display:inline-flex;align-items:center;gap:9px;background:var(--wine);color:#fff;padding:13px 22px;border-radius:100px;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;box-shadow:0 14px 34px rgba(20,12,6,.4);}
+  .cat-sticky:hover{background:var(--wine-dark);} .cat-sticky i{font-size:18px;}
+
+  .faq{border-top:2px solid var(--ink);margin-top:6px;}
+  .faq details{border-bottom:1px solid var(--border);}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--font-head);font-weight:800;font-size:clamp(18px,2vw,23px);color:var(--ink);line-height:1.12;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .ic{flex:none;color:var(--wine);font-size:22px;transition:transform .2s;line-height:1;}
+  .faq details[open] summary .ic{transform:rotate(45deg);}
+  .faq summary:hover{color:var(--wine);}
+  .faq details p{margin:0 0 22px;font-size:16px;color:var(--text);max-width:78ch;}
+  .faq-h{margin-bottom:22px;} .faq-h h2{font-family:var(--font-head);font-size:clamp(26px,3.4vw,40px);line-height:1;margin-top:10px;}
+
+  @media(max-width:900px){
+    .wrap{padding:0 22px;}
+    .inav a:not(.merk){display:none;}
+    .list{grid-template-columns:1fr;gap:0;}
+    .fb{flex-wrap:wrap;}
+    .fb .f{flex:1 1 100%;border-bottom:1px solid var(--border);}
+    .fb .f + .f{border-left:none;}
+    .fb .go{width:100%;justify-content:center;padding:16px;}
+    .filterbar{top:64px;} .ihead .row{height:64px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="ihead"><div class="wrap row">
+  <a class="brand" href="#"><img src="logo-dark.png" alt="Theaterverlag Arno Boas"></a>
+  <nav class="inav">
+    <a href="#">Theaterstücke</a><a href="#">Autoren</a><a href="#">Über den Verlag</a><a href="#">Preise &amp; Bedingungen</a><a href="#">Kontakt</a>
+    <a href="#" class="merk"><i class="ti ti-bookmark"></i> Merkliste <span class="cnt">2</span></a>
+  </nav>
+</div></header>
+
+<section class="intro"><div class="wrap">
+  <span class="cap-label">Repertoire</span>
+  <h1>Alle Theaterstücke</h1>
+  <p>Über 250 Bühnenstücke fürs Amateurtheater — suchen und filtern Sie nach Genre, Ensemblegröße, Spielort und Dauer.</p>
+</div></section>
+
+<div class="filterbar">
+  <div class="wrap">
+    <form class="fb" onsubmit="return false;">
+      <div class="f wide"><label>Suche</label><input placeholder="Stück, Autor, Stichwort …"></div>
+      <div class="f"><label>Genre</label><select><option>alle</option><option>Komödie</option><option>Krimi</option><option selected>Krimikomödie</option><option>Märchen</option><option>Drama</option><option>Weihnachten</option><option>Tragikomödie</option><option>Für Jugendliche</option><option>Kinder &amp; Jugend</option><option>Für Senioren</option></select></div>
+      <div class="f sm"><label>Herrenrollen</label><select><option>beliebig</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7 und mehr</option></select></div>
+      <div class="f sm"><label>Damenrollen</label><select><option>beliebig</option><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7 und mehr</option></select></div>
+      <div class="f"><label>Spielort</label><select><option>egal</option><option>Saal</option><option>Freilicht</option></select></div>
+      <div class="f"><label>Dauer</label><select><option>alle</option><option selected>Abendfüllend</option><option>Einakter</option><option>Kurzstück</option></select></div>
+      <button class="go"><i class="ti ti-search"></i> Suchen</button>
+    </form>
+    <div class="fb2">
+      <div class="chips"><span class="lbl">Aktive Filter:</span>
+        <span class="chip">Krimikomödie <i class="ti ti-x"></i></span>
+        <span class="chip">ab 2 Damen <i class="ti ti-x"></i></span>
+        <span class="chip">Abendfüllend <i class="ti ti-x"></i></span>
+        <span class="chip clear">alle zurücksetzen</span>
+      </div>
+      <div class="result-meta"><span><b>12</b> von 227 Stücken</span>
+        <select><option>Sortierung: A–Z</option><option>Neueste zuerst</option><option>nach Genre</option></select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="results"><div class="wrap">
+  <div class="list">
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Kriminalkomödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Mord im Moor</div>
+      <div class="ls">Ein Todesfall im Moor, eine Leiche, die nicht bleiben will — und ein Dorf, das mehr weiß, als es zugibt.</div>
+      <div class="lb"><span class="lm">Komödie · Krimi · Krimikomödie</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Krimi-Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Matroschka</div>
+      <div class="ls">Nichts ist, wie es scheint — ein Fall mit doppeltem Boden und dreifachem Verdacht.</div>
+      <div class="lb"><span class="lm">Komödie · Krimi · Krimikomödie</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Drama · ausgezeichnet</span><span>Abendfüllend</span></div>
+      <div class="lh">An einem Tag im März</div>
+      <div class="ls">Drama nach einer wahren Begebenheit — ausgezeichnet mit dem Theaterpreis „Lamathea".</div>
+      <div class="lb"><span class="lm">Drama · von Arno Boas</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Gerichts-Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Saustall beim Amtsgericht</div>
+      <div class="ls">Wenn vor Gericht das Chaos das Urteil spricht.</div>
+      <div class="lb"><span class="lm">Komödie · Krimi</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Pension Rhönblick</div>
+      <div class="ls">Vollbelegt, überbucht — und dann kommt auch noch der Prüfer vom Amt.</div>
+      <div class="lb"><span class="lm">Komödie · Krimi</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Tragikomödie · ausgezeichnet</span><span>Abendfüllend</span></div>
+      <div class="lh">Kaltgestellt</div>
+      <div class="ls">Tragikomödie, ausgezeichnet mit dem „Oskarle" des Mundart-Theater-Preises.</div>
+      <div class="lb"><span class="lm">Tragikomödie · von Arno Boas</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Krimi-Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Hectors tödliches Vermächtnis</div>
+      <div class="ls">Schwarzhumorige Krimi-Komödie über vier Möchtegern-Killer.</div>
+      <div class="lb"><span class="lm">Komödie · Krimi · Krimikomödie</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Modernes Märchen</span><span>Einakter</span></div>
+      <div class="lh">Der Frosch-König</div>
+      <div class="ls">„Wenn's Handy in den Brunnen fällt" — das Märchen neu erzählt, mit Augenzwinkern.</div>
+      <div class="lb"><span class="lm">Märchen · Für Jugendliche</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Weihnachtskomödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Pia allein zuhaus</div>
+      <div class="ls">Turbulente Weihnachtskomödie für die ganze Familie.</div>
+      <div class="lb"><span class="lm">Weihnachten</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Komödie für Senioren</span><span>Abendfüllend</span></div>
+      <div class="lh">Mann in der Mitte</div>
+      <div class="ls">Eine Komödie über das Älterwerden — und die kleinen Rebellionen dagegen.</div>
+      <div class="lb"><span class="lm">Für Senioren</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Jugend-Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Netzwerkfehler</div>
+      <div class="ls">Wenn das WLAN ausfällt und plötzlich wieder geredet werden muss.</div>
+      <div class="lb"><span class="lm">Für Jugendliche</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+    <a class="li" href="#">
+      <div class="lt"><span class="g">Gauner-Komödie</span><span>Abendfüllend</span></div>
+      <div class="lh">Diebesgut und Spitzenhöschen</div>
+      <div class="ls">Gauner-Komödie über einen an sich sympathischen Diamantendieb.</div>
+      <div class="lb"><span class="lm">Komödie</span><span class="la"><span class="mk"><i class="ti ti-bookmark"></i></span><span class="zu">Zum Stück <i class="ti ti-arrow-right"></i></span></span></div>
+    </a>
+
+  </div>
+  <div class="loadmore"><button>Weitere Stücke laden</button></div>
+</div></section>
+
+<section class="wrap" style="padding:64px 0 8px;">
+  <div class="faq-h"><span class="cap-label">Häufige Fragen</span><h2>Gut zu wissen</h2></div>
+  <div class="faq">
+    <details><summary>Wie kann ich nach der Besetzung filtern?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Über die getrennten Filter „Herrenrollen" und „Damenrollen" legen Sie fest, wie viele Männer- und Frauenrollen ein Stück haben soll. Zusätzlich können Sie nach Genre, Spielort und Dauer filtern.</p></details>
+    <details><summary>Kann ich nach Spieldauer filtern?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Ja. Filtern Sie nach abendfüllenden Stücken, Einaktern oder Kurzstücken.</p></details>
+    <details><summary>Welche Genres gibt es?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Komödie, Krimi und Krimikomödie, Märchen, Drama, Tragikomödie, Weihnachten sowie Stücke für Jugendliche und für Senioren.</p></details>
+    <details><summary>Gibt es zu den Stücken eine Leseprobe?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks.</p></details>
+    <details><summary>Wie groß ist das Repertoire?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren.</p></details>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie kann ich nach der Besetzung filtern?","acceptedAnswer":{"@type":"Answer","text":"Über die getrennten Filter Herrenrollen und Damenrollen legen Sie fest, wie viele Männer- und Frauenrollen ein Stück haben soll. Zusätzlich können Sie nach Genre, Spielort und Dauer filtern."}},
+{"@type":"Question","name":"Kann ich nach Spieldauer filtern?","acceptedAnswer":{"@type":"Answer","text":"Ja. Filtern Sie nach abendfüllenden Stücken, Einaktern oder Kurzstücken."}},
+{"@type":"Question","name":"Welche Genres gibt es?","acceptedAnswer":{"@type":"Answer","text":"Komödie, Krimi und Krimikomödie, Märchen, Drama, Tragikomödie, Weihnachten sowie Stücke für Jugendliche und für Senioren."}},
+{"@type":"Question","name":"Gibt es zu den Stücken eine Leseprobe?","acceptedAnswer":{"@type":"Answer","text":"Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks."}},
+{"@type":"Question","name":"Wie groß ist das Repertoire?","acceptedAnswer":{"@type":"Answer","text":"Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren."}}
+]}
+</script>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div><img src="logo-light.png" alt="Theaterverlag Arno Boas"></div>
+    <div style="max-width:340px;color:#918879;">Arno Boas · Finsterlohr 46 · 97993 Creglingen · Tel. 07933/20093 · info@theaterverlag-arno-boas.de</div>
+  </div>
+  <div class="wrap foot-bottom">© 2026 Theaterverlag Arno Boas · Impressum · Datenschutz</div>
+</footer>
+
+<a class="cat-sticky" href="Katalog_Theaterverlag_Arno_Boas.pdf" download><i class="ti ti-file-download"></i> Katalog herunterladen</a>
+
+</body>
+</html>

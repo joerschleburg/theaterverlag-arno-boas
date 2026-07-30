@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mord im Moor — Theaterverlag Arno Boas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --wine:#CF551A; --wine-dark:#A8410F; --gold:#B98526; --yellow:#F2A81D;
+    --ink:#1A1611; --text:#2C2620; --muted:#645B4D;
+    --paper:#F1EBDD; --paper-2:#EAE2D1; --surface:#FBF7EE;
+    --border:#D6CCB8; --hair:#C7BCA4; --g-krimi:#23262B;
+    --font-head:'Playfair Display',Georgia,serif; --font-body:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-head);color:var(--ink);margin:0;font-weight:800;}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 40px;}
+  .cap-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--wine);}
+
+  .ihead{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--border);}
+  .ihead .row{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .ihead .brand img{height:38px;display:block;}
+  .inav{display:flex;gap:30px;align-items:center;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);}
+  .inav a:hover{color:var(--wine);}
+  .inav .merk{display:inline-flex;align-items:center;gap:7px;padding-left:22px;border-left:1px solid var(--border);}
+  .inav .merk .cnt{background:var(--wine);color:#fff;border-radius:100px;min-width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+  .crumb{padding:26px 0 0;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+  .crumb a:hover{color:var(--wine);} .crumb .sep{margin:0 8px;color:var(--hair);}
+
+  .detail{display:grid;grid-template-columns:1.5fr .9fr;gap:60px;padding:26px 0 20px;align-items:start;}
+  .d-genre{margin-bottom:12px;}
+  .d-title{font-size:clamp(40px,5.6vw,74px);line-height:.94;}
+  .d-sub{font-family:var(--font-head);font-style:italic;font-size:clamp(19px,2vw,26px);color:var(--muted);margin:14px 0 0;}
+  .d-author{margin-top:12px;font-size:14px;letter-spacing:.5px;color:var(--text);}
+  .d-author b{color:var(--ink);}
+
+  .poster{margin:34px 0 0;position:relative;overflow:hidden;background:var(--g-krimi);color:#fff;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;padding:34px;}
+  .poster .ic{position:absolute;right:-16px;bottom:-30px;font-size:230px;opacity:.12;}
+  .poster .t{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;opacity:.85;}
+  .poster .n{position:relative;font-family:var(--font-head);font-weight:700;font-size:clamp(34px,4vw,54px);line-height:1;}
+
+  .d-body h2{font-family:var(--font-head);font-size:26px;margin:40px 0 14px;}
+  .d-body p{margin:0 0 16px;}
+  .d-body .lead::first-letter{font-family:var(--font-head);font-size:64px;float:left;line-height:.72;padding:8px 12px 0 0;color:var(--wine);}
+  .order{margin-top:30px;border-top:1px solid var(--ink);}
+  .order .oi{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);}
+  .order .oi i{color:var(--wine);font-size:24px;flex:none;margin-top:2px;}
+  .order .oi b{font-family:var(--font-head);font-size:18px;color:var(--ink);display:block;}
+  .order .oi span{font-size:14.5px;color:var(--muted);}
+
+  /* Info-Karte (sticky) */
+  .aside{position:sticky;top:98px;}
+  .card{background:var(--surface);border:1px solid var(--ink);}
+  .card .ct{background:var(--ink);color:#fff;font-family:var(--font-head);font-size:15px;letter-spacing:.5px;padding:14px 22px;}
+  .specs{list-style:none;margin:0;padding:6px 22px 12px;}
+  .specs li{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14.5px;}
+  .specs li:last-child{border-bottom:none;}
+  .specs li span:first-child{color:var(--muted);}
+  .specs li span:last-child{font-weight:600;color:var(--ink);text-align:right;}
+  .price{padding:16px 22px;background:var(--paper-2);display:flex;justify-content:space-between;align-items:baseline;}
+  .price .p{font-family:var(--font-head);font-size:26px;color:var(--ink);font-weight:800;}
+  .price .pl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .cta{padding:18px 22px 22px;display:flex;flex-direction:column;gap:10px;}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px;font-family:var(--font-body);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid var(--ink);}
+  .btn.primary{background:var(--wine);border-color:var(--wine);color:#fff;} .btn.primary:hover{background:var(--wine-dark);border-color:var(--wine-dark);}
+  .btn.ghost{background:transparent;color:var(--ink);} .btn.ghost:hover{background:var(--ink);color:#fff;}
+  .card .hint{font-size:12px;color:var(--muted);text-align:center;padding:0 22px 20px;}
+
+  /* Verwandte */
+  .more-sec{padding:60px 0;border-top:1px solid var(--ink);margin-top:40px;}
+  .more-sec h2{font-family:var(--font-head);font-size:clamp(24px,3vw,34px);margin-bottom:28px;}
+  .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 50px;}
+  .mli{padding:20px 0;border-top:2px solid var(--ink);}
+  .mli .g{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--wine);font-weight:700;}
+  .mli h3{font-family:var(--font-head);font-size:23px;margin:10px 0 0;line-height:1;} .mli:hover h3{color:var(--wine);}
+  .mli p{font-size:14px;color:var(--muted);margin:10px 0 0;}
+
+  footer{background:#141009;color:#b0a795;font-size:14px;}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:40px 0;}
+  .foot-inner img{height:34px;}
+  footer a{color:#b0a795;} footer a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid #2e2820;padding:18px 0;font-size:11.5px;letter-spacing:.5px;color:#7f7669;text-transform:uppercase;}
+  .cat-sticky{position:fixed;right:22px;bottom:22px;z-index:60;display:inline-flex;align-items:center;gap:9px;background:var(--wine);color:#fff;padding:13px 22px;border-radius:100px;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;box-shadow:0 14px 34px rgba(20,12,6,.4);}
+  .cat-sticky:hover{background:var(--wine-dark);} .cat-sticky i{font-size:18px;}
+
+  .faq{border-top:2px solid var(--ink);margin-top:6px;}
+  .faq details{border-bottom:1px solid var(--border);}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--font-head);font-weight:800;font-size:clamp(18px,2vw,23px);color:var(--ink);line-height:1.12;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .ic{flex:none;color:var(--wine);font-size:22px;transition:transform .2s;line-height:1;}
+  .faq details[open] summary .ic{transform:rotate(45deg);}
+  .faq summary:hover{color:var(--wine);}
+  .faq details p{margin:0 0 22px;font-size:16px;color:var(--text);max-width:78ch;}
+  .faq-h{margin-bottom:22px;} .faq-h h2{font-family:var(--font-head);font-size:clamp(26px,3.4vw,40px);line-height:1;margin-top:10px;}
+
+  @media(max-width:900px){
+    .wrap{padding:0 22px;}
+    .inav a:not(.merk){display:none;}
+    .detail{grid-template-columns:1fr;gap:32px;}
+    .aside{position:static;}
+    .more-grid{grid-template-columns:1fr;}
+    .ihead .row{height:64px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="ihead"><div class="wrap row">
+  <a class="brand" href="#"><img src="logo-dark.png" alt="Theaterverlag Arno Boas"></a>
+  <nav class="inav">
+    <a href="#">Theaterstücke</a><a href="#">Autoren</a><a href="#">Über den Verlag</a><a href="#">Preise &amp; Bedingungen</a><a href="#">Kontakt</a>
+    <a href="#" class="merk"><i class="ti ti-bookmark"></i> Merkliste <span class="cnt">2</span></a>
+  </nav>
+</div></header>
+
+<div class="wrap crumb"><a href="#">Theaterstücke</a><span class="sep">›</span><a href="#">Krimikomödie</a><span class="sep">›</span>Mord im Moor</div>
+
+<section class="wrap detail">
+  <div class="d-main">
+    <span class="cap-label d-genre">Kriminalkomödie</span>
+    <h1 class="d-title">Mord im Moor</h1>
+    <p class="d-sub">Ein Todesfall im Moor, eine Leiche, die nicht bleiben will.</p>
+    <p class="d-author">von <b>Jochen Wiltschko</b></p>
+
+    <div class="d-body">
+      <h2>Zum Inhalt</h2>
+      <p class="lead">Als in der „Villa Strohmann" ein Mord geschieht und die Leiche kurz darauf spurlos verschwindet, erwacht in Hobby-Detektivin Euphelia der Jagdinstinkt. Doch je genauer sie hinsieht, desto mehr Bewohner des kleinen Ortes geraten ins Zwielicht — und jeder scheint etwas zu verbergen.</p>
+      <p>Eine Kriminalkomödie mit Tempo, doppeltem Boden und trockenem Humor, die bis zur letzten Szene offenlässt, wer hier eigentlich wen an der Nase herumführt. Dankbare Rollen für ein spielfreudiges Ensemble und ein Bühnenbild, das mit einem Raum auskommt.</p>
+
+      <h2>Bestellung &amp; Aufführung</h2>
+      <div class="order">
+        <div class="oi"><i class="ti ti-file-text"></i><div><b>Kostenlose Leseprobe</b><span>Etwa die Hälfte des Stücks als PDF zur Voransicht — unverbindlich.</span></div></div>
+        <div class="oi"><i class="ti ti-copy"></i><div><b>Datei oder Heft zum Selbstkopieren</b><span>Sie erhalten das komplette Stück und vervielfältigen die Rollen selbst.</span></div></div>
+        <div class="oi"><i class="ti ti-books"></i><div><b>Gedruckter Rollensatz</b><span>Fertig gedruckte Rollenhefte für Ihr Ensemble — bequem geliefert.</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="aside">
+    <div class="card">
+      <div class="ct">Auf einen Blick</div>
+      <ul class="specs">
+        <li><span>Genre</span><span>Kriminalkomödie</span></li>
+        <li><span>Besetzung</span><span>5 Herren · 4 Damen</span></li>
+        <li><span>Spieldauer</span><span>ca. 105 Min.</span></li>
+        <li><span>Bühnenbild</span><span>ein Raum</span></li>
+        <li><span>Spielart</span><span>Abendfüllend</span></li>
+        <li><span>Dialekt</span><span>frei übertragbar</span></li>
+      </ul>
+      <div class="price"><span class="pl">Rollensatz ab</span><span class="p">175,00 €</span></div>
+      <div class="cta">
+        <button class="btn primary"><i class="ti ti-mail"></i> Für Aufführung anfragen</button>
+        <button class="btn ghost"><i class="ti ti-file-download"></i> Leseprobe (PDF)</button>
+        <button class="btn ghost"><i class="ti ti-bookmark"></i> Merken</button>
+      </div>
+      <div class="hint">Alle Preise zzgl. Aufführungsgebühr. Fragen? Wir beraten Sie gern persönlich.</div>
+    </div>
+  </aside>
+</section>
+
+<section class="wrap more-sec">
+  <h2>Mehr aus dem Genre</h2>
+  <div class="more-grid">
+    <a class="mli" href="#"><span class="g">Krimi-Komödie</span><h3>Matroschka</h3><p>Ein Fall mit doppeltem Boden und dreifachem Verdacht.</p></a>
+    <a class="mli" href="#"><span class="g">Krimi-Komödie</span><h3>Hectors tödliches Vermächtnis</h3><p>Schwarzhumorige Komödie über vier Möchtegern-Killer.</p></a>
+    <a class="mli" href="#"><span class="g">Gerichts-Komödie</span><h3>Saustall beim Amtsgericht</h3><p>Wenn vor Gericht das Chaos das Urteil spricht.</p></a>
+  </div>
+</section>
+
+<section class="wrap" style="padding:20px 0 8px;">
+  <div class="faq-h"><span class="cap-label">Häufige Fragen</span><h2>Gut zu wissen</h2></div>
+  <div class="faq">
+    <details><summary>Wie bekomme ich eine Leseprobe zu diesem Stück?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Kostenlos als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar können Sie vier Wochen unverbindlich anfordern.</p></details>
+    <details><summary>Was bedeutet die Besetzungsangabe (z. B. „5 Herren · 4 Damen")?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Sie nennt die Zahl der Herren- und Damenrollen. Viele Stücke lassen sich flexibel besetzen.</p></details>
+    <details><summary>Was kostet die Aufführung?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt); dazu wahlweise der Rollensatz-Heftpreis. Alle Details unter „Preise &amp; Bedingungen".</p></details>
+    <details><summary>Können wir das Stück in unserem Dialekt spielen?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Ja. Die Stücke sind in verständlicher Umgangssprache verfasst und leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar.</p></details>
+    <details><summary>Wie frage ich dieses Stück an?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Über „Für Aufführung anfragen" oder indem Sie es merken und gebündelt mit weiteren Stücken anfragen.</p></details>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie bekomme ich eine Leseprobe zu diesem Stück?","acceptedAnswer":{"@type":"Answer","text":"Kostenlos als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar kann vier Wochen unverbindlich angefordert werden."}},
+{"@type":"Question","name":"Was bedeutet die Besetzungsangabe?","acceptedAnswer":{"@type":"Answer","text":"Sie nennt die Zahl der Herren- und Damenrollen, zum Beispiel 5 Herren und 4 Damen. Viele Stücke lassen sich flexibel besetzen."}},
+{"@type":"Question","name":"Was kostet die Aufführung?","acceptedAnswer":{"@type":"Answer","text":"Bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt); dazu wahlweise der Rollensatz-Heftpreis. Details unter Preise und Bedingungen."}},
+{"@type":"Question","name":"Können wir das Stück in unserem Dialekt spielen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Die Stücke sind in verständlicher Umgangssprache verfasst und leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar."}},
+{"@type":"Question","name":"Wie frage ich dieses Stück an?","acceptedAnswer":{"@type":"Answer","text":"Über Für Aufführung anfragen oder indem Sie es merken und gebündelt mit weiteren Stücken anfragen."}}
+]}
+</script>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div><img src="logo-light.png" alt="Theaterverlag Arno Boas"></div>
+    <div style="max-width:340px;color:#918879;">Arno Boas · Finsterlohr 46 · 97993 Creglingen · Tel. 07933/20093 · info@theaterverlag-arno-boas.de</div>
+  </div>
+  <div class="wrap foot-bottom">© 2026 Theaterverlag Arno Boas · Impressum · Datenschutz</div>
+</footer>
+
+<a class="cat-sticky" href="Katalog_Theaterverlag_Arno_Boas.pdf" download><i class="ti ti-file-download"></i> Katalog herunterladen</a>
+
+</body>
+</html>

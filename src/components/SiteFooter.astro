@@ -1,0 +1,102 @@
+---
+import { SITE } from "../lib/site";
+import { path } from "../lib/paths";
+---
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <div class="foot-brand">
+        <img src={path("/images/logo-light.png")} alt="Theaterverlag Arno Boas" />
+      </div>
+      <p>
+        Arno Boas · {SITE.address.street} · {SITE.address.zip}
+        {" "}
+        {SITE.address.city}<br />
+        Tel. {SITE.phone} · {SITE.email}
+      </p>
+    </div>
+    <div>
+      <h4>Repertoire</h4>
+      <a href={path("/theaterstuecke")}>Übersicht</a>
+      <a href={path("/theaterstuecke")}>Kategorien</a>
+      <a href={path("/autoren")}>Nach Autor</a>
+      <a href={path("/preise-und-bedingungen")}>Preisliste</a>
+    </div>
+    <div>
+      <h4>Verlag</h4>
+      <a href={path("/ueber-den-verlag")}>Über den Verlag</a>
+      <a href={path("/preise-und-bedingungen")}>Preise &amp; Bedingungen</a>
+      <a href={path("/kontakt")}>Kontakt</a>
+      <a href={path("/impressum")}>Impressum</a>
+      <a href={path("/datenschutz")}>Datenschutz</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© {new Date().getFullYear()} Theaterverlag Arno Boas</span>
+    <span>gegründet {SITE.founded}</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--ink);
+    color: #c9beab;
+    padding: 72px 0 28px;
+    margin-top: 0;
+  }
+  .foot-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .foot-brand img {
+    height: 42px;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .foot-inner p {
+    color: #918879;
+    max-width: 320px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .foot-inner h4 {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f2e9d8;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  .foot-inner a {
+    display: block;
+    text-decoration: none;
+    color: #a89a86;
+    font-size: 14.5px;
+    padding: 5px 0;
+    transition: color 0.15s;
+  }
+  .foot-inner a:hover {
+    color: var(--yellow);
+  }
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 22px;
+    font-size: 12.5px;
+    color: #7a6f60;
+  }
+  @media (max-width: 800px) {
+    .foot-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

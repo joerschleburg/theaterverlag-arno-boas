@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import StickyKatalog from "../components/StickyKatalog.astro";
+---
+
+<BaseLayout title="Impressum" description="Impressum — Theaterverlag Arno Boas.">
+  <SiteHeader />
+  <section class="wrap page">
+    <h1>Impressum</h1>
+    <p>Rechtstext folgt von Arno Boas.</p>
+  </section>
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 56px var(--pad-x) 90px;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    margin-bottom: 16px;
+  }
+  p {
+    color: var(--muted);
+  }
+</style>

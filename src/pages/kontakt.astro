@@ -1,0 +1,569 @@
+---
+import { path } from "../lib/paths";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import StickyKatalog from "../components/StickyKatalog.astro";
+import { SITE } from "../lib/site";
+
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+
+const faqs = [
+  {
+    question: "Wie erreiche ich den Verlag am schnellsten?",
+    answer:
+      "Telefonisch unter 07933 / 20093 oder per E-Mail an info@theaterverlag-arno-boas.de. Alternativ nutzen Sie das Kontaktformular auf dieser Seite.",
+  },
+  {
+    question: "Wie frage ich ein bestimmtes Stück an?",
+    answer:
+      "Am besten über die Merkliste: Stücke sammeln und gebündelt anfragen. So ist sofort klar, welche Leistung Sie wünschen – Leseprobe, Ansichtsexemplar, Rollensatz oder Aufführung.",
+  },
+  {
+    question: "Kann ich auch per Post oder Fax bestellen?",
+    answer:
+      "Ja. Sie erreichen uns postalisch unter Theaterverlag Arno Boas, Finsterlohr 46, 97993 Creglingen, sowie per Fax unter 07933 / 20094.",
+  },
+];
+
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  telephone: "+49 7933 20093",
+  faxNumber: "+49 7933 20094",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.zip,
+    addressLocality: SITE.address.city,
+    addressCountry: "DE",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: "+49 7933 20093",
+    email: SITE.email,
+    availableLanguage: "German",
+  },
+};
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Kontakt zum Theaterverlag Arno Boas in Creglingen."
+  jsonLd={[orgLd, faqLd]}
+>
+  <SiteHeader active="/kontakt" />
+
+  <section class="intro">
+    <div class="wrap">
+      <span class="cap-label">Wir sind für Sie da</span>
+      <h1>Kontakt</h1>
+      <p class="lead">
+        Fragen zu einem Stück, zur Bestellung oder zur Aufführung? Schreiben Sie
+        uns – oder rufen Sie einfach an. Wir melden uns persönlich und
+        kurzfristig zurück.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap k-grid">
+      <div>
+        <form
+          class="form"
+          id="kform"
+          data-web3-key={web3Key}
+          data-to={SITE.email}
+        >
+          <div class="two">
+            <div class="fld">
+              <label for="k_name">Ihr Name <span class="req">*</span></label>
+              <input
+                id="k_name"
+                name="name"
+                type="text"
+                placeholder="Vor- und Nachname"
+                required
+              />
+            </div>
+            <div class="fld">
+              <label for="k_group">Theatergruppe / Verein</label>
+              <input
+                id="k_group"
+                name="theatergruppe"
+                type="text"
+                placeholder="optional"
+              />
+            </div>
+          </div>
+          <div class="two">
+            <div class="fld">
+              <label for="k_mail"
+                >Ihre E-Mail-Adresse <span class="req">*</span></label
+              >
+              <input
+                id="k_mail"
+                name="email"
+                type="email"
+                placeholder="name@beispiel.de"
+                required
+              />
+            </div>
+            <div class="fld">
+              <label for="k_tel">Ihre Telefonnummer</label>
+              <input
+                id="k_tel"
+                name="telefon"
+                type="tel"
+                placeholder="optional"
+              />
+            </div>
+          </div>
+          <div class="fld">
+            <label for="k_subj">Betreff</label>
+            <input
+              id="k_subj"
+              name="subject"
+              type="text"
+              placeholder="Worum geht es?"
+            />
+          </div>
+          <div class="fld">
+            <label for="k_msg">Ihre Nachricht <span class="req">*</span></label>
+            <textarea
+              id="k_msg"
+              name="message"
+              placeholder="Ihre Nachricht an uns"
+              required></textarea>
+          </div>
+          <label class="chkrow" id="k_chkrow">
+            <input id="k_ok" type="checkbox" name="dsgvo" required />
+            <span
+              >Die <a href={path("/datenschutz")}>Datenschutzerklärung</a> habe ich
+              gelesen und akzeptiert. Der Nutzung meiner Daten kann ich jederzeit
+              für die Zukunft widersprechen. <span class="req">*</span></span
+            >
+          </label>
+          <button class="send" type="submit">
+            <i class="ti ti-send" aria-hidden="true"></i> Nachricht senden
+          </button>
+        </form>
+      </div>
+
+      <aside>
+        <div class="kcard">
+          <h3>So erreichen Sie uns</h3>
+          <div class="kline">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>
+            <div>
+              <span class="l">Anschrift</span>
+              <span class="v"
+                >Theaterverlag Arno Boas<br />Finsterlohr 46 · 97993 Creglingen</span
+              >
+            </div>
+          </div>
+          <div class="kline">
+            <i class="ti ti-phone" aria-hidden="true"></i>
+            <div>
+              <span class="l">Telefon</span>
+              <span class="v">07933 / 20093</span>
+            </div>
+          </div>
+          <div class="kline">
+            <i class="ti ti-printer" aria-hidden="true"></i>
+            <div>
+              <span class="l">Fax</span>
+              <span class="v">07933 / 20094</span>
+            </div>
+          </div>
+          <div class="kline">
+            <i class="ti ti-mail" aria-hidden="true"></i>
+            <div>
+              <span class="l">E-Mail</span>
+              <span class="v">{SITE.email}</span>
+            </div>
+          </div>
+        </div>
+        <div class="knote">
+          Sie möchten ein bestimmtes Stück anfragen? Am schnellsten geht das über
+          die <a href="#merkliste" data-merk-trigger>Merkliste</a> – dort wählen
+          Sie je Stück, was Sie möchten (Leseprobe, Rollensatz, Aufführung).
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="faq-h">
+        <span class="cap-label">Häufige Fragen</span>
+        <h2>Gut zu wissen</h2>
+      </div>
+      <div class="faq">
+        {
+          faqs.map((item) => (
+            <details>
+              <summary>
+                {item.question}
+                <span class="ic">
+                  <i class="ti ti-plus" aria-hidden="true" />
+                </span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+  <StickyKatalog />
+</BaseLayout>
+
+<script>
+  const form = document.getElementById("kform") as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("k_name") as HTMLInputElement;
+      const mail = document.getElementById("k_mail") as HTMLInputElement;
+      const msg = document.getElementById("k_msg") as HTMLTextAreaElement;
+      const ok = document.getElementById("k_ok") as HTMLInputElement;
+      const row = document.getElementById("k_chkrow");
+      let bad = false;
+      [name, mail, msg].forEach((el) => {
+        if (!el.value.trim()) {
+          el.classList.add("err");
+          bad = true;
+        } else el.classList.remove("err");
+      });
+      if (
+        mail.value.trim() &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())
+      ) {
+        mail.classList.add("err");
+        bad = true;
+      }
+      if (!ok.checked) {
+        row?.classList.add("err");
+        bad = true;
+      } else row?.classList.remove("err");
+      if (bad) return;
+
+      const key = form.dataset.web3Key || "";
+      const group = (document.getElementById("k_group") as HTMLInputElement)
+        .value;
+      const tel = (document.getElementById("k_tel") as HTMLInputElement).value;
+      const subj =
+        (document.getElementById("k_subj") as HTMLInputElement).value ||
+        "Kontaktanfrage über die Website";
+
+      const payload = {
+        access_key: key,
+        subject: `Neue Kontaktanfrage — ${group || name.value}`,
+        from_name: name.value,
+        email: mail.value,
+        replyto: mail.value,
+        to: form.dataset.to,
+        message: [
+          "Kontaktanfrage über die Website",
+          "",
+          `Name: ${name.value}`,
+          `Theatergruppe / Verein: ${group || "—"}`,
+          `E-Mail: ${mail.value}`,
+          `Telefon: ${tel || "—"}`,
+          `Betreff: ${subj}`,
+          "",
+          "Nachricht:",
+          msg.value,
+        ].join("\n"),
+      };
+
+      if (key) {
+        try {
+          const res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json();
+          if (!data.success) throw new Error(data.message || "Fehler");
+        } catch {
+          alert(
+            "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut oder schreiben Sie an info@theaterverlag-arno-boas.de.",
+          );
+          return;
+        }
+      }
+
+      form.outerHTML =
+        '<div class="done"><div class="ic"><i class="ti ti-check"></i></div><h3>Vielen Dank!</h3><p>Ihre Nachricht ist unterwegs. Wir melden uns kurzfristig persönlich bei Ihnen.</p></div>';
+    });
+  }
+</script>
+
+<style>
+  .intro {
+    padding: 52px 0 0;
+  }
+  .intro h1 {
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 0.96;
+    margin: 12px 0 0;
+  }
+  .intro .lead {
+    font-size: 19px;
+    margin: 18px 0 0;
+    max-width: 60ch;
+  }
+  .k-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+    padding: 40px 0 10px;
+  }
+  .form .two {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .form .fld {
+    margin-top: 16px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .form label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .form label .req {
+    color: var(--wine);
+  }
+  .form input,
+  .form textarea {
+    width: 100%;
+    border: 1px solid var(--hair);
+    border-radius: 9px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: #fff;
+    outline: none;
+  }
+  .form input:focus,
+  .form textarea:focus {
+    border-color: var(--wine);
+  }
+  .form :global(input.err),
+  .form :global(textarea.err) {
+    border-color: #c0392b;
+    background: #fcf3f1;
+  }
+  .form textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+  .chkrow {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 18px;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+  .chkrow input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex: none;
+    accent-color: var(--wine);
+  }
+  .chkrow.err {
+    color: #c0392b;
+  }
+  .chkrow a {
+    color: var(--wine);
+    text-decoration: underline;
+  }
+  .send {
+    margin-top: 22px;
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    padding: 15px 28px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .send:hover {
+    background: var(--wine-dark);
+  }
+  :global(.done) {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 34px;
+    text-align: center;
+  }
+  :global(.done .ic) {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--wine);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 14px;
+  }
+  :global(.done h3) {
+    font-size: 26px;
+    font-family: var(--font-head);
+    color: var(--ink);
+  }
+  :global(.done p) {
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .kcard {
+    background: var(--surface);
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .kcard h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .kline {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .kline:last-of-type {
+    border-bottom: none;
+  }
+  .kline i {
+    color: var(--wine);
+    font-size: 20px;
+    flex: none;
+    margin-top: 2px;
+  }
+  .kline .l {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .kline .v {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .knote {
+    margin-top: 18px;
+    background: var(--paper-2);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 14px;
+  }
+  .knote a {
+    color: var(--wine);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--wine);
+  }
+  .sec {
+    padding: 56px 0 0;
+  }
+  .faq-h {
+    margin-bottom: 22px;
+  }
+  .faq-h h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1;
+    margin-top: 10px;
+  }
+  .faq {
+    border-top: 2px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 23px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 22px;
+    transition: transform 0.2s;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 22px;
+    font-size: 16px;
+    max-width: 78ch;
+  }
+  @media (max-width: 820px) {
+    .k-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

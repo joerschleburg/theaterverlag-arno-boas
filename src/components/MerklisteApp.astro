@@ -1,0 +1,1005 @@
+---
+import { getStuecke } from "../lib/stuecke";
+import { SITE } from "../lib/site";
+import { path } from "../lib/paths";
+
+const catalog = getStuecke().map((s) => ({
+  slug: s.slug,
+  titel: s.titel,
+  kuerzel: s.kuerzel,
+  genre: s.kategorien[0] || "",
+}));
+
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const privacyHref = path("/datenschutz");
+---
+
+<div
+  id="merk-root"
+  data-catalog={JSON.stringify(catalog)}
+  data-web3-key={web3Key}
+  data-to={SITE.email}
+  data-privacy={privacyHref}
+>
+  <div class="toast" id="merk-toast" role="status" aria-live="polite">
+    <i class="ti ti-bookmark-filled" aria-hidden="true"></i>
+    <span id="merk-toast-txt">Zur Merkliste hinzugefügt</span>
+  </div>
+
+  <div class="overlay" id="merk-overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="merk-title">
+      <div class="sheet-h">
+        <div>
+          <h2 id="merk-title">Meine Merkliste</h2>
+          <div class="sub" id="merk-sub">0 Stücke</div>
+        </div>
+        <button class="x" type="button" id="merk-close" aria-label="Schließen">
+          <i class="ti ti-x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="sheet-list" id="merk-list"></div>
+      <div class="sheet-foot" id="merk-foot"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  type CatalogItem = {
+    slug: string;
+    titel: string;
+    kuerzel: string;
+    genre: string;
+  };
+
+  const KEY = "tvab_merk";
+  const WISH_KEY = "tvab_wishes";
+  const OPTS = [
+    "Leseprobe (PDF)",
+    "Ansichtsexemplar",
+    "Rollensatz bestellen",
+    "Aufführung anfragen",
+    "Beratung / Preisauskunft",
+  ];
+
+  const root = document.getElementById("merk-root");
+  if (!root) {
+    /* Merkliste nicht eingebunden */
+  } else {
+  const catalog: CatalogItem[] = JSON.parse(root.dataset.catalog || "[]");
+  const bySlug = new Map(catalog.map((c) => [c.slug, c]));
+
+  let saved: string[] = [];
+  try {
+    saved = JSON.parse(localStorage.getItem(KEY) || "[]");
+  } catch {
+    saved = [];
+  }
+
+  let wishes: Record<string, string[]> = {};
+  try {
+    const raw = JSON.parse(localStorage.getItem(WISH_KEY) || "{}");
+    for (const [k, v] of Object.entries(raw)) {
+      if (Array.isArray(v)) wishes[k] = v as string[];
+      else if (typeof v === "string" && v) wishes[k] = [v];
+    }
+  } catch {
+    wishes = {};
+  }
+
+  const persist = () => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(saved));
+      localStorage.setItem(WISH_KEY, JSON.stringify(wishes));
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const has = (id: string) => saved.includes(id);
+  const items = () =>
+    saved.map((slug) => bySlug.get(slug)).filter(Boolean) as CatalogItem[];
+
+  const toast = document.getElementById("merk-toast")!;
+  const toastTxt = document.getElementById("merk-toast-txt")!;
+  let toastTimer: number;
+  function showToast(txt: string) {
+    toastTxt.textContent = txt;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => toast.classList.remove("show"), 1600);
+  }
+
+  function updateCounts() {
+    document.querySelectorAll("[data-merk-count]").forEach((el) => {
+      el.textContent = String(saved.length);
+    });
+    document.querySelectorAll<HTMLElement>("[data-bookmark]").forEach((b) => {
+      const on = has(b.dataset.bookmark || "");
+      b.classList.toggle("on", on);
+      const icon = b.querySelector("i");
+      if (icon) icon.className = "ti ti-bookmark" + (on ? "-filled" : "");
+      const tip = b.querySelector(".tip");
+      if (tip) tip.textContent = on ? "Gemerkt" : "Merken";
+    });
+  }
+
+  function toggle(id: string) {
+    if (!bySlug.has(id)) return;
+    if (has(id)) {
+      saved = saved.filter((x) => x !== id);
+      delete wishes[id];
+      showToast("Aus der Merkliste entfernt");
+    } else {
+      saved.push(id);
+      showToast("Zur Merkliste hinzugefügt");
+      document.querySelectorAll("[data-merk-count]").forEach((el) => {
+        el.classList.add("pulse");
+        setTimeout(() => el.classList.remove("pulse"), 200);
+      });
+    }
+    persist();
+    refresh();
+  }
+
+  /* Flyout: inject into header merk wrappers if present */
+  function ensureFlyouts() {
+    document.querySelectorAll("[data-merk-trigger]").forEach((trig) => {
+      const parent = trig.parentElement;
+      if (!parent) return;
+      if (!parent.classList.contains("merk-wrap")) {
+        const wrap = document.createElement("span");
+        wrap.className = "merk-wrap";
+        parent.insertBefore(wrap, trig);
+        wrap.appendChild(trig);
+      }
+      const wrap = trig.closest(".merk-wrap");
+      if (!wrap || wrap.querySelector(".flyout")) return;
+      const fly = document.createElement("div");
+      fly.className = "flyout";
+      fly.innerHTML = '<div class="flyout-inner" data-flyout></div>';
+      wrap.appendChild(fly);
+    });
+  }
+
+  function renderFlyouts() {
+    const list = items();
+    document.querySelectorAll("[data-flyout]").forEach((flyout) => {
+      if (!list.length) {
+        flyout.innerHTML =
+          '<div class="flyout-h">Merkliste</div><div class="fly-empty">Noch keine Stücke gemerkt.</div>';
+        return;
+      }
+      flyout.innerHTML =
+        `<div class="flyout-h">${list.length} gemerkte${list.length === 1 ? "s Stück" : " Stücke"}</div>` +
+        `<div class="fly-list">${list
+          .map(
+            (p) =>
+              `<div class="fly-item"><div><div class="g">${p.genre}</div><div class="t">${p.titel}${p.kuerzel ? ` <span class="kz">${p.kuerzel}</span>` : ""}</div></div><button class="rm" type="button" data-rm="${p.slug}" aria-label="Entfernen"><i class="ti ti-x"></i></button></div>`,
+          )
+          .join("")}</div>` +
+        `<div class="fly-foot"><button class="prim" type="button" data-open-sheet>Merkliste öffnen &amp; anfragen</button></div>`;
+    });
+  }
+
+  const overlay = document.getElementById("merk-overlay")!;
+  const sheetList = document.getElementById("merk-list")!;
+  const sheetFoot = document.getElementById("merk-foot")!;
+  const sheetSub = document.getElementById("merk-sub")!;
+  let sheetStep: "list" | "form" | "done" = "list";
+
+  function openSheet() {
+    sheetStep = "list";
+    overlay.hidden = false;
+    overlay.classList.add("open");
+    renderSheet();
+  }
+  function closeSheet() {
+    overlay.hidden = true;
+    overlay.classList.remove("open");
+  }
+
+  function label(id: string) {
+    const w = wishes[id] || [];
+    if (!w.length) return "Was möchten Sie?";
+    if (w.length === 1) return w[0];
+    return w.length + " Leistungen";
+  }
+
+  function renderSheet() {
+    const list = items();
+    sheetSub.textContent =
+      list.length + " " + (list.length === 1 ? "Stück" : "Stücke");
+    if (!list.length) {
+      sheetList.innerHTML =
+        '<div class="sheet-empty">Ihre Merkliste ist noch leer.</div>';
+      sheetFoot.innerHTML = "";
+      return;
+    }
+    if (sheetStep === "form") return renderForm(list);
+    if (sheetStep === "done") return renderDone();
+
+    sheetList.innerHTML =
+      '<div class="instr">Wählen Sie je Stück, was Sie möchten — Mehrfachauswahl möglich.</div>' +
+      list
+        .map((p) => {
+          const w = wishes[p.slug] || [];
+          return `<div class="sheet-item">
+          <div class="si-main"><div class="g">${p.genre}</div><div class="t">${p.titel}${p.kuerzel ? ` <span class="kz">${p.kuerzel}</span>` : ""}</div></div>
+          <div class="wsel-wrap" data-id="${p.slug}">
+            <button class="wsel ${w.length ? "on" : ""}" type="button"><span class="lbl">${label(p.slug)}</span><i class="ti ti-chevron-down"></i></button>
+            <div class="wpop">${OPTS.map((o) => `<div class="wopt ${w.includes(o) ? "on" : ""}" data-id="${p.slug}" data-opt="${o}"><span class="box"><i class="ti ti-check"></i></span>${o}</div>`).join("")}</div>
+          </div>
+          <button class="rm" type="button" data-rm="${p.slug}" aria-label="Entfernen"><i class="ti ti-x"></i></button>
+        </div>`;
+        })
+        .join("");
+    sheetFoot.innerHTML =
+      '<button class="prim" type="button" data-weiter><i class="ti ti-arrow-right"></i> Weiter zur Anfrage</button><button class="clr" type="button" data-leeren>Merkliste leeren</button>';
+  }
+
+  function renderForm(list: CatalogItem[]) {
+    const chosen = list.filter((p) => (wishes[p.slug] || []).length);
+    const skipped = list.length - chosen.length;
+    sheetSub.textContent = "Ihre Anfrage";
+    sheetList.innerHTML =
+      '<div class="instr">Bitte prüfen Sie Ihre Wünsche und ergänzen Sie Ihre Kontaktdaten:</div>' +
+      `<div class="recap">${chosen
+        .map(
+          (p) =>
+            `<div class="si"><div class="kt">${p.genre}</div><div class="t">${p.titel}${p.kuerzel ? ` <span class="kz">${p.kuerzel}</span>` : ""}</div><div class="w">${(wishes[p.slug] || []).map((o) => `<span>${o}</span>`).join("")}</div></div>`,
+        )
+        .join("")}</div>` +
+      (skipped
+        ? `<div class="sum-note">${skipped} Stück(e) ohne Auswahl werden nicht mit angefragt.</div>`
+        : "") +
+      '<button class="backlink" type="button" data-zurueck><i class="ti ti-arrow-left"></i> Zurück zur Auswahl</button>' +
+      `<div class="form">
+        <div class="two"><div class="fld"><label>Name <span class="req">*</span></label><input id="m_name" type="text" placeholder="Vor- und Nachname"></div>
+        <div class="fld"><label>Theatergruppe / Verein</label><input id="m_group" type="text" placeholder="optional"></div></div>
+        <div class="two"><div class="fld"><label>E-Mail <span class="req">*</span></label><input id="m_mail" type="email" placeholder="name@beispiel.de"></div>
+        <div class="fld"><label>Telefon</label><input id="m_tel" type="tel" placeholder="optional"></div></div>
+        <div class="fld"><label>Geplanter Aufführungszeitraum</label><input id="m_date" type="text" placeholder="z. B. Frühjahr 2027 (optional)"></div>
+        <div class="fld"><label>Nachricht</label><textarea id="m_msg" placeholder="Ihre Anmerkungen (optional)"></textarea></div>
+        <label class="chkrow" id="m_chkrow"><input id="m_ok" type="checkbox"><span>Ich habe die <a href="${root.dataset.privacy || "/datenschutz"}">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. <span class="req">*</span></span></label>
+      </div>`;
+    sheetFoot.innerHTML =
+      '<button class="prim" type="button" data-absenden><i class="ti ti-send"></i> Anfrage absenden</button>';
+  }
+
+  function renderDone() {
+    sheetSub.textContent = "Gesendet";
+    sheetList.innerHTML =
+      '<div class="done"><div class="ic"><i class="ti ti-check"></i></div><h3>Vielen Dank!</h3><p>Ihre Anfrage ist bei uns eingegangen. Wir melden uns in Kürze persönlich bei Ihnen.</p></div>';
+    sheetFoot.innerHTML =
+      '<button class="prim" type="button" data-fertig><i class="ti ti-check"></i> Schließen</button>';
+  }
+
+  async function absenden() {
+    const name = document.getElementById("m_name") as HTMLInputElement;
+    const mail = document.getElementById("m_mail") as HTMLInputElement;
+    const ok = document.getElementById("m_ok") as HTMLInputElement;
+    const row = document.getElementById("m_chkrow");
+    let bad = false;
+    [name, mail].forEach((el) => {
+      if (!el.value.trim()) {
+        el.classList.add("err");
+        bad = true;
+      } else el.classList.remove("err");
+    });
+    if (
+      mail.value.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())
+    ) {
+      mail.classList.add("err");
+      bad = true;
+    }
+    if (!ok.checked) {
+      row?.classList.add("err");
+      bad = true;
+    } else row?.classList.remove("err");
+    if (bad) {
+      showToast("Bitte Name, gültige E-Mail und Einwilligung ausfüllen");
+      return;
+    }
+
+    const list = items().filter((p) => (wishes[p.slug] || []).length);
+    const group = (document.getElementById("m_group") as HTMLInputElement).value;
+    const tel = (document.getElementById("m_tel") as HTMLInputElement).value;
+    const period = (document.getElementById("m_date") as HTMLInputElement).value;
+    const message = (document.getElementById("m_msg") as HTMLTextAreaElement)
+      .value;
+
+    const lines = [
+      "Über das Merklisten-Formular ist eine neue Anfrage eingegangen.",
+      "",
+      "Kontakt",
+      `Name: ${name.value}`,
+      `Theatergruppe / Verein: ${group || "—"}`,
+      `E-Mail: ${mail.value}`,
+      `Telefon: ${tel || "—"}`,
+      `Geplanter Aufführungszeitraum: ${period || "—"}`,
+      "",
+      "Gewünschte Stücke & Leistungen",
+    ];
+    for (const it of list) {
+      lines.push("");
+      lines.push(
+        `[${it.kuerzel || "Kürzel folgt"}] ${it.titel} · ${it.genre}`,
+      );
+      lines.push(`Wunsch: ${(wishes[it.slug] || []).join(", ")}`);
+    }
+    if (message.trim()) {
+      lines.push("", "Nachricht:", message.trim());
+    }
+
+    const key = root.dataset.web3Key || "";
+    if (key) {
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: key,
+            subject: `Neue Anfrage über die Website — ${group || name.value}`,
+            from_name: name.value,
+            email: mail.value,
+            replyto: mail.value,
+            to: root.dataset.to,
+            message: lines.join("\n"),
+          }),
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message || "Fehler");
+      } catch {
+        showToast("Senden fehlgeschlagen — bitte später erneut versuchen");
+        return;
+      }
+    }
+
+    sheetStep = "done";
+    renderSheet();
+  }
+
+  function refresh() {
+    ensureFlyouts();
+    updateCounts();
+    renderFlyouts();
+    if (overlay.classList.contains("open")) renderSheet();
+  }
+
+  document.addEventListener("click", (e) => {
+    const t = e.target as HTMLElement;
+
+    const bm = t.closest<HTMLElement>("[data-bookmark]");
+    if (bm) {
+      e.preventDefault();
+      toggle(bm.dataset.bookmark || "");
+      bm.classList.add("pop");
+      setTimeout(() => bm.classList.remove("pop"), 180);
+      return;
+    }
+
+    if (t.closest("[data-merk-trigger]")) {
+      e.preventDefault();
+      openSheet();
+      return;
+    }
+    if (t.closest("[data-open-sheet]")) {
+      openSheet();
+      return;
+    }
+    if (t.closest("#merk-close") || t === overlay) {
+      closeSheet();
+      return;
+    }
+
+    const rm = t.closest<HTMLElement>("[data-rm]");
+    if (rm) {
+      const id = rm.dataset.rm || "";
+      saved = saved.filter((x) => x !== id);
+      delete wishes[id];
+      persist();
+      refresh();
+      return;
+    }
+
+    const wsel = t.closest(".wsel");
+    if (wsel) {
+      const wrap = wsel.closest(".wsel-wrap");
+      const open = wrap?.classList.contains("open");
+      document
+        .querySelectorAll(".wsel-wrap.open")
+        .forEach((w) => w.classList.remove("open"));
+      if (!open) wrap?.classList.add("open");
+      e.stopPropagation();
+      return;
+    }
+
+    const wopt = t.closest<HTMLElement>(".wopt");
+    if (wopt) {
+      const id = wopt.dataset.id || "";
+      const o = wopt.dataset.opt || "";
+      const w = wishes[id] || (wishes[id] = []);
+      const i = w.indexOf(o);
+      if (i > -1) w.splice(i, 1);
+      else w.push(o);
+      if (!w.length) delete wishes[id];
+      persist();
+      wopt.classList.toggle("on", (wishes[id] || []).includes(o));
+      const btn = wopt.closest(".wsel-wrap")?.querySelector(".wsel");
+      btn?.classList.toggle("on", (wishes[id] || []).length > 0);
+      const lbl = btn?.querySelector(".lbl");
+      if (lbl) lbl.textContent = label(id);
+      e.stopPropagation();
+      return;
+    }
+
+    if (t.closest("[data-weiter]")) {
+      if (!items().some((p) => (wishes[p.slug] || []).length)) {
+        showToast("Bitte bei mindestens einem Stück etwas auswählen");
+        return;
+      }
+      sheetStep = "form";
+      renderSheet();
+      return;
+    }
+    if (t.closest("[data-zurueck]")) {
+      sheetStep = "list";
+      renderSheet();
+      return;
+    }
+    if (t.closest("[data-absenden]")) {
+      void absenden();
+      return;
+    }
+    if (t.closest("[data-fertig]")) {
+      closeSheet();
+      saved = [];
+      wishes = {};
+      persist();
+      refresh();
+      return;
+    }
+    if (t.closest("[data-leeren]")) {
+      saved = [];
+      wishes = {};
+      persist();
+      refresh();
+      return;
+    }
+
+    document
+      .querySelectorAll(".wsel-wrap.open")
+      .forEach((w) => w.classList.remove("open"));
+  });
+
+  refresh();
+  }
+</script>
+
+<style is:global>
+  .merk-wrap {
+    position: relative;
+  }
+  .merk-wrap .flyout {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 330px;
+    padding-top: 12px;
+    display: none;
+    z-index: 50;
+  }
+  .merk-wrap:hover .flyout {
+    display: block;
+  }
+  .flyout-inner {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(20, 12, 6, 0.22);
+    overflow: hidden;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--text);
+    font-family: var(--font-body);
+  }
+  .flyout-h {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .fly-list {
+    max-height: 280px;
+    overflow: auto;
+  }
+  .fly-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .fly-item .g {
+    font-size: 12px;
+    color: var(--wine);
+    font-weight: 600;
+  }
+  .fly-item .t {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-top: 2px;
+  }
+  .fly-item .rm {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 17px;
+  }
+  .fly-empty {
+    padding: 26px 18px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .fly-foot {
+    padding: 14px 18px;
+  }
+  .fly-foot .prim {
+    width: 100%;
+    border: none;
+    background: var(--wine);
+    color: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 11px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .kz {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 7px;
+    margin-left: 6px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    text-transform: none;
+  }
+  [data-merk-count].pulse {
+    transform: scale(1.35);
+  }
+  [data-bookmark]:not(.btn) {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--hair);
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    position: relative;
+    transition:
+      transform 0.15s,
+      background 0.15s,
+      color 0.15s,
+      border-color 0.15s;
+  }
+  [data-bookmark]:not(.btn):hover {
+    border-color: var(--ink);
+  }
+  [data-bookmark]:not(.btn).on {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: #fff;
+  }
+  [data-bookmark].pop {
+    transform: scale(1.25);
+  }
+  [data-bookmark] .tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+  }
+  [data-bookmark]:hover .tip {
+    opacity: 1;
+  }
+
+  #merk-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 100px;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 14px 34px rgba(20, 12, 6, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.25s,
+      transform 0.25s;
+    z-index: 80;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  #merk-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  #merk-toast i {
+    color: var(--yellow);
+  }
+
+  #merk-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 12, 6, 0.55);
+    z-index: 90;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px;
+    overflow: auto;
+  }
+  #merk-overlay.open {
+    display: flex;
+  }
+  #merk-overlay .sheet {
+    background: var(--paper);
+    width: 100%;
+    max-width: 720px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  }
+  #merk-overlay .sheet-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  #merk-overlay .sheet-h h2 {
+    font-size: 28px;
+  }
+  #merk-overlay .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  #merk-overlay .x {
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  #merk-overlay .instr {
+    padding: 16px 28px 4px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  #merk-overlay .sheet-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  #merk-overlay .g {
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--wine);
+    font-weight: 700;
+  }
+  #merk-overlay .t {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 2px 0 0;
+  }
+  #merk-overlay .wsel-wrap {
+    position: relative;
+    flex: none;
+    width: 252px;
+  }
+  #merk-overlay .wsel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid var(--hair);
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  #merk-overlay .wsel.on {
+    color: var(--ink);
+    background: var(--surface);
+  }
+  #merk-overlay .wpop {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px rgba(20, 12, 6, 0.2);
+    padding: 6px;
+    z-index: 6;
+    display: none;
+  }
+  #merk-overlay .wsel-wrap.open .wpop {
+    display: block;
+  }
+  #merk-overlay .wopt {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13.5px;
+  }
+  #merk-overlay .wopt:hover {
+    background: var(--paper-2);
+  }
+  #merk-overlay .wopt .box {
+    width: 18px;
+    height: 18px;
+    border: 1.6px solid var(--hair);
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    flex: none;
+  }
+  #merk-overlay .wopt.on {
+    font-weight: 600;
+  }
+  #merk-overlay .wopt.on .box {
+    background: var(--wine);
+    border-color: var(--wine);
+  }
+  #merk-overlay .rm {
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 20px;
+  }
+  #merk-overlay .sheet-foot {
+    padding: 20px 28px 26px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  #merk-overlay .sheet-foot .prim {
+    flex: 1;
+    min-width: 220px;
+    background: var(--wine);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+  }
+  #merk-overlay .sheet-foot .clr {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 15px 20px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  #merk-overlay .sheet-empty,
+  #merk-overlay .done {
+    padding: 50px 28px;
+    text-align: center;
+    color: var(--muted);
+  }
+  #merk-overlay .done .ic {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background: var(--wine);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    margin: 0 auto 18px;
+  }
+  #merk-overlay .done h3 {
+    font-family: var(--font-head);
+    font-size: 30px;
+    color: var(--ink);
+  }
+  #merk-overlay .recap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2px 18px;
+    margin: 4px 28px 0;
+  }
+  #merk-overlay .recap .si {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  #merk-overlay .recap .si:last-child {
+    border-bottom: none;
+  }
+  #merk-overlay .recap .kt {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--wine);
+    font-weight: 700;
+  }
+  #merk-overlay .recap .t {
+    font-size: 18px;
+  }
+  #merk-overlay .recap .w {
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  #merk-overlay .recap .w span {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  #merk-overlay .sum-note {
+    padding: 14px 28px 0;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  #merk-overlay .backlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 14px 28px 4px;
+    background: none;
+    border: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wine);
+    cursor: pointer;
+  }
+  #merk-overlay .form {
+    padding: 8px 28px 4px;
+  }
+  #merk-overlay .form .two {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  #merk-overlay .form .fld {
+    margin-top: 15px;
+    flex: 1;
+    min-width: 200px;
+  }
+  #merk-overlay .form label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  #merk-overlay .form .req {
+    color: var(--wine);
+  }
+  #merk-overlay .form input,
+  #merk-overlay .form textarea {
+    width: 100%;
+    border: 1px solid var(--hair);
+    border-radius: 9px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 15px;
+    background: #fff;
+    outline: none;
+  }
+  #merk-overlay .form input.err,
+  #merk-overlay .form textarea.err {
+    border-color: #c0392b;
+    background: #fcf3f1;
+  }
+  #merk-overlay .form textarea {
+    min-height: 88px;
+    resize: vertical;
+  }
+  #merk-overlay .chkrow {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 18px;
+    font-size: 13.5px;
+  }
+  #merk-overlay .chkrow input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex: none;
+    accent-color: var(--wine);
+  }
+  #merk-overlay .chkrow.err {
+    color: #c0392b;
+  }
+  #merk-overlay .chkrow a {
+    color: var(--wine);
+    text-decoration: underline;
+  }
+  @media (max-width: 720px) {
+    #merk-overlay .sheet-item {
+      flex-wrap: wrap;
+    }
+    #merk-overlay .wsel-wrap {
+      width: 100%;
+    }
+    .merk-wrap:hover .flyout {
+      display: none;
+    }
+  }
+</style>

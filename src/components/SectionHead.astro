@@ -1,0 +1,58 @@
+---
+interface Props {
+  folio?: string;
+  title: string;
+  intro?: string;
+}
+
+const { folio, title, intro } = Astro.props;
+---
+
+<div class="head">
+  <div class="l">
+    {folio && <span class="folio" set:html={folio} />}
+    <h2>{title}</h2>
+  </div>
+  {intro && <p class="intro">{intro}</p>}
+</div>
+
+<style>
+  .head {
+    border-bottom: 2.5px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 46px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .l {
+    display: flex;
+    align-items: baseline;
+    gap: 26px;
+    min-width: 0;
+  }
+  .folio {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(26px, 3.2vw, 46px);
+    color: var(--wine);
+    line-height: 0.9;
+    white-space: nowrap;
+    flex: none;
+  }
+  h2 {
+    font-family: var(--font-head);
+    font-size: clamp(30px, 4.4vw, 58px);
+    line-height: 0.9;
+  }
+  .intro {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 250px;
+    text-align: right;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

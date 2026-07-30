@@ -1,0 +1,100 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  title?: string;
+  withSectionHead?: boolean;
+}
+
+const { items, title = "Häufige Fragen", withSectionHead = true } = Astro.props;
+---
+
+<section class="sec faq-sec">
+  <div class="wrap">
+    {
+      withSectionHead && (
+        <div class="head">
+          <div class="l">
+            <h2>{title}</h2>
+          </div>
+        </div>
+      )
+    }
+    <div class="faq">
+      {
+        items.map((item) => (
+          <details>
+            <summary>
+              {item.question}
+              <span class="ic">
+                <i class="ti ti-plus" aria-hidden="true" />
+              </span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .sec {
+    padding: 104px 0 24px;
+  }
+  .head {
+    border-bottom: 2.5px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 46px;
+  }
+  .head h2 {
+    font-size: clamp(30px, 4.4vw, 58px);
+    line-height: 0.9;
+  }
+  .faq {
+    border-top: 2.5px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(20px, 2vw, 27px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 24px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 24px;
+    font-size: 17px;
+    color: var(--text);
+    max-width: 80ch;
+  }
+</style>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — Theaterverlag Arno Boas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --wine:#CF551A; --wine-dark:#A8410F; --gold:#B98526; --yellow:#F2A81D;
+    --ink:#1A1611; --text:#2C2620; --muted:#645B4D;
+    --paper:#F1EBDD; --paper-2:#EAE2D1; --surface:#FBF7EE;
+    --border:#D6CCB8; --hair:#C7BCA4;
+    --font-head:'Playfair Display',Georgia,serif; --font-body:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-head);color:var(--ink);margin:0;font-weight:800;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
+  .cap-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--wine);}
+
+  .ihead{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--border);}
+  .ihead .row{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .ihead .brand img{height:38px;display:block;}
+  .inav{display:flex;gap:30px;align-items:center;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);}
+  .inav a:hover{color:var(--wine);} .inav a.active{color:var(--wine);}
+  .inav .merk{display:inline-flex;align-items:center;gap:7px;padding-left:22px;border-left:1px solid var(--border);}
+  .inav .merk .cnt{background:var(--wine);color:#fff;border-radius:100px;min-width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+
+  .intro{padding:52px 0 0;}
+  .intro h1{font-size:clamp(38px,6vw,72px);line-height:.96;margin:12px 0 0;}
+  .intro .lead{font-size:19px;color:var(--text);margin:18px 0 0;max-width:60ch;}
+
+  .k-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:56px;align-items:start;padding:40px 0 10px;}
+  .form .two{display:flex;gap:14px;flex-wrap:wrap;}
+  .form .fld{margin-top:16px;flex:1;min-width:200px;}
+  .form label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;}
+  .form label .req{color:var(--wine);}
+  .form input,.form textarea{width:100%;border:1px solid var(--hair);border-radius:9px;padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);background:#fff;outline:none;transition:border-color .14s;}
+  .form input:focus,.form textarea:focus{border-color:var(--wine);}
+  .form input.err,.form textarea.err{border-color:#C0392B;background:#FCF3F1;}
+  .form textarea{min-height:130px;resize:vertical;}
+  .chkrow{display:flex;align-items:flex-start;gap:11px;margin-top:18px;font-size:13.5px;color:var(--text);line-height:1.45;}
+  .chkrow input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--wine);cursor:pointer;}
+  .chkrow.err{color:#C0392B;}
+  .chkrow a{color:var(--wine);text-decoration:underline;}
+  .send{margin-top:22px;background:var(--wine);color:#fff;border:none;border-radius:9px;padding:15px 28px;font:inherit;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:background .15s;}
+  .send:hover{background:var(--wine-dark);}
+  .done{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:34px;text-align:center;}
+  .done .ic{width:60px;height:60px;border-radius:50%;background:var(--wine);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:14px;}
+  .done h3{font-size:26px;} .done p{color:var(--muted);margin-top:8px;}
+
+  .kcard{background:var(--surface);border:1px solid var(--ink);border-radius:14px;padding:26px;}
+  .kcard h3{font-family:var(--font-head);font-size:22px;margin-bottom:6px;}
+  .kline{display:flex;gap:13px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);font-size:15px;}
+  .kline:last-of-type{border-bottom:none;}
+  .kline i{color:var(--wine);font-size:20px;flex:none;margin-top:2px;}
+  .kline .l{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;margin-bottom:2px;}
+  .kline .v{color:var(--ink);font-weight:600;}
+  .knote{margin-top:18px;background:var(--paper-2);border-radius:10px;padding:16px 18px;font-size:14px;color:var(--text);}
+  .knote a{color:var(--wine);font-weight:700;text-decoration:none;border-bottom:2px solid var(--wine);}
+
+  .sec{padding:56px 0 0;}
+  .faq-h{margin-bottom:22px;} .faq-h h2{font-family:var(--font-head);font-size:clamp(26px,3.4vw,40px);line-height:1;margin-top:10px;}
+  .faq{border-top:2px solid var(--ink);}
+  .faq details{border-bottom:1px solid var(--border);}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 0;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--font-head);font-weight:800;font-size:clamp(18px,2vw,23px);color:var(--ink);line-height:1.12;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .ic{flex:none;color:var(--wine);font-size:22px;transition:transform .2s;}
+  .faq details[open] summary .ic{transform:rotate(45deg);}
+  .faq summary:hover{color:var(--wine);}
+  .faq details p{margin:0 0 22px;font-size:16px;color:var(--text);max-width:78ch;}
+
+  footer{background:#141009;color:#b0a795;font-size:14px;margin-top:60px;}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:40px 0;}
+  .foot-inner img{height:34px;}
+  footer a{color:#b0a795;} footer a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid #2e2820;padding:18px 0;font-size:11.5px;letter-spacing:.5px;color:#7f7669;text-transform:uppercase;}
+  .cat-sticky{position:fixed;right:22px;bottom:22px;z-index:60;display:inline-flex;align-items:center;gap:9px;background:var(--wine);color:#fff;padding:13px 22px;border-radius:100px;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;box-shadow:0 14px 34px rgba(20,12,6,.4);}
+  .cat-sticky:hover{background:var(--wine-dark);} .cat-sticky i{font-size:18px;}
+
+  @media(max-width:820px){
+    .wrap{padding:0 22px;}
+    .inav a:not(.merk){display:none;}
+    .k-grid{grid-template-columns:1fr;gap:32px;}
+    .ihead .row{height:64px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="ihead"><div class="wrap row">
+  <a class="brand" href="#"><img src="logo-dark.png" alt="Theaterverlag Arno Boas"></a>
+  <nav class="inav">
+    <a href="#">Theaterstücke</a><a href="#">Autoren</a><a href="#">Über den Verlag</a><a href="#">Preise &amp; Bedingungen</a><a href="#" class="active">Kontakt</a>
+    <a href="#" class="merk"><i class="ti ti-bookmark"></i> Merkliste <span class="cnt">2</span></a>
+  </nav>
+</div></header>
+
+<section class="intro"><div class="wrap">
+  <span class="cap-label">Wir sind für Sie da</span>
+  <h1>Kontakt</h1>
+  <p class="lead">Fragen zu einem Stück, zur Bestellung oder zur Aufführung? Schreiben Sie uns – oder rufen Sie einfach an. Wir melden uns persönlich und kurzfristig zurück.</p>
+</div></section>
+
+<section><div class="wrap k-grid">
+  <div>
+    <form class="form" id="kform" onsubmit="return false;">
+      <div class="two">
+        <div class="fld"><label>Ihr Name <span class="req">*</span></label><input id="k_name" type="text" placeholder="Vor- und Nachname"></div>
+        <div class="fld"><label>Theatergruppe / Verein</label><input id="k_group" type="text" placeholder="optional"></div>
+      </div>
+      <div class="two">
+        <div class="fld"><label>Ihre E-Mail-Adresse <span class="req">*</span></label><input id="k_mail" type="email" placeholder="name@beispiel.de"></div>
+        <div class="fld"><label>Ihre Telefonnummer</label><input id="k_tel" type="tel" placeholder="optional"></div>
+      </div>
+      <div class="fld"><label>Betreff</label><input id="k_subj" type="text" placeholder="Worum geht es?"></div>
+      <div class="fld"><label>Ihre Nachricht <span class="req">*</span></label><textarea id="k_msg" placeholder="Ihre Nachricht an uns"></textarea></div>
+      <label class="chkrow" id="k_chkrow"><input id="k_ok" type="checkbox"><span>Die <a href="#">Datenschutzerklärung</a> habe ich gelesen und akzeptiert. Der Nutzung meiner Daten kann ich jederzeit für die Zukunft widersprechen. <span class="req">*</span></span></label>
+      <button class="send" onclick="ksend()"><i class="ti ti-send"></i> Nachricht senden</button>
+    </form>
+  </div>
+
+  <aside>
+    <div class="kcard">
+      <h3>So erreichen Sie uns</h3>
+      <div class="kline"><i class="ti ti-map-pin"></i><div><span class="l">Anschrift</span><span class="v">Theaterverlag Arno Boas<br>Finsterlohr 46 · 97993 Creglingen</span></div></div>
+      <div class="kline"><i class="ti ti-phone"></i><div><span class="l">Telefon</span><span class="v">07933 / 20093</span></div></div>
+      <div class="kline"><i class="ti ti-printer"></i><div><span class="l">Fax</span><span class="v">07933 / 20094</span></div></div>
+      <div class="kline"><i class="ti ti-mail"></i><div><span class="l">E-Mail</span><span class="v">info@theaterverlag-arno-boas.de</span></div></div>
+    </div>
+    <div class="knote">Sie möchten ein bestimmtes Stück anfragen? Am schnellsten geht das über die <a href="#">Merkliste</a> – dort wählen Sie je Stück, was Sie möchten (Leseprobe, Rollensatz, Aufführung).</div>
+  </aside>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="faq-h"><span class="cap-label">Häufige Fragen</span><h2>Gut zu wissen</h2></div>
+  <div class="faq">
+    <details><summary>Wie erreiche ich den Verlag am schnellsten?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Telefonisch unter 07933 / 20093 oder per E-Mail an info@theaterverlag-arno-boas.de. Alternativ nutzen Sie das Kontaktformular auf dieser Seite.</p></details>
+    <details><summary>Wie frage ich ein bestimmtes Stück an?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Am besten über die Merkliste: Stücke sammeln und gebündelt anfragen. So ist sofort klar, welche Leistung Sie wünschen – Leseprobe, Ansichtsexemplar, Rollensatz oder Aufführung.</p></details>
+    <details><summary>Kann ich auch per Post oder Fax bestellen?<span class="ic"><i class="ti ti-plus"></i></span></summary><p>Ja. Sie erreichen uns postalisch unter Theaterverlag Arno Boas, Finsterlohr 46, 97993 Creglingen, sowie per Fax unter 07933 / 20094.</p></details>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div><img src="logo-light.png" alt="Theaterverlag Arno Boas"></div>
+    <div style="max-width:340px;color:#918879;">Arno Boas · Finsterlohr 46 · 97993 Creglingen · Tel. 07933/20093 · info@theaterverlag-arno-boas.de</div>
+  </div>
+  <div class="wrap foot-bottom">© 2026 Theaterverlag Arno Boas · Impressum · Datenschutz · Widerrufsbelehrung</div>
+</footer>
+
+<a class="cat-sticky" href="Katalog_Theaterverlag_Arno_Boas.pdf" download><i class="ti ti-file-download"></i> Katalog herunterladen</a>
+
+<script>
+function ksend(){
+  var name=document.getElementById('k_name'), mail=document.getElementById('k_mail'),
+      msg=document.getElementById('k_msg'), ok=document.getElementById('k_ok'), row=document.getElementById('k_chkrow');
+  var bad=false;
+  [name,mail,msg].forEach(function(el){ if(!el.value.trim()){el.classList.add('err');bad=true;} else el.classList.remove('err'); });
+  if(mail.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim())){ mail.classList.add('err'); bad=true; }
+  if(!ok.checked){ row.classList.add('err'); bad=true; } else row.classList.remove('err');
+  if(bad) return;
+  document.getElementById('kform').outerHTML='<div class="done"><div class="ic"><i class="ti ti-check"></i></div><h3>Vielen Dank!</h3><p>Ihre Nachricht ist unterwegs. Wir melden uns kurzfristig persönlich bei Ihnen.</p></div>';
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Theaterverlag Arno Boas",
+  "url":"https://theaterverlag-arno-boas.de",
+  "email":"info@theaterverlag-arno-boas.de",
+  "telephone":"+49 7933 20093",
+  "faxNumber":"+49 7933 20094",
+  "address":{"@type":"PostalAddress","streetAddress":"Finsterlohr 46","postalCode":"97993","addressLocality":"Creglingen","addressCountry":"DE"},
+  "contactPoint":{"@type":"ContactPoint","contactType":"customer service","telephone":"+49 7933 20093","email":"info@theaterverlag-arno-boas.de","availableLanguage":"German"}
+}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie erreiche ich den Verlag am schnellsten?","acceptedAnswer":{"@type":"Answer","text":"Telefonisch unter 07933 / 20093 oder per E-Mail an info@theaterverlag-arno-boas.de. Alternativ über das Kontaktformular."}},
+{"@type":"Question","name":"Wie frage ich ein bestimmtes Stück an?","acceptedAnswer":{"@type":"Answer","text":"Am besten über die Merkliste: Stücke sammeln und gebündelt anfragen. So ist sofort klar, welche Leistung Sie wünschen – Leseprobe, Ansichtsexemplar, Rollensatz oder Aufführung."}},
+{"@type":"Question","name":"Kann ich auch per Post oder Fax bestellen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Postalisch unter Theaterverlag Arno Boas, Finsterlohr 46, 97993 Creglingen, sowie per Fax unter 07933 / 20094."}}
+]}
+</script>
+
+</body>
+</html>

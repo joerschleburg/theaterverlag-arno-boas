@@ -1,0 +1,222 @@
+---
+import { NAV } from "../lib/site";
+import { path } from "../lib/paths";
+
+interface Props {
+  variant?: "hero" | "page";
+  active?: string;
+}
+
+const { variant = "page", active } = Astro.props;
+const home = path("/");
+const logoLight = path("/images/logo-light.png");
+const logoDark = path("/images/logo-dark.png");
+---
+
+{
+  variant === "hero" ? (
+    <div class="site-mast">
+      <div class="wrap">
+        <div class="mast-row">
+          <a class="brand" href={home}>
+            <img src={logoLight} alt="Theaterverlag Arno Boas" />
+          </a>
+          <nav class="mast-nav" aria-label="Hauptnavigation">
+            {NAV.map((item) => (
+              <a href={item.href} class={active === item.match ? "active" : undefined}>
+                {item.label}
+              </a>
+            ))}
+            <a href="#merkliste" class="merk" data-merk-trigger>
+              <i class="ti ti-bookmark" aria-hidden="true" /> Merkliste{" "}
+              <span class="cnt" data-merk-count>0</span>
+            </a>
+          </nav>
+          <button class="nav-toggle" type="button" aria-label="Menü öffnen" data-nav-toggle>
+            <i class="ti ti-menu-2" />
+          </button>
+        </div>
+        <div class="mast-line" />
+      </div>
+    </div>
+  ) : (
+    <header class="ihead">
+      <div class="wrap">
+        <div class="row">
+          <a class="brand" href={home}>
+            <img src={logoDark} alt="Theaterverlag Arno Boas" />
+          </a>
+          <nav class="nav" aria-label="Hauptnavigation">
+            {NAV.map((item) => (
+              <a href={item.href} class={active === item.match ? "active" : undefined}>
+                {item.label}
+              </a>
+            ))}
+            <a href="#merkliste" class="merk" data-merk-trigger>
+              <i class="ti ti-bookmark" aria-hidden="true" /> Merkliste{" "}
+              <span class="cnt" data-merk-count>0</span>
+            </a>
+          </nav>
+          <button class="nav-toggle" type="button" aria-label="Menü öffnen" data-nav-toggle>
+            <i class="ti ti-menu-2" />
+          </button>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+<style>
+  /* Hero mast */
+  .site-mast {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+  }
+  .mast-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 16px;
+    gap: 16px;
+  }
+  .mast-row .brand img {
+    height: 44px;
+    display: block;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+  }
+  .mast-nav {
+    display: flex;
+    gap: 34px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #f2e9d8;
+  }
+  .mast-nav a {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+  .mast-nav a:hover,
+  .mast-nav a.active {
+    color: var(--gold);
+    opacity: 1;
+  }
+  .mast-nav .merk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    padding-left: 6px;
+    border-left: 1px solid rgba(255, 255, 255, 0.28);
+  }
+  .mast-nav .merk i {
+    font-size: 17px;
+  }
+  .mast-nav .merk .cnt {
+    background: var(--yellow);
+    color: #221803;
+    border-radius: 100px;
+    min-width: 19px;
+    height: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 0 5px;
+  }
+  .mast-line {
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  /* Page header */
+  .ihead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .ihead .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+    gap: 16px;
+  }
+  .ihead .brand img {
+    height: 40px;
+    display: block;
+  }
+  .ihead .nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .ihead .nav a {
+    text-decoration: none;
+  }
+  .ihead .nav a:hover,
+  .ihead .nav a.active {
+    color: var(--wine);
+  }
+  .ihead .merk {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 18px;
+    border-left: 1px solid var(--border);
+  }
+  .ihead .merk .cnt {
+    background: var(--wine);
+    color: #fff;
+    border-radius: 100px;
+    min-width: 19px;
+    height: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 0 5px;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--hair);
+    color: inherit;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 980px) {
+    .mast-nav,
+    .ihead .nav {
+      display: none;
+    }
+    .nav-toggle {
+      display: inline-flex;
+    }
+    .site-mast .nav-toggle {
+      color: #f2e9d8;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+  }
+</style>

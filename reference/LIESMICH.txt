@@ -1,0 +1,33 @@
+START-PAKET — Website Theaterverlag Arno Boas
+=============================================
+In Cursor öffnen ("Open Folder"). Doppelklick öffnet die HTML-Seiten im Browser.
+Jede Seite hat einen FAQ-Block mit FAQPage-JSON-LD (GEO).
+
+SEITEN (Editorial-Design, abgestimmt):
+- Landingpage_V1_Editorial.html          -> Startseite
+- Stueck_Uebersicht_Editorial.html       -> Übersicht / Suchergebnisse mit Filter
+- Stueck_Detail_Editorial.html           -> Stück-Detailseite
+- Autoren_Editorial.html                 -> Autoren-Fotoraster
+- Autor_Detail_Editorial.html            -> Autoren-Detailseite mit Werkverzeichnis
+- Ueber_den_Verlag_Editorial.html        -> Über den Verlag + Verlagsfreunde
+- Preise_und_Bedingungen_Editorial.html  -> Preise & Bedingungen (Kostenrechner, Timeline, FAQ)
+- Kontakt_Editorial.html                 -> Kontakt (Formular, Kontaktkarte, FAQ)
+
+INTERAKTION / REFERENZ:
+- Merkliste_Demo.html                    -> Merkliste + Anfrage-Flow (interaktiv)
+- Anfrage_bei_Arno_Beispiel.html         -> Muster der E-Mail, die bei Arno eingeht
+
+SPEZIFIKATION & DATEN:
+- PROJEKT_Briefing_...md                  -> komplette Spezifikation (Design, Architektur, Datenmodell, Flow, GEO/FAQ, Roadmap)
+- stuecke.json / stuecke.csv              -> 227 migrierte Stücke (inkl. Feld "kuerzel")
+- build_stuecke.py                        -> Skript, das die Stückdaten erzeugt
+
+BILDER:
+- hero_1..hero_5.jpg / logo-light.png / logo-dark.png / arno.jpg
+
+NOCH BESORGEN / BAUEN:
+- Katalog_Theaterverlag_Arno_Boas.pdf, 5 echte Aufführungsfotos, echte Kürzel je Stück
+- Preise mit Arno gegenprüfen (Stand Juni 2024)
+- Rechtstexte: Impressum, Datenschutzerklärung, Widerrufsbelehrung
+
+Schriften (Playfair Display, Inter) und Icons (Tabler) werden online geladen — kein Download nötig.
