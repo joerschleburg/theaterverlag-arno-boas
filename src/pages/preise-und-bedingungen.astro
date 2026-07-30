@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import StickyKatalog from "../components/StickyKatalog.astro";
+import NewsletterSignup from "../components/NewsletterSignup.astro";
 
 const faqs = [
   {
@@ -309,7 +310,13 @@ const faqLd = {
         </li>
       </ol>
       <div class="stand">Stand: Juni 2024</div>
+    </div>
+  </section>
 
+  <NewsletterSignup />
+
+  <section class="sec">
+    <div class="wrap narrow">
       <div class="sec-head faq-gap">
         <span class="cap-label">Häufige Fragen</span>
         <h2>Gut zu wissen</h2>

@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import StickyKatalog from "../components/StickyKatalog.astro";
+import NewsletterSignup from "../components/NewsletterSignup.astro";
 ---
 
 <BaseLayout title="Impressum" description="Impressum — Theaterverlag Arno Boas.">
@@ -11,6 +12,7 @@ import StickyKatalog from "../components/StickyKatalog.astro";
     <h1>Impressum</h1>
     <p>Rechtstext folgt von Arno Boas.</p>
   </section>
+  <NewsletterSignup />
   <SiteFooter />
   <StickyKatalog />
 </BaseLayout>

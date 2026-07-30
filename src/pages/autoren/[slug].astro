@@ -4,6 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import StickyKatalog from "../../components/StickyKatalog.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
 
 const authors = [
   { slug: "arno-boas", name: "Arno Boas", role: "Verlagsgründer · Autor · Theatermensch" },
@@ -64,6 +65,7 @@ const author = authors.find((a) => a.slug === Astro.params.slug)!;
     </div>
   </article>
 
+  <NewsletterSignup />
   <SiteFooter />
   <StickyKatalog />
 </BaseLayout>
