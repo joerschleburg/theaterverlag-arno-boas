@@ -157,7 +157,7 @@ const genres = [
         <div class="chips" id="filter-chips"></div>
         <div class="result-meta">
           <span>
-            <b id="result-count">{total}</b> von {total} Stücken
+            <b id="result-count" aria-live="polite">{total}</b> von {total} Stücken
           </span>
           <div class="sort-form">
             <label class="visually-hidden" for="sort">Sortierung</label>
@@ -572,6 +572,19 @@ const genres = [
       applyFromForm(true);
     });
 
+    // Sofort filtern bei Dropdown-Änderung
+    form.querySelectorAll("select").forEach((el) => {
+      el.addEventListener("change", () => applyFromForm(true));
+    });
+
+    // Sofort filtern bei Tippen (kurz entprellt)
+    let qTimer = 0;
+    const qInput = form.querySelector<HTMLInputElement>("#q");
+    qInput?.addEventListener("input", () => {
+      window.clearTimeout(qTimer);
+      qTimer = window.setTimeout(() => applyFromForm(true), 180);
+    });
+
     sortEl?.addEventListener("change", () => {
       applyFromForm(true);
     });
@@ -797,6 +810,9 @@ const genres = [
     border-bottom: 1px solid var(--border);
     transition: padding 0.15s;
     position: relative;
+  }
+  .li[hidden] {
+    display: none !important;
   }
   .li:hover {
     padding-left: 12px;
