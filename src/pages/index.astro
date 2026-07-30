@@ -3,30 +3,66 @@ import { path } from "../lib/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import SectionHead from "../components/SectionHead.astro";
-import FaqAccordion from "../components/FaqAccordion.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import StickyKatalog from "../components/StickyKatalog.astro";
 import { SITE } from "../lib/site";
 import {
   getGenreIndexWithCounts,
-  getStueckBySlug,
   overviewHref,
   stueckHref,
 } from "../lib/stuecke";
 
 const genreIndex = getGenreIndexWithCounts();
 
-/** Platzhalter bis Backend-Auswahl — echte Slugs, nur belegbare Meta */
-const feature = getStueckBySlug("mord-im-moor");
-const neuSlugs = [
-  "pension-rhonblick",
-  "an-einem-tag-im-marz",
-  "verflixt-verhext-verzaubert",
-  "agentur-weihnachtsengel",
+/**
+ * Kuratierte Startseiten-Inhalte 1:1 aus der Editorial-Referenz.
+ * Auswahl später über Backend; Links zeigen auf echte Slugs, wo vorhanden.
+ */
+const feature = {
+  slug: "mord-im-moor",
+  kicker: "Kriminalkomödie · gn-28",
+  titelLines: ["Mord", "im Moor"] as const,
+  empfehlung: "Empfehlung · von Jochen Wiltschko",
+  headline: "Ein Toter, ein Moor, jede Menge Verdächtige.",
+  dek: 'Als in der „Villa Strohmann" ein Mord geschieht und die Leiche spurlos verschwindet, erwacht in Hobby-Detektivin Euphelia der Jagdinstinkt.',
+  specs: [
+    ["Besetzung", "5 Herren · 4 Damen"],
+    ["Spieldauer", "ca. 105 Minuten"],
+    ["Bühnenbild", "ein Raum"],
+    ["Rollensatz", "175,00 €"],
+  ] as const,
+};
+
+const neu = [
+  {
+    href: stueckHref("pension-rhonblick"),
+    g: "Komödie",
+    spiel: "abendfüllend",
+    titel: "Pension Rhönblick",
+    meta: ["4 H · 6 D", "120 Min.", "ein Bühnenbild"],
+  },
+  {
+    href: stueckHref("an-einem-tag-im-marz"),
+    g: "Drama · ausgezeichnet",
+    spiel: "abendfüllend",
+    titel: "An einem Tag im März",
+    meta: ["4 H · 3 D", "100 Min.", "Lamathea-Preis"],
+  },
+  {
+    href: stueckHref("der-frosch-konig-oder-wenns-handy-in-den-brunnen-fallt"),
+    g: "Märchen",
+    spiel: "Familienstück",
+    titel: "Der Froschkönig",
+    meta: ["3 H · 4 D", "70 Min.", "frei nach Grimm"],
+  },
+  {
+    href: overviewHref({ genre: "Weihnachten" }),
+    g: "Weihnachten",
+    spiel: "Familienstück",
+    titel: "Sternschnuppenzauber",
+    meta: ["4 H · 5 D", "60 Min.", "für die ganze Familie"],
+  },
 ];
-const neu = neuSlugs
-  .map((slug) => getStueckBySlug(slug))
-  .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
 const faqs = [
   {
@@ -87,10 +123,6 @@ const orgLd = {
     addressCountry: "DE",
   },
 };
-
-function genreLabel(s: { kategorien: string[] }) {
-  return s.kategorien[0] ?? "";
-}
 ---
 
 <BaseLayout
@@ -101,75 +133,58 @@ function genreLabel(s: { kategorien: string[] }) {
 >
   <Hero />
 
-  <!-- FEATURE -->
   <section class="sec">
     <div class="wrap">
       <SectionHead folio="№&nbsp;01" title="Im Rampenlicht" />
-      {
-        feature && (
-          <div class="feature">
-            <div class="fpo">
-              <i class="ti ti-detective ic" aria-hidden="true" />
-              <span class="t">
-                {feature.untertitel}
-                {feature.kuerzel ? ` · ${feature.kuerzel}` : ""}
-              </span>
-              <span class="n">
-                {feature.titel.includes(" ") ? (
-                  <>
-                    {feature.titel.split(" ").slice(0, -1).join(" ")}
-                    <br />
-                    {feature.titel.split(" ").slice(-1)[0]}
-                  </>
-                ) : (
-                  feature.titel
-                )}
-              </span>
-            </div>
-            <div class="ftx">
-              <span class="cap-label">Empfehlung</span>
-              <h3>{feature.untertitel}</h3>
-              <p class="dek">
-                Ausführlicher Klappentext und Besetzungsangaben folgen. Bis dahin
-                finden Sie alle bekannten Eckdaten auf der Stückseite.
-              </p>
-              <ul class="specs">
+      <div class="feature">
+        <div class="fpo">
+          <i class="ti ti-detective ic" aria-hidden="true"></i>
+          <span class="t">{feature.kicker}</span>
+          <span class="n">
+            {feature.titelLines[0]}<br />{feature.titelLines[1]}
+          </span>
+        </div>
+        <div class="ftx">
+          <span class="cap-label">{feature.empfehlung}</span>
+          <h3>{feature.headline}</h3>
+          <p class="dek">{feature.dek}</p>
+          <ul class="specs">
+            {
+              feature.specs.map(([k, v]) => (
                 <li>
-                  <span>Genre</span>
-                  <span>{feature.kategorien.join(" · ")}</span>
+                  <span>{k}</span>
+                  <span>{v}</span>
                 </li>
-                <li>
-                  <span>Spielart</span>
-                  <span>{feature.spielart_geschaetzt}</span>
-                </li>
-              </ul>
-              <div class="flinks">
-                <a href={stueckHref(feature.slug)}>Zum Stück</a>
-              </div>
-            </div>
+              ))
+            }
+          </ul>
+          <div class="flinks">
+            <a href={stueckHref(feature.slug)}>Zum Stück</a>
+            <a href={stueckHref(feature.slug)}>Leseprobe (PDF)</a>
           </div>
-        )
-      }
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="endmark"><i class="ti ti-masks-theater" aria-hidden="true"></i></div>
 
-  <!-- NEU -->
   <section class="sec">
     <div class="wrap">
       <SectionHead folio="№&nbsp;02" title="Neu im Repertoire" />
       <div class="list">
         {
           neu.map((s) => (
-            <a class="li" href={stueckHref(s.slug)}>
+            <a class="li" href={s.href}>
               <div class="lt">
-                <span class="g">{genreLabel(s)}</span>
-                <span>{s.spielart_geschaetzt.toLowerCase()}</span>
+                <span class="g">{s.g}</span>
+                <span>{s.spiel}</span>
               </div>
               <div class="lh">{s.titel}</div>
               <div class="lm">
-                <span>{s.untertitel}</span>
+                {s.meta.map((m) => (
+                  <span>{m}</span>
+                ))}
               </div>
             </a>
           ))
@@ -183,14 +198,18 @@ function genreLabel(s: { kategorien: string[] }) {
 
   <div class="endmark"><i class="ti ti-masks-theater" aria-hidden="true"></i></div>
 
-  <!-- INDEX -->
   <section class="sec">
     <div class="wrap">
       <SectionHead folio="№&nbsp;03" title="Nach Genre stöbern" />
       <div class="idx">
         {
           genreIndex.map((g) => (
-            <a href={overviewHref({ genre: g.label === "Kinder & Jugend" ? "Für Jugendliche" : g.label })}>
+            <a
+              href={overviewHref({
+                genre:
+                  g.label === "Kinder & Jugend" ? "Für Jugendliche" : g.label,
+              })}
+            >
               <span class="n">{g.n}</span>
               <span class="nm">{g.label}</span>
               <span class="ld" />
@@ -202,7 +221,6 @@ function genreLabel(s: { kategorien: string[] }) {
     </div>
   </section>
 
-  <!-- QUOTE -->
   <section class="wrap">
     <div class="pq">
       <div class="pq-inner">
@@ -210,8 +228,8 @@ function genreLabel(s: { kategorien: string[] }) {
           class="pq-portrait"
           src={path("/images/arno.jpg")}
           alt="Arno Boas"
-          width="280"
-          height="340"
+          width="340"
+          height="400"
           loading="lazy"
         />
         <div class="pq-text">
@@ -220,13 +238,14 @@ function genreLabel(s: { kategorien: string[] }) {
           </blockquote>
           <div class="sig">Arno Boas</div>
           <cite>Verlagsgründer · Autor · Theatermensch</cite>
-          <a class="tlink" href={path("/autoren/arno-boas")}>Mehr über Arno Boas erfahren →</a>
+          <a class="tlink" href={path("/autoren/arno-boas")}
+            >Mehr über Arno Boas erfahren →</a
+          >
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ÜBER -->
   <section class="about">
     <div class="wrap about-inner">
       <div>
@@ -234,30 +253,32 @@ function genreLabel(s: { kategorien: string[] }) {
         <h2>Von Theaterleuten, für Theaterleute.</h2>
         <p class="lead">
           Seit 1997 stehen wir für lebendige Bühnenstücke in verständlicher
-          Umgangssprache – leicht in jeden Dialekt übertragbar und auf Hochdeutsch
-          spielbar. Vom abendfüllenden Stück über Einakter bis zum Sketch: Vielfalt
-          ist unser Markenzeichen.
+          Umgangssprache – leicht in jeden Dialekt übertragbar und auf
+          Hochdeutsch spielbar. Vom abendfüllenden Stück über Einakter bis zum
+          Sketch: Vielfalt ist unser Markenzeichen.
         </p>
         <div class="stats">
           <div class="stat"><b>250+</b><span>Theaterstücke</span></div>
           <div class="stat"><b>40</b><span>Autorinnen und Autoren</span></div>
           <div class="stat"><b>1997</b><span>gegründet</span></div>
         </div>
-        <a class="tlink" href={path("/ueber-den-verlag")}>Mehr über den Verlag →</a>
+        <a class="tlink" href={path("/ueber-den-verlag")}
+          >Mehr über den Verlag →</a
+        >
       </div>
       <div>
         <div
           class="about-img"
           role="img"
           aria-label="Aufführung aus dem Verlagsrepertoire"
-          style={`--about-img: url('${path("/images/hero_2.jpg")}')`}
-        ></div>
+          style={`background-image: url('${path("/images/hero_2.jpg")}')`}
+        >
+        </div>
         <p class="cap">Aus einer Aufführung im Verlagsrepertoire</p>
       </div>
     </div>
   </section>
 
-  <!-- Newsletter: Modul sichtbar, noch nicht angebunden -->
   <section class="news" aria-labelledby="nl-title">
     <div class="news-inner">
       <div class="nl-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
@@ -267,20 +288,41 @@ function genreLabel(s: { kategorien: string[] }) {
         Neue Stücke und Aktuelles aus dem Verlag – ein paar Mal im Jahr, herzlich
         und ganz ohne Werbeflut.
       </p>
-      <form class="nl-form" onsubmit="return false;" aria-disabled="true">
+      <form onsubmit="return false;">
         <input
           type="email"
           placeholder="Ihre E-Mail-Adresse"
+          aria-label="E-Mail-Adresse"
           disabled
-          aria-label="E-Mail-Adresse (Anmeldung folgt in Kürze)"
         />
-        <button type="button" disabled>Demnächst</button>
+        <button type="button" disabled>Anmelden</button>
       </form>
-      <div class="nl-note">Anmeldung folgt in Kürze. Kein Spam. Jederzeit abbestellbar.</div>
+      <div class="nl-note">Kein Spam. Jederzeit abbestellbar.</div>
     </div>
   </section>
 
-  <FaqAccordion items={faqs} />
+  <section class="sec faq-sec">
+    <div class="wrap">
+      <div class="head">
+        <div class="l"><h2>Häufige Fragen</h2></div>
+      </div>
+      <div class="faq">
+        {
+          faqs.map((item) => (
+            <details>
+              <summary>
+                {item.question}
+                <span class="ic">
+                  <i class="ti ti-plus" aria-hidden="true" />
+                </span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <SiteFooter />
   <StickyKatalog />
@@ -290,8 +332,30 @@ function genreLabel(s: { kategorien: string[] }) {
   .sec {
     padding: 104px 0 0;
   }
+  .faq-sec {
+    padding-bottom: 24px;
+  }
+  .head {
+    border-bottom: 2.5px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 46px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .head .l {
+    display: flex;
+    align-items: baseline;
+    gap: 26px;
+    min-width: 0;
+  }
+  .head h2 {
+    font-size: clamp(30px, 4.4vw, 58px);
+    line-height: 0.9;
+  }
 
-  /* Feature */
   .feature {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -384,7 +448,6 @@ function genreLabel(s: { kategorien: string[] }) {
     padding-bottom: 3px;
   }
 
-  /* Liste */
   .list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -420,6 +483,7 @@ function genreLabel(s: { kategorien: string[] }) {
     font-family: var(--font-head);
     font-size: clamp(28px, 2.8vw, 40px);
     line-height: 0.94;
+    font-weight: 800;
   }
   .li:hover .lh {
     color: var(--wine);
@@ -430,6 +494,7 @@ function genreLabel(s: { kategorien: string[] }) {
     color: var(--muted);
     display: flex;
     gap: 18px;
+    flex-wrap: wrap;
   }
   .more {
     margin-top: 38px;
@@ -445,7 +510,6 @@ function genreLabel(s: { kategorien: string[] }) {
     padding-bottom: 4px;
   }
 
-  /* Index */
   .idx {
     border-top: 1px solid var(--ink);
   }
@@ -474,14 +538,14 @@ function genreLabel(s: { kategorien: string[] }) {
   }
   .idx .nm {
     font-family: var(--font-head);
-    font-size: clamp(26px, 3vw, 36px);
-    font-weight: 700;
-    line-height: 1;
+    font-size: clamp(26px, 3.4vw, 42px);
+    line-height: 0.86;
+    font-weight: 800;
   }
   .idx .ld {
     flex: 1;
     border-bottom: 1px dotted var(--hair);
-    margin: 0 8px 6px;
+    transform: translateY(-8px);
   }
   .idx .ct {
     font-size: 14px;
@@ -492,32 +556,34 @@ function genreLabel(s: { kategorien: string[] }) {
     color: var(--wine);
   }
 
-  /* Quote */
   .pq {
-    margin: 100px 0 0;
-    padding: 56px 0;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
+    padding: 110px 0;
   }
   .pq-inner {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 56px;
+    grid-template-columns: 340px 1fr;
+    gap: 64px;
     align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: left;
   }
   .pq-portrait {
-    width: 280px;
-    height: 340px;
+    width: 340px;
+    height: 400px;
+    border-radius: 10px;
     object-fit: cover;
-    filter: grayscale(0.15);
+    object-position: center;
+    display: block;
+    box-shadow: 0 24px 50px rgba(20, 12, 6, 0.28);
   }
-  .pq-text blockquote {
-    margin: 0;
+  .pq blockquote {
     font-family: var(--font-head);
-    font-size: clamp(28px, 3.6vw, 44px);
-    line-height: 1.15;
-    font-weight: 700;
+    font-size: clamp(28px, 3.9vw, 52px);
+    line-height: 1.05;
+    margin: 0;
     color: var(--ink);
+    font-weight: 800;
   }
   .sig {
     font-family: var(--font-head);
@@ -528,39 +594,43 @@ function genreLabel(s: { kategorien: string[] }) {
     line-height: 1;
     margin-top: 22px;
   }
-  .pq-text cite {
+  .pq cite {
     display: block;
+    margin-top: 14px;
     font-style: normal;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 8px;
+    font-weight: 600;
   }
-  .pq-text :global(.tlink) {
+  .pq :global(.tlink),
+  .about :global(.tlink) {
     margin-top: 26px;
   }
+  .about :global(.tlink) {
+    margin-top: 30px;
+  }
 
-  /* About */
   .about {
-    padding: 100px 0;
+    padding: 104px 0;
+    border-top: 1px solid var(--ink);
   }
   .about-inner {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 64px;
+    grid-template-columns: 1fr 1.02fr;
+    gap: 70px;
     align-items: start;
   }
   .about h2 {
-    font-size: clamp(34px, 4.2vw, 52px);
-    line-height: 1;
-    margin: 14px 0 22px;
-    max-width: 14ch;
+    font-size: clamp(32px, 4.4vw, 56px);
+    margin: 14px 0 20px;
+    line-height: 0.92;
   }
   .lead {
-    font-size: 18px;
-    margin: 0 0 28px;
-    max-width: 48ch;
+    font-size: 19px;
+    color: var(--text);
+    margin: 0;
   }
   .lead::first-letter {
     font-family: var(--font-head);
@@ -572,9 +642,11 @@ function genreLabel(s: { kategorien: string[] }) {
   }
   .stats {
     display: flex;
-    gap: 36px;
-    margin: 10px 0 30px;
+    gap: 48px;
+    margin-top: 38px;
     flex-wrap: wrap;
+    border-top: 2.5px solid var(--ink);
+    padding-top: 26px;
   }
   .stat b {
     font-family: var(--font-head);
@@ -586,33 +658,34 @@ function genreLabel(s: { kategorien: string[] }) {
   .stat span {
     font-size: 13px;
     color: var(--muted);
-    letter-spacing: 0.3px;
   }
   .about-img {
-    aspect-ratio: 4 / 5;
-    background:
-      linear-gradient(160deg, rgba(26, 22, 17, 0.35), rgba(26, 22, 17, 0.55)),
-      var(--about-img) center / cover;
-    border: 1px solid var(--ink);
+    height: 520px;
+    background-color: #2a1a20;
+    background-position: center;
+    background-size: cover;
   }
   .cap {
-    margin: 12px 0 0;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 11.5px;
     color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
-  /* Newsletter */
   .news {
-    background: var(--ink);
-    color: #e8dcc8;
-    text-align: center;
-    padding: 88px 24px;
+    background: transparent;
+    padding: 48px 24px 18px;
   }
   .news-inner {
-    max-width: 560px;
+    max-width: 720px;
     margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(165deg, #fbeeda 0%, #f3e5ce 100%);
+    border: 1px solid #e7d9be;
+    border-radius: 22px;
+    padding: 54px 44px;
+    box-shadow: 0 18px 42px rgba(20, 12, 6, 0.08);
   }
   .nl-ic {
     width: 62px;
@@ -631,37 +704,44 @@ function genreLabel(s: { kategorien: string[] }) {
     color: var(--wine);
   }
   .news h2 {
-    color: #f7efe0;
-    font-size: clamp(32px, 4vw, 48px);
-    margin: 12px 0 14px;
+    color: var(--ink);
+    font-size: clamp(28px, 4vw, 46px);
+    margin-top: 12px;
+    line-height: 1;
   }
   .news p {
-    margin: 0 0 28px;
-    color: #b7aa96;
+    color: var(--text);
+    margin: 14px auto 26px;
+    font-size: 16.5px;
+    max-width: 46ch;
   }
-  .nl-form {
+  .news form {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .nl-form input {
-    flex: 1;
-    min-width: 220px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.06);
-    color: #f7efe0;
+    max-width: 470px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 14px 22px;
-    font: inherit;
-    font-size: 15px;
+    padding: 6px;
+    box-shadow: 0 6px 18px rgba(20, 12, 6, 0.07);
   }
-  .nl-form input:disabled,
-  .nl-form button:disabled {
-    opacity: 0.7;
+  .news input {
+    flex: 1;
+    min-width: 150px;
+    padding: 13px 20px;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    background: transparent;
+    color: var(--ink);
+    outline: none;
+  }
+  .news input:disabled,
+  .news button:disabled {
+    opacity: 0.75;
     cursor: not-allowed;
   }
-  .nl-form button {
+  .news button {
     background: var(--wine);
     color: #fff;
     border: none;
@@ -673,24 +753,75 @@ function genreLabel(s: { kategorien: string[] }) {
     text-transform: uppercase;
   }
   .nl-note {
-    margin-top: 16px;
     font-size: 12.5px;
-    color: #8a7d6b;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .faq {
+    border-top: 2.5px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(20px, 2vw, 27px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 24px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 24px;
+    font-size: 17px;
+    color: var(--text);
+    max-width: 80ch;
   }
 
   @media (max-width: 900px) {
     .feature,
     .list,
-    .pq-inner,
-    .about-inner {
+    .about-inner,
+    .pq-inner {
       grid-template-columns: 1fr;
+    }
+    .fpo {
+      min-height: 300px;
+    }
+    .about-img {
+      height: 300px;
+    }
+    .pq-inner {
+      gap: 28px;
+      text-align: center;
+      justify-items: center;
     }
     .pq-portrait {
       width: 240px;
       height: 290px;
-    }
-    .fpo {
-      min-height: 320px;
     }
   }
 </style>
