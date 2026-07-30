@@ -3,41 +3,45 @@
 ---
 
 <section class="news" aria-labelledby="nl-title">
-  <div class="news-inner">
-    <div class="nl-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
-    <span class="cap-label">Newsletter</span>
-    <h2 id="nl-title">Bleiben wir in Kontakt</h2>
-    <p>
-      Neue Stücke und Aktuelles aus dem Verlag – ein paar Mal im Jahr, herzlich
-      und ganz ohne Werbeflut.
-    </p>
-    <form onsubmit="return false;">
-      <input
-        type="email"
-        placeholder="Ihre E-Mail-Adresse"
-        aria-label="E-Mail-Adresse"
-        disabled
-      />
-      <button type="button" disabled>Anmelden</button>
-    </form>
-    <div class="nl-note">Kein Spam. Jederzeit abbestellbar.</div>
+  <div class="wrap">
+    <div class="news-inner">
+      <div class="nl-ic"><i class="ti ti-mail" aria-hidden="true"></i></div>
+      <span class="cap-label">Newsletter</span>
+      <h2 id="nl-title">Bleiben wir in Kontakt</h2>
+      <p>
+        Neue Stücke und Aktuelles aus dem Verlag – ein paar Mal im Jahr, herzlich
+        und ganz ohne Werbeflut.
+      </p>
+      <form onsubmit="return false;">
+        <input
+          type="email"
+          placeholder="Ihre E-Mail-Adresse"
+          aria-label="E-Mail-Adresse"
+          disabled
+        />
+        <button type="button" disabled>Anmelden</button>
+      </form>
+      <div class="nl-note">Kein Spam. Jederzeit abbestellbar.</div>
+    </div>
   </div>
 </section>
 
 <style>
   .news {
     background: transparent;
-    padding: 48px 24px 18px;
+    padding-block: 48px 18px;
   }
   .news-inner {
     max-width: 720px;
-    margin: 0 auto;
+    margin-inline: auto;
+    width: 100%;
     text-align: center;
     background: linear-gradient(165deg, #fbeeda 0%, #f3e5ce 100%);
     border: 1px solid #e7d9be;
     border-radius: 22px;
     padding: 54px 44px;
     box-shadow: 0 18px 42px rgba(20, 12, 6, 0.08);
+    box-sizing: border-box;
   }
   .nl-ic {
     width: 62px;
@@ -79,7 +83,7 @@
   }
   .news input {
     flex: 1;
-    min-width: 150px;
+    min-width: 0;
     padding: 13px 20px;
     border: none;
     font-family: var(--font-body);
@@ -103,6 +107,7 @@
     font-size: 12px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
+    flex: none;
   }
   .nl-note {
     font-size: 12.5px;
