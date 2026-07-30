@@ -5,18 +5,11 @@ import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import StickyKatalog from "../../components/StickyKatalog.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
-
-const authors = [
-  { slug: "arno-boas", name: "Arno Boas", hasPhoto: true },
-  { slug: "jochen-wiltschko", name: "Jochen Wiltschko", hasPhoto: false },
-  { slug: "christian-lange", name: "Christian Lange", hasPhoto: false },
-  { slug: "thorsten-boehner", name: "Thorsten Böhner", hasPhoto: false },
-  { slug: "klaus-troebs", name: "Klaus Tröbs", hasPhoto: false },
-  { slug: "christian-ziegler", name: "Christian Ziegler", hasPhoto: false },
-  { slug: "georges-neuen", name: "Georges Neuen", hasPhoto: false },
-  { slug: "wilhelm-wolpert", name: "Wilhelm Wolpert", hasPhoto: false },
-  { slug: "thomas-gehring", name: "Thomas Gehring", hasPhoto: false },
-];
+import {
+  AUTOREN,
+  autorPhotoAlt,
+  autorPhotoSrc,
+} from "../../lib/autoren";
 
 const faqs = [
   {
@@ -63,20 +56,23 @@ const faqLd = {
     <span class="cap-label">Repertoire</span>
     <h1>Autorinnen und Autoren</h1>
     <p class="lead">
-      Rund 40 Autorinnen und Autoren — Fotos und Kurztexte folgen. Hier die
-      bereits bekannten Namen.
+      Rund 40 Autorinnen und Autoren schreiben für den Theaterverlag Arno Boas —
+      vom Schwank bis zum Drama. Porträts ohne echtes Pressefoto sind vorerst
+      Platzhalter.
     </p>
 
     <div class="grid">
       {
-        authors.map((a) => (
+        AUTOREN.map((a) => (
           <a class="ac" href={path(`/autoren/${a.slug}`)}>
             <div class="ph">
-              {a.hasPhoto ? (
-                <img src={path("/images/arno.jpg")} alt={a.name} loading="lazy" />
-              ) : (
-                <i class="ti ti-user" aria-hidden="true" />
-              )}
+              <img
+                src={autorPhotoSrc(a)}
+                alt={autorPhotoAlt(a)}
+                width="600"
+                height="800"
+                loading="lazy"
+              />
             </div>
             <div class="nm">{a.name}</div>
           </a>
@@ -156,11 +152,21 @@ const faqLd = {
     overflow: hidden;
     color: var(--hair);
     font-size: 42px;
+    border-radius: 8px;
+    transition:
+      border-color 0.15s,
+      transform 0.15s;
+  }
+  .ac:hover .ph {
+    border-color: var(--ink);
+    transform: translateY(-3px);
   }
   .ph img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 18%;
+    display: block;
   }
   .nm {
     margin-top: 12px;
