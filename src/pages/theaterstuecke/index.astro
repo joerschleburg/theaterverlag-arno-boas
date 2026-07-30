@@ -159,13 +159,6 @@ const genres = [
           <span>
             <b id="result-count" aria-live="polite">{total}</b> von {total} Stücken
           </span>
-          <div class="sort-form">
-            <label class="visually-hidden" for="sort">Sortierung</label>
-            <select id="sort" name="sort">
-              <option value="az">Sortierung: A–Z</option>
-              <option value="genre">nach Genre</option>
-            </select>
-          </div>
         </div>
       </div>
       {
@@ -289,7 +282,6 @@ const genres = [
   const emptyEl = document.getElementById("empty-state");
   const loadWrap = document.getElementById("load-more-wrap");
   const loadBtn = document.getElementById("load-more");
-  const sortEl = document.getElementById("sort") as HTMLSelectElement | null;
 
   if (!root || !form || !list) {
     // no-op
@@ -312,7 +304,7 @@ const genres = [
         damen: sp.get("damen") || "beliebig",
         spielort: sp.get("spielort") || "egal",
         ensemble: sp.get("ensemble") || "beliebig",
-        sort: sp.get("sort") || "az",
+        sort: "az",
       };
     }
 
@@ -331,7 +323,6 @@ const genres = [
       set("damen", hasCast ? p.damen : "beliebig");
       set("spielort", hasVenue ? p.spielort : "egal");
       set("ensemble", p.ensemble);
-      if (sortEl) sortEl.value = p.sort;
     }
 
     function dauerOk(piece: string, filter: string) {
@@ -407,16 +398,10 @@ const genres = [
       return true;
     }
 
-    function sortItems(arr: HTMLElement[], sort: string) {
-      return [...arr].sort((a, b) => {
-        if (sort === "genre") {
-          const ga = (a.dataset.kategorien || "").split("|")[0] || "";
-          const gb = (b.dataset.kategorien || "").split("|")[0] || "";
-          const g = ga.localeCompare(gb, "de");
-          if (g) return g;
-        }
-        return (a.dataset.titel || "").localeCompare(b.dataset.titel || "", "de");
-      });
+    function sortItems(arr: HTMLElement[]) {
+      return [...arr].sort((a, b) =>
+        (a.dataset.titel || "").localeCompare(b.dataset.titel || "", "de"),
+      );
     }
 
     function hrefWithout(p: Params, keys: string[]) {
@@ -429,7 +414,6 @@ const genres = [
         else if (k === "damen") next.damen = "beliebig";
         else if (k === "spielort") next.spielort = "egal";
         else if (k === "ensemble") next.ensemble = "beliebig";
-        else if (k === "sort") next.sort = "az";
       }
       return buildUrl(next);
     }
@@ -443,7 +427,6 @@ const genres = [
       if (hasCast && p.damen && p.damen !== "beliebig") q.set("damen", p.damen);
       if (hasVenue && p.spielort && p.spielort !== "egal") q.set("spielort", p.spielort);
       if (p.ensemble && p.ensemble !== "beliebig") q.set("ensemble", p.ensemble);
-      if (p.sort && p.sort !== "az") q.set("sort", p.sort);
       const s = q.toString();
       return s ? `${base}?${s}` : base;
     }
@@ -530,10 +513,7 @@ const genres = [
       const p = readParams();
       syncForm(p);
       renderChips(p);
-      const matched = sortItems(
-        items.filter((el) => matches(el, p)),
-        p.sort,
-      );
+      const matched = sortItems(items.filter((el) => matches(el, p)));
       visibleSlugs = matched.map((el) => el.dataset.slug || "");
       paint();
       if (push) {
@@ -552,17 +532,14 @@ const genres = [
         damen: String(fd.get("damen") || "beliebig"),
         spielort: String(fd.get("spielort") || "egal"),
         ensemble: String(fd.get("ensemble") || "beliebig"),
-        sort: sortEl?.value || "az",
+        sort: "az",
       };
       const url = buildUrl(p);
       if (pushState) history.pushState(null, "", url);
       else history.replaceState(null, "", url);
       syncForm(p);
       renderChips(p);
-      const matched = sortItems(
-        items.filter((el) => matches(el, p)),
-        p.sort,
-      );
+      const matched = sortItems(items.filter((el) => matches(el, p)));
       visibleSlugs = matched.map((el) => el.dataset.slug || "");
       paint();
     }
@@ -583,10 +560,6 @@ const genres = [
     qInput?.addEventListener("input", () => {
       window.clearTimeout(qTimer);
       qTimer = window.setTimeout(() => applyFromForm(true), 180);
-    });
-
-    sortEl?.addEventListener("change", () => {
-      applyFromForm(true);
     });
 
     chipsEl?.addEventListener("click", (e) => {
@@ -782,18 +755,6 @@ const genres = [
     font-family: var(--font-head);
     color: var(--ink);
     font-size: 16px;
-  }
-  .result-meta select {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--ink);
-  }
-  .sort-form {
-    margin: 0;
   }
 
   .results {
