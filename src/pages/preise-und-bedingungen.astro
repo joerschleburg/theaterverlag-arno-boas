@@ -410,9 +410,11 @@ const faqLd = {
     function load(): Set<string> {
       try {
         const raw = JSON.parse(localStorage.getItem(KEY) || "[]");
-        return new Set(Array.isArray(raw) ? raw.map(String) : []);
+        const set = new Set(Array.isArray(raw) ? raw.map(String) : []);
+        set.add("1");
+        return set;
       } catch {
-        return new Set();
+        return new Set(["1"]);
       }
     }
 
@@ -452,9 +454,10 @@ const faqLd = {
       if (!btn) return;
       const step = btn.closest<HTMLElement>("[data-step]");
       const id = step?.dataset.step;
-      if (!id) return;
+      if (!id || id === "1") return;
       if (state.has(id)) state.delete(id);
       else state.add(id);
+      state.add("1");
       save(state);
       render(state);
       step?.classList.add("pop");
