@@ -16,6 +16,8 @@ export type Stueck = {
   besetzung_hinweis?: string;
   spieldauer_min?: number;
   spieldauer_text?: string;
+  /** Saal | Freilicht | beides */
+  spielort?: string;
   buehnenbild?: string;
   preis_rollensatz?: number;
   inhalt?: string;

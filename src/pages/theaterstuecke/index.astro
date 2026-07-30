@@ -15,7 +15,7 @@ const overviewBase = path("/theaterstuecke");
 const hasCastData = stuecke.some(
   (s) => typeof s.besetzung_m === "number" || typeof s.besetzung_w === "number",
 );
-const hasVenueData = stuecke.some((s) => Boolean(s.buehnenbild));
+const hasVenueData = stuecke.some((s) => Boolean(s.spielort));
 
 const faqs = [
   {
@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Gibt es Stücke für kleine Ensembles?",
     answer:
-      "Ja. Das Repertoire reicht von kleinen Besetzungen bis zu größeren Ensembles. Auf den Stückseiten finden Sie die Angaben zu Herren- und Damenrollen, sobald sie hinterlegt sind.",
+      "Ja. Das Repertoire reicht von kleinen Besetzungen bis zu größeren Ensembles. Auf den Stückseiten und in der Übersicht finden Sie die Angaben zu Herren- und Damenrollen.",
   },
   {
     question: "Welche Genres bietet der Theaterverlag Arno Boas?",
@@ -131,7 +131,7 @@ const genres = [
           <label for="spielort">Spielort</label>
           <select id="spielort" name="spielort" disabled={!hasVenueData} title={!hasVenueData ? "Spielort-Angaben folgen noch" : undefined}>
             {
-              ["egal", "Saal", "Freilicht"].map((opt) => (
+              ["egal", "Saal", "Freilicht", "beides"].map((opt) => (
                 <option value={opt}>{opt}</option>
               ))
             }
@@ -169,10 +169,10 @@ const genres = [
         </div>
       </div>
       {
-        (!hasVenueData) && (
+        (!hasCastData || !hasVenueData) && (
           <p class="filter-note" id="filter-note">
-            Freitextsuche, Genre, Dauer sowie Herren- und Damenrollen sind aktiv.
-            Spielort-Filter folgt, sobald die Angaben in den Stammdaten vorliegen.
+            {!hasCastData && "Herren-/Damenrollen folgen mit den Besetzungsdaten. "}
+            {!hasVenueData && "Spielort-Filter folgt mit den Stammdaten."}
           </p>
         )
       }
@@ -194,7 +194,7 @@ const genres = [
               data-dauer={s.spielart_geschaetzt}
               data-m={typeof s.besetzung_m === "number" ? String(s.besetzung_m) : ""}
               data-w={typeof s.besetzung_w === "number" ? String(s.besetzung_w) : ""}
-              data-ort={s.buehnenbild || ""}
+              data-ort={s.spielort || ""}
               hidden
             >
               <div class="lt">
@@ -392,7 +392,16 @@ const genres = [
         if (!castOk(w, p.damen)) return false;
       }
       if (hasVenue && p.spielort !== "egal") {
-        if (ort.toLowerCase() !== p.spielort.toLowerCase()) return false;
+        const ortNorm = ort.toLowerCase();
+        if (p.spielort === "beides") {
+          if (ortNorm !== "beides") return false;
+        } else if (p.spielort === "Saal") {
+          if (ortNorm !== "saal" && ortNorm !== "beides") return false;
+        } else if (p.spielort === "Freilicht") {
+          if (ortNorm !== "freilicht" && ortNorm !== "beides") return false;
+        } else if (ortNorm !== p.spielort.toLowerCase()) {
+          return false;
+        }
       }
       if (!ensembleOk(kats, m, w, p.ensemble)) return false;
       return true;

@@ -30,6 +30,16 @@
       "updated": 227,
       "unmatched": 3,
       "local_without_overview": 0
+    },
+    "spielort_import": {
+      "source": "detail pages Bühnenbild headings",
+      "updated": 228,
+      "fails": 2,
+      "counts": {
+        "Saal": 198,
+        "Freilicht": 0,
+        "beides": 30
+      }
     }
   },
   "stuecke": [
@@ -46,7 +56,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Gemach in der Burg des Grafen von Bornstein, das auf den ersten Blick nicht als gräfliche Behausung zu erkennen ist, doch künden einige Gegenstände von Adel und alter Tradition.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Abgesägt!",
@@ -61,7 +74,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 40,
-      "spieldauer_text": "40"
+      "spieldauer_text": "40",
+      "spielort": "Saal",
+      "buehnenbild": "Das Büro des Umweltbeauftragten Dr. Hermann Bleifuß. In der Mitte steht der große Schreibtisch des Herrn Bleifuß, rechts und links davon je ein überquellender Papierkorb. Auf dem Schreibtisch stehen zwei Telefone, eines für den dienstlichen, eines für den privaten Gebrauch. Ferner stehen auf dem Tisch ein Radiorekorder und das Modell eines Sportwagens. An der Wand hängen verschiedene Poster, vor allem von Autos. An einer Seitenwand des Zimmers steht der kleinere Schreibtisch seiner Mitarbeiterin Fräulein Steuerle. Auch bei ihr steht ein Telefon. Hinten an der Wand steht ein Regal voll mit Aktenordnern.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Abseits",
@@ -77,7 +93,9 @@
       "besetzung_w": 1,
       "besetzung_hinweis": "plus Stimme im Hintergrund",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Abseits",
@@ -92,7 +110,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "1 Wohnzimmer mit Tür nach draußen",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Achtung, Nikolaus",
@@ -108,7 +129,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "1 Doppelbesetzung (m) möglich",
       "spieldauer_min": 45,
-      "spieldauer_text": "45"
+      "spieldauer_text": "45",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Wohn- und Esszimmer)",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Adlig sein ist ganz schön schwer",
@@ -124,7 +148,10 @@
       "besetzung_m": 4,
       "besetzung_w": 3,
       "spieldauer_min": 45,
-      "spieldauer_text": "45"
+      "spieldauer_text": "45",
+      "spielort": "Saal",
+      "buehnenbild": "Thronsaal, spartanisch eingerichtet: In der Mitte des Raumes steht ein Thron, auf dem der König sitzt und schläft; dabei kann er immer wieder schnarchen, wirres Zeug reden oder schmatzen. Der restliche Raum kann den Thronsaal mit Tafel/ Stühlen… darstellen, aber auch leer sein; Ausgang links in die Küche, rechts ins Vorzimmer.",
+      "autor": "Kerstin Schertel"
     },
     {
       "titel": "Agentur Weihnachtsengel",
@@ -140,7 +167,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "auch möglich mit 1m/2w",
       "spieldauer_min": 8,
-      "spieldauer_text": "8"
+      "spieldauer_text": "8",
+      "spielort": "Saal",
+      "buehnenbild": "Wihnzimmer, beliebige Ausstattung",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Alle(s) unter Druck",
@@ -156,7 +186,9 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich 5m/7w, 4m/8w oder 7m/5w",
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Allen alles recht gemacht",
@@ -171,7 +203,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "1 freier Platz",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Alles bloß Theater?",
@@ -188,7 +223,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 6m/5w",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Nebenzimmer (oder Saal) einer Wirtschaft. Hier wird geprobt. Ein Tisch mit vier Stühlen, ein weiterer Stuhl am vorderen linken Bühnenrand, hinten an der Wand ein kleines Regal mit zwei Barhockern, eventuell mit Pokalen. An der Wand Bild(er) der Theatergruppe außerdem Plakate von früheren Veranstaltungen. Es gibt zwei Durchgänge: links in die Wirtschaft, rechts in ein weiteres Nebenzimmer (muss nicht näher definiert werden). Auf der linken Seite ist ein Fenster, das eine Art Durchreiche darstellt.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Allmächt",
@@ -204,7 +242,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 4m/6w",
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "beides",
+      "buehnenbild": "Dorfplatz vor Wirtschaft",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Allmächt – Episode II",
@@ -220,7 +261,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 4m/6w oder 6m/4w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne stellt den Platz vor der Gastwirtschaft „Zur fliegenden Untertasse“ und dem Gemeindehaus dar. Die linke hintere Bühnenhälfte gehört zur Wirtschaft, die rechte hintere Bühnenhälfte gehört dem Gemeindehaus. Zu beiden Häusern führt eine Tür. In der Mitte der hinteren Bühnenwand ist eine Regenrinne befestigt. Wie man die Häuser noch optisch abgrenzt, ist Sache der Bühnenbildner. Beim Gasthaus sollte ein Schild „Zur fliegenden Untertasse“ hängen, am Gemeindehaus ein Schild „Gemeindeverwaltung“. In der Gastwirtschafts-Fassade befindet sich außerdem ein Fenster. Die rechte Bühnenseite stellt die Außenfassade des Hauses der Dorfbewohnerin Lotte dar. Auch hier gibt es eine Tür (und optional) ein Fenster. Hinten rechts in der Ecke stoßen Gemeindehaus und Lottes Haus aneinander. Die linke Bühnenseite ist frei gestaltbar, hier befindet sich im vorderen Bühnenbereich ein offener Auf/Abgang sowie am hinteren Bühnenbereich. Vor der Gastwirtschaft steht ein Tisch mit drei Stühlen.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Alte Hähne, kampferprobt",
@@ -236,7 +280,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 65,
-      "spieldauer_text": "65"
+      "spieldauer_text": "65",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnküche Seniorenresidenz.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Am Bahnschalter",
@@ -251,7 +298,10 @@
       "besetzung_m": 3,
       "besetzung_w": 2,
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Schalter am Bahnhof.",
+      "autor": "Walter Wendt"
     },
     {
       "titel": "An einem Tag im März",
@@ -266,7 +316,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Wirtsstube im Jahr 1933)",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Angies Ausflug",
@@ -283,7 +336,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 5m/4w",
       "spieldauer_min": 75,
-      "spieldauer_text": "75"
+      "spieldauer_text": "75",
+      "spielort": "Saal",
+      "buehnenbild": "Platz vor dem Jugendraum: Die Bühne ist relativ frei gestaltbar. Die Rückwand ist die Außenwand des neuen Jugendraumes. Auf einer der Seiten befindet sich Olafs und Rosis Elternhaus. Dort hängt ein Blumenkasten an der Wand. Die Seitenwände können nach Belieben gestaltet werden – als offener Ausgang oder als Hauswand. Oder die Bühne bleibt seitlich ganz offen. Hinten gibt es eine Türe und ein Fenster. Auf der Bühne sollte eine Bank stehen bzw. eine Biertischgarnitur und ein, zwei Stühle. Einen Namen für den Jugendraum solle sich die Truppe noch ausdenken.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "App ins Märchenland",
@@ -300,7 +356,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich 4m/8w oder 6m/6w",
       "spieldauer_min": 80,
-      "spieldauer_text": "80"
+      "spieldauer_text": "80",
+      "spielort": "beides",
+      "buehnenbild": "verschiedene Orte im Märchenland und in der Stadt Spielberg, die nur durch wenige Requisiten angedeutet werden",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Aspirin & Bratkartoffeln",
@@ -315,7 +374,10 @@
       "besetzung_m": 2,
       "besetzung_w": 4,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Typischer Schankraum eines Landgasthauses. Links der Eingang zur Gaststube, gleichzeitig auch Ausgang und Weg zu Toiletten und Fremdenzimmern. Daneben eine Garderobe. Rechts eine Theke mit zwei bis drei Barhockern davor und rechts dahinter Zugang zur Küche. Je nach Platzverhältnissen zwei bis drei Tische mit entsprechender Kneipenbestuhlung. Ausschmückung nach Bedarf. Fenster kann - muss aber nicht sein. An einer Wand hängt u.a. die Fotografie einer finster blickenden älteren Dame. Das Bild trägt Trauerflor.",
+      "autor": "Christian Lange"
     },
     {
       "titel": "Auch der Herbst hat schöne Tage",
@@ -330,7 +392,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung.",
+      "autor": "Walter Wendt"
     },
     {
       "titel": "Auch Drachen sind nur Menschen",
@@ -347,7 +412,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "plus 2 Sprechrollen",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "Hof eines kleinen Schlösschens. Von der linken Seite her betritt man den Innenhof des Schlosses, am besten durch einen Torbogen, es kann aber auch ein offener Durchgang sein. Links in der Ecke sollte ein kleiner Treppenaufgang sein, der zu einer Tür führt, durch die es ins Schloss hineingeht. Wenn man die Möglichkeit hat, auf zwei Ebenen zu spielen, führt dieser Weg in den ersten Stock. Im ersten Stock verläuft dann im Freien ein Gang. Der wird nur in der ersten Szene benötigt, wenn Kathrin sich dort auf die Mauer setzt. Kann man nicht auf zwei Ebenen spielen, muss bloß die Szene mit Kathrin und Georg auf der Leiter weggelassen werden. Im Erdgeschoss führen zwei Türen/Tore in Keller, bzw. das Verlies der Märchenfiguren. Rechts ist eine Tür zu einem Nebengebäude, in dem die Hexe eingesperrt ist. Dort benötigt man ein Fenster. Rechts und links neben den Zuschauerplätzen sollten die Spieler von hinten auch auf die Bühne gelangen können. Im Hof selber steht ein Tisch mit Stühlen. Und, am besten mittig, ein Brunnen.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Auf den letzten Drücker",
@@ -362,7 +430,10 @@
       "besetzung_m": 3,
       "besetzung_w": 0,
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "1 (fensterloser Raum, 1 Türe).",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Auf der Autobahn",
@@ -377,7 +448,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Auto, angedeutet",
+      "autor": "Angelika Grimm"
     },
     {
       "titel": "Auf der Schönheitsfarm",
@@ -392,7 +466,10 @@
       "besetzung_m": 0,
       "besetzung_w": 10,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "1 Zimmer (Umdekoration in 3 verschiedene Räume) Ausstattung: 8 bequeme weiße Gartenstühlen (mit Auflage) und ein weißer ovaler Gartentisch. Hometrainer. Helm mit Kabeln, angeschlossen an einen Kasten am Hometrainer, Handtücher und Ständer dafür.",
+      "autor": "Gerhard Osswald"
     },
     {
       "titel": "Auf gute Feindschaft",
@@ -407,7 +484,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Platz vor den beiden Anwesen, rechts wohnt Familie Helmig, links Familie Schorrn. Etwa zwei Drittel der Fläche gehört zu den Schorrns, ein Drittel zu Helmigs. Helmigs haben ihr Grundstück mit einem Gartenzaun abgegrenzt. Er verläuft von hinten bis zum vorderen Bühnenrand und knickt dann ab zum rechten seitlichen Bühnenrand. Der Gartenzaun (Höhe zirka 60 - 70 Zentimeter) hat ein Türchen. Die Seitenwände der Bühne sind Hausfassaden (hier befinden sich auch die beiden Haustüren), die Rückwand kann frei gestaltet werden, entweder auch als (um das Eck gezogene) Hausfassade oder ganz frei. Helmigs und Schorrns haben je ein Fenster. Auf dem Grundstück Helmig steht eine Gartenliege. Auf dem Grundstück von Schorrns steht eine Gartenbank, an der Rückwand ist ein Holzstapel aufgeschichtet, außerdem hängt Wäsche auf einer Leine. Auf Schorrns Grundstück, direkt vor dem Gartenzaun der Helmigs, befindet sich ein synthetischer Rosenstock, der im ersten Akt per Katapult in die Luft geschleudert werden soll. Außerdem liegen auf Schorrns Grundstück zwei Steine, über die im ersten Akt gestolpert werden muss. Der Auf/Abgang rechts und links befindet sich idealer Weise vor der Bühne. Wenn dies nicht möglich ist, kann man den Abgang auch in der Rückwand unterbringen).",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Aufs Herrchen kommt's an",
@@ -422,7 +502,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 4,
-      "spieldauer_text": "4"
+      "spieldauer_text": "4",
+      "spielort": "Saal",
+      "buehnenbild": "freier Platz, nach Belieben gestaltbar.",
+      "autor": "Walter Wendt"
     },
     {
       "titel": "Aufs Kreuz gelegt",
@@ -440,7 +523,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich mit 5m/6w",
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Tragikomödie",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Aufstand im Olymp",
@@ -456,7 +542,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich 7m / 6w",
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "1 - freier Platz auf dem Olymp. Rechts ein Abgang nach \"innen\" zum Wohnraum der Götter (angedeutet mit Säulen), links ein Abgang nach \"draußen\" (angedeutet mit Bäumen). Die Bühnen-Rückseite kann als freie Landchaft gestaltet werden. Auf der Bühne Gestrüpp und Steine, Baumstümpfe als Sitzgelegenheit. Außerdem mittig ein Brunnen, der bestiegen und nach unten verlassen werden können muss. Am Brunnen ist ein roter Knopf befestigt, außerdem eine Wählscheibe oder Tastatur. Damit kann man bei Hades oder dem Orakel von Delphi anrufen.",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Bauer sucht Sau",
@@ -472,7 +561,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "zusätzlich eine 6-köpfige Schülergruppe möglich",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Bauernstube, Ausstattung beliebig.",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Bei uns daham",
@@ -488,7 +580,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 4m/3w",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Gasthaus, übliche Ausstattung.",
+      "autor": "Doris Albert"
     },
     {
       "titel": "Beim Franko ist was los",
@@ -503,7 +598,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 115,
-      "spieldauer_text": "115"
+      "spieldauer_text": "115",
+      "spielort": "Saal",
+      "buehnenbild": "Gaststätten-Raum mit Stammtisch, 2 weitere Tische, übliche Ausstattung. Das Lokal geht theoretisch im Zuschauerraum weiter. Der erste Akt spielt im Sommer. Akt zwei und drei spielen im Winter. Im dritten Akt findet im Nebenzimmer die Aufführung der Theatergruppe statt",
+      "autor": "Angelika Grimm"
     },
     {
       "titel": "Bescherung ohne Geschenk",
@@ -520,7 +618,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich mit 2m/1w",
       "spieldauer_min": 3,
-      "spieldauer_text": "3"
+      "spieldauer_text": "3",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung beliebig.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Bier, Bits und ein Baby",
@@ -536,7 +637,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 3m/6w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Die Bühne stellt ein Zimmer der Männer-WG dar. Es ist Küche, Bad, Aufenthalts- und Arbeitszimmer in einem. Aufteilung (von vorne gesehen: rechts oder hinten eine Mini-Küchenzeile mit Kochplatte, Spüle und Kühlschrank. Darüber ein Hängeschrank. Darauf steht ein Radio. An der Rückwand oder auf der rechten Seite (die genaue Lage richtet sich nach den örtlichen Möglichkeiten) befindet sich eine Duschkabine mit einem undurchsichtigen Vorhang. Tipp: Einfach ein Loch in der Rückwand lassen und durch einen undurchsichtigen Dusch-Vorhang zuhängen. In der Rückwand ist ferner eine Tür (zum Wohnbereich), eine weitere ist außerdem in der linken Wand (nach draußen). Links ist auch ein Fenster, das nach draußen zeigt. An der linken Wand steht ein alter Couchsessel (als Ersatz für ein Sofa). Über dem Sessel ist ein kleines Wandregal befestigt. Vorne am Bühnenrand (links oder rechts, je nach örtlicher Gegebenheit) steht ein sehr flacher Mini-Tisch (eventuell eine Art Wohnzimmer-Tisch) mit PC, das ist das „Arbeitszimmer“ von Franz. Als Stuhl dient ein umgedrehter leerer Bierkasten. In der Mitte des Zimmers steht ein „normaler kleiner“ Tisch mit drei Stühlen. Wenn die technisch-räumlichen Möglichkeiten gegeben sind, macht es sich schön, wenn die Bewohner Franz, Eddy, Otto und Waldemar je eine eigene Tür in ihr jeweiliges Privat-Zimmer haben. Das heißt, dass es sechs Öffnungen geben würde. Dies muss aber nicht der Fall sein. Es reichen auch die zwei schon erwähnten Öffnungen.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Bis dass der Tod uns scheidet",
@@ -553,7 +657,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "benötigt werden zusätzlich 4w für Mini-Rollen",
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, übliche Ausstattung. Mehrere Ausgänge. Das Stück beginnt 1972 und endet 25 Jahre später, so dass es angebracht ist, die Einrichtung jeweils etwas anzupassen.",
+      "autor": "Martina Klärle"
     },
     {
       "titel": "Bürger Franz",
@@ -569,7 +676,9 @@
       "besetzung_w": 1,
       "besetzung_hinweis": "auch möglich mit 1m/2w",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "autor": "Walter Brunhuber"
     },
     {
       "titel": "Chaos auf dem Bauernhof",
@@ -584,7 +693,10 @@
       "besetzung_m": 4,
       "besetzung_w": 6,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Wohn-Esszimmer eines Bauernhofes: hinten rechts steht ein Schrank, hinten links eine Kommode mit Telefon, vorne rechts steht ein Esstisch mit Stühlen. Auf der linken Seite steht eine Couch mit einem Sessel, der zur Mitte des Raumes steht, links befindet sich ein Fenster. In der Mitte der hinteren Bühnenwand befindet sich ein Durchgang, der nach rechts zur Haustür und nach links zu weiteren Räumen im Haus führt. Links befindet sich eine Tür zum Hof, rechts eine Tür zur Küche. Hinten links gibt es eine Tür zu einer Besenkammer.",
+      "autor": "Ralf Kaspari"
     },
     {
       "titel": "D(r)amen an der Friedhofsmauer",
@@ -600,7 +712,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Friedhof und Theater-Loge parallel)",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Das Beziehungsprinzip",
@@ -615,7 +730,10 @@
       "besetzung_m": 1,
       "besetzung_w": 2,
       "spieldauer_min": 30,
-      "spieldauer_text": "30 - 35"
+      "spieldauer_text": "30 - 35",
+      "spielort": "Saal",
+      "buehnenbild": "1 Strand in der Südsee",
+      "autor": "Walter Brunhuber"
     },
     {
       "titel": "Das bisschen Haushalt",
@@ -630,7 +748,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Wihnzimmer, Ausstattung beliebig.",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Das Bruderherz",
@@ -646,7 +767,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 7m/5w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "Außenfassade des Anwesens Hebentanz. 1 Fenster, das nach außen zu öffnen ist, 1 Haustüre, links und rechts Durchgänge, Gartenbank.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Das Eigentor",
@@ -661,7 +785,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Das Vereinsheim und Sitzungszimmer des TSV Üglingen. Rechts eine Tür zur Wirtschaft, links eine Tür zum Abstellraum. In der Mitte der Bühne ein großer und ein oder zwei kleine Tische, die bei Bedarf zusammengeschoben werden können. Neben der Tür zur Abstellkammer eine Bank oder ein Kachelofen mit Sitzbank. An der Wand ein Schrank mit Regalen mit Pokalen. Das Zimmer ist geschmückt mit Trophäen, Wimpeln",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Das Familienfest",
@@ -676,7 +803,10 @@
       "besetzung_m": 1,
       "besetzung_w": 2,
       "spieldauer_min": 6,
-      "spieldauer_text": "6"
+      "spieldauer_text": "6",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebig gestaltbar.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Das Geburtstagsgeschenk",
@@ -691,7 +821,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 8,
-      "spieldauer_text": "8"
+      "spieldauer_text": "8",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung beliebig.",
+      "autor": "Gabi Hansen"
     },
     {
       "titel": "Das klösterliche Wickelkind",
@@ -706,7 +839,10 @@
       "besetzung_m": 5,
       "besetzung_w": 3,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Das Bühnenbild stellt eine Art „Begegnungsraum“ dar, der nicht zum Klausurbereich der Mönche gehört und öffentlich (auch für weibliche Besucher) zugänglich ist. Der Raum ist karg eingerichtet, Tisch und Stühle bilden bereits den größten Teil des Mobiliars. Es gibt zwei bis drei Aufgänge.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Das Miststück",
@@ -721,7 +857,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Die Wirtsstube, das Inventar: eine Theke, ein Regal, ein runder Tisch eine Wanduhr, ein altes Sofa, eine Kreidetafel, ein Kleiderhaken.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Das verrückte Haus",
@@ -737,7 +876,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 4m/5w (Doppelbesetzung)",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Im Mittelpunkt ein Mietshaus mit zwei, drei Fenstern (eines davon, möglichst in Türnähe, muß zu öffnen sein), mehreren Briefkästen und einem „Schwarzen Brett“. Links und rechts frei gestaltbare Abgänge. Vorne eine kleine Bank, ein kleiner Tisch mit Stühlen.",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Dass ich in den Himmel komm",
@@ -752,7 +894,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 85,
-      "spieldauer_text": "85"
+      "spieldauer_text": "85",
+      "spielort": "Saal",
+      "buehnenbild": "Lustspiel",
+      "autor": "Wilhelm Wolpert"
     },
     {
       "titel": "Der (fast) vergessene Weihnachtsengel",
@@ -770,7 +915,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "zusätzlich Statisten möglich, die nur singen",
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Dachboden, Ausstattung beliebig.",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Der 31. November",
@@ -785,7 +933,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer mit der üblichen Ausstattung. 2 Türen.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Der Aufstieg",
@@ -800,7 +951,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "frei zu bgestalten (irgendwo in den Bergen)",
+      "autor": "Horst Kayling"
     },
     {
       "titel": "Der doppelte Onkel",
@@ -816,7 +970,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "auch möglich mit 7m/3w oder 6m/4w",
       "spieldauer_min": 40,
-      "spieldauer_text": "40"
+      "spieldauer_text": "40",
+      "spielort": "Saal",
+      "buehnenbild": "Bäuerliche Stube, nach Belieben einzurichten.",
+      "autor": "Rosina Erhart"
     },
     {
       "titel": "Der Ehrendoktorhut",
@@ -832,7 +989,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 5m/6w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Komödie über den provinziellen Ehrenkäs",
+      "autor": "Henry Doll"
     },
     {
       "titel": "Der Erbschaftsjodler",
@@ -848,7 +1008,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "1 Mini-Rolle (m) zusätzlich erforderlich",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Bühnenbild",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Der Erlebnisbericht",
@@ -864,7 +1027,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich mit 2m/1w",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, als Austattung reicht ein Tisch mit 3 Stühlen.",
+      "autor": "Hermann Waldenburger"
     },
     {
       "titel": "Der Experte",
@@ -879,12 +1045,15 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Waldlichtung, angedeutet.",
+      "autor": "Horst Kayling"
     },
     {
       "titel": "Der Frosch-König oder Wenn's Handy in den Brunnen fällt",
       "slug": "der-frosch-konig-oder-wenns-handy-in-den-brunnen-fallt",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/der-frosch-konig-oder-wenns-handy-in-den-brunnen-fallt",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/der-frosch-konig-oder-%e2%80%9ewenns-handy-in-den-brunnen-fallt",
       "kuerzel": "e-29",
       "untertitel": "Modernes Märchen (Einakter)",
       "kategorien": [
@@ -895,7 +1064,8 @@
       "besetzung_w": 12,
       "besetzung_hinweis": "variable Besetzung bis zu 19 Personen möglich",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal"
     },
     {
       "titel": "Der glückliche Hans",
@@ -912,7 +1082,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "Geschlechter variabel",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "freier Platz, Gestaltung offen.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Der große Coup von Wickenham",
@@ -927,7 +1100,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 115,
-      "spieldauer_text": "115"
+      "spieldauer_text": "115",
+      "spielort": "Saal",
+      "buehnenbild": "1 Western-Saloon",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Der Hansibub",
@@ -942,7 +1118,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung nach Belieben.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Der Hecht im Karpfenteich",
@@ -957,7 +1136,10 @@
       "besetzung_m": 6,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "Gartengrundstück: Links ist eine Gartenlaube (Bänkle mit Rundbogen) aufgebaut, in der man sich je nach Bedarf verstecken kann. In der Mitte befindet sich ein Gartenhäuschen möglichst mit Veranda oder Sonnenschirm und Gartenmöbel. Es sollte einen Durchgang hinter die Kulisse haben. (Die Hütte, die eigentlich nur eine Vorderfront sein braucht, könnte auch nur gemalt sein). Daneben steht eine Regentonne, die man so präparieren muss, dass man sie nach hinten verlassen kann. Rechts vorne ist eine primitive Holzbank, auf der die beiden Angler sitzen. Die Angeln werden in den Zuschauerraum geworfen. Familie Fischer hat den Abgang nach links hinten. Familie Gräber nach rechts hinten. Allgemeiner Auf- und Abgang ist vorne links. Für den zweiten Akt könnte man ein Boot auf Rollen von rechts zur Mitte hin auf die Bühne schieben, in dem Felix und Nicole fischen. Denkbar ist natürlich auch, dass die Beiden vom Ufer aus fischen. Für die Zuschauer unsichtbar sollte ein Wasserbecken aufgestellt sein, in dem die beiden mit dem Käscher nach Fischen suchen. In dieses Becken stürzt dann auch Rosmarie bei ihren Schauspielversuchen.",
+      "autor": "Angelika Grimm"
     },
     {
       "titel": "Der Held der Kieselsteine",
@@ -972,7 +1154,10 @@
       "besetzung_m": 5,
       "besetzung_w": 7,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "1 offener Platz, Ausstattung beliebig. Nur eine Tür nach hinten erforderlich",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Der Herr liebt auch die kleinen Boxer",
@@ -987,7 +1172,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "1 - Die „gute Stube“ in einem Pfarrhaus",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Der Hexenschuss",
@@ -1002,7 +1190,10 @@
       "besetzung_m": 1,
       "besetzung_w": 4,
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, übliche Ausstattung.",
+      "autor": "Walter Winkler"
     },
     {
       "titel": "Der Jubiläums-Zinnober",
@@ -1017,7 +1208,10 @@
       "besetzung_m": 5,
       "besetzung_w": 7,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Die Stube der Pension „Liebliches Steinachtal“. Hinter der Rezeption befindet sich an der Wand ein Regal mit den Schlüsseln für die Zimmer. Vorne steht ein Tisch, in der einen Ecke eine Kommode, an einer Seite ein Sofa",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Der Lenz, der Bengel",
@@ -1032,7 +1226,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung",
+      "autor": "Hermann Waldenburger"
     },
     {
       "titel": "Der letzte Schrei",
@@ -1050,7 +1247,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich mit 7m/6w",
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Krimi-Komödie",
+      "autor": "Wilhelm Wolpert"
     },
     {
       "titel": "Der letzte Spießer",
@@ -1065,7 +1265,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Platz zwischen zwei Häusern",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Der letzte Tag",
@@ -1080,7 +1283,9 @@
       "besetzung_m": 5,
       "besetzung_w": 6,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "autor": "Raimund Zenkert und Angela Leupold"
     },
     {
       "titel": "Der letzte Vorhang",
@@ -1095,7 +1300,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Rechts befindet sich ein großer, offener Durchgang zur Bühne. Daneben ein Schaltkasten für die Bühnentechnik (z. B. Klingel). Links führt eine Tür zu allen weiteren Räumen des Theaters. Raumausstattung mit Tisch und mehreren Sitzgelegenheiten, ein Schminkplatz mit Ablage für Hüte und Perücken, ein Garderobenständer mit diversen Kostümteilen (alle Kostüme sind für Faust und Don Quichotte austauschbar/Aufwand bleibt der jeweiligen Inszenierung überlassen). Die Wände sind mit theatertypischen Versatzstücken (alte Plakate, Fotos, Zeitungsausschnitte etc. geschmückt). Auf einem Regal befinden sich Programm- und Texthefte. Die Anfangsszene spielt vor dem geschlossenen Vorhang (bzw. vor abgedunkelter Hauptbühne).",
+      "autor": "Christian Lange"
     },
     {
       "titel": "Der liebevolle Friedrich",
@@ -1110,7 +1318,10 @@
       "besetzung_m": 2,
       "besetzung_w": 1,
       "spieldauer_min": 3,
-      "spieldauer_text": "3"
+      "spieldauer_text": "3",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Der Machtkampf",
@@ -1126,7 +1337,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "zusätzlich 2 Mini-Rollen",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Dorfplatz von Unterwiesdorf. Auf einer Seite ist die Gastwirtschaft mit Eingangstüre, Fenster, Beschriftung Gasthaus am Tor. Aushängekästchen mit Speisekarte, Abfalleimer ect. Biergartenbestuhlung. Auf der gegenüberliegenden Seite ist die Bäckerei mit Eingangstür, Schild Bäckerei, zusätzlich ein Schaufenster (gemalt) mit den ausgestellten Backwaren. Hinten ist die Mauer mit dem Tor in der Mitte. Der Durchgang ist offen. Das Tor ist nach innen geschwenkt und wird nur während einer Szene geschlossen. Links oder rechts neben dem Tor hängt eine Anschlagtafel für Gemeindeinformationen. Vor der Mauer steht ein alter Dorfbrunnen (ohne Funktion). Über dem Tor hängt eine Laterne.",
+      "autor": "Paul Greb"
     },
     {
       "titel": "Der Meisterfotograf",
@@ -1142,7 +1356,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "plus 2 Kinder",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Foto-Atelier.",
+      "autor": "Jutta Döpfer"
     },
     {
       "titel": "Der mit dem King tanzt",
@@ -1157,7 +1374,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Hotel-Lobby. Rechts befindet sich die Eingangstür, links die Tür zu den Privaträumen und im hinteren Bereich eine Tür zu den Hotelzimmern. Rechts ist ein Tisch mit drei Stühlen. In der linken Hälfte steht ein Sofa und ein Sessel. Im rechten, hinteren Bereich hängt ein Bücherregal und befindet sich eine Empfangstheke. Der Raum ist mit allerhand Elvisutensilien geschmückt. Wichtig: Ein Elvisposter.",
+      "autor": "Jörg Bettermann"
     },
     {
       "titel": "Der Nächste, bitte",
@@ -1173,7 +1393,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 4m/3w sowie generell mit wneiger Spielern",
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Arztpraxis, Ausstattung beliebig.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Der neue Freund",
@@ -1188,7 +1411,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Bühnenbild: ist zweigeteilt: Schlafzimmer der Eltern und Wohnzimmer. Vater und Mutter: im Schlafzimmer, in einem Bett, das möglichst senkrecht steht, damit der Zuschauer das Gefühl hat in der Vogelperspektive auf das Bett zu sehen. (Für das Bett genügen 2 Matratzen (zirka 80/180) und ein Gestell aus drei Dachlatten und zwei stärkeren Latten (Rahmenschenkel), die zu einem Rahmen zusammengeschraubt werden. An diesem Rahmen werden dann die Matratzen senkrecht befestigt. Die untere Latte ist gleich lang wie die beiden Matratzen, die oberen beiden Latten sind an jeder Seite ca. 40 cm länger. Darauf wird jeweils eine Platte etwa in der Größe eines Nachttischchens (Deckplatte) geschraubt. Auf diese Platte wird dann jeweils ein Nachttischlämpchen befestigt. Die Lämpchen müssen funktionieren(!) Diese Konstruktion wird am Kopfende angebracht. Kissen und Bettdecken werden mit Sicherheitsnadeln an den Matratzen befestigt. Die Decken so, dass man in das Bett einsteigen kann, sie muss dann während des Spiels festgehalten werden. Alternativ kann man die Betten auch normal aufstellen.",
+      "autor": "Angelika Grimm"
     },
     {
       "titel": "Der Niemandshof",
@@ -1204,7 +1430,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 6m/3w",
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer: Umgestürzte Balken, total verstaubte Schränke, evtl. gehäkelte Spinnweben mit Plastikspinnen! Alles muß wirken, als ob Haus jahrzehntelang leerstand. Auf dem Tisch versteinertes Brot! Mobiliar nach Belieben.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Der Spürhund von Sankt Anton",
@@ -1221,7 +1450,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wophnstube des Pfarrhauses, Einrichtung nach Belieben.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Der Tod ist auch nur ein Mensch",
@@ -1236,7 +1468,9 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "autor": "Roland Papenfuß"
     },
     {
       "titel": "Der Traumjob",
@@ -1251,7 +1485,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 4,
-      "spieldauer_text": "4"
+      "spieldauer_text": "4",
+      "spielort": "Saal",
+      "buehnenbild": "Büro, nur angedeutet.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Der verflixte Jungbrunnen",
@@ -1267,7 +1504,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "3m/5w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "1 Wohn- und Eßzimmer, übliche Ausstattung",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Der weibliche Zwilling",
@@ -1282,7 +1522,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 5,
-      "spieldauer_text": "5"
+      "spieldauer_text": "5",
+      "spielort": "Saal",
+      "buehnenbild": "im Park. Ausstattung beliebig.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Der Westentaschen-Gigolo",
@@ -1297,7 +1540,10 @@
       "besetzung_m": 2,
       "besetzung_w": 4,
       "spieldauer_min": 80,
-      "spieldauer_text": "80"
+      "spieldauer_text": "80",
+      "spielort": "Saal",
+      "buehnenbild": "Der Raum ist eine gute Stube. Sofa, Tisch, Schrank, Gardarobenständer, Telefon. Zwei Ausgänge.",
+      "autor": "Iris Klasen"
     },
     {
       "titel": "Die Aischgrund-Cops",
@@ -1313,7 +1559,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "zusätzlich 8-köpfige Schülergruppe, optional",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Amtsstube Polkizeirevier, Ausstattung beliebig.",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Die Bänkler",
@@ -1328,7 +1577,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Friedhofs-Bank.",
+      "autor": "Hans Maisch"
     },
     {
       "titel": "Die Dichterlesung",
@@ -1344,7 +1596,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 4m/4w",
       "spieldauer_min": 18,
-      "spieldauer_text": "18"
+      "spieldauer_text": "18",
+      "spielort": "Saal",
+      "buehnenbild": "Veranstaltungsraum, Tisch, Stühle, sonstige Ausstattung nach Belieben.",
+      "autor": "Jutta Döpfer"
     },
     {
       "titel": "Die dicksten Bauern (60 Min.)",
@@ -1359,7 +1614,10 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 60,
-      "spieldauer_text": "60"
+      "spieldauer_text": "60",
+      "spielort": "Saal",
+      "buehnenbild": "Bauernstube mit zwei Türen, Schrank, Tisch, Stühlen, einfache Ausstattung",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Die dicksten Bauern (95 Min.)",
@@ -1374,7 +1632,10 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Bauernstube mit zwei Türen, Schrank, Tisch, Stühlen, einfache Ausstattung.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Die falsche Erbtante",
@@ -1389,7 +1650,10 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "beides",
+      "buehnenbild": "Platz vor einem Wohnhaus: links Wohnhaus der Meiers mit Fenster und Haustüre; vor dem Fenster Bank mit Tisch und zwei Stühlen; Mitte der Bühne im Hintergrund Werkstatt mit Türe und Fenster zum Publikum; links daneben Busch oder Holzstapel für Versteck. Davor lehnt Strohbesen, an einem Nagel hängt ein Strick. An rechter Seite evtl. Holzstapel als Deko, ansonsten Deko nach Belieben. Allgemeiner Auftritt rechts hinten; links hinter dem Haus ein Durchgang.",
+      "autor": "Dieter Fuchs"
     },
     {
       "titel": "Die giftige Verwandtschaft",
@@ -1405,7 +1669,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 5m/4, außerdem mit der Besetzung 7m/7w und einer Spieldauer von 120 Minuten",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, übliche Ausstattung: Tisch, Stühle, Schrank. 2 Türen. Die ersten beiden Szenen spielen jedoch VOR dem Zimmer, dessen Möbel einfach an den Bühnenrand gestellt und mit Tuch abgedeckt werden. Auf der Bühne stehen vier Stühle, die in der ersten Szene das Auto der einen Familie darstellen und in der zweiten Szene das Zugabteil der anderen Familie, die zum Geburtstag der Mutter anreisen. Manche Theater-Gruppen betrieben bei der Darstellung des Autos einen tollen Aufwand, teils wurden sogar Fahrgestelle auf die Bühne gebracht! Es geht aber auch mit nur vier Stühlen.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Die junge Mutter",
@@ -1420,7 +1687,10 @@
       "besetzung_m": 0,
       "besetzung_w": 3,
       "spieldauer_min": 4,
-      "spieldauer_text": "4"
+      "spieldauer_text": "4",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Die Kaffeefahrt",
@@ -1436,7 +1706,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "variable Besetzung möglich",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "einfach zu gestaltender Raum) Rechts und links stehen Stühle für die potenziellen Kunden bereit. Ein kleiner Tisch , auf dem zunächst zugedeckt die alten, verbeulten Töpfe, stehen. In der Mitte ein Stuhl, auf dem das „BRUM“ liegt. Auch verhüllt. Vielleicht, wenn es die Bühne erlaubt, wäre ein Transparent mit der Aufschrift “Weltneuheit, Messeschlager“ nicht schlecht. Requisiten: unter anderem Pompöses Kissen ca. 80/80, Stoffhund, Blauer Müllsack, vielleicht bunt bemalt oder beklebt, Fernbedienung, Ehrenrentner-Urkunde (auffällig bemalt), Topf-Set, alt und etwas verbeult (es eignen sich gut alte Campingtöpfe).",
+      "autor": "Uschi Podljeska"
     },
     {
       "titel": "Die Kneipe zur Sanduhr",
@@ -1451,7 +1724,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 130,
-      "spieldauer_text": "130"
+      "spieldauer_text": "130",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Dorfplatz)",
+      "autor": "Johannes Kaplan"
     },
     {
       "titel": "Die kunterbunte Wunderkuh",
@@ -1466,7 +1742,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "1 - gute Stube eines Bauernhofs",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Die Permanente Frau",
@@ -1481,7 +1760,10 @@
       "besetzung_m": 2,
       "besetzung_w": 4,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Saal einer Galerie. Im Hintergrund der noch menschenleeren Bühne sind Bilder der Künstlerin Merle Winter ausgestellt: ein Bild, welches in der linken Hälfte bunte Punkte aufweist, ein zweites Bild zeigt ein riesiges Fragezeichen und ein ebenso großes Rufzeichen. Das dritte Bild, welches allerdings noch verhüllt ist, zeigt das in der Mitte zerstörte Symbol für Weiblichkeit.",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Die Retter der Märchenwelt",
@@ -1498,7 +1780,10 @@
       "besetzung_w": 12,
       "besetzung_hinweis": "variable Besetzung möglich",
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnraum, beliebige Einrichtung.",
+      "autor": "Martina Landshuter"
     },
     {
       "titel": "Die Schafkopf-Gang und ihr Prophet",
@@ -1513,7 +1798,9 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Die Schneiders-Hochzeit",
@@ -1528,7 +1815,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 80,
-      "spieldauer_text": "80"
+      "spieldauer_text": "80",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer mit Kleiderständer, Schneiderpuppe, bedeckt mit großer Decke, Fenster.",
+      "autor": "Rosina Erhart"
     },
     {
       "titel": "Die steinreiche Lumpenbande",
@@ -1545,7 +1835,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohn- Esszimmer: Die Wohnung der Familie Klemm macht einen ärmlichen Eindruck. Es sollte auf den ersten Blick sichtbar sein, daß man hier keine großen Sprünge machen kann. Der Raum dient als Wohn- genauso wie als Eßzimmer. Übliche Ausstattung.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Die Treibjagd",
@@ -1561,7 +1854,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "12",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Tragikomödie für ambitionierte Bühnen",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Die vierte Glocke",
@@ -1576,7 +1872,10 @@
       "besetzung_m": 4,
       "besetzung_w": 3,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Wohn- und Esszimmer des Pfarrers. In der Mitte des Raumes muß sich ein verschließbares Fenster, an beiden Seiten des Raumes Türen befinden. In der Nähe des Fensters sollte ein Eßtisch mit 4 Stühlen stehen",
+      "autor": "Gabi Hansen"
     },
     {
       "titel": "Die Wahrheit zum Dessert",
@@ -1591,7 +1890,9 @@
       "besetzung_m": 2,
       "besetzung_w": 3,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Die zweite Chance",
@@ -1606,7 +1907,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Raum bzw. Gang in einer Schule)",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Diebesgut und Spitzenhöschen",
@@ -1621,7 +1925,9 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "autor": "Johannes Kaplan"
     },
     {
       "titel": "Dinner for Four",
@@ -1636,7 +1942,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Die Bühne ist unterteilt in zwei Räume: ein kleines gediegenes Eßzimmer (mit Tür nach draußen) und ein kleiner Vorraum als Anrichte (mit Tür Richtung Küche). Die beiden Räume müssen nicht durch eine Wand getrennt sein, es muß aber so gespielt werden, als ob es eine Wand mit Türe gäbe! Zur Erkennbarkeit könnte man die Räume unterschiedlich tapezieren und ein trennendes Sideboard aufstellen! Wenn möglich, eine Türe einfügen, ansonsten spielen, als ob Türe vorhanden wäre",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Drei Pfund zuviel",
@@ -1652,7 +1961,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich 2m/3w",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Einrichtung beliebig.",
+      "autor": "Doris Albert"
     },
     {
       "titel": "Drei Typen von vorgestern",
@@ -1667,7 +1979,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Das Stück spielt in einer Mietwohnung, die sich die drei Studentinnen Rita, Miriam und Reni teilen. Es ist eine von weiblicher Hand wohnlich eingerichtete Stube, ordentlich, mit Tisch und Stühlen. Zwei Auf-/Abgänge sind vorhanden, einer nach draußen ins Treppenhaus, der andere zu den übrigen Räumen (Schlafräume, Bad...).",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Drei und drei macht glücklich",
@@ -1682,7 +1997,10 @@
       "besetzung_m": 0,
       "besetzung_w": 5,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, etwas verwahrlost, altmodisch, 1 Fenster, eventuell mit Zinkwanne.",
+      "autor": "Rosina Erhart"
     },
     {
       "titel": "Ein Amt auf Abwegen",
@@ -1698,7 +2016,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 7m/4w oder 5m/6w",
       "spieldauer_min": 115,
-      "spieldauer_text": "115"
+      "spieldauer_text": "115",
+      "spielort": "Saal",
+      "buehnenbild": "Das Vorzimmer des Bürgermeisters. Ein Schreibtisch mit Stuhl, links Sideboard mit Aktenordnern, an der Rück-Wand ein großer (begehbarer), am besten etwas altmodischer Schrank, außerdem in der Rückwand eine Tür ins Bürgermeister-Chefzimmer. Rechts die Tür nach draußen in den Gang. Links ein Fenster zur Straße.",
+      "autor": "Paula Baumann"
     },
     {
       "titel": "Ein Boomerang auf zwei Beinen",
@@ -1714,7 +2035,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich mit 5m/6w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Das Stück spielt im Wohn-Eßzimmer der Familie Kronmüller. Eine Tür nach draußen, eine Tür nach drinnen und ein offener Abgang zur Küche. Ein Fenster nach draußen, egal, auf welcher Bühnenseite. Gewöhnliche Einrichtung mit Kommode/Schrank, einem Tisch, drei oder vier Stühlen. Sofa. Radio. Kleines Bücherregal. Telefon. An der Rückwand hängt links ein Familienbild, rechts eine Australienfahne. An der linken Wand hängt außerdem eine australische Landkarte. Vor der letzten Szene werden an dieser Karte drei kleinere Luftballons befestigt.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Ein Dorf im Theaterfieber",
@@ -1729,7 +2053,10 @@
       "besetzung_m": 4,
       "besetzung_w": 6,
       "spieldauer_min": 40,
-      "spieldauer_text": "40"
+      "spieldauer_text": "40",
+      "spielort": "Saal",
+      "buehnenbild": "Komödie (Einakter)",
+      "autor": "Rene Rüprich"
     },
     {
       "titel": "Ein Paar zuviel",
@@ -1744,7 +2071,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Die Bühne stellte das Ess-Wohnzimmer der Familie Kolbenhauer dar. Die Wohnung befindet sich in einem Mehrfamilienhaus. Auf der linken Bühnenseite befindet sich die Tür bzw. ein Durchgang zum Hausflur, auf der rechten Seite hinten ist ein offener Durchgang zur Küche. In der Rückwand befindet sich eine Türe zum weiteren Wohnbereich. Auf der rechten Seite ist außerdem eine Tür zum Bad. Die Ausstattung ist durchschnittlich, nicht besonders modern, aber auch nicht zu bieder. Ein (möglichst leichtes) zweisitziges Sofa, ein Tisch mit drei bzw. vier Stühlen, ein, zwei Bilder und ein mittelgroßer Spiegel an der Wand, ein Schränkchen mit Telefon und Radio. Außerdem ein kleiner Tisch vorne links mit kleinem Fernsehapparat drauf. Auf dem Tisch steht Frühstücksgeschirr.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Ein Sommer voller Träume",
@@ -1761,7 +2091,10 @@
       "besetzung_w": 13,
       "besetzung_hinweis": "auch möglich mit insgesamt nur 23 Darstellern",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Das Stück spielt auf einem Anwesen, das von den Dorfbewohnern „Schloss“ genannt wird, weil es aus dem 16. Jahrhundert stammt und sehr stattlich ist. Man benötigt zwei Spielebenen: den Hof selbst und eine Galerie/Ballustrade, die sich über den ersten Stock entlangzieht. Im ersten Stock muss ins Gebäude eine begehbare Türe gehen. Links (immer von der Zuschauerseite aus betrachtet) führt eine Treppe in den Hof. Die Treppe befindet sich im Gebäude, ist also nicht einsehbar. Im Hof steht ziemlich mittig ein Stein-Brunnen. Offene Abgänge gibt es im Hof rechts und links. Beim rechten Abgang befindet sich außerdem eine Türe, die in ein Nebengebäude führt. Im Hof selber befinden sich zwei Kellertüren. Man kann außerdem ein oder zwei kleine Podeste (zirka 20 cm hoch und zirka 2,50x2 Meter groß) in den Hof stellen (an die Rückwand), um verschiedene Spielhöhen zu erhalten. Auch kann man dort das ab dem 2. Akt benötigte Sofa platzieren. Diese Podeste sind jedoch nicht zwingend nötig. Rechts im Eck steht ein hässlicher, großer Gartenzwerg.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Ein superbes Mahl",
@@ -1776,7 +2109,10 @@
       "besetzung_m": 3,
       "besetzung_w": 1,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Restaurant, mehrere Tische, weitere Ausstattung nach Belieben.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Ein Tag und drei Leben",
@@ -1792,7 +2128,10 @@
       "besetzung_w": 14,
       "besetzung_hinweis": "auch möglich mit 13w/9m oder 12w/10m oder 11w/11m",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "1 (Gutshof) Die Bühne stellt den Hof eines Gutshofes dar und hat zwei Ebenen. Im Hof gibt es links und rechts einen offenen Abgang. Links außerdem eine Tür zu der Wohnung im ersten Stock. Rechts im Hof befindet sich eine Tür in den Wohnbereich von Luise. In der rückwärtigen Wand gibt es außerdem eine Tür in den Keller. Hinten in der Mitte gibt es ferner ein kleines Podest (zirka 2 x 2 Meter, 15 cm hoch), auf dem später eine Bank steht. Rechts hinten an der Wand ein weiteres kleines Podest, auf dem später ein Tisch und Stühle stehen. Links an der hintern Wand steht eine Leiter. Oben befindet sich eine begehbare Galerie, die zu der Wohnung oben führt. Der Zugang vom Hof zum 1. Stock ist nicht einsehbar.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Ein Teppich voller Leichen",
@@ -1810,7 +2149,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich 5m/6w",
       "spieldauer_min": 130,
-      "spieldauer_text": "130"
+      "spieldauer_text": "130",
+      "spielort": "Saal",
+      "buehnenbild": "Empfangsraum altes Hotel",
+      "autor": "Johannes Kaplan"
     },
     {
       "titel": "Eine Familie steht Kopf",
@@ -1825,7 +2167,10 @@
       "besetzung_m": 6,
       "besetzung_w": 5,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Vorgarten)",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Eine Frau für Willi",
@@ -1840,7 +2185,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Wohnstube)",
+      "autor": "Paul Greb"
     },
     {
       "titel": "Endlich Pause",
@@ -1856,7 +2204,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "Geschlechter variabel",
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Pausenhof.",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Er klemmt oder „Hand am Po“",
@@ -1872,7 +2223,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "zusätzlich 1 Kind",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Fahrstuhl.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Es weihnachtet sehr",
@@ -1887,7 +2241,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 8,
-      "spieldauer_text": "8"
+      "spieldauer_text": "8",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung beliebig.",
+      "autor": "Gabi Hansen"
     },
     {
       "titel": "Fauler Zauber",
@@ -1902,7 +2259,10 @@
       "besetzung_m": 5,
       "besetzung_w": 6,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "beides",
+      "buehnenbild": "Der Vorgarten der Familie Schneiderbanger: eine gemütliche Oase mit einem Teich oder etwa kniehohen Brunnen, Gartenmöbeln, einem Liegestuhl, reichem Blumenschmuck und einer Ruhebank. Ein kleiner Gartenanbau mit einem dichten Perlenvorhang. Vier Abgänge: zwei ins Dorf und einer ins Haus und einer in den Anbau.",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Faust aufs Auge",
@@ -1917,7 +2277,10 @@
       "besetzung_m": 1,
       "besetzung_w": 3,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "Klassenraum, nur angedeutet.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Geist ist geil",
@@ -1933,7 +2296,10 @@
       "besetzung_w": 14,
       "besetzung_hinweis": "auch mlt Besetzung 8m/15w oder 10m/13w möglich",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne ist auf zwei Ebenen verteilt. Im Hof (der von oben durch einen nicht einsehbaren Treppenaufgang erreichbar ist) befinden sich zwei größere Türen bzw. Tore (Kellertüren, als Zugang zu den zwei Seminarräumen), links ist ein offener Ausgang und rechts noch eine Türe (sie führt zum ehemaligen Pferdestall) und ein offener Abgang. Auf der Galerie gibt es mittig eine normale Türe und den Abgang ins Treppenhaus, das hinab in den Hof führt. Der Brunnen in der Bühnenmitte muss nicht zwangsläufig sein.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Geld muss her",
@@ -1948,7 +2314,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnstube, 2 Türen, übliche Ausstattung, 1 Fernseher",
+      "autor": "Doris Albert"
     },
     {
       "titel": "Geteiltes Glück ist gar kein Glück",
@@ -1963,7 +2332,9 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Gibt's im Himmel Kartoffeln? oder De Grumbeerkeenisch vun Ruchem",
@@ -1978,7 +2349,10 @@
       "besetzung_m": 5,
       "besetzung_w": 3,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Himmlisch-höllische Komödie",
+      "autor": "Helga Kerth-Förster"
     },
     {
       "titel": "Gleichg'macht ganz leichtg'macht",
@@ -1994,7 +2368,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "möglich auch mit 4m/5w",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne stellt den Vorplatz der Wirtschaft/Wohnhaus der Familie Anton/Gisela/Martina/Martin dar. Die hintere Wand hat einen Eingang in die Wirtschaft (etwa in der Mitte) und ein Fenster. Wenn platzmäßig möglich, ist in der Rückwand noch eine weitere Türe, die zu Emmas Laden führt. Davor könnten ein paar Obstkisten stehen oder noch besser, ein drehbares Verkaufsregal mit mehreren Fächern. Oder die Tür befindet sich auf der rechten Seite. Außerdem ist auf der rechten Seite ein schmaler offener Ausgang. Falls für die erwähnte Türe hinten bzw. an der Seite kein Platz ist, kommt Emma halt durch diesen offenen Ausgang. Links ist ebenfalls ein offener Ausgang. Dort befindet sich außerdem das Anwesen des Biobauern Gottlieb, angedeutet ganz nach Belieben (eventuell Scheune, Stall, Haus...). Vor der Wirtschaft steht ein kleiner Tisch mit drei Stühlen. An der Wand ein Schild mit dem aktuellen Tagesmenü.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Goldregen aus Übersee",
@@ -2009,7 +2386,10 @@
       "besetzung_m": 3,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Gemeindeverwaltungs-Dienstzimmer, Einrichtung frei gestaltbar - Tisch, Schränke, Stühle, evtl. eine Bronze-Statue, Bilder an der Wand. 2 Türen",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Groß, blond, blauäugig!",
@@ -2024,7 +2404,10 @@
       "besetzung_m": 1,
       "besetzung_w": 2,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Anzeigen-Annahme einer Zeitung mit Schreibtisch, Stuhl, Computer, Telefon; Stehpult zur Kundenbetreuung.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Gründungsfieber",
@@ -2042,7 +2425,10 @@
       "besetzung_w": 9,
       "besetzung_hinweis": "außerdem 2 Kinder (in Doppelrollen)",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Hotelfoyer mit zwei Türen und einer Tür zum Aufzug, Tresen, Rezeption, Rückseite eines PC-Bildschirmes, Stühle, Tisch.",
+      "autor": "Gerhard Osswald"
     },
     {
       "titel": "Gut gehext ist halb gewonnen",
@@ -2058,7 +2444,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "buehnenbild": "Raum in einer herunter gekommenen Villa",
+      "autor": "Johannes Kaplan"
     },
     {
       "titel": "Hau mich nicht (How mich nett)",
@@ -2073,7 +2462,10 @@
       "besetzung_m": 6,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Kleiner Lebensmittelladen, Regale, Theke mit Kasse, Haupteingang Türe mit Bimmel, Ausgang Richtung Küche",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Hectors tödliches Vermächtnis",
@@ -2091,7 +2483,9 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "weitere Rollen möglich, wenn Doppelbesetzungen reduziert werden",
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Heimatfront",
@@ -2107,7 +2501,10 @@
       "besetzung_w": 12,
       "besetzung_hinweis": "außerdem 4 - 5 Statisten",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Das Stück spielt auf einem Gutshof, der in einem kleinen ehemaligen Landschlösschen untergebracht ist. Man benötigt zwei Spielebenen: den Hof selbst und eine Galerie/Balustrade, die sich über den ersten Stock entlangzieht. Im ersten Stock muss eine begehbare Türe sein. Eine (Außen)treppe führt auf der linken Bühnenseite in den Hof – wenn das technisch nicht geht, dann ist die Treppe im Haus und deshalb nicht zu sehen. Im Hof sollte außerdem nach Möglichkeit ein Brunnen stehen. Abgänge gibt es im Hof auf der linken und rechten Bühnenseite. Zwei (Keller-) Türen befinden sich im hinteren Bühnenbereich, außerdem gibt es rechts eine Türe zum Pferdestall. Verfügt man über kein(e) Pferd(e), kann diese Szene (Seite 20) auch gestrichen werden.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Heiratsfieber",
@@ -2122,7 +2519,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Die Wohnstube ist mit einer Tür zur Küche und einer Tür zum Flur/nach draußen ausgestattet, außerdem mit Fenster, Tisch, mehreren Stühlen und diverser Dekoration an den Wänden.",
+      "autor": "Paul Greb"
     },
     {
       "titel": "Herr im Haus bin ich",
@@ -2137,7 +2537,10 @@
       "besetzung_m": 4,
       "besetzung_w": 6,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "1 (Garten zwischen Bauernhaus (links) und Scheune mit Stall (rechts), der für Pensionsgäste gerichtet wird. Im Hintergrund vom Haus zur Scheune niedriger Zaun mit einem Türchen in der Mitte, links vorne Fenster der Küche, davor eine Bank an der Wand mit Tisch und zwei Stühlen. Neben dem Fenster die Haustüre. Die Scheune (Stall) mit Türe vom Garten aus. Rechts vorne, im Garten, kleiner Tisch mit 4 Stühlen. Lampe über (neben) der Haustüre, Telefon auf der Fensterbank in der Küche. Weiter Ausstattung nach Belieben.",
+      "autor": "Dieter Fuchs"
     },
     {
       "titel": "Herr Leopold",
@@ -2153,7 +2556,10 @@
       "besetzung_w": 1,
       "besetzung_hinweis": "auch möglich 1m/2w",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer",
+      "autor": "Walter Brunhuber"
     },
     {
       "titel": "Herzlichen Glückwunsch, Julius",
@@ -2170,7 +2576,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer: Ein repräsentativer Raum in der alten Mühle des Herrn Ruppert. Rechts vorne ein kleines Tischchen, auf dem ein Schachspiel aufgebaut ist! Dabei zwei große Drehstühle! Hinten mittig eine kleine Bar oder ein Beistelltisch mit Getränken, links zentral ein großer Eßtisch mit 4 Stühlen! Schränke und Regale beliebig.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Hier ist Eden",
@@ -2186,7 +2595,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 4m/3w",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Strand, beliebige Ausstattung.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Hintergrubers Blautanne",
@@ -2201,7 +2613,10 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung",
+      "autor": "Horst Kayling"
     },
     {
       "titel": "Höchststrafe: Kurschatten",
@@ -2216,7 +2631,10 @@
       "besetzung_m": 1,
       "besetzung_w": 2,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Parkbank in einem Kurpark.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Hochzeit mit Leichen im Keller",
@@ -2231,7 +2649,10 @@
       "besetzung_m": 5,
       "besetzung_w": 6,
       "spieldauer_min": 95,
-      "spieldauer_text": "95 - 100"
+      "spieldauer_text": "95 - 100",
+      "spielort": "Saal",
+      "buehnenbild": "2 - Gaststube und freie Fläche - 1 Umbau erforderlich",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Hotel Sonnenschein: Vollpension mit Stromausfall",
@@ -2247,7 +2668,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 7m/5w",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Poolbereich des griechischen Hotels \"Sonnenschein\", wobei der Zuschauerraum den Pool darstellt. Am Poolrand, auf der Bühne stehen Liegestühlen. Eine Ecke stellt andeutungsweise den Eingang zu den Zimmern dar, evtl. mit darüber liegenden Balkonen. In der anderen Ecke die Poolbar, bzw. die angedeutete Taverne mit Tisch und Stühlen.",
+      "autor": "Jochen Grübel"
     },
     {
       "titel": "Im Himmel trifft man sich wieder",
@@ -2263,7 +2687,10 @@
       "besetzung_w": 11,
       "besetzung_hinweis": "zusätzlich 2 Statisten",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "beides",
+      "buehnenbild": "Hof eines kleinen Land-Schlösschens. Man benötigt zwei Spielebenen: den Hof selbst und eine Galerie/Ballustrade, die sich über den ersten Stock entlangzieht. Im ersten Stock muss ins Gebäude eine begehbare Türe gehen. Links (immer von der Zuschauerseite aus betrachtet) führt eine Treppe in den Hof. Die Treppe befindet sich im Gebäude, ist also nicht einsehbar. Im Hof steht ziemlich mittig ein Stein-Brunnen. Offene Abgänge gibt es im Hof rechts und links. Beim rechten Abgang befindet sich außerdem eine Türe, die in ein Nebengebäude führt. Im Hof selber befinden sich zwei Kellertüren.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Im Reisebüro",
@@ -2279,7 +2706,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "Besetzung bis 9 Personen möglich",
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Reisebüro, Ausstattung beliebig.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Im verrückten Wilden Westen",
@@ -2295,7 +2725,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich mit 5m/6w",
       "spieldauer_min": 130,
-      "spieldauer_text": "130"
+      "spieldauer_text": "130",
+      "spielort": "Saal",
+      "buehnenbild": "Der Salon ist wie folgt angeordnet: Auf der linken Seite eine Türe zum Hinterhof. Links an der Bühnenrückwand eine (mit zwei, drei Stufen angedeutete) Treppe nach oben. Die große Theke in der Mitte der Bühne. Hinter der Theke ist eine Türe zur Küche. Rechts neben der Theke ein Fenster. Im Winkel der Bühnenrückwand zur rechten Seite ist der Eingang zum Saloon. Eine typische Schwingtüre mit zwei Flügeln (mit den entsprechenden Scharnieren aus dem Baumarkt lässt sich diese Türe leicht aus einer ausgesägten Holzplatte und passender Bemalung herstellen) An der rechten Bühnenwand hängen Kleiderhaken und im Anschluss daran ist eine Türe, sie führt in den Nebenraum des Saloons. Die Wände sind typisch dekoriert mit Waffen, Tierköpfen, Bildern usw. Im Raum stehen, je nach Bühnengröße zwei oder mehr Tische mit Stühlen. An der Rückwand steht ein Orchestrion (eine schmale, bemalte Attrappe aus Holz). Dieses Gerät hat seine Tücken: Es soll nicht nur an den Stellen angehen, die im Text vermerkt sind, sondern es dürfen weitere passende Stellen gefunden werden. Wichtig dabei ist, es geht immer unbeabsichtigt an und keiner kann es ausmachen – obwohl es viele versuchen sollen! Es geht nur aus, wenn Jim Bim auf eine bestimmte Art dagegen tritt.",
+      "autor": "Klaus Ziegler"
     },
     {
       "titel": "Immer dasselbe",
@@ -2310,7 +2743,10 @@
       "besetzung_m": 4,
       "besetzung_w": 6,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "Verkehrsberuhigte Seitenstraße einer Kleinstadt: Die Bühne stellt drei Hausfronten dar. Rechts die Front eines Mietshauses (Wand mit Haustür, 3 Klingeln, 3 Briefkästen), mittig ein frisch renoviertes Haus mit einer Tür und einer Bank unter dem einzigen Fenster. Links ein kleiner Feinkostladen mit Ladentür und der Möglichkeit davor an ein, zwei Bistrotischen zu sitzen. Auf– und Abgänge zwischen den Häuserfronten.",
+      "autor": "Christian Lange"
     },
     {
       "titel": "Immer der Ärger mit diesen Lehren",
@@ -2326,7 +2762,10 @@
       "besetzung_w": 13,
       "besetzung_hinweis": "Besetzung kann durch Doppelbesetzungen auf 13 reduziert werden",
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Klassenzimmer in den Jahren 1966, 2007, 2035. Ausstattung beliebig.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "In der Tür geirrt",
@@ -2341,7 +2780,10 @@
       "besetzung_m": 2,
       "besetzung_w": 4,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Chaotische Küche einer Hippie-Wohngemeinschaft: bunte Möbel - teils Orangenkisten, Che Guevara-Poster an der Wand usw. Auf dem Tisch ein großer Wecker, dreckiges Geschirr, Briefumschlag, ein Hammer und ein Stemmeisen. Unter dem Tisch ein Schuhkarton.",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "In Schottland sind die Nächte lang",
@@ -2356,7 +2798,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Baltrimore Castle, ein kleines Schlösschen in Schottland: Bühnenausstattung: Passend zu einem alten schottischen Adelssitz. Die Wände sind mit Wappen und Degen geziert, Dekoration in Clanfarben („Schottenkaro“), passende Ölbilder oder Gemälde wären gut. Wenn so etwas aufgetrieben werden kann, würde sich eine Ritterrüstung gut machen. Es gibt zwei Bühnenaufgänge. Der eine führt in die große Eingangshalle des Schlosses, der andere in die übrigen Räume. Natürlich gibt es keine Türklingel, hier wird stilvoll eine Glocke in der Eingangshalle geläutet",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Ja, Mama",
@@ -2371,7 +2816,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, vom Vormieter teilmöbliert hinterlassen. Bühne ist deshalb unvollkommen eingerichtet, rechte Seite Tür zum Bad, linke Türe zum Gang Richtung Haustüre, in andere Räume, Schlafzimmer.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Josef kennt sich nicht mehr aus",
@@ -2386,7 +2834,10 @@
       "besetzung_m": 7,
       "besetzung_w": 6,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "buehnenbild": "Turbulenter Bauernschwank",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Kaltgestellt",
@@ -2401,7 +2852,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Die Bühne stellt eine einfache Schutzhütte dar. Ausgestattet mit einem alten Tisch und drei, vier ebenso alten Stühlen. Zwei, drei leere Holzkisten (eine sollteso stabil sein, dass man sich auch drauf stellen kann) dienen als möglicher Sitzplatz. Außerdem befindet sich ein alter Holzofen im Zimmer. Holz befindet sich nicht ím Raum. Eine Tür links in der Rückwand führt in einen kleinen Nebenraum. Eine Tür hinten führt nach draußen. Außerdem gibt es ein kleines Fenster in der rechten Wand. An der Rückwand steht eine Art Holzbank, die so lang sein muss, dass sich jemand darauf legen kann. An der Wand hängen Reh- oder Hirschgeweihe, wenn möglich auch ein Wildschwein-Fell oder ein ausgestopftes Tier wie ein Auerhahn oder ein Marder.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Katharina und das ewige Leben",
@@ -2418,7 +2872,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 4m/5w",
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Die „gute Stube“ in einem Bauernhaus.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Kaufhaus zum Glück",
@@ -2433,7 +2890,10 @@
       "besetzung_m": 3,
       "besetzung_w": 3,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Es befinden sich zwei Zimmer nebeneinander, die durch eine Tür getrennt sind. Links das moderne Büro mit einem Diagramm an der Wand, eine Kurve zeigt nach unten, eine nach oben. Eine Karte mit Punkten markiert die Expansion. Schreibtisch mit Namenschild (sehr edel), daneben ein Stuhl. Zweiter Raum ist der Pausenraum , alles alt und heruntergekommen. Ein Tisch zwei Stühle, alte fast vertrocknete Zimmerpflanze. Auf einem Bild an der Wand ist eine Heuschrecke gemalt und mit roten Stift durchgestrichen.",
+      "autor": "Rene Rüprich"
     },
     {
       "titel": "Killer im Doppelpack",
@@ -2450,7 +2910,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer in gut betuchtem Haushalt",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Kinderwahnsinn",
@@ -2465,7 +2928,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung..",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Lauter Spinner",
@@ -2481,7 +2947,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "außerdem 7 kleine Nebenrollen, die bei Bedarf auf vier reduziert werden können",
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Zeitkritisches ländliches Lustspiel",
+      "autor": "Wilhelm Wolpert"
     },
     {
       "titel": "Lied oder Gedicht",
@@ -2496,7 +2965,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer mit Tannenbaum, weitere Ausstattung beliebig.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Mach Dein Testament, Franz",
@@ -2511,7 +2983,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnstube des Seniors Franz, altbürgerlich eingerichtet, übliche Ausstattung, Schrank, Tisch, Stühle, Sofa, 2 Türen. Weitere Ausstattung nach Belieben.",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Magische Marken",
@@ -2527,7 +3002,10 @@
       "besetzung_m": 5,
       "besetzung_w": 3,
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Verstaubter Dachboden, auf dem allerhand alte Möbel und Gerümpel liegen.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Mann in der Mitte",
@@ -2543,7 +3021,10 @@
       "besetzung_m": 2,
       "besetzung_w": 3,
       "spieldauer_min": 70,
-      "spieldauer_text": "70"
+      "spieldauer_text": "70",
+      "spielort": "Saal",
+      "buehnenbild": "Komödie für Senioren",
+      "autor": "Sylvia Wilkerson"
     },
     {
       "titel": "Matroschka",
@@ -2560,7 +3041,10 @@
       "besetzung_m": 6,
       "besetzung_w": 5,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "buehnenbild": "Wohndiele der Familie Grünberg.",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Mein lieber Schwan",
@@ -2575,7 +3059,10 @@
       "besetzung_m": 2,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "Zuschauerraum, angedeutet.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Meister Lampe wird vermisst",
@@ -2591,7 +3078,10 @@
       "besetzung_w": 9,
       "besetzung_hinweis": "Geschlechter sind komplett variabel",
       "spieldauer_min": 65,
-      "spieldauer_text": "65"
+      "spieldauer_text": "65",
+      "spielort": "beides",
+      "buehnenbild": "freie Fläche vor einem Getreidefeld. Einige Bäume oder Büsche sind möglich, später braucht man eine Tribüne, die aber auch einfach in Form von \"Baumstümpfen\" oder ähnlichen Sitzgelegenheiten angedeutet werden kann",
+      "autor": "Klaus Tröbs"
     },
     {
       "titel": "Millen ze verkaafen (Müllers Mühle)",
@@ -2606,7 +3096,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "Ein altes Mühlengehöft. Die Bühnenrückwand bildet die Hausfront: Eingangstür, Fenster mit Fensterläden, ein verwahrloster Sitzplatz (alte Bank) davor. Rechts ist an das Haupthaus ein Nebengebäude angebaut: Stallfront mit Tür und kleinem Fenster. Wenn möglich: ein (Styropor) Mühlstein lehnt an der Wand. Ein Hackeklotz mit Beil steht daneben, einige Holzscheite liegen verstreut umher. Links begrenzt ein höherer Lattenzaun mit Pforte die Bühne (kann bei Bedarf auch als Mauer oder Hecke mit Durchgang/Tür dargestellt werden ) Typisch ländliches Handwerkszeug liegt/steht auf der Bühne herum. In der großen Pause muss alles leicht in einen ordentlichen/renovierten Zustand versetzt werden",
+      "autor": "Christian Lange"
     },
     {
       "titel": "Minderheitenschutz",
@@ -2621,7 +3114,10 @@
       "besetzung_m": 2,
       "besetzung_w": 1,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Gerichtssaal der Zukunft, Einrichtung nach Belieben.",
+      "autor": "Nicola Quaß"
     },
     {
       "titel": "Mit Himmelsmacht und Höllenfeuer",
@@ -2637,7 +3133,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "zusätzlich 2 Statisten und eine Stimme aus dem Off",
       "spieldauer_min": 140,
-      "spieldauer_text": "140"
+      "spieldauer_text": "140",
+      "spielort": "beides",
+      "buehnenbild": "Der Vorplatz der Gastwirtschaft „Zum Ochsen“ mit einem kleinen Biergarten, 1 Türe nach innen. Links ein Eingang zum Stall mit Misthaufen und ein Abgang ins Dorf. Rechts das Nachbarhaus der Familie Ruch mit einem kleinen Fenster und evtl. ein weiterer Abgang. (Der Misthaufen lässt sich recht einfach mit Stroh, Blumenerde und einer Gießkanne Wasser darstellen. Sobald die Mischung getrocknet ist, kommt sie vom Aussehen her echtem Mist sehr nah).",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Mit Ta-Tü-Trara zum Superstar",
@@ -2652,7 +3151,9 @@
       "besetzung_m": 5,
       "besetzung_w": 6,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Mobbing – aber richtig",
@@ -2668,7 +3169,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich 3w/1m oder 2w/2m",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "1 offene Bühne, 1 Projektor nötig",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Mord im Moor",
@@ -2685,7 +3189,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer feudales Anwesen an einem Moor. Die Bühnenausstattung lässt einen Hauch Seefahrerromantik erkennen, mit Schiffsmodellen, Meeresbildern, Buddelschiffen, vielleicht einer Kapitänsmütze etc.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Muggebatsche oum Mistbrialouch",
@@ -2701,7 +3208,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 5m/5w oder 3m/7w",
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne stellt einen Dorfplatz dar. Die Wände können völlig nach eigenen Vorstellungen gestaltet werden. An der Rückseite der Bühne (ist eine Hauswand) steht eine alte Bank. Die (offenen) Ausgänge befinden sich rechts und links (Türen werden nicht benötigt). Die Bühnenbildner können ansonsten ihrer Fantasie bei der Gestaltung der Bühne freien Lauf lassen.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Müllers Mühle",
@@ -2716,7 +3226,10 @@
       "besetzung_m": 3,
       "besetzung_w": 4,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "beides",
+      "buehnenbild": "Ein altes Mühlengehöft. Die Bühnenrückwand bildet die Hausfront: Eingangstür, Fenster mit Fensterläden, ein verwahrloster Sitzplatz (alte Bank) davor. Rechts ist an das Haupthaus ein Nebengebäude angebaut: Stallfront mit Tür und kleinem Fenster. Wenn möglich: ein (Styropor) Mühlstein lehnt an der Wand. Ein Hackeklotz mit Beil steht daneben, einige Holzscheite liegen verstreut umher. Links begrenzt ein höherer Lattenzaun mit Pforte die Bühne (kann bei Bedarf auch als Mauer oder Hecke mit Durchgang/Tür dargestellt werden ) Typisch ländliches Handwerkszeug liegt/steht auf der Bühne herum. In der großen Pause muss alles leicht in einen ordentlichen/renovierten Zustand versetzt werden (Fensterläden „gerade rücken“, Blumenkästen etc. )",
+      "autor": "Christian Lange"
     },
     {
       "titel": "Nala und die Reifeprüfung",
@@ -2732,7 +3245,9 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich 5m/3w, außerdem Doppelbesetzungen möglich",
       "spieldauer_min": 65,
-      "spieldauer_text": "65 - 75"
+      "spieldauer_text": "65 - 75",
+      "spielort": "Saal",
+      "autor": "Rainald Methlow"
     },
     {
       "titel": "Netzwerkfehler",
@@ -2748,7 +3263,10 @@
       "besetzung_m": 5,
       "besetzung_w": 7,
       "spieldauer_min": 80,
-      "spieldauer_text": "80"
+      "spieldauer_text": "80",
+      "spielort": "Saal",
+      "buehnenbild": "Büro einer Schülerzeitungs-Redaktion.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Nidd woahr",
@@ -2764,7 +3282,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 5m/3 w oder 3m/5w",
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne stellt einen Dorfplatz dar. Hinten befindet sich ein Wirtshaus mit Tür und Fenster. Links gibt es ein weiteres Wohnhaus mit Fenster. Vor dem Fenster hängt ein Blumenkasten. Die Bühnenwand auf der rechten Seite kann frei gestaltet werden. An beiden Seiten gibt es einen Abgang. An der Wirtshauswand ist links von der Tür ein altes Telefon an der Wand angebracht. Außerdem steht vor dem Gasthaus ein kleinerer runder Tisch mit zwei Stühlen. An der Rückwand ist außerdem das Abflußrohr einer Regenrinne befestigt.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Nur eine Nummer",
@@ -2780,7 +3301,10 @@
       "besetzung_w": 1,
       "besetzung_hinweis": "auch möglich mit 2m/0w",
       "spieldauer_min": 6,
-      "spieldauer_text": "6"
+      "spieldauer_text": "6",
+      "spielort": "Saal",
+      "buehnenbild": "Amtsstube, Austattung beliebig.",
+      "autor": "Walter Wendt"
     },
     {
       "titel": "Nussknacker und Compagnie",
@@ -2795,7 +3319,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, gutbürgerlich eingerichtet, 2 Abgänge.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Obacht Erbschleicher",
@@ -2810,7 +3337,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Wohn- und Esszimmer: Die Einrichtung ist konservativ: Sofa, 4 Stühle, 1 Tisch,1 Kommode mit Telefon, 1 Bodenvase, Bild des verstorbenen Alfons Kurz an der Wand, Grünpflanzen, 1 Beistelltisch mit Gartenprospekten, Pflanzen-Büchern, Modelleisenbahn- und Auto-Prospekten etc. An der Wand hängt ein Haustelefon zum Kommunizieren für Haus, Keller und Garten. Vom Raum gehen zwei Türen ab. An der Kopfseite befindet sich ein Fenster mit Gardinen. Raumverteilung im Haus: Philippine, Luise, Willibald: 3-Zimmer-Wohnung im Parterre mit Bad, Julia und Michael: 2-Zimmer-Wohnung im 1. OG mit Bad, Klara: Mansarden-Zimmer mit Bad.",
+      "autor": "Helga Kerth-Förster"
     },
     {
       "titel": "Öchsle",
@@ -2825,7 +3355,10 @@
       "besetzung_m": 6,
       "besetzung_w": 3,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "beides",
+      "buehnenbild": "Historische Komödie aus dem 17. Jahrhundert",
+      "autor": "Wilhelm Wolpert"
     },
     {
       "titel": "Onoldia oder Mein lieber Herr Gesangsverein",
@@ -2840,7 +3373,10 @@
       "besetzung_m": 6,
       "besetzung_w": 1,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Vereinslokal, Ausstattung beliebig.",
+      "autor": "Klaus Wagner"
     },
     {
       "titel": "Pardon, mein Freund",
@@ -2855,7 +3391,10 @@
       "besetzung_m": 5,
       "besetzung_w": 4,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "beides",
+      "buehnenbild": "Der Platz vor den drei Geschäften. Links ein leerstehendes Geschäft, in der Mitte Jeans Bäckerei und rechts Roland Metzgersladen. Vor der Bäckerei ein kleiner Tisch mit Stühlen. Der zunächst leere Laden wird später als Imbiss beschriftet.",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Pension Rhönblick",
@@ -2871,7 +3410,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 90,
-      "spieldauer_text": "90"
+      "spieldauer_text": "90",
+      "spielort": "Saal",
+      "buehnenbild": "Frühstücks- bzw. Aufenthaltsraum einer Pension. Eine Türe \"Privat\", ein offener Durchgang, der zu den Gästezimmern und zum Hinterein- und Ausgang führt. Ein Fenster. 2 kleine Tische, Stühle. Schränkchen/Kommode mit Telefon, ein Sessel, div. Deko wie Stehlampe, Wandregal mit Büchern, Radio, Schirmständer, an den Wänden Wanderkarten, Informationen, Hausordnung, Uhr; usw. Rechts oder links an der Bühne (im Zuschauerraum) ist die Empfangstheke mit Schild \"Anmeldung\", Schlüsselbrett, Infomaterial, Klingel für die Anmeldung, Gästebuch. Über eine Treppe kommt man auf die Bühne.",
+      "autor": "Paul Greb"
     },
     {
       "titel": "Pfingsten kann sehr lang sein",
@@ -2886,7 +3428,10 @@
       "besetzung_m": 2,
       "besetzung_w": 5,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Büro, beliebige Ausstattung.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Pia allein zuhaus",
@@ -2901,7 +3446,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung beliebig.",
+      "autor": "Dieter Bauer"
     },
     {
       "titel": "Pizza vs. Lerberkäs",
@@ -2916,7 +3464,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "buehnenbild": "1 - Das Bühnenbild erfordert eine in der Mitte geteilte Bühne. Bühne links vom Publikum mit einem Hinterzimmer eines italienischen Lokals mit Schreibtisch, Sessel für Roberto und einem Stuhl, mit Plane auf Boden. Außerdem ein Inter Mailand-Trikot und Bild von Marlon Brando als \"Pate\" (Großvater) an der Wand. Offener Abgang nach links. Bühne rechts mit der Auslage einer Metzgerei, mit einer Tür zur Kühlkammer und einem Abgang nach hinten als Ausgang/Eingang zur Metzgerei. An der Wand ein Bayern München- Trikot und ein Meisterbrief. Als Bühnenteiler reicht z.B. eine Kommode, ein Schrank oder ein Regal.",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Radio MuK",
@@ -2932,7 +3483,10 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "auch möglich mit 6m/6w",
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "1 Studio eines lokalen Radiosenders",
+      "autor": "Rene Rüprich"
     },
     {
       "titel": "Räuber im Rock",
@@ -2948,7 +3502,10 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 6m/5w",
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Die Eß- und Wohnküche der WG. Zwei Türen, ein Fenster (letzteres muß nicht sein). Ein Tisch mit vier Stühlen, ein Sessel, eine Kommode, eine Spüle plus Herd. Außerdem ein Fitneß-Fahrrad, an einer Wand eine Dartscheibe.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Rechts vor Links(?)",
@@ -2963,7 +3520,10 @@
       "besetzung_m": 1,
       "besetzung_w": 3,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Spießige Wohnzimmereinrichtung eines nicht minder spießigen Ehepaares.",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Reif für die Insel",
@@ -2979,7 +3539,10 @@
       "besetzung_w": 10,
       "besetzung_hinweis": "Besetzung zum Teil variabel",
       "spieldauer_min": 45,
-      "spieldauer_text": "45"
+      "spieldauer_text": "45",
+      "spielort": "Saal",
+      "buehnenbild": "Gerichtssaal, übliche Ausstattung.",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Reise nach Jerusalem",
@@ -2995,7 +3558,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 6m/4w oder 4m/6w",
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Bibliothek der Schickers, Regale mit Büchern, dazwischen Ölgemälde, kleiner Beistelltisch mit drei alten Stühlen, kleines Sofa. 2 Türen: eine nach draußen, eine in Richtung Keller, diese ist hinter Regalen verborgen, muß aber zu öffnen sein.",
+      "autor": "Thomas Gehring"
     },
     {
       "titel": "Rosa gibt nicht auf",
@@ -3010,7 +3576,10 @@
       "besetzung_m": 1,
       "besetzung_w": 5,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, Ausstattung beliebig.",
+      "autor": "Uschi Podljeska"
     },
     {
       "titel": "Saustall beim Amtsgericht",
@@ -3027,7 +3596,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 5m/4w",
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "Verhandlungssaal an einem ländlichen deutschen Amtsgericht",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Scheinheiligkeit hat einen Namen",
@@ -3042,7 +3614,10 @@
       "besetzung_m": 4,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, 2 Türen, übliche Ausstattung.",
+      "autor": "Doris Albert"
     },
     {
       "titel": "Schicksalsschläge",
@@ -3057,7 +3632,10 @@
       "besetzung_m": 0,
       "besetzung_w": 4,
       "spieldauer_min": 7,
-      "spieldauer_text": "7"
+      "spieldauer_text": "7",
+      "spielort": "Saal",
+      "buehnenbild": "Platz an einer Straße, beliebige Ausstattung.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Schwarzer Blitz und roter Hahn",
@@ -3072,7 +3650,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 110,
-      "spieldauer_text": "110"
+      "spieldauer_text": "110",
+      "spielort": "Saal",
+      "buehnenbild": "Gaststube der Seewirtin in einem Dorf am Ende der Welt in der Zeit zwischen 1955 und 1960",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Showdown im Park",
@@ -3089,7 +3670,9 @@
       "besetzung_m": 2,
       "besetzung_w": 3,
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "autor": "Martin Schörle"
     },
     {
       "titel": "Sicher ist sicher",
@@ -3105,7 +3688,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 40,
-      "spieldauer_text": "40"
+      "spieldauer_text": "40",
+      "spielort": "Saal",
+      "buehnenbild": "Auf der Terrasse mit Blick über den Garten des Hauses der Eheleute Leisner. Die Straße kann vom Garten aus eingesehen werden, macht dann einen Bogen um das Haus herum.",
+      "autor": "Jutta Döpfer"
     },
     {
       "titel": "Silvestergeister",
@@ -3121,7 +3707,10 @@
       "besetzung_w": 4,
       "besetzung_hinweis": "auch möglich mit 2m/3w oder 3m/2w",
       "spieldauer_min": 7,
-      "spieldauer_text": "7"
+      "spieldauer_text": "7",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, beliebige Ausstattung.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "So ein Durcheinander",
@@ -3137,7 +3726,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 6m/4w",
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "buehnenbild": "Esszimmer/Aufenthaltsraum mit Tisch, Stühlen und einer Bank oder einem Sofa. Zimmer ist mit Antiquitäten ausgestattet. Eine Türe führt nach draußen; eine Türe in die Wohnung. Fenster. Telefon.",
+      "autor": "Paul Greb"
     },
     {
       "titel": "So ein Sauhaufen",
@@ -3153,7 +3745,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "auch möglich 4w/0m oder 2w/2m",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "1 freier Platz vor Stall/Scheune",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Spinatulus Wachtulus",
@@ -3168,7 +3763,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "freier Platz.",
+      "autor": "Horst Kayling"
     },
     {
       "titel": "Stadtführung",
@@ -3184,7 +3782,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch möglich mit 2m/4w oder 3m/3w",
       "spieldauer_min": 4,
-      "spieldauer_text": "4"
+      "spieldauer_text": "4",
+      "spielort": "Saal",
+      "buehnenbild": "Straßenecke, Ausstattung beliebig.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Super-Kollege Schmitt",
@@ -3200,7 +3801,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich mit 3m/2w durch Doppelbesetzung oder mit 2m/3w",
       "spieldauer_min": 60,
-      "spieldauer_text": "60"
+      "spieldauer_text": "60",
+      "spielort": "Saal",
+      "buehnenbild": "Ein antiquiertes Büro mit schweren Büromöbeln. Der Bühnenhintergrund wird dominiert von einem großen Schreibtisch, auf dem ein heilloses Durcheinander herrscht. Papier stapelt sich, Aktenordner, Müll. Auf der linken Seite des Schreibtisches steht auf der Kante ein PC, der in diesem historischen Ambiente falsch wirkt. Auf dem Schreibtisch im Vordergrund ein großes Namensschild aus Messing: Herr Schmitt. Hinter dem Schreibtisch ein einfacher Bürostuhl. Rechts unterhalb des Schreibtisches ein überfüllter Papierkorb. Rechts im Bühnenvordergrund ein wesentlich kleinerer Schreibtisch. Bis auf einen PC ist er leer. Ein einfacher Bürostuhl. Links und rechts der Bühne jeweils eine Tür.",
+      "autor": "Henry Doll"
     },
     {
       "titel": "Tee oder Kaffee",
@@ -3216,7 +3820,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich 1w/2m",
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "1 Offene Bühne",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Topf und Deckel",
@@ -3231,7 +3838,10 @@
       "besetzung_m": 2,
       "besetzung_w": 3,
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "Raum mit Shreibtisch. Weitere Ausstattung nach Belieben.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Tradition",
@@ -3246,7 +3856,10 @@
       "besetzung_m": 2,
       "besetzung_w": 2,
       "spieldauer_min": 7,
-      "spieldauer_text": "7"
+      "spieldauer_text": "7",
+      "spielort": "Saal",
+      "buehnenbild": "Wihnzimmer, beliebige Ausstattung.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Üb immer Treu und Redlichkeit",
@@ -3262,7 +3875,10 @@
       "besetzung_w": 2,
       "besetzung_hinweis": "auch möglich mit 3m/3w",
       "spieldauer_min": 45,
-      "spieldauer_text": "45"
+      "spieldauer_text": "45",
+      "spielort": "Saal",
+      "buehnenbild": "1 (Gastwirtschaft)",
+      "autor": "Christian Lange"
     },
     {
       "titel": "und dess am hellichten Dooch",
@@ -3277,7 +3893,10 @@
       "besetzung_m": 5,
       "besetzung_w": 5,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "beides",
+      "buehnenbild": "Die Bühne stellt die Außenansicht einer Gastwirtschaft dar. Es gibt eine Tür und ein Fenster auf der Rückseite. Davor steht, etwas rechts von der Mitte, ein altes, größeres Mostfaß mit der Öffnung zum Publikum. Die Öffnung ist durch einen alten Sack verdeckt. An dem Faß lehnt eine Gitarre oder eventuell eine Zugorgel (je nach Möglichkeit des Schauspielers Leo). An den Seitenwänden sind Abgänge. Rechts kann eine freie Landschaft dargestellt werden, links ist eine Hauswand mit einem Fenster. Vor der Wirtschaft steht außerdem ein kleiner runder Tisch mit zwei Stühlen. Etwas vor dem Faß und quer zum Publikum steht ein primitiver Kasten in einer sargähnlichen Form.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Unsere Freundin Ingrid",
@@ -3292,7 +3911,10 @@
       "besetzung_m": 0,
       "besetzung_w": 4,
       "spieldauer_min": 6,
-      "spieldauer_text": "6"
+      "spieldauer_text": "6",
+      "spielort": "Saal",
+      "buehnenbild": "beliebig",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Unter Schwestern",
@@ -3308,7 +3930,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "auch 4m/4w oder 2m/6w",
       "spieldauer_min": 105,
-      "spieldauer_text": "105"
+      "spieldauer_text": "105",
+      "spielort": "Saal",
+      "buehnenbild": "1 - Die Bühne stellt ein Wohnzimmer dar, das früher einmal ein Gastraum war. Eine Theke gibt es nicht mehr, aber ein Plakat der Brauerei und ein kleines Regal mit Bierkrügen und Pokalen. An der Rückwand hängt ein altes Landschafts-Ölbild, das aus dem Familienfundus stammt. Hinten rechts geht ein offener Abgang zu den Privaträumen. Links befindet sich die Zimmertür zum (Aus)gang. Unter dem Bild steht ein kleines, altmodisches Sofa. Rechts an der Wand steht eine Kommode mit dem Regal darüber.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Verflixt, verhext, verzaubert",
@@ -3324,7 +3949,10 @@
       "besetzung_m": 6,
       "besetzung_w": 6,
       "spieldauer_min": 120,
-      "spieldauer_text": "120 Minuten"
+      "spieldauer_text": "120 Minuten",
+      "spielort": "beides",
+      "buehnenbild": "Im 1. Akt Schlosshof mit drei Abgängen: hinten links ins Schloss, vorne links nach draußen und hinten rechts zum Turm. Dieser Turm hinten in der Mitte der Bühne wird etwas nach vorne \"gemauert\" und dient so später auch als räumliche Abgrenzung zwischen Wald und Schlossbereich. Die linke und hintere Bühnenwand stellen das Schlossgebäude dar. Die rechte Bühnenwand ist als offenes Gelände, z.B. mit Bäumen bemalt. In der rechten Wand befindet sich hinten ein offener Abgang. Hinten links an der Wand steht eine Sitzbank. Vorne rechts ein Tisch mit Bank mit Stühlen. Im 2. und 3. Akt erfolgt eine Teilung der Bühne in \"Schlossseite\" (links) und \"Waldseite\" (rechts). Der offene Abgang in der Rückwand ist jetzt mit einer Tür versehen und dient als Ausgang des Hexenhäuschens. Wo im ersten 1. Akt Tisch und Bank standen, ist jetzt der Platz vor dem Hexenhäuschen. Dort steht eine große Feuerschale, es liegen Reisig und ein Baumstumpf herum. Abgetrennt sind die beiden Bühnenhälften zum einen durch den Turm, zum anderen durch ein oder zwei mittelgroße Sträucher. Ende des 3. Aktes baut Karl den rechten Teil der Bühne wieder in den Anfangs-Zustand um.",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Vernagelt und verbohrt",
@@ -3339,7 +3967,10 @@
       "besetzung_m": 2,
       "besetzung_w": 1,
       "spieldauer_min": 10,
-      "spieldauer_text": "10"
+      "spieldauer_text": "10",
+      "spielort": "Saal",
+      "buehnenbild": "Flur, nach Beliebhen.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Vier Hammel auf Brautschau",
@@ -3354,7 +3985,10 @@
       "besetzung_m": 6,
       "besetzung_w": 4,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "\"Malerischer Junggesellenhaushalt\": Auf der Bühne herrscht, rein optisch, ein herrliches Chaos. Töpfe, Geschirr usw. stehen herum, Socken, Hemden usw. hängen wahllos verteilt über den Möbeln. Mobiliar-Ausstattung nach Belieben.",
+      "autor": "Jochen Wiltschko"
     },
     {
       "titel": "Vollgas für die Kranken",
@@ -3370,7 +4004,9 @@
       "besetzung_w": 6,
       "besetzung_hinweis": "auch möglich mit 6m/6w",
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "autor": "Friedhelm Müller"
     },
     {
       "titel": "Vor dem großen Auftritt",
@@ -3385,7 +4021,10 @@
       "besetzung_m": 1,
       "besetzung_w": 1,
       "spieldauer_min": 5,
-      "spieldauer_text": "5"
+      "spieldauer_text": "5",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnstube, Ausstattung beliebig.",
+      "autor": "Walter Tausendpfund"
     },
     {
       "titel": "Vorsicht Tango",
@@ -3401,7 +4040,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "plus 1 Mini-Rolle ohne Text",
       "spieldauer_min": 35,
-      "spieldauer_text": "35"
+      "spieldauer_text": "35",
+      "spielort": "Saal",
+      "buehnenbild": "Biergarten, Ausstattung mit Tischen, Stühlen, eine angedeutete Wirtschaft.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Wartezimmer-Gschmarri",
@@ -3416,7 +4058,10 @@
       "besetzung_m": 3,
       "besetzung_w": 5,
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Im Wartezimmer eines Arztes. An der Wand hängt, neben verschiedenen Bilder und Plakaten, eines mit der Aufschrift: „Über unsere Krankheiten reden wir nur mit dem Doktor!“",
+      "autor": "Jutta Döpfer"
     },
     {
       "titel": "Wartezimmer-Gschmarri II",
@@ -3431,7 +4076,10 @@
       "besetzung_m": 4,
       "besetzung_w": 6,
       "spieldauer_min": 20,
-      "spieldauer_text": "20"
+      "spieldauer_text": "20",
+      "spielort": "Saal",
+      "buehnenbild": "Wartezimmer Arztpraxis.",
+      "autor": "Jutta Döpfer"
     },
     {
       "titel": "Was denn nun: Sein oder Schein",
@@ -3446,7 +4094,10 @@
       "besetzung_m": 4,
       "besetzung_w": 3,
       "spieldauer_min": 45,
-      "spieldauer_text": "45"
+      "spieldauer_text": "45",
+      "spielort": "Saal",
+      "buehnenbild": "Büro, übliche Ausstattung.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Weihnachtsüberraschung Tante Anna",
@@ -3462,7 +4113,10 @@
       "besetzung_w": 8,
       "besetzung_hinweis": "Doppelbesetzungen möglich",
       "spieldauer_min": 125,
-      "spieldauer_text": "125"
+      "spieldauer_text": "125",
+      "spielort": "Saal",
+      "buehnenbild": "Lustspiel",
+      "autor": "Adolf Köhler"
     },
     {
       "titel": "Wellness now",
@@ -3477,7 +4131,10 @@
       "besetzung_m": 3,
       "besetzung_w": 7,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Aufenthaltsraum Beauty-Klinik). Um die Szenenwechsel flüssig zu gestalten, sind zwei, besser drei Ab/Zugänge nötig. Ein Tisch, Stühle, im Hintergrund vier Liegestühle. Ansonsten beliebige Ausstattung.",
+      "autor": "Dirk Salzbrunn"
     },
     {
       "titel": "Wenn erst einmal die schönen Blüten blühen",
@@ -3493,7 +4150,10 @@
       "besetzung_m": 5,
       "besetzung_w": 3,
       "spieldauer_min": 100,
-      "spieldauer_text": "100"
+      "spieldauer_text": "100",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer/Atelier: Die Tür in der Rückwand führt auf den Flur hinaus. In der linken Wand befindet sich die Schlafzimmertür, in der rechten Wand die Tür zur Küche und ein kleines Fenster, das mit einem grellroten Vorhang verhängt ist. Zur Rampe hin noch eine weitere Tür, die von der früheren Verbindung mit der Nachbarwohnung zeugt, sie ist mit einer Kommode zugestellt. An den freien Wandflächen hängen Gemälde und Grafiken, ein Spiegel und eine Zeichnung des verstorbenen Herrn Regenbogen. Auf einer Staffelei ist das nahezu vollendete Porträt Dr. Kantweichs zu sehen. Auf dem Boden steht ein barockes Fernsehgerät, darauf eine Zimmerantenne. Im Vordergrund ein Tisch mit zwei Stühlen.",
+      "autor": "Wolfgang Stock"
     },
     {
       "titel": "Wer berühmt sein will, muss sterben",
@@ -3508,7 +4168,10 @@
       "besetzung_m": 4,
       "besetzung_w": 5,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer Auf- und Abgänge: hinten eine Tür zum Flur, rechts eine Terrassentür, Einrichtung: in der Mitte Sofa mit Tisch, links davon ein Sessel, ganz links an der Wand ein kleiner Schreibtisch.",
+      "autor": "Ralf Kaspari"
     },
     {
       "titel": "Wer küsst die Braut?",
@@ -3523,7 +4186,10 @@
       "besetzung_m": 3,
       "besetzung_w": 5,
       "spieldauer_min": 120,
-      "spieldauer_text": "120"
+      "spieldauer_text": "120",
+      "spielort": "Saal",
+      "buehnenbild": "Die Handlung spielt in einem Friseursalon. Tür links führt zu Sebastians Wohnung, Tür hinten ist die Ladentür, oder großes Panoramafenster, hinter dem man gelegentlich Biggi, Erwin oder im 2. Akt Harald sehen könnte. Rechts ist ein Ausgang zu Nebenräumen und WC. Vorne links ist ein Frisiertisch aufgebaut, als „Herrensalon“. Am rechten vorderen Bühnenrand sind zwei Frisiertische, als „Damensalon“. Die Kunden (Spieler) sitzen so zum Publikum, dass man meinen könnte, sie würden in einen (nicht vorhandenen ) Spiegel schauen. In der Mitte hinten steht ein Wartesofa mit Zeitschriften, rechts davon ein Kleiderständer. Ladentheke und ein Regal mit Shampoo usw. an der linken Wand hinten vervollständigen das Bühnenbild. Hier kann auch eine kleine Stereoanlage stehen.",
+      "autor": "Angelika Grimm"
     },
     {
       "titel": "Wie verhext",
@@ -3540,7 +4206,10 @@
       "besetzung_w": 3,
       "besetzung_hinweis": "zusätzlich 1 Sprechrolle und 2 Statisten",
       "spieldauer_min": 15,
-      "spieldauer_text": "15"
+      "spieldauer_text": "15",
+      "spielort": "Saal",
+      "buehnenbild": "freier Platz, Gestaltung nach Belieben.",
+      "autor": "Arno Boas"
     },
     {
       "titel": "Willkommen im Glubb",
@@ -3556,7 +4225,10 @@
       "besetzung_w": 5,
       "besetzung_hinweis": "zusätzlich 5-köpfige Kinder-Cheerleader-Gruppe (optional)",
       "spieldauer_min": 25,
-      "spieldauer_text": "25"
+      "spieldauer_text": "25",
+      "spielort": "Saal",
+      "buehnenbild": "Wohnzimmer, übliche Ausstattung",
+      "autor": "Gerlinde Panzer"
     },
     {
       "titel": "Zuckerguss und Kräuterkekse",
@@ -3572,7 +4244,10 @@
       "besetzung_w": 8,
       "besetzung_hinweis": "auch möglich 5m/7w",
       "spieldauer_min": 130,
-      "spieldauer_text": "130"
+      "spieldauer_text": "130",
+      "spielort": "Saal",
+      "buehnenbild": "1 Innenraum der Konditorei „Tortenkaiser“ mit einer Theke, Sitzgelegenheiten und drei Abgängen, einer nach draußen, einer in die Backstube und einer auf die Toilette. Alles wirkt „plüschig“ gemütlich, aber sehr altmodisch, als wäre seit Ewigkeiten nichts erneuert worden",
+      "autor": "Christian Ziegler"
     },
     {
       "titel": "Zum Teufel mit der Familie",
@@ -3588,7 +4263,9 @@
       "besetzung_w": 7,
       "besetzung_hinweis": "ohne Doppelbesetzungen sind bis zu 25 Rollen möglich",
       "spieldauer_min": 95,
-      "spieldauer_text": "95"
+      "spieldauer_text": "95",
+      "spielort": "Saal",
+      "autor": "Thorsten Böhner"
     },
     {
       "titel": "Zwei im selben Boot",
@@ -3604,12 +4281,15 @@
       "besetzung_w": 0,
       "besetzung_hinweis": "auch möglich mit 0m/2w",
       "spieldauer_min": 6,
-      "spieldauer_text": "6"
+      "spieldauer_text": "6",
+      "spielort": "Saal",
+      "buehnenbild": "im Park. Beliebiges Bühnenbild.",
+      "autor": "Krista Bremen"
     },
     {
       "titel": "Zwei verschwiegene Töchter",
       "slug": "zwei-verschwiegene-tochter",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/zwei-verschwiegene-tochter",
+      "url": "https://theaterverlag-arno-boas.de/stuecke/zwei-verschwiegene-%e2%80%9etochter",
       "kuerzel": "e-04",
       "untertitel": "Komödie (Einakter)",
       "kategorien": [
@@ -3619,7 +4299,8 @@
       "besetzung_m": 2,
       "besetzung_w": 3,
       "spieldauer_min": 30,
-      "spieldauer_text": "30"
+      "spieldauer_text": "30",
+      "spielort": "Saal"
     }
   ]
 }
