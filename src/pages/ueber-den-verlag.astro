@@ -104,34 +104,38 @@ const faqLd = {
   <SiteHeader active="/ueber-den-verlag" />
 
   <section class="intro">
-    <div class="wrap narrow">
-      <span class="cap-label">Seit 1997</span>
-      <h1>Über den Verlag</h1>
+    <div class="wrap">
+      <div class="narrow">
+        <span class="cap-label">Seit 1997</span>
+        <h1>Über den Verlag</h1>
+      </div>
     </div>
   </section>
 
-  <section class="wrap narrow lead-txt">
-    <p class="big">
-      1997 startete der Theaterverlag Arno Boas — damals noch unter dem Namen
-      „Arnos Theaterladen" — als Verlag für das Laien- und Amateurtheater. Schon
-      zu Beginn hatten sich über 20 Autorinnen und Autoren angeschlossen.
-    </p>
-    <p>
-      In den Jahren seither ist unser Repertoire kontinuierlich auf über 250
-      Bühnenstücke gewachsen. Alle Werke sind in verständlicher Umgangssprache
-      verfasst und dadurch leicht in jeden Dialekt übertragbar oder auf
-      Hochdeutsch spielbar — von der Komödie über den Krimi bis zum Drama.
-    </p>
-    <p>
-      Vielfalt war und bleibt auch in Zukunft Trumpf unseres Verlages. Ob
-      abendfüllendes Stück, Einakter oder Kurzstück: Schauen Sie sich um — wir
-      würden uns freuen.
-    </p>
+  <section class="wrap lead-txt">
+    <div class="narrow">
+      <p class="big">
+        1997 startete der Theaterverlag Arno Boas — damals noch unter dem Namen
+        „Arnos Theaterladen" — als Verlag für das Laien- und Amateurtheater. Schon
+        zu Beginn hatten sich über 20 Autorinnen und Autoren angeschlossen.
+      </p>
+      <p>
+        In den Jahren seither ist unser Repertoire kontinuierlich auf über 250
+        Bühnenstücke gewachsen. Alle Werke sind in verständlicher Umgangssprache
+        verfasst und dadurch leicht in jeden Dialekt übertragbar oder auf
+        Hochdeutsch spielbar — von der Komödie über den Krimi bis zum Drama.
+      </p>
+      <p>
+        Vielfalt war und bleibt auch in Zukunft Trumpf unseres Verlages. Ob
+        abendfüllendes Stück, Einakter oder Kurzstück: Schauen Sie sich um — wir
+        würden uns freuen.
+      </p>
 
-    <div class="stats">
-      <div class="stat"><b>250+</b><span>Bühnenstücke</span></div>
-      <div class="stat"><b>40</b><span>Autorinnen und Autoren</span></div>
-      <div class="stat"><b>1997</b><span>gegründet</span></div>
+      <div class="stats">
+        <div class="stat"><b>250+</b><span>Bühnenstücke</span></div>
+        <div class="stat"><b>40</b><span>Autorinnen und Autoren</span></div>
+        <div class="stat"><b>1997</b><span>gegründet</span></div>
+      </div>
     </div>
   </section>
 
@@ -224,25 +228,27 @@ const faqLd = {
 
   <NewsletterSignup />
 
-  <section class="wrap narrow faq-sec">
-    <div class="faq-h">
-      <span class="cap-label">Häufige Fragen</span>
-      <h2>Gut zu wissen</h2>
-    </div>
-    <div class="faq">
-      {
-        faqs.map((item) => (
-          <details>
-            <summary>
-              {item.question}
-              <span class="ic">
-                <i class="ti ti-plus" aria-hidden="true" />
-              </span>
-            </summary>
-            <p>{item.answer}</p>
-          </details>
-        ))
-      }
+  <section class="wrap faq-sec">
+    <div class="narrow">
+      <div class="faq-h">
+        <span class="cap-label">Häufige Fragen</span>
+        <h2>Gut zu wissen</h2>
+      </div>
+      <div class="faq">
+        {
+          faqs.map((item) => (
+            <details>
+              <summary>
+                {item.question}
+                <span class="ic">
+                  <i class="ti ti-plus" aria-hidden="true" />
+                </span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))
+        }
+      </div>
     </div>
   </section>
 
