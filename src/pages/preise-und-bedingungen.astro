@@ -75,33 +75,103 @@ const faqLd = {
       <div class="sec-head">
         <span class="cap-label">In fünf Schritten</span>
         <h2>So kommen Sie zur Aufführung</h2>
+        <p class="journey-lead">
+          Tippen Sie die Stationen ab — wie eine kleine Probenliste bis zur Premiere.
+        </p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="n">1</div>
-          <h4>Stück finden</h4>
-          <p>Im Repertoire stöbern und die kostenlose Leseprobe (PDF) laden.</p>
+
+      <div class="journey" data-journey>
+        <div class="journey-progress" aria-live="polite">
+          <div class="jp-track" aria-hidden="true">
+            <div class="jp-fill" data-journey-fill></div>
+          </div>
+          <span data-journey-label>0 von 5 Stationen</span>
         </div>
-        <div class="step">
-          <div class="n">2</div>
-          <h4>In Ruhe lesen</h4>
-          <p>Vier Wochen unverbindlich zur Ansicht – Verlängerung jederzeit.</p>
-        </div>
-        <div class="step">
-          <div class="n">3</div>
-          <h4>Anfragen</h4>
-          <p>Über die Merkliste sammeln und gebündelt anfragen.</p>
-        </div>
-        <div class="step">
-          <div class="n">4</div>
-          <h4>Vertrag</h4>
-          <p>Vor der ersten Aufführung den Aufführungsvertrag abschließen.</p>
-        </div>
-        <div class="step">
-          <div class="n">5</div>
-          <h4>Spielen</h4>
-          <p>Bühne frei – und viel Erfolg bei der Aufführung!</p>
-        </div>
+
+        <ol class="steps">
+          <li class="step" data-step="1">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+              <span class="n" aria-hidden="true">
+                <i class="ti ti-search step-ic"></i>
+                <span class="step-num">1</span>
+                <i class="ti ti-check step-ok"></i>
+              </span>
+              <span class="step-body">
+                <span class="step-title">Stück finden</span>
+                <span class="step-text"
+                  >Im Repertoire stöbern und die kostenlose Leseprobe (PDF)
+                  laden.</span
+                >
+              </span>
+            </button>
+          </li>
+          <li class="step" data-step="2">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+              <span class="n" aria-hidden="true">
+                <i class="ti ti-book step-ic"></i>
+                <span class="step-num">2</span>
+                <i class="ti ti-check step-ok"></i>
+              </span>
+              <span class="step-body">
+                <span class="step-title">In Ruhe lesen</span>
+                <span class="step-text"
+                  >Vier Wochen unverbindlich zur Ansicht – Verlängerung
+                  jederzeit.</span
+                >
+              </span>
+            </button>
+          </li>
+          <li class="step" data-step="3">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+              <span class="n" aria-hidden="true">
+                <i class="ti ti-mail step-ic"></i>
+                <span class="step-num">3</span>
+                <i class="ti ti-check step-ok"></i>
+              </span>
+              <span class="step-body">
+                <span class="step-title">Anfragen</span>
+                <span class="step-text"
+                  >Über die Merkliste sammeln und gebündelt anfragen.</span
+                >
+              </span>
+            </button>
+          </li>
+          <li class="step" data-step="4">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+              <span class="n" aria-hidden="true">
+                <i class="ti ti-file-text step-ic"></i>
+                <span class="step-num">4</span>
+                <i class="ti ti-check step-ok"></i>
+              </span>
+              <span class="step-body">
+                <span class="step-title">Vertrag</span>
+                <span class="step-text"
+                  >Vor der ersten Aufführung den Aufführungsvertrag
+                  abschließen.</span
+                >
+              </span>
+            </button>
+          </li>
+          <li class="step" data-step="5">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+              <span class="n" aria-hidden="true">
+                <i class="ti ti-masks-theater step-ic"></i>
+                <span class="step-num">5</span>
+                <i class="ti ti-check step-ok"></i>
+              </span>
+              <span class="step-body">
+                <span class="step-title">Spielen</span>
+                <span class="step-text"
+                  >Bühne frei – und viel Erfolg bei der Aufführung!</span
+                >
+              </span>
+            </button>
+          </li>
+        </ol>
+
+        <p class="journey-done" data-journey-done hidden>
+          Premiere in Sicht — alle Stationen abgehakt. Viel Applaus!
+        </p>
       </div>
     </div>
   </section>
@@ -327,6 +397,72 @@ const faqLd = {
   <StickyKatalog />
 </BaseLayout>
 
+<script>
+  const root = document.querySelector<HTMLElement>("[data-journey]");
+  if (root) {
+    const KEY = "tvab-journey-steps";
+    const fill = root.querySelector<HTMLElement>("[data-journey-fill]");
+    const label = root.querySelector<HTMLElement>("[data-journey-label]");
+    const done = root.querySelector<HTMLElement>("[data-journey-done]");
+    const steps = [...root.querySelectorAll<HTMLElement>("[data-step]")];
+    const total = steps.length;
+
+    function load(): Set<string> {
+      try {
+        const raw = JSON.parse(localStorage.getItem(KEY) || "[]");
+        return new Set(Array.isArray(raw) ? raw.map(String) : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    function save(set: Set<string>) {
+      localStorage.setItem(KEY, JSON.stringify([...set]));
+    }
+
+    function render(set: Set<string>) {
+      steps.forEach((step) => {
+        const id = step.dataset.step || "";
+        const on = set.has(id);
+        step.classList.toggle("done", on);
+        const btn = step.querySelector<HTMLButtonElement>("[data-step-toggle]");
+        if (btn) btn.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      const n = set.size;
+      if (fill) fill.style.width = `${(n / total) * 100}%`;
+      if (label) {
+        label.textContent =
+          n === 0
+            ? "0 von 5 Stationen"
+            : n === total
+              ? "5 von 5 — bereit für die Premiere"
+              : `${n} von 5 Stationen`;
+      }
+      if (done) done.hidden = n !== total;
+      root.dataset.progress = String(n);
+    }
+
+    let state = load();
+    render(state);
+
+    root.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(
+        "[data-step-toggle]",
+      );
+      if (!btn) return;
+      const step = btn.closest<HTMLElement>("[data-step]");
+      const id = step?.dataset.step;
+      if (!id) return;
+      if (state.has(id)) state.delete(id);
+      else state.add(id);
+      save(state);
+      render(state);
+      step?.classList.add("pop");
+      window.setTimeout(() => step?.classList.remove("pop"), 280);
+    });
+  }
+</script>
+
 <style>
   .narrow {
     max-width: 900px;
@@ -526,31 +662,169 @@ const faqLd = {
   .steps {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    margin-top: 26px;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .step {
+    margin: 0;
+  }
+  .step-btn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 14px 18px;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition:
+      border-color 0.18s,
+      transform 0.18s,
+      box-shadow 0.18s,
+      background 0.18s;
+  }
+  .step-btn:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(20, 12, 6, 0.08);
+  }
+  .step-btn:focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 2px;
   }
   .step .n {
-    width: 42px;
-    height: 42px;
+    position: relative;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--wine);
-    color: #fff;
-    font-family: var(--font-head);
-    font-weight: 700;
+    background: var(--paper-2);
+    border: 2px solid var(--border);
+    color: var(--wine);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    margin-bottom: 12px;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.2s;
   }
-  .step h4 {
-    font-size: 16.5px;
+  .step .step-ic {
+    font-size: 20px;
+    line-height: 1;
+  }
+  .step .step-num,
+  .step .step-ok {
+    display: none;
+  }
+  .step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .step-title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 17px;
     line-height: 1.1;
+    color: var(--ink);
   }
-  .step p {
-    font-size: 13px;
+  .step-text {
+    font-size: 13.5px;
     color: var(--muted);
-    margin: 6px 0 0;
+    line-height: 1.45;
+  }
+  .step.done .n {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: #fff;
+  }
+  .step.done .step-ic {
+    display: none;
+  }
+  .step.done .step-ok {
+    display: block;
+    font-size: 22px;
+  }
+  .step.done .step-btn {
+    border-color: var(--wine);
+    background: #fffaf3;
+  }
+  .step.done .step-title {
+    color: var(--wine);
+  }
+  .step.pop .n {
+    transform: scale(1.12);
+  }
+  .journey-lead {
+    margin: 12px 0 0;
+    color: var(--muted);
+    max-width: 52ch;
+    font-size: 15.5px;
+  }
+  .journey {
+    margin-top: 28px;
+  }
+  .journey-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .jp-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .jp-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--wine), var(--gold));
+    border-radius: inherit;
+    transition: width 0.35s ease;
+  }
+  .journey-progress span {
+    flex: none;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    min-width: 12ch;
+  }
+  .journey-done {
+    margin: 18px 0 0;
+    padding: 14px 16px;
+    background: var(--ink);
+    color: #efe6d8;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .journey[data-progress="5"] .journey-done {
+    animation: journey-in 0.4s ease;
+  }
+  @keyframes journey-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .table-h {
     font-size: 11px;
@@ -616,7 +890,7 @@ const faqLd = {
       align-items: flex-start;
     }
     .steps {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
   }
 </style>
