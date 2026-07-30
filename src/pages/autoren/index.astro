@@ -17,11 +17,45 @@ const authors = [
   { slug: "wilhelm-wolpert", name: "Wilhelm Wolpert", hasPhoto: false },
   { slug: "thomas-gehring", name: "Thomas Gehring", hasPhoto: false },
 ];
+
+const faqs = [
+  {
+    question: "Wie viele Autorinnen und Autoren schreiben für den Verlag?",
+    answer:
+      "Rund 40 Autorinnen und Autoren tragen zum Programm bei – vom Schwank bis zum Drama.",
+  },
+  {
+    question: "Sind alle Theaterstücke von Arno Boas?",
+    answer:
+      "Nein. Arno Boas ist Verlagsgründer und selbst Autor, doch rund 40 Autorinnen und Autoren gehören zum Verlag.",
+  },
+  {
+    question: "Kann ich als Autorin oder Autor ein Stück einreichen?",
+    answer:
+      "Ja. Senden Sie uns Ihr Manuskript unverbindlich zu – wir prüfen zeitnah, ob es ins Programm passt. Gerade unbekannten Talenten geben wir gern eine Chance.",
+  },
+  {
+    question: "Finde ich alle Stücke einer Autorin oder eines Autors?",
+    answer:
+      "Ja. Auf der jeweiligen Autorenseite finden Sie das Werkverzeichnis – es wird laufend ergänzt, sobald die Zuordnungen vollständig vorliegen.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
 ---
 
 <BaseLayout
   title="Autorinnen und Autoren"
   description="Rund 40 Autorinnen und Autoren schreiben für den Theaterverlag Arno Boas."
+  jsonLd={faqLd}
 >
   <SiteHeader active="/autoren" />
 
@@ -62,13 +96,36 @@ const authors = [
   </section>
 
   <NewsletterSignup />
+
+  <section class="wrap faq-sec">
+    <div class="faq-h">
+      <span class="cap-label">Häufige Fragen</span>
+      <h2>Gut zu wissen</h2>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((item) => (
+          <details>
+            <summary>
+              {item.question}
+              <span class="ic">
+                <i class="ti ti-plus" aria-hidden="true" />
+              </span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
   <SiteFooter />
   <StickyKatalog />
 </BaseLayout>
 
 <style>
   .page {
-    padding-block: 56px 90px;
+    padding-block: 56px 40px;
   }
   h1 {
     font-size: clamp(40px, 6vw, 68px);
@@ -120,6 +177,59 @@ const authors = [
     font-weight: 600;
     letter-spacing: 0.4px;
     color: var(--muted);
+  }
+  .faq-sec {
+    padding-block: 24px 48px;
+  }
+  .faq-h {
+    margin-bottom: 22px;
+  }
+  .faq-h h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1;
+    margin-top: 10px;
+  }
+  .faq {
+    border-top: 2px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 23px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 22px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 22px;
+    font-size: 16px;
+    color: var(--text);
+    max-width: 78ch;
   }
   @media (max-width: 900px) {
     .grid {
