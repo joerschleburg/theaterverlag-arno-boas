@@ -44,16 +44,38 @@ export const GENRE_FILTER_OPTIONS = [
   "Für Senioren",
 ] as const;
 
+export type GenreFilterOption = (typeof GENRE_FILTER_OPTIONS)[number];
+
 /** Anzeigename / URL-Wert für Genre-Filter (Datenkategorie → Filterlabel). */
 export function genreFilterLabel(kategorie: string): string {
   return kategorie === "Für Jugendliche" ? "Kinder & Jugend" : kategorie;
 }
 
-export const GENRE_INDEX = [
-  { slug: "komoedie", label: "Komödie", match: ["Komödie", "Lustspiel", "Schwank"] },
-  { slug: "krimi", label: "Krimi", match: ["Krimi", "Krimikomödie"] },
-  { slug: "maerchen", label: "Märchen", match: ["Märchen"] },
-  { slug: "fuer-jugendliche", label: "Kinder & Jugend", match: ["Für Jugendliche"] },
-  { slug: "weihnachten", label: "Weihnachten", match: ["Weihnachten"] },
-  { slug: "drama", label: "Drama", match: ["Drama", "Tragikomödie"] },
-] as const;
+function genreSlug(label: string) {
+  return label
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/&/g, "und")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Welche Daten-Kategorien zu einem Filterpunkt zählen. */
+const GENRE_MATCH: Record<string, readonly string[]> = {
+  Komödie: ["Komödie", "Lustspiel", "Schwank"],
+  "Kinder & Jugend": ["Für Jugendliche"],
+};
+
+/**
+ * Startseiten-Index „Nach Genre stöbern“ — gleiche Punkte wie der Filter (ohne „alle“).
+ */
+export const GENRE_INDEX = GENRE_FILTER_OPTIONS.filter((g) => g !== "alle").map(
+  (label) => ({
+    slug: genreSlug(label),
+    label,
+    match: GENRE_MATCH[label] ?? [label],
+  }),
+);
