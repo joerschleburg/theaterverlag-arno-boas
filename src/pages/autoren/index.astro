@@ -10,6 +10,9 @@ import {
   autorPhotoAlt,
   autorPhotoSrc,
 } from "../../lib/autoren";
+import { SITE } from "../../lib/site";
+
+const manuscriptMail = `mailto:${SITE.email}?subject=${encodeURIComponent("Manuskript einsenden")}`;
 
 const faqs = [
   {
@@ -25,7 +28,7 @@ const faqs = [
   {
     question: "Kann ich als Autorin oder Autor ein Stück einreichen?",
     answer:
-      "Ja. Über „Manuskript einsenden“ auf dieser Seite oder das Kontaktformular — wir prüfen zeitnah, ob es ins Programm passt. Gerade unbekannten Talenten geben wir gern eine Chance.",
+      "Ja. Senden Sie Ihr Theaterstück ausschließlich als PDF per E-Mail. Wir prüfen jedes Manuskript; eine Rückmeldung kann bis zu acht Wochen dauern. Hören Sie in dieser Zeit nichts von uns, nehmen wir das Stück leider nicht in unser Programm auf. Von Nachfragen zum Bearbeitungsstand bitten wir abzusehen.",
   },
   {
     question: "Finde ich alle Stücke einer Autorin oder eines Autors?",
@@ -97,12 +100,39 @@ const faqLd = {
       <h2>Aus der Schublade auf die Bühne.</h2>
       <p>
         Wir suchen laufend neue Autorinnen und Autoren — auch solche, die bisher
-        nur für sich geschrieben haben. Senden Sie uns unverbindlich Ihr
-        Manuskript, wir prüfen es zeitnah.
+        nur für sich geschrieben haben. Gerade unbekannten Talenten geben wir
+        gern eine Chance.
       </p>
-      <a href={path("/kontakt") + "?betreff=Manuskript%20einsenden"}>
-        <i class="ti ti-send" aria-hidden="true" /> Manuskript einsenden
+      <ul class="rules">
+        <li>
+          Bitte senden Sie Ihr Theaterstück <b>ausschließlich als PDF</b> —
+          digital per E-Mail. Andere Formate und Postsendungen können wir nicht
+          berücksichtigen.
+        </li>
+        <li>
+          Fügen Sie gerne eine kurze Inhaltsangabe und ein paar Zeilen zu Ihrer
+          Person bei.
+        </li>
+        <li>
+          Die Prüfung dauert in der Regel bis zu <b>acht Wochen</b>. Von
+          Nachfragen zum Bearbeitungsstand bitten wir abzusehen.
+        </li>
+        <li>
+          Hören Sie binnen acht Wochen nichts von uns, nehmen wir das Stück
+          leider <b>nicht in unser Programm</b> auf.
+        </li>
+      </ul>
+      <a href={manuscriptMail}>
+        <i class="ti ti-send" aria-hidden="true" /> Manuskript als PDF senden
       </a>
+      <p class="mail-hint">
+        An {SITE.email} — Betreff „Manuskript einsenden“. Alternativ zuerst über
+        das{" "}
+        <a class="inline" href={path("/kontakt") + "?betreff=Manuskript%20einsenden"}
+          >Kontaktformular</a
+        >{" "}
+        melden und die PDF per E-Mail nachreichen.
+      </p>
     </div>
   </section>
 
@@ -223,6 +253,36 @@ const faqLd = {
     max-width: 60ch;
     margin: 0 auto 22px;
   }
+  .submit .rules {
+    list-style: none;
+    margin: 0 auto 28px;
+    padding: 0;
+    max-width: 58ch;
+    text-align: left;
+    display: grid;
+    gap: 12px;
+  }
+  .submit .rules li {
+    position: relative;
+    padding-left: 22px;
+    color: #d5cbb9;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .submit .rules li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--yellow);
+  }
+  .submit .rules b {
+    color: #fff;
+    font-weight: 700;
+  }
   .submit a {
     display: inline-flex;
     align-items: center;
@@ -239,6 +299,29 @@ const faqLd = {
   }
   .submit a:hover {
     background: var(--wine-dark);
+  }
+  .submit .mail-hint {
+    margin: 18px auto 0;
+    font-size: 13.5px;
+    color: #9e9484;
+    max-width: 52ch;
+  }
+  .submit .mail-hint .inline {
+    display: inline;
+    background: none;
+    color: var(--yellow);
+    padding: 0;
+    font-size: inherit;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    border-radius: 0;
+  }
+  .submit .mail-hint .inline:hover {
+    color: #fff;
+    background: none;
   }
   .faq-sec {
     padding-block: 24px 48px;

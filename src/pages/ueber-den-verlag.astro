@@ -5,6 +5,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import StickyKatalog from "../components/StickyKatalog.astro";
 import NewsletterSignup from "../components/NewsletterSignup.astro";
+import { SITE } from "../lib/site";
 
 const faqs = [
   {
@@ -23,8 +24,7 @@ const faqs = [
   },
   {
     question: "Kann ich als Autorin oder Autor ein Stück einreichen?",
-    answer:
-      "Ja. Gerade unbekannten Autorinnen und Autoren gibt der Verlag eine Chance – Manuskripte sind jederzeit willkommen und werden zeitnah geprüft.",
+    answer: `Ja. Senden Sie Ihr Theaterstück ausschließlich als PDF per E-Mail an ${SITE.email}. Die Prüfung dauert bis zu acht Wochen; ohne Rückmeldung in dieser Zeit nehmen wir das Stück leider nicht in unser Programm auf. Details stehen auf der Autorenseite unter „Manuskript“.`,
   },
 ];
 
