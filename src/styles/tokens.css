@@ -67,8 +67,10 @@ img {
 
 .wrap {
   max-width: var(--wrap);
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
+  margin-inline: auto;
+  /* Horizontale Ränder sind Layout-Invariante — dürfen nicht von
+     padding-Shorthand auf derselben Klasse überschrieben werden. */
+  padding-inline: var(--pad-x) !important;
 }
 
 .cap-label {
