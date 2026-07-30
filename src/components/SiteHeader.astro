@@ -9,8 +9,10 @@ interface Props {
 
 const { variant = "page", active } = Astro.props;
 const home = path("/");
-const logoLight = path("/images/logo-light.png");
-const logoDark = path("/images/logo-dark.png");
+/** Cache-Bust: public/ Assets werden ohne Hash ausgeliefert. */
+const logoVer = "20260730b";
+const logoLight = `${path("/images/logo-light.png")}?v=${logoVer}`;
+const logoDark = `${path("/images/logo-dark.png")}?v=${logoVer}`;
 ---
 
 {
@@ -83,8 +85,9 @@ const logoDark = path("/images/logo-dark.png");
     gap: 16px;
   }
   .mast-row .brand img {
-    height: 48px;
+    height: 52px;
     width: auto;
+    max-width: min(280px, 42vw);
     display: block;
     filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
   }
@@ -151,8 +154,9 @@ const logoDark = path("/images/logo-dark.png");
     gap: 16px;
   }
   .ihead .brand img {
-    height: 44px;
+    height: 52px;
     width: auto;
+    max-width: min(280px, 42vw);
     display: block;
   }
   .ihead .nav {
