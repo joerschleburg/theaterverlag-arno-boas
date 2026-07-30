@@ -92,6 +92,7 @@ const creativeWorkLd: Record<string, unknown> = {
   alternateName: stueck.kuerzel || undefined,
   genre: stueck.kategorien,
   description:
+    stueck.inhalt ||
     stueck.untertitel ||
     `${stueck.titel} — Bühnenstück im Theaterverlag Arno Boas.`,
   url: `${SITE.url}/stuecke/${stueck.slug}`,
@@ -150,6 +151,7 @@ const breadcrumbLd = {
 const descParts = [
   stueck.titel,
   stueck.untertitel,
+  stueck.inhalt ? stueck.inhalt.slice(0, 140).replace(/\s+/g, " ").trim() + "…" : null,
   besetzung,
   typeof stueck.spieldauer_min === "number"
     ? `ca. ${stueck.spieldauer_min} Min.`
@@ -157,7 +159,7 @@ const descParts = [
   "Theaterverlag Arno Boas",
 ].filter(Boolean);
 
-const pageDescription = descParts.join(" · ");
+const pageDescription = descParts.join(" · ").slice(0, 300);
 ---
 
 <BaseLayout
@@ -199,20 +201,33 @@ const pageDescription = descParts.join(" · ");
 
       <div class="d-body">
         {
-          stueck.buehnenbild && (
+          stueck.inhalt && (
             <>
-              <h2>Bühnenbild</h2>
-              <p>{stueck.buehnenbild}</p>
+              <h2>Inhalt</h2>
+              {stueck.inhalt.split(/\n\n+/).map((para) => (
+                <p>{para}</p>
+              ))}
             </>
           )
         }
         {
-          stueck.besetzung_hinweis && (
-            <>
-              <h2>Besetzungshinweis</h2>
-              <p>{stueck.besetzung_hinweis}</p>
-            </>
-          )
+          stueck.buehnenbild &&
+            stueck.buehnenbild !== stueck.untertitel &&
+            stueck.buehnenbild !== stueck.titel && (
+              <>
+                <h2>Bühnenbild</h2>
+                <p>{stueck.buehnenbild}</p>
+              </>
+            )
+        }
+        {
+          stueck.besetzung_hinweis &&
+            !/^\d+$/.test(String(stueck.besetzung_hinweis).trim()) && (
+              <>
+                <h2>Besetzungshinweis</h2>
+                <p>{stueck.besetzung_hinweis}</p>
+              </>
+            )
         }
 
         <h2>Bestellung &amp; Aufführung</h2>
