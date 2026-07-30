@@ -1,5 +1,6 @@
 ---
 import { path } from "../lib/paths";
+import { GENRE_FILTER_OPTIONS } from "../lib/site";
 /** Grobe Startseiten-Suche → vorkonfigurierte Übersicht */
 ---
 
@@ -20,13 +21,9 @@ import { path } from "../lib/paths";
     <label class="slab" for="genre">Genre</label>
     <div class="ctrl">
       <select id="genre" name="genre">
-        <option value="alle">alle</option>
-        <option value="Komödie">Komödie</option>
-        <option value="Krimi">Krimi</option>
-        <option value="Krimikomödie">Krimikomödie</option>
-        <option value="Märchen">Märchen</option>
-        <option value="Drama">Drama</option>
-        <option value="Weihnachten">Weihnachten</option>
+        {GENRE_FILTER_OPTIONS.map((opt) => (
+          <option value={opt}>{opt}</option>
+        ))}
       </select>
       <i class="ti ti-chevron-down ch" aria-hidden="true"></i>
     </div>

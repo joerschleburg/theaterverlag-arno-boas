@@ -15,7 +15,7 @@ import {
   overviewHref,
   stueckHref,
 } from "../../lib/stuecke";
-import { SITE } from "../../lib/site";
+import { SITE, genreFilterLabel } from "../../lib/site";
 
 export function getStaticPaths() {
   return getStuecke().map((s) => ({ params: { slug: s.slug } }));
@@ -32,9 +32,11 @@ const spielortLabel = formatSpielort(stueck.spielort);
 const authorLink = autorHref(stueck.autor);
 const related = getRelatedStuecke(stueck, 3);
 const genrePrimary = stueck.kategorien[0] || "Theaterstück";
+const genreFilter = genreFilterLabel(genrePrimary);
+const genreDisplay = stueck.kategorien.map(genreFilterLabel).join(", ");
 
 const specs: { label: string; value: string }[] = [
-  { label: "Genre", value: stueck.kategorien.join(", ") },
+  { label: "Genre", value: genreDisplay },
 ];
 if (besetzung) specs.push({ label: "Besetzung", value: besetzung });
 if (typeof stueck.spieldauer_min === "number") {
@@ -133,8 +135,8 @@ const breadcrumbLd = {
     {
       "@type": "ListItem",
       position: 2,
-      name: genrePrimary,
-      item: `${SITE.url}/theaterstuecke?genre=${encodeURIComponent(genrePrimary)}`,
+      name: genreFilter,
+      item: `${SITE.url}/theaterstuecke?genre=${encodeURIComponent(genreFilter)}`,
     },
     {
       "@type": "ListItem",
@@ -168,14 +170,14 @@ const pageDescription = descParts.join(" · ");
   <div class="wrap crumb">
     <a href={path("/theaterstuecke")}>Theaterstücke</a>
     <span class="sep">›</span>
-    <a href={overviewHref({ genre: genrePrimary })}>{genrePrimary}</a>
+    <a href={overviewHref({ genre: genreFilter })}>{genreFilter}</a>
     <span class="sep">›</span>
     <span>{stueck.titel}</span>
   </div>
 
   <section class="wrap detail">
     <div class="d-main">
-      <span class="cap-label">{genrePrimary}</span>
+      <span class="cap-label">{genreFilter}</span>
       <h1>{stueck.titel}</h1>
       {
         stueck.untertitel && <p class="d-sub">{stueck.untertitel}</p>

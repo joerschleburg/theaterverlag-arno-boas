@@ -1,13 +1,13 @@
 ---
 import { getStuecke } from "../lib/stuecke";
-import { SITE } from "../lib/site";
+import { SITE, genreFilterLabel } from "../lib/site";
 import { path } from "../lib/paths";
 
 const catalog = getStuecke().map((s) => ({
   slug: s.slug,
   titel: s.titel,
   kuerzel: s.kuerzel,
-  genre: s.kategorien[0] || "",
+  genre: genreFilterLabel(s.kategorien[0] || ""),
 }));
 
 const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";

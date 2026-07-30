@@ -6,6 +6,7 @@ import SiteFooter from "../../components/SiteFooter.astro";
 import StickyKatalog from "../../components/StickyKatalog.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
 import { getStuecke, overviewHref, stueckHref } from "../../lib/stuecke";
+import { GENRE_FILTER_OPTIONS, genreFilterLabel } from "../../lib/site";
 
 const stuecke = getStuecke();
 const total = stuecke.length;
@@ -21,7 +22,7 @@ const faqs = [
   {
     question: "Welche Theaterstücke gibt es für Amateurtheater?",
     answer:
-      "Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren: Komödien, Krimis und Krimikomödien, Märchen, Dramen, Tragikomödien, Weihnachtsstücke sowie Werke für Jugendliche und für Senioren.",
+      "Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren: Komödien, Krimis und Krimikomödien, Märchen, Dramen, Tragikomödien, Weihnachtsstücke sowie Werke für Kinder & Jugend und für Senioren.",
   },
   {
     question: "Gibt es Stücke für kleine Ensembles?",
@@ -31,7 +32,7 @@ const faqs = [
   {
     question: "Welche Genres bietet der Theaterverlag Arno Boas?",
     answer:
-      "Vor allem Komödie, daneben Krimi und Krimikomödie, Märchen, Drama, Tragikomödie, Weihnachten sowie Stücke für Jugendliche und für Senioren.",
+      "Vor allem Komödie, daneben Krimi und Krimikomödie, Märchen, Drama, Tragikomödie, Weihnachten sowie Stücke für Kinder & Jugend und für Senioren.",
   },
   {
     question: "Kann ich vor der Entscheidung eine Leseprobe bekommen?",
@@ -55,19 +56,7 @@ const faqLd = {
   })),
 };
 
-const genres = [
-  "alle",
-  "Komödie",
-  "Krimi",
-  "Krimikomödie",
-  "Märchen",
-  "Drama",
-  "Weihnachten",
-  "Tragikomödie",
-  "Für Jugendliche",
-  "Kinder & Jugend",
-  "Für Senioren",
-];
+const genres = GENRE_FILTER_OPTIONS;
 ---
 
 <BaseLayout
@@ -157,7 +146,7 @@ const genres = [
         <div class="chips" id="filter-chips"></div>
         <div class="result-meta">
           <span>
-            <b id="result-count" aria-live="polite">{total}</b> von {total} Stücken
+            <b id="result-count" aria-live="polite">{total}</b> Stücke
           </span>
         </div>
       </div>
@@ -191,7 +180,7 @@ const genres = [
               hidden
             >
               <div class="lt">
-                <span class="g">{s.untertitel || s.kategorien[0]}</span>
+                <span class="g">{s.untertitel || genreFilterLabel(s.kategorien[0] || "")}</span>
                 <span>{s.spielart_geschaetzt}</span>
               </div>
               <a class="lh" href={stueckHref(s.slug)}>{s.titel}</a>
@@ -200,7 +189,7 @@ const genres = [
                 <span class="lm">
                   {typeof s.besetzung_m === "number" || typeof s.besetzung_w === "number"
                     ? `${s.besetzung_m ?? "–"} Herren · ${s.besetzung_w ?? "–"} Damen`
-                    : s.kategorien.join(" · ")}
+                    : s.kategorien.map(genreFilterLabel).join(" · ")}
                   {s.kuerzel ? ` · ${s.kuerzel}` : ""}
                   {typeof s.spieldauer_min === "number" ? ` · ca. ${s.spieldauer_min} Min.` : ""}
                 </span>
@@ -298,7 +287,7 @@ const genres = [
       const sp = new URLSearchParams(location.search);
       return {
         q: (sp.get("q") || "").trim(),
-        genre: sp.get("genre") || "alle",
+        genre: normalizeGenreParam(sp.get("genre") || "alle"),
         dauer: sp.get("dauer") || "alle",
         herren: sp.get("herren") || "beliebig",
         damen: sp.get("damen") || "beliebig",
@@ -306,6 +295,10 @@ const genres = [
         ensemble: sp.get("ensemble") || "beliebig",
         sort: "az",
       };
+    }
+
+    function normalizeGenreParam(genre: string) {
+      return genre === "Für Jugendliche" ? "Kinder & Jugend" : genre;
     }
 
     function syncForm(p: Params) {
@@ -334,6 +327,7 @@ const genres = [
 
     function genreOk(kats: string[], genre: string) {
       if (!genre || genre === "alle") return true;
+      // Alte URLs mit „Für Jugendliche“ weiterhin unterstützen
       if (genre === "Kinder & Jugend" || genre === "Für Jugendliche") {
         return kats.includes("Für Jugendliche");
       }

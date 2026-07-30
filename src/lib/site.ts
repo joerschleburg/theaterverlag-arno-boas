@@ -30,6 +30,25 @@ export const NAV = [
   { href: path("/kontakt"), label: "Kontakt", match: "/kontakt" },
 ] as const;
 
+/** Optionen für Genre-Selects (Übersicht + Hero). Datenkategorie bleibt „Für Jugendliche“. */
+export const GENRE_FILTER_OPTIONS = [
+  "alle",
+  "Komödie",
+  "Krimi",
+  "Krimikomödie",
+  "Märchen",
+  "Drama",
+  "Weihnachten",
+  "Tragikomödie",
+  "Kinder & Jugend",
+  "Für Senioren",
+] as const;
+
+/** Anzeigename / URL-Wert für Genre-Filter (Datenkategorie → Filterlabel). */
+export function genreFilterLabel(kategorie: string): string {
+  return kategorie === "Für Jugendliche" ? "Kinder & Jugend" : kategorie;
+}
+
 export const GENRE_INDEX = [
   { slug: "komoedie", label: "Komödie", match: ["Komödie", "Lustspiel", "Schwank"] },
   { slug: "krimi", label: "Krimi", match: ["Krimi", "Krimikomödie"] },

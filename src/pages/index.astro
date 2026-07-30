@@ -207,8 +207,7 @@ const orgLd = {
           genreIndex.map((g) => (
             <a
               href={overviewHref({
-                genre:
-                  g.label === "Kinder & Jugend" ? "Für Jugendliche" : g.label,
+                genre: g.label,
               })}
             >
               <span class="n">{g.n}</span>
