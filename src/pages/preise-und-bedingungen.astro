@@ -85,12 +85,12 @@ const faqLd = {
           <div class="jp-track" aria-hidden="true">
             <div class="jp-fill" data-journey-fill></div>
           </div>
-          <span data-journey-label>0 von 5 Stationen</span>
+          <span data-journey-label>1 von 5 Stationen</span>
         </div>
 
         <ol class="steps">
-          <li class="step" data-step="1">
-            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
+          <li class="step is-done" data-step="1">
+            <button type="button" class="step-btn" data-step-toggle aria-pressed="true">
               <span class="n" aria-hidden="true">
                 <i class="ti ti-search step-ic"></i>
                 <span class="step-num">1</span>
@@ -445,6 +445,7 @@ const faqLd = {
     }
 
     let state = load();
+    save(state);
     render(state);
 
     root.addEventListener("click", (e) => {
