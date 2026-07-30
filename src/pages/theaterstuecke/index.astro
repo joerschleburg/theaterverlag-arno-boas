@@ -7,13 +7,19 @@ import StickyKatalog from "../../components/StickyKatalog.astro";
 import { getStuecke, overviewHref, stueckHref } from "../../lib/stuecke";
 
 const stuecke = getStuecke();
+const total = stuecke.length;
+
 const q = Astro.url.searchParams.get("q")?.trim() ?? "";
 const genre = Astro.url.searchParams.get("genre") ?? "alle";
 const dauer = Astro.url.searchParams.get("dauer") ?? "alle";
-const ensemble = Astro.url.searchParams.get("ensemble") ?? "beliebig";
+const herren = Astro.url.searchParams.get("herren") ?? "beliebig";
+const damen = Astro.url.searchParams.get("damen") ?? "beliebig";
 const spielort = Astro.url.searchParams.get("spielort") ?? "egal";
+const ensemble = Astro.url.searchParams.get("ensemble") ?? "beliebig";
+const sort = Astro.url.searchParams.get("sort") ?? "az";
 
 let filtered = stuecke;
+
 if (q) {
   const needle = q.toLowerCase();
   filtered = filtered.filter(
@@ -24,6 +30,7 @@ if (q) {
       s.kuerzel.toLowerCase().includes(needle),
   );
 }
+
 if (genre && genre !== "alle") {
   if (genre === "Kinder & Jugend" || genre === "Für Jugendliche") {
     filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
@@ -31,27 +38,133 @@ if (genre && genre !== "alle") {
     filtered = filtered.filter((s) => s.kategorien.includes(genre));
   }
 }
+
 if (dauer && dauer !== "alle") {
   filtered = filtered.filter((s) => s.spielart_geschaetzt === dauer);
 }
-// ensemble / spielort: UI-Parameter vorhanden, Daten folgen — Kinder & Jugend bereits über Genre
+
 if (ensemble === "kinder-jugend") {
   filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
 }
 
-filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
+// Herren/Damen/Spielort: UI vorhanden, greifen sobald Besetzungsdaten vorliegen
+filtered = filtered.filter((s) => {
+  if (herren !== "beliebig" && typeof s.besetzung_m === "number") {
+    if (herren === "7+") {
+      if (s.besetzung_m < 7) return false;
+    } else if (s.besetzung_m !== Number(herren)) return false;
+  }
+  if (damen !== "beliebig" && typeof s.besetzung_w === "number") {
+    if (damen === "7+") {
+      if (s.besetzung_w < 7) return false;
+    } else if (s.besetzung_w !== Number(damen)) return false;
+  }
+  return true;
+});
+
+if (sort === "genre") {
+  filtered = [...filtered].sort((a, b) => {
+    const g = (a.kategorien[0] || "").localeCompare(b.kategorien[0] || "", "de");
+    return g || a.titel.localeCompare(b.titel, "de");
+  });
+} else {
+  filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
+}
+
+type Chip = { label: string; clearHref: string };
+
+function without(keys: string[]) {
+  const params: Record<string, string | undefined> = {
+    q: q || undefined,
+    genre: genre !== "alle" ? genre : undefined,
+    dauer: dauer !== "alle" ? dauer : undefined,
+    herren: herren !== "beliebig" ? herren : undefined,
+    damen: damen !== "beliebig" ? damen : undefined,
+    spielort: spielort !== "egal" ? spielort : undefined,
+    ensemble: ensemble !== "beliebig" ? ensemble : undefined,
+    sort: sort !== "az" ? sort : undefined,
+  };
+  for (const k of keys) delete params[k];
+  return overviewHref(params);
+}
+
+const chips: Chip[] = [];
+if (q) chips.push({ label: `„${q}"`, clearHref: without(["q"]) });
+if (genre !== "alle") chips.push({ label: genre, clearHref: without(["genre"]) });
+if (dauer !== "alle") chips.push({ label: dauer, clearHref: without(["dauer"]) });
+if (herren !== "beliebig") {
+  chips.push({
+    label: herren === "7+" ? "ab 7 Herren" : `${herren} Herren`,
+    clearHref: without(["herren"]),
+  });
+}
+if (damen !== "beliebig") {
+  chips.push({
+    label: damen === "7+" ? "ab 7 Damen" : `ab ${damen} Damen`,
+    clearHref: without(["damen"]),
+  });
+}
+if (spielort !== "egal") {
+  chips.push({ label: spielort, clearHref: without(["spielort"]) });
+}
+if (ensemble === "kinder-jugend") {
+  chips.push({ label: "Kinder & Jugend", clearHref: without(["ensemble"]) });
+} else if (ensemble !== "beliebig") {
+  chips.push({ label: `Ensemble ${ensemble}`, clearHref: without(["ensemble"]) });
+}
+
+const faqs = [
+  {
+    question: "Wie kann ich nach der Besetzung filtern?",
+    answer:
+      "Über die getrennten Filter „Herrenrollen\" und „Damenrollen\" legen Sie fest, wie viele Männer- und Frauenrollen ein Stück haben soll. Zusätzlich können Sie nach Genre, Spielort und Dauer filtern.",
+  },
+  {
+    question: "Kann ich nach Spieldauer filtern?",
+    answer:
+      "Ja. Filtern Sie nach abendfüllenden Stücken, Einaktern oder Kurzstücken.",
+  },
+  {
+    question: "Welche Genres gibt es?",
+    answer:
+      "Komödie, Krimi und Krimikomödie, Märchen, Drama, Tragikomödie, Weihnachten sowie Stücke für Jugendliche und für Senioren.",
+  },
+  {
+    question: "Gibt es zu den Stücken eine Leseprobe?",
+    answer:
+      "Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks.",
+  },
+  {
+    question: "Wie groß ist das Repertoire?",
+    answer: "Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const PAGE_SIZE = 24;
+const hasMore = filtered.length > PAGE_SIZE;
 ---
 
 <BaseLayout
-  title="Theaterstücke"
+  title="Alle Theaterstücke"
   description="Über 250 Bühnenstücke durchsuchen und filtern — Theaterverlag Arno Boas."
+  jsonLd={faqLd}
 >
   <SiteHeader active="/theaterstuecke" />
 
-  <section class="ihero">
+  <section class="intro">
     <div class="wrap">
       <span class="cap-label">Repertoire</span>
-      <h1>Theaterstücke</h1>
+      <h1>Alle Theaterstücke</h1>
       <p>
         Über 250 Bühnenstücke fürs Amateurtheater — suchen und filtern Sie nach
         Genre, Ensemblegröße, Spielort und Dauer.
@@ -60,120 +173,294 @@ filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
   </section>
 
   <div class="filterbar">
-    <form class="wrap fb" method="get" action={path("/theaterstuecke")}>
-      <div class="f grow">
-        <label for="q">Suche</label>
-        <input id="q" name="q" type="search" value={q} placeholder="Titel, Stichwort …" />
-      </div>
-      <div class="f">
-        <label for="genre">Genre</label>
-        <select id="genre" name="genre">
+    <div class="wrap">
+      <form class="fb" method="get" action={path("/theaterstuecke")}>
+        <div class="f wide">
+          <label for="q">Suche</label>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            value={q}
+            placeholder="Stück, Autor, Stichwort …"
+          />
+        </div>
+        <div class="f">
+          <label for="genre">Genre</label>
+          <select id="genre" name="genre">
+            {
+              [
+                "alle",
+                "Komödie",
+                "Krimi",
+                "Krimikomödie",
+                "Märchen",
+                "Drama",
+                "Weihnachten",
+                "Tragikomödie",
+                "Für Jugendliche",
+                "Kinder & Jugend",
+                "Für Senioren",
+              ].map((opt) => (
+                <option
+                  value={opt}
+                  selected={
+                    genre === opt ||
+                    (opt === "Für Jugendliche" && genre === "Kinder & Jugend") ||
+                    (opt === "Kinder & Jugend" && genre === "Kinder & Jugend")
+                  }
+                >
+                  {opt}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        <div class="f sm">
+          <label for="herren">Herrenrollen</label>
+          <select id="herren" name="herren">
+            {
+              ["beliebig", "1", "2", "3", "4", "5", "6", "7+"].map((opt) => (
+                <option value={opt} selected={herren === opt}>
+                  {opt === "7+" ? "7 und mehr" : opt}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        <div class="f sm">
+          <label for="damen">Damenrollen</label>
+          <select id="damen" name="damen">
+            {
+              ["beliebig", "1", "2", "3", "4", "5", "6", "7+"].map((opt) => (
+                <option value={opt} selected={damen === opt}>
+                  {opt === "7+" ? "7 und mehr" : opt}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        <div class="f">
+          <label for="spielort">Spielort</label>
+          <select id="spielort" name="spielort">
+            {
+              ["egal", "Saal", "Freilicht"].map((opt) => (
+                <option value={opt} selected={spielort === opt}>
+                  {opt}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        <div class="f">
+          <label for="dauer">Dauer</label>
+          <select id="dauer" name="dauer">
+            {
+              ["alle", "Abendfüllend", "Einakter", "Kurzstück"].map((opt) => (
+                <option value={opt} selected={dauer === opt}>
+                  {opt}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+        {
+          ensemble !== "beliebig" && (
+            <input type="hidden" name="ensemble" value={ensemble} />
+          )
+        }
+        {
+          sort !== "az" && <input type="hidden" name="sort" value={sort} />
+        }
+        <button class="go" type="submit">
+          <i class="ti ti-search" aria-hidden="true"></i> Suchen
+        </button>
+      </form>
+
+      <div class="fb2">
+        <div class="chips">
           {
-            ["alle", "Komödie", "Krimi", "Krimikomödie", "Märchen", "Drama", "Weihnachten", "Tragikomödie", "Für Jugendliche", "Für Senioren"].map((opt) => (
-              <option value={opt} selected={genre === opt || (opt === "Für Jugendliche" && genre === "Kinder & Jugend")}>
-                {opt}
-              </option>
-            ))
+            chips.length > 0 && (
+              <>
+                <span class="lbl">Aktive Filter:</span>
+                {chips.map((c) => (
+                  <a class="chip" href={c.clearHref}>
+                    {c.label} <i class="ti ti-x" aria-hidden="true" />
+                  </a>
+                ))}
+                <a class="chip clear" href={overviewHref()}>
+                  alle zurücksetzen
+                </a>
+              </>
+            )
           }
-        </select>
+        </div>
+        <div class="result-meta">
+          <span>
+            <b>{filtered.length}</b> von {total} Stücken
+          </span>
+          <form method="get" action={path("/theaterstuecke")} class="sort-form">
+            {
+              q && <input type="hidden" name="q" value={q} />
+            }
+            {
+              genre !== "alle" && <input type="hidden" name="genre" value={genre} />
+            }
+            {
+              dauer !== "alle" && <input type="hidden" name="dauer" value={dauer} />
+            }
+            {
+              herren !== "beliebig" && (
+                <input type="hidden" name="herren" value={herren} />
+              )
+            }
+            {
+              damen !== "beliebig" && (
+                <input type="hidden" name="damen" value={damen} />
+              )
+            }
+            {
+              spielort !== "egal" && (
+                <input type="hidden" name="spielort" value={spielort} />
+              )
+            }
+            {
+              ensemble !== "beliebig" && (
+                <input type="hidden" name="ensemble" value={ensemble} />
+              )
+            }
+            <label class="visually-hidden" for="sort">Sortierung</label>
+            <select id="sort" name="sort" onchange="this.form.submit()">
+              <option value="az" selected={sort === "az"}>Sortierung: A–Z</option>
+              <option value="genre" selected={sort === "genre"}>nach Genre</option>
+            </select>
+          </form>
+        </div>
       </div>
-      <div class="f">
-        <label for="dauer">Dauer</label>
-        <select id="dauer" name="dauer">
-          {
-            ["alle", "Abendfüllend", "Einakter", "Kurzstück"].map((opt) => (
-              <option value={opt} selected={dauer === opt}>
-                {opt}
-              </option>
-            ))
-          }
-        </select>
-      </div>
-      {
-        ensemble !== "beliebig" && (
-          <input type="hidden" name="ensemble" value={ensemble} />
-        )
-      }
-      {
-        spielort !== "egal" && (
-          <input type="hidden" name="spielort" value={spielort} />
-        )
-      }
-      <button type="submit">Filtern</button>
-    </form>
+    </div>
   </div>
 
-  <div class="wrap results">
-    <div class="result-meta">
-      <span>
-        <b>{filtered.length}</b>{" "}
-        {filtered.length === 1 ? "Stück" : "Stücke"}
-        {q && <> zu „{q}"</>}
-      </span>
-      {(ensemble !== "beliebig" || spielort !== "egal") && (
-        <span class="hint">
-          Feintuning Herren-/Damenrollen und Spielort folgt, sobald die
-          Besetzungsdaten vorliegen.
-        </span>
-      )}
-    </div>
-
-    <div class="list">
-      {
-        filtered.map((s) => (
-          <div class="row-wrap">
-            <a class="row" href={stueckHref(s.slug)}>
-              <div class="meta">
-                <span class="g">{s.kategorien[0]}</span>
-                {s.kuerzel && <span class="kz">{s.kuerzel}</span>}
-                <span class="d">{s.spielart_geschaetzt}</span>
+  <section class="results">
+    <div class="wrap">
+      <div class="list" id="stueck-list" data-page-size={PAGE_SIZE}>
+        {
+          filtered.map((s, i) => (
+            <article class:list={["li", { "is-more": i >= PAGE_SIZE }]} hidden={i >= PAGE_SIZE}>
+              <div class="lt">
+                <span class="g">{s.untertitel || s.kategorien[0]}</span>
+                <span>{s.spielart_geschaetzt}</span>
               </div>
-              <div class="title">{s.titel}</div>
-              <div class="sub">{s.untertitel}</div>
-            </a>
-            <button
-              type="button"
-              class="mk"
-              data-bookmark={s.slug}
-              aria-label={`${s.titel} merken`}
-            >
-              <i class="ti ti-bookmark" aria-hidden="true" />
-              <span class="tip">Merken</span>
-            </button>
+              <a class="lh" href={stueckHref(s.slug)}>{s.titel}</a>
+              <div class="ls">{s.untertitel}</div>
+              <div class="lb">
+                <span class="lm">
+                  {s.kategorien.join(" · ")}
+                  {s.kuerzel ? ` · ${s.kuerzel}` : ""}
+                </span>
+                <span class="la">
+                  <button
+                    type="button"
+                    class="mk"
+                    data-bookmark={s.slug}
+                    aria-label={`${s.titel} merken`}
+                  >
+                    <i class="ti ti-bookmark" aria-hidden="true" />
+                    <span class="tip">Merken</span>
+                  </button>
+                  <a class="zu" href={stueckHref(s.slug)}>
+                    Zum Stück <i class="ti ti-arrow-right" aria-hidden="true" />
+                  </a>
+                </span>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      {
+        filtered.length === 0 && (
+          <p class="empty">
+            Keine Treffer. <a href={overviewHref()}>Filter zurücksetzen</a>
+          </p>
+        )
+      }
+
+      {
+        hasMore && (
+          <div class="loadmore">
+            <button type="button" id="load-more">Weitere Stücke laden</button>
           </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="wrap faq-sec">
+    <div class="faq-h">
+      <span class="cap-label">Häufige Fragen</span>
+      <h2>Gut zu wissen</h2>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((item) => (
+          <details>
+            <summary>
+              {item.question}
+              <span class="ic">
+                <i class="ti ti-plus" aria-hidden="true" />
+              </span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
         ))
       }
     </div>
-
-    {
-      filtered.length === 0 && (
-        <p class="empty">
-          Keine Treffer.{" "}
-          <a href={overviewHref()}>Filter zurücksetzen</a>
-        </p>
-      )
-    }
-  </div>
+  </section>
 
   <SiteFooter />
   <StickyKatalog />
 </BaseLayout>
 
+<script>
+  const btn = document.getElementById("load-more");
+  const list = document.getElementById("stueck-list");
+  if (btn && list) {
+    const size = Number(list.dataset.pageSize || 24);
+    btn.addEventListener("click", () => {
+      const hidden = list.querySelectorAll<HTMLElement>(".li[hidden]");
+      Array.from(hidden)
+        .slice(0, size)
+        .forEach((el) => {
+          el.hidden = false;
+          el.classList.remove("is-more");
+        });
+      if (!list.querySelector(".li[hidden]")) btn.parentElement?.remove();
+    });
+  }
+</script>
+
 <style>
-  .ihero {
-    padding: 56px 0 36px;
-    border-bottom: 1px solid var(--border);
+  .intro {
+    background: var(--wine);
+    padding: 44px 0 40px;
   }
-  .ihero h1 {
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 0.95;
-    margin: 10px 0 14px;
+  .intro :global(.cap-label) {
+    color: #fff;
+    opacity: 0.82;
   }
-  .ihero p {
-    margin: 0;
-    color: var(--muted);
-    max-width: 58ch;
+  .intro h1 {
+    color: #fff;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 0.96;
+    margin: 12px 0 0;
   }
+  .intro p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 14px 0 0;
+    max-width: 60ch;
+    font-size: 17px;
+  }
+
   .filterbar {
     position: sticky;
     top: 74px;
@@ -184,136 +471,369 @@ filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
   }
   .fb {
     display: flex;
-    gap: 12px;
-    align-items: end;
-    padding: 16px var(--pad-x);
-    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0;
+    flex-wrap: nowrap;
   }
-  .f {
+  .fb .f {
+    padding: 14px 18px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 140px;
-  }
-  .f.grow {
+    justify-content: center;
+    gap: 5px;
     flex: 1;
-    min-width: 200px;
+    min-width: 138px;
+    transition: background 0.15s;
   }
-  .f label {
-    font-size: 10.5px;
-    letter-spacing: 1.5px;
+  .fb .f + .f {
+    border-left: 1px solid var(--border);
+  }
+  .fb .f:hover {
+    background: #fffcf4;
+  }
+  .fb .f.wide {
+    flex: 1.9;
+    min-width: 210px;
+  }
+  .fb .f.sm {
+    flex: 0.82;
+    min-width: 120px;
+  }
+  .fb .f label {
+    font-size: 10px;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
-    font-weight: 700;
     color: var(--muted);
+    font-weight: 700;
   }
-  .f input,
-  .f select {
-    border: 1px solid var(--border);
-    background: #fff;
-    border-radius: 6px;
-    padding: 10px 12px;
-    font: inherit;
-    font-size: 15px;
+  .fb .f input,
+  .fb .f select {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 16px;
     font-weight: 600;
     color: var(--ink);
+    cursor: pointer;
+    width: 100%;
   }
-  button {
+  .fb .f input {
+    font-weight: 500;
+    cursor: text;
+  }
+  .fb .f select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 22px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23CF551A' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  }
+  .fb .go {
     background: var(--wine);
     color: #fff;
     border: none;
-    border-radius: 6px;
-    padding: 12px 22px;
-    font: inherit;
+    padding: 0 32px;
+    cursor: pointer;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+  .fb .go:hover {
+    background: var(--wine-dark);
+  }
+  .fb .go i {
+    font-size: 19px;
+  }
+
+  .fb2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .chips .lbl {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .chip i {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .chip.clear {
+    background: transparent;
+    border: none;
+    color: var(--wine);
+    text-decoration: underline;
+    padding: 5px 4px;
+  }
+  .result-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .result-meta b {
+    font-family: var(--font-head);
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .result-meta select {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .sort-form {
+    margin: 0;
+  }
+
+  .results {
+    padding: 30px 0 40px;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 60px;
+  }
+  .li {
+    display: block;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.15s;
+    position: relative;
+  }
+  .li:hover {
+    padding-left: 12px;
+  }
+  .lt {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 9px;
+    gap: 12px;
+  }
+  .lt .g {
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .lh {
+    display: block;
+    font-family: var(--font-head);
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: 0.98;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 800;
+  }
+  .li:hover .lh {
+    color: var(--wine);
+  }
+  .ls {
+    margin-top: 9px;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+  .lb {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .lm {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .la {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .la .mk {
+    width: 34px !important;
+    height: 34px !important;
+    border: 1px solid var(--hair);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    font-size: 16px !important;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+  }
+  .la .mk:hover {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .la .mk.on {
+    background: var(--wine);
+    border-color: var(--wine);
+    color: #fff;
+  }
+  .zu {
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    cursor: pointer;
-  }
-  button:hover {
-    background: var(--wine-dark);
-  }
-  .results {
-    padding: 36px var(--pad-x) 80px;
-  }
-  .result-meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-    color: var(--muted);
-    font-size: 14px;
-  }
-  .result-meta b {
-    color: var(--ink);
-  }
-  .hint {
-    font-size: 13px;
-  }
-  .list {
-    border-top: 2px solid var(--ink);
-  }
-  .row-wrap {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
+    color: var(--wine);
+    display: inline-flex;
     align-items: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .row {
-    display: block;
-    padding: 22px 0;
+    gap: 6px;
     text-decoration: none;
-    color: var(--ink);
-    transition: padding 0.15s;
-    min-width: 0;
   }
-  .row-wrap:hover .row {
-    padding-left: 10px;
+
+  .loadmore {
+    text-align: center;
+    padding: 40px 0 0;
   }
-  .meta {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    font-size: 11.5px;
+  .loadmore button {
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 100px;
+    padding: 13px 30px;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: 0.2s;
   }
-  .g {
-    color: var(--wine);
-    font-weight: 700;
+  .loadmore button:hover {
+    background: var(--ink);
+    color: #fff;
   }
-  .kz {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    text-transform: none;
-    background: var(--paper-2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 7px;
-  }
-  .title {
-    font-family: var(--font-head);
-    font-size: clamp(24px, 2.6vw, 34px);
-    line-height: 1;
-  }
-  .row:hover .title {
-    color: var(--wine);
-  }
-  .sub {
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 14.5px;
-  }
+
   .empty {
     padding: 40px 0;
     color: var(--muted);
   }
   .empty a {
     color: var(--wine);
+  }
+
+  .faq-sec {
+    padding: 64px 0 8px;
+  }
+  .faq-h {
+    margin-bottom: 22px;
+  }
+  .faq-h h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1;
+    margin-top: 10px;
+  }
+  .faq {
+    border-top: 2px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 23px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 22px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 22px;
+    font-size: 16px;
+    color: var(--text);
+    max-width: 78ch;
+  }
+
+  @media (max-width: 900px) {
+    .list {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .fb {
+      flex-wrap: wrap;
+    }
+    .fb .f {
+      flex: 1 1 100%;
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+    .fb .f + .f {
+      border-left: none;
+    }
+    .fb .go {
+      width: 100%;
+      justify-content: center;
+      padding: 16px;
+    }
+    .filterbar {
+      top: 64px;
+    }
   }
 </style>
