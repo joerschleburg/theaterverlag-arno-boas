@@ -5,7 +5,17 @@ import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import StickyKatalog from "../../components/StickyKatalog.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
-import { getStueckBySlug, getStuecke } from "../../lib/stuecke";
+import {
+  autorHref,
+  formatBesetzung,
+  formatSpielort,
+  getRelatedStuecke,
+  getStueckBySlug,
+  getStuecke,
+  overviewHref,
+  stueckHref,
+} from "../../lib/stuecke";
+import { SITE } from "../../lib/site";
 
 export function getStaticPaths() {
   return getStuecke().map((s) => ({ params: { slug: s.slug } }));
@@ -14,169 +24,519 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const stueck = getStueckBySlug(slug!);
 if (!stueck) {
-  return Astro.redirect("/theaterstuecke");
+  return Astro.redirect(path("/theaterstuecke"));
 }
 
-const creativeWorkLd = {
+const besetzung = formatBesetzung(stueck);
+const spielortLabel = formatSpielort(stueck.spielort);
+const authorLink = autorHref(stueck.autor);
+const related = getRelatedStuecke(stueck, 3);
+const genrePrimary = stueck.kategorien[0] || "Theaterstück";
+
+const specs: { label: string; value: string }[] = [
+  { label: "Genre", value: stueck.kategorien.join(", ") },
+];
+if (besetzung) specs.push({ label: "Besetzung", value: besetzung });
+if (typeof stueck.spieldauer_min === "number") {
+  specs.push({
+    label: "Spieldauer",
+    value: `ca. ${stueck.spieldauer_min} Min.`,
+  });
+}
+if (spielortLabel) specs.push({ label: "Spielort", value: spielortLabel });
+specs.push({ label: "Spielart", value: stueck.spielart_geschaetzt });
+if (stueck.kuerzel) specs.push({ label: "Kürzel", value: stueck.kuerzel });
+specs.push({ label: "Dialekt", value: "frei übertragbar" });
+
+const faqs = [
+  {
+    question: `Wie bekomme ich eine Leseprobe zu „${stueck.titel}"?`,
+    answer:
+      stueck.spielart_geschaetzt === "Abendfüllend"
+        ? "Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar können Sie vier Wochen unverbindlich anfordern."
+        : "Fragen Sie eine Leseprobe oder ein Ansichtsexemplar über die Merkliste oder das Kontaktformular an. Zu den abendfüllenden Stücken gibt es zusätzlich eine kostenlose PDF-Leseprobe mit rund der Hälfte des Stücks.",
+  },
+  ...(besetzung
+    ? [
+        {
+          question: `Was bedeutet die Besetzung „${besetzung}"?`,
+          answer: stueck.besetzung_hinweis
+            ? `Sie nennt die Zahl der Herren- und Damenrollen. Hinweis zur Besetzung: ${stueck.besetzung_hinweis}`
+            : "Sie nennt die Zahl der Herren- und Damenrollen. Viele Stücke lassen sich flexibel besetzen.",
+        },
+      ]
+    : []),
+  {
+    question: "Was kostet die Aufführung?",
+    answer:
+      "Bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt); dazu wahlweise der Rollensatz-Heftpreis. Alle Details unter „Preise & Bedingungen\".",
+  },
+  {
+    question: "Können wir das Stück in unserem Dialekt spielen?",
+    answer:
+      "Ja. Die Stücke sind in verständlicher Umgangssprache verfasst und leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar.",
+  },
+  {
+    question: `Wie frage ich „${stueck.titel}" an?`,
+    answer:
+      "Über „Für Aufführung anfragen\" oder indem Sie das Stück merken und gebündelt mit weiteren Titeln anfragen — wahlweise für Leseprobe, Ansichtsexemplar, Rollensatz oder Aufführung.",
+  },
+];
+
+const creativeWorkLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   name: stueck.titel,
+  alternateName: stueck.kuerzel || undefined,
   genre: stueck.kategorien,
-  description: stueck.untertitel,
-  url: `https://theaterverlag-arno-boas.de/stuecke/${stueck.slug}`,
+  description:
+    stueck.untertitel ||
+    `${stueck.titel} — Bühnenstück im Theaterverlag Arno Boas.`,
+  url: `${SITE.url}/stuecke/${stueck.slug}`,
+  inLanguage: "de",
   publisher: {
     "@type": "Organization",
-    name: "Theaterverlag Arno Boas",
+    name: SITE.name,
+    url: SITE.url,
   },
 };
+if (stueck.autor) {
+  creativeWorkLd.author = { "@type": "Person", name: stueck.autor };
+}
+if (stueck.kuerzel) {
+  creativeWorkLd.identifier = stueck.kuerzel;
+}
+if (typeof stueck.spieldauer_min === "number") {
+  creativeWorkLd.timeRequired = `PT${stueck.spieldauer_min}M`;
+}
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Theaterstücke",
+      item: `${SITE.url}/theaterstuecke`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: genrePrimary,
+      item: `${SITE.url}/theaterstuecke?genre=${encodeURIComponent(genrePrimary)}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: stueck.titel,
+      item: `${SITE.url}/stuecke/${stueck.slug}`,
+    },
+  ],
+};
+
+const descParts = [
+  stueck.titel,
+  stueck.untertitel,
+  besetzung,
+  typeof stueck.spieldauer_min === "number"
+    ? `ca. ${stueck.spieldauer_min} Min.`
+    : null,
+  "Theaterverlag Arno Boas",
+].filter(Boolean);
+
+const pageDescription = descParts.join(" · ");
 ---
 
 <BaseLayout
   title={stueck.titel}
-  description={`${stueck.titel} — ${stueck.untertitel}. Theaterverlag Arno Boas.`}
-  jsonLd={creativeWorkLd}
+  description={pageDescription}
+  jsonLd={[creativeWorkLd, faqLd, breadcrumbLd]}
 >
   <SiteHeader active="/theaterstuecke" />
 
-  <article class="wrap detail">
-    <a class="back" href={path("/theaterstuecke")}>← Zur Übersicht</a>
-    <div class="meta">
-      <span class="g">{stueck.kategorien.join(" · ")}</span>
-      {stueck.kuerzel && <span class="kz">{stueck.kuerzel}</span>}
-      <span>{stueck.spielart_geschaetzt}</span>
-    </div>
-    <h1>{stueck.titel}</h1>
-    <p class="sub">{stueck.untertitel}</p>
+  <div class="wrap crumb">
+    <a href={path("/theaterstuecke")}>Theaterstücke</a>
+    <span class="sep">›</span>
+    <a href={overviewHref({ genre: genrePrimary })}>{genrePrimary}</a>
+    <span class="sep">›</span>
+    <span>{stueck.titel}</span>
+  </div>
 
-    <ul class="specs">
-      <li><span>Genre</span><span>{stueck.kategorien.join(", ")}</span></li>
-      <li><span>Spielart</span><span>{stueck.spielart_geschaetzt}</span></li>
+  <section class="wrap detail">
+    <div class="d-main">
+      <span class="cap-label">{genrePrimary}</span>
+      <h1>{stueck.titel}</h1>
       {
-        stueck.kuerzel ? (
-          <li>
-            <span>Kürzel</span>
-            <span>{stueck.kuerzel}</span>
-          </li>
-        ) : (
-          <li>
-            <span>Kürzel</span>
-            <span>folgt</span>
-          </li>
+        stueck.untertitel && <p class="d-sub">{stueck.untertitel}</p>
+      }
+      {
+        stueck.autor && (
+          <p class="d-author">
+            von{" "}
+            {authorLink ? (
+              <a href={authorLink}>
+                <b>{stueck.autor}</b>
+              </a>
+            ) : (
+              <b>{stueck.autor}</b>
+            )}
+          </p>
         )
       }
-    </ul>
 
-    <p class="note">
-      Besetzung, Spieldauer, Preis, Klappentext und Leseprobe werden ergänzt,
-      sobald die Daten vorliegen. Bitte nichts als verbindlich annehmen, was hier
-      noch fehlt.
-    </p>
+      <div class="d-body">
+        {
+          stueck.buehnenbild && (
+            <>
+              <h2>Bühnenbild</h2>
+              <p>{stueck.buehnenbild}</p>
+            </>
+          )
+        }
+        {
+          stueck.besetzung_hinweis && (
+            <>
+              <h2>Besetzungshinweis</h2>
+              <p>{stueck.besetzung_hinweis}</p>
+            </>
+          )
+        }
 
-    <div class="actions">
-      <a class="btn" href={path("/kontakt")}>Aufführung anfragen</a>
-      <button type="button" class="btn ghost bookmark" data-bookmark={stueck.slug}>
-        <i class="ti ti-bookmark" aria-hidden="true"></i>
-        Merken
-        <span class="tip">Merken</span>
-      </button>
+        <h2>Bestellung &amp; Aufführung</h2>
+        <div class="order">
+          <div class="oi">
+            <i class="ti ti-file-text" aria-hidden="true" />
+            <div>
+              <b>Kostenlose Leseprobe</b>
+              <span
+                >Zu abendfüllenden Stücken: etwa die Hälfte als PDF — unverbindlich
+                anfragbar.</span
+              >
+            </div>
+          </div>
+          <div class="oi">
+            <i class="ti ti-copy" aria-hidden="true" />
+            <div>
+              <b>Datei oder Heft zum Selbstkopieren</b>
+              <span
+                >Sie erhalten das komplette Stück und vervielfältigen die Rollen
+                selbst.</span
+              >
+            </div>
+          </div>
+          <div class="oi">
+            <i class="ti ti-books" aria-hidden="true" />
+            <div>
+              <b>Gedruckter Rollensatz</b>
+              <span
+                >Fertig gedruckte Rollenhefte für Ihr Ensemble — bequem geliefert.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </article>
+
+    <aside class="aside">
+      <div class="card">
+        <div class="ct">Auf einen Blick</div>
+        <ul class="specs">
+          {
+            specs.map((row) => (
+              <li>
+                <span>{row.label}</span>
+                <span>{row.value}</span>
+              </li>
+            ))
+          }
+        </ul>
+        {
+          typeof stueck.preis_rollensatz === "number" ? (
+            <div class="price">
+              <span class="pl">Rollensatz ab</span>
+              <span class="p"
+                >{stueck.preis_rollensatz.toFixed(2).replace(".", ",")} €</span
+              >
+            </div>
+          ) : (
+            <div class="price soft">
+              <span class="pl">Aufführungsgebühr</span>
+              <span class="p-link"
+                ><a href={path("/preise-und-bedingungen")}
+                  >Preise &amp; Bedingungen</a
+                ></span
+              >
+            </div>
+          )
+        }
+        <div class="cta">
+          <a class="btn primary" href={path("/kontakt")}>
+            <i class="ti ti-mail" aria-hidden="true" /> Für Aufführung anfragen
+          </a>
+          <button
+            type="button"
+            class="btn ghost bookmark"
+            data-bookmark={stueck.slug}
+          >
+            <i class="ti ti-bookmark" aria-hidden="true" /> Merken
+            <span class="tip">Merken</span>
+          </button>
+        </div>
+        <div class="hint">
+          Alle Preise zzgl. Aufführungsgebühr und MwSt. Fragen? Wir beraten Sie
+          gern persönlich.
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  {
+    related.length > 0 && (
+      <section class="wrap more-sec">
+        <h2>Mehr aus dem Genre</h2>
+        <div class="more-grid">
+          {related.map((r) => (
+            <a class="mli" href={stueckHref(r.slug)}>
+              <span class="g">{r.kategorien[0] || r.untertitel}</span>
+              <h3>{r.titel}</h3>
+              <p>
+                {formatBesetzung(r) || r.untertitel || r.spielart_geschaetzt}
+                {typeof r.spieldauer_min === "number"
+                  ? ` · ca. ${r.spieldauer_min} Min.`
+                  : ""}
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   <NewsletterSignup />
+
+  <section class="wrap faq-sec">
+    <div class="faq-h">
+      <span class="cap-label">Häufige Fragen</span>
+      <h2>Gut zu wissen</h2>
+    </div>
+    <div class="faq">
+      {
+        faqs.map((item) => (
+          <details>
+            <summary>
+              {item.question}
+              <span class="ic">
+                <i class="ti ti-plus" aria-hidden="true" />
+              </span>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
   <SiteFooter />
   <StickyKatalog />
 </BaseLayout>
 
 <style>
-  .detail {
-    padding-block: 48px 90px;
-    max-width: 860px;
-  }
-  .back {
-    display: inline-block;
-    color: var(--muted);
-    text-decoration: none;
+  .crumb {
+    padding: 22px 0 0;
     font-size: 13px;
-    letter-spacing: 0.5px;
-    margin-bottom: 28px;
-  }
-  .back:hover {
-    color: var(--wine);
-  }
-  .meta {
+    color: var(--muted);
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
-    font-size: 12px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
+  }
+  .crumb a {
     color: var(--muted);
-    margin-bottom: 14px;
+    text-decoration: none;
   }
-  .g {
+  .crumb a:hover {
     color: var(--wine);
-    font-weight: 700;
   }
-  .kz {
-    text-transform: none;
-    letter-spacing: 0.4px;
-    font-weight: 700;
-    background: var(--paper-2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2px 8px;
+  .crumb .sep {
+    opacity: 0.5;
   }
-  h1 {
+
+  .detail {
+    display: grid;
+    grid-template-columns: 1.35fr 0.85fr;
+    gap: 56px;
+    align-items: start;
+    padding-block: 28px 48px;
+  }
+  .d-main :global(.cap-label) {
+    display: inline-block;
+  }
+  .d-main h1 {
     font-size: clamp(40px, 6vw, 68px);
     line-height: 0.95;
+    margin: 12px 0 0;
   }
-  .sub {
+  .d-sub {
     font-size: 19px;
     color: var(--muted);
-    margin: 16px 0 36px;
+    margin: 16px 0 0;
+  }
+  .d-author {
+    margin: 14px 0 0;
+    font-size: 16px;
+  }
+  .d-author a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid var(--wine);
+  }
+  .d-author a:hover {
+    color: var(--wine);
+  }
+  .d-body {
+    margin-top: 36px;
+  }
+  .d-body h2 {
+    font-size: clamp(22px, 2.4vw, 28px);
+    margin: 28px 0 12px;
+  }
+  .d-body p {
+    margin: 0 0 14px;
+    max-width: 62ch;
+  }
+  .order {
+    display: grid;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .oi {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .oi i {
+    color: var(--wine);
+    font-size: 22px;
+    margin-top: 2px;
+  }
+  .oi b {
+    display: block;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .oi span {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .aside {
+    position: sticky;
+    top: 96px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    box-shadow: 0 16px 40px rgba(20, 12, 6, 0.06);
+  }
+  .ct {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--wine);
+    margin-bottom: 14px;
   }
   .specs {
     list-style: none;
     padding: 0;
-    margin: 0 0 28px;
+    margin: 0;
     border-top: 2px solid var(--ink);
   }
   .specs li {
     display: flex;
     justify-content: space-between;
     gap: 16px;
-    padding: 14px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 15px;
+    font-size: 14.5px;
   }
   .specs li span:first-child {
     color: var(--muted);
   }
-  .note {
-    color: var(--muted);
-    font-size: 15px;
-    max-width: 62ch;
+  .specs li span:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: var(--ink);
   }
-  .actions {
+  .price {
     display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 32px;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .price .pl {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .price .p {
+    font-family: var(--font-head);
+    font-size: 28px;
+    color: var(--wine);
+    font-weight: 800;
+  }
+  .price.soft .p-link a {
+    color: var(--wine);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--wine);
+    font-size: 14px;
+  }
+  .cta {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
   }
   .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
     background: var(--wine);
     color: #fff;
     text-decoration: none;
     border: 1px solid var(--wine);
-    padding: 13px 22px;
+    padding: 13px 18px;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-body);
   }
   .btn.ghost {
     background: transparent;
@@ -184,17 +544,121 @@ const creativeWorkLd = {
     border-color: var(--ink);
     position: relative;
   }
-  .btn.ghost.bookmark {
-    border-radius: 6px;
-    width: auto;
-    height: auto;
-    padding: 13px 22px;
-    font-size: 12px;
-    gap: 8px;
-  }
   .btn.ghost.bookmark.on {
     background: var(--wine);
     border-color: var(--wine);
     color: #fff;
+  }
+  .hint {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .more-sec {
+    padding-block: 20px 10px;
+  }
+  .more-sec h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    margin-bottom: 22px;
+  }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .mli {
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mli .g {
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--wine);
+    font-weight: 700;
+  }
+  .mli h3 {
+    font-size: clamp(20px, 2vw, 26px);
+    margin: 8px 0 8px;
+    line-height: 1.05;
+  }
+  .mli:hover h3 {
+    color: var(--wine);
+  }
+  .mli p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+
+  .faq-sec {
+    padding-block: 24px 48px;
+  }
+  .faq-h {
+    margin-bottom: 22px;
+  }
+  .faq-h h2 {
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1;
+    margin-top: 10px;
+  }
+  .faq {
+    border-top: 2px solid var(--ink);
+  }
+  .faq details {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 23px);
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary .ic {
+    flex: none;
+    color: var(--wine);
+    font-size: 22px;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+  .faq details[open] summary .ic {
+    transform: rotate(45deg);
+  }
+  .faq summary:hover {
+    color: var(--wine);
+  }
+  .faq details p {
+    margin: 0 0 22px;
+    font-size: 16px;
+    color: var(--text);
+    max-width: 78ch;
+  }
+
+  @media (max-width: 900px) {
+    .detail {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .aside {
+      position: static;
+    }
+    .more-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

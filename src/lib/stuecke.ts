@@ -74,3 +74,66 @@ export function overviewHref(params: Record<string, string | undefined> = {}) {
   const s = q.toString();
   return s ? path(`/theaterstuecke?${s}`) : path("/theaterstuecke");
 }
+
+/** Bekannte Autorenseiten (Slug-Match über Normalisierung). */
+const KNOWN_AUTHOR_SLUGS = [
+  "arno-boas",
+  "jochen-wiltschko",
+  "christian-lange",
+  "thorsten-boehner",
+  "klaus-troebs",
+  "christian-ziegler",
+  "georges-neuen",
+  "wilhelm-wolpert",
+  "thomas-gehring",
+] as const;
+
+function normalizePerson(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function autorHref(autor?: string): string | undefined {
+  if (!autor) return undefined;
+  const slug = normalizePerson(autor);
+  return (KNOWN_AUTHOR_SLUGS as readonly string[]).includes(slug)
+    ? path(`/autoren/${slug}`)
+    : undefined;
+}
+
+export function formatBesetzung(s: Stueck): string | undefined {
+  if (typeof s.besetzung_m !== "number" && typeof s.besetzung_w !== "number") {
+    return undefined;
+  }
+  const m = typeof s.besetzung_m === "number" ? s.besetzung_m : "–";
+  const w = typeof s.besetzung_w === "number" ? s.besetzung_w : "–";
+  return `${m} Herren · ${w} Damen`;
+}
+
+export function formatSpielort(spielort?: string): string | undefined {
+  if (!spielort) return undefined;
+  if (spielort === "beides") return "Saal und Freilicht";
+  return spielort;
+}
+
+export function getRelatedStuecke(stueck: Stueck, limit = 3): Stueck[] {
+  const genres = new Set(stueck.kategorien);
+  return data.stuecke
+    .filter((s) => s.slug !== stueck.slug)
+    .map((s) => ({
+      s,
+      score: s.kategorien.reduce((n, k) => n + (genres.has(k) ? 1 : 0), 0),
+    }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score || a.s.titel.localeCompare(b.s.titel, "de"))
+    .slice(0, limit)
+    .map((x) => x.s);
+}
