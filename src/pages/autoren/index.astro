@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "Kann ich als Autorin oder Autor ein Stück einreichen?",
     answer:
-      "Ja. Senden Sie uns Ihr Manuskript unverbindlich zu – wir prüfen zeitnah, ob es ins Programm passt. Gerade unbekannten Talenten geben wir gern eine Chance.",
+      "Ja. Über „Manuskript einsenden“ auf dieser Seite oder das Kontaktformular — wir prüfen zeitnah, ob es ins Programm passt. Gerade unbekannten Talenten geben wir gern eine Chance.",
   },
   {
     question: "Finde ich alle Stücke einer Autorin oder eines Autors?",
@@ -88,6 +88,21 @@ const faqLd = {
           </div>
         ))
       }
+    </div>
+  </section>
+
+  <section class="wrap submit-sec" id="manuskript">
+    <div class="submit">
+      <span class="cap-label">Sie schreiben selbst?</span>
+      <h2>Aus der Schublade auf die Bühne.</h2>
+      <p>
+        Wir suchen laufend neue Autorinnen und Autoren — auch solche, die bisher
+        nur für sich geschrieben haben. Senden Sie uns unverbindlich Ihr
+        Manuskript, wir prüfen es zeitnah.
+      </p>
+      <a href={path("/kontakt") + "?betreff=Manuskript%20einsenden"}>
+        <i class="ti ti-send" aria-hidden="true" /> Manuskript einsenden
+      </a>
     </div>
   </section>
 
@@ -183,6 +198,47 @@ const faqLd = {
     font-weight: 600;
     letter-spacing: 0.4px;
     color: var(--muted);
+  }
+  .submit-sec {
+    padding-block: 8px 24px;
+  }
+  .submit {
+    margin: 24px 0 0;
+    background: var(--ink);
+    color: #efe6d8;
+    padding: 54px 40px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .submit :global(.cap-label) {
+    color: var(--yellow);
+  }
+  .submit h2 {
+    color: #fff;
+    font-size: clamp(26px, 3.4vw, 40px);
+    margin: 12px 0;
+  }
+  .submit p {
+    color: #c6bcac;
+    max-width: 60ch;
+    margin: 0 auto 22px;
+  }
+  .submit a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--wine);
+    color: #fff;
+    padding: 14px 26px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  .submit a:hover {
+    background: var(--wine-dark);
   }
   .faq-sec {
     padding-block: 24px 48px;

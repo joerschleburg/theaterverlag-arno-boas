@@ -241,6 +241,12 @@ const faqLd = {
 <script>
   const form = document.getElementById("kform") as HTMLFormElement | null;
   if (form) {
+    const params = new URLSearchParams(location.search);
+    const betreff = params.get("betreff");
+    if (betreff) {
+      const subj = document.getElementById("k_subj") as HTMLInputElement | null;
+      if (subj && !subj.value) subj.value = betreff;
+    }
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("k_name") as HTMLInputElement;
