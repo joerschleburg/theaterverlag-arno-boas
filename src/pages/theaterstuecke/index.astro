@@ -8,110 +8,13 @@ import { getStuecke, overviewHref, stueckHref } from "../../lib/stuecke";
 
 const stuecke = getStuecke();
 const total = stuecke.length;
+const PAGE_SIZE = 24;
+const overviewBase = path("/theaterstuecke");
 
-const q = Astro.url.searchParams.get("q")?.trim() ?? "";
-const genre = Astro.url.searchParams.get("genre") ?? "alle";
-const dauer = Astro.url.searchParams.get("dauer") ?? "alle";
-const herren = Astro.url.searchParams.get("herren") ?? "beliebig";
-const damen = Astro.url.searchParams.get("damen") ?? "beliebig";
-const spielort = Astro.url.searchParams.get("spielort") ?? "egal";
-const ensemble = Astro.url.searchParams.get("ensemble") ?? "beliebig";
-const sort = Astro.url.searchParams.get("sort") ?? "az";
-
-let filtered = stuecke;
-
-if (q) {
-  const needle = q.toLowerCase();
-  filtered = filtered.filter(
-    (s) =>
-      s.titel.toLowerCase().includes(needle) ||
-      s.untertitel.toLowerCase().includes(needle) ||
-      s.kategorien.some((k) => k.toLowerCase().includes(needle)) ||
-      s.kuerzel.toLowerCase().includes(needle),
-  );
-}
-
-if (genre && genre !== "alle") {
-  if (genre === "Kinder & Jugend" || genre === "Für Jugendliche") {
-    filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
-  } else {
-    filtered = filtered.filter((s) => s.kategorien.includes(genre));
-  }
-}
-
-if (dauer && dauer !== "alle") {
-  filtered = filtered.filter((s) => s.spielart_geschaetzt === dauer);
-}
-
-if (ensemble === "kinder-jugend") {
-  filtered = filtered.filter((s) => s.kategorien.includes("Für Jugendliche"));
-}
-
-// Herren/Damen/Spielort: UI vorhanden, greifen sobald Besetzungsdaten vorliegen
-filtered = filtered.filter((s) => {
-  if (herren !== "beliebig" && typeof s.besetzung_m === "number") {
-    if (herren === "7+") {
-      if (s.besetzung_m < 7) return false;
-    } else if (s.besetzung_m !== Number(herren)) return false;
-  }
-  if (damen !== "beliebig" && typeof s.besetzung_w === "number") {
-    if (damen === "7+") {
-      if (s.besetzung_w < 7) return false;
-    } else if (s.besetzung_w !== Number(damen)) return false;
-  }
-  return true;
-});
-
-if (sort === "genre") {
-  filtered = [...filtered].sort((a, b) => {
-    const g = (a.kategorien[0] || "").localeCompare(b.kategorien[0] || "", "de");
-    return g || a.titel.localeCompare(b.titel, "de");
-  });
-} else {
-  filtered = [...filtered].sort((a, b) => a.titel.localeCompare(b.titel, "de"));
-}
-
-type Chip = { label: string; clearHref: string };
-
-function without(keys: string[]) {
-  const params: Record<string, string | undefined> = {
-    q: q || undefined,
-    genre: genre !== "alle" ? genre : undefined,
-    dauer: dauer !== "alle" ? dauer : undefined,
-    herren: herren !== "beliebig" ? herren : undefined,
-    damen: damen !== "beliebig" ? damen : undefined,
-    spielort: spielort !== "egal" ? spielort : undefined,
-    ensemble: ensemble !== "beliebig" ? ensemble : undefined,
-    sort: sort !== "az" ? sort : undefined,
-  };
-  for (const k of keys) delete params[k];
-  return overviewHref(params);
-}
-
-const chips: Chip[] = [];
-if (q) chips.push({ label: `„${q}"`, clearHref: without(["q"]) });
-if (genre !== "alle") chips.push({ label: genre, clearHref: without(["genre"]) });
-if (dauer !== "alle") chips.push({ label: dauer, clearHref: without(["dauer"]) });
-if (herren !== "beliebig") {
-  chips.push({
-    label: herren === "7+" ? "ab 7 Herren" : `${herren} Herren`,
-    clearHref: without(["herren"]),
-  });
-}
-if (damen !== "beliebig") {
-  chips.push({
-    label: damen === "7+" ? "ab 7 Damen" : `ab ${damen} Damen`,
-    clearHref: without(["damen"]),
-  });
-}
-if (spielort !== "egal") {
-  chips.push({ label: spielort, clearHref: without(["spielort"]) });
-}
-if (ensemble === "kinder-jugend") {
-  chips.push({ label: "Kinder & Jugend", clearHref: without(["ensemble"]) });
-} else if (ensemble !== "beliebig") {
-  chips.push({ label: `Ensemble ${ensemble}`, clearHref: without(["ensemble"]) });
-}
+const hasCastData = stuecke.some(
+  (s) => typeof s.besetzung_m === "number" || typeof s.besetzung_w === "number",
+);
+const hasVenueData = stuecke.some((s) => Boolean(s.buehnenbild));
 
 const faqs = [
   {
@@ -150,8 +53,19 @@ const faqLd = {
   })),
 };
 
-const PAGE_SIZE = 24;
-const hasMore = filtered.length > PAGE_SIZE;
+const genres = [
+  "alle",
+  "Komödie",
+  "Krimi",
+  "Krimikomödie",
+  "Märchen",
+  "Drama",
+  "Weihnachten",
+  "Tragikomödie",
+  "Für Jugendliche",
+  "Kinder & Jugend",
+  "Für Senioren",
+];
 ---
 
 <BaseLayout
@@ -172,82 +86,51 @@ const hasMore = filtered.length > PAGE_SIZE;
     </div>
   </section>
 
-  <div class="filterbar">
+  <div class="filterbar" data-overview-filters data-base={overviewBase} data-page-size={PAGE_SIZE} data-total={total} data-has-cast={hasCastData ? "1" : "0"} data-has-venue={hasVenueData ? "1" : "0"}>
     <div class="wrap">
-      <form class="fb" method="get" action={path("/theaterstuecke")}>
+      <form class="fb" method="get" action={overviewBase} id="filter-form">
         <div class="f wide">
           <label for="q">Suche</label>
           <input
             id="q"
             name="q"
             type="search"
-            value={q}
             placeholder="Stück, Autor, Stichwort …"
+            autocomplete="off"
           />
         </div>
         <div class="f">
           <label for="genre">Genre</label>
           <select id="genre" name="genre">
-            {
-              [
-                "alle",
-                "Komödie",
-                "Krimi",
-                "Krimikomödie",
-                "Märchen",
-                "Drama",
-                "Weihnachten",
-                "Tragikomödie",
-                "Für Jugendliche",
-                "Kinder & Jugend",
-                "Für Senioren",
-              ].map((opt) => (
-                <option
-                  value={opt}
-                  selected={
-                    genre === opt ||
-                    (opt === "Für Jugendliche" && genre === "Kinder & Jugend") ||
-                    (opt === "Kinder & Jugend" && genre === "Kinder & Jugend")
-                  }
-                >
-                  {opt}
-                </option>
-              ))
-            }
+            {genres.map((opt) => <option value={opt}>{opt}</option>)}
           </select>
         </div>
         <div class="f sm">
           <label for="herren">Herrenrollen</label>
-          <select id="herren" name="herren">
+          <select id="herren" name="herren" disabled={!hasCastData} title={!hasCastData ? "Besetzungsdaten folgen noch" : undefined}>
             {
               ["beliebig", "1", "2", "3", "4", "5", "6", "7+"].map((opt) => (
-                <option value={opt} selected={herren === opt}>
-                  {opt === "7+" ? "7 und mehr" : opt}
-                </option>
+                <option value={opt}>{opt === "7+" ? "7 und mehr" : opt}</option>
               ))
             }
           </select>
         </div>
         <div class="f sm">
           <label for="damen">Damenrollen</label>
-          <select id="damen" name="damen">
+          <select id="damen" name="damen" disabled={!hasCastData} title={!hasCastData ? "Besetzungsdaten folgen noch" : undefined}>
             {
               ["beliebig", "1", "2", "3", "4", "5", "6", "7+"].map((opt) => (
-                <option value={opt} selected={damen === opt}>
-                  {opt === "7+" ? "7 und mehr" : opt}
-                </option>
+                <option value={opt}>{opt === "7+" ? "7 und mehr" : opt}</option>
               ))
             }
           </select>
         </div>
         <div class="f">
           <label for="spielort">Spielort</label>
-          <select id="spielort" name="spielort">
+          <select id="spielort" name="spielort" disabled={!hasVenueData} title={!hasVenueData ? "Spielort-Angaben folgen noch" : undefined}>
             {
               ["egal", "Saal", "Freilicht"].map((opt) => (
-                <option value={opt} selected={spielort === opt}>
-                  {opt}
-                </option>
+                <option value={opt}>{opt}</option>
               ))
             }
           </select>
@@ -257,95 +140,62 @@ const hasMore = filtered.length > PAGE_SIZE;
           <select id="dauer" name="dauer">
             {
               ["alle", "Abendfüllend", "Einakter", "Kurzstück"].map((opt) => (
-                <option value={opt} selected={dauer === opt}>
-                  {opt}
-                </option>
+                <option value={opt}>{opt}</option>
               ))
             }
           </select>
         </div>
-        {
-          ensemble !== "beliebig" && (
-            <input type="hidden" name="ensemble" value={ensemble} />
-          )
-        }
-        {
-          sort !== "az" && <input type="hidden" name="sort" value={sort} />
-        }
+        <input type="hidden" name="ensemble" id="ensemble" value="beliebig" />
         <button class="go" type="submit">
           <i class="ti ti-search" aria-hidden="true"></i> Suchen
         </button>
       </form>
 
       <div class="fb2">
-        <div class="chips">
-          {
-            chips.length > 0 && (
-              <>
-                <span class="lbl">Aktive Filter:</span>
-                {chips.map((c) => (
-                  <a class="chip" href={c.clearHref}>
-                    {c.label} <i class="ti ti-x" aria-hidden="true" />
-                  </a>
-                ))}
-                <a class="chip clear" href={overviewHref()}>
-                  alle zurücksetzen
-                </a>
-              </>
-            )
-          }
-        </div>
+        <div class="chips" id="filter-chips"></div>
         <div class="result-meta">
           <span>
-            <b>{filtered.length}</b> von {total} Stücken
+            <b id="result-count">{total}</b> von {total} Stücken
           </span>
-          <form method="get" action={path("/theaterstuecke")} class="sort-form">
-            {
-              q && <input type="hidden" name="q" value={q} />
-            }
-            {
-              genre !== "alle" && <input type="hidden" name="genre" value={genre} />
-            }
-            {
-              dauer !== "alle" && <input type="hidden" name="dauer" value={dauer} />
-            }
-            {
-              herren !== "beliebig" && (
-                <input type="hidden" name="herren" value={herren} />
-              )
-            }
-            {
-              damen !== "beliebig" && (
-                <input type="hidden" name="damen" value={damen} />
-              )
-            }
-            {
-              spielort !== "egal" && (
-                <input type="hidden" name="spielort" value={spielort} />
-              )
-            }
-            {
-              ensemble !== "beliebig" && (
-                <input type="hidden" name="ensemble" value={ensemble} />
-              )
-            }
+          <div class="sort-form">
             <label class="visually-hidden" for="sort">Sortierung</label>
-            <select id="sort" name="sort" onchange="this.form.submit()">
-              <option value="az" selected={sort === "az"}>Sortierung: A–Z</option>
-              <option value="genre" selected={sort === "genre"}>nach Genre</option>
+            <select id="sort" name="sort">
+              <option value="az">Sortierung: A–Z</option>
+              <option value="genre">nach Genre</option>
             </select>
-          </form>
+          </div>
         </div>
       </div>
+      {
+        (!hasCastData || !hasVenueData) && (
+          <p class="filter-note" id="filter-note">
+            Genre, Dauer und Freitextsuche sind aktiv.
+            {!hasCastData && " Herren-/Damenrollen folgen mit den Besetzungsdaten."}
+            {!hasVenueData && " Spielort-Filter folgt mit den Stammdaten."}
+          </p>
+        )
+      }
     </div>
   </div>
 
   <section class="results">
     <div class="wrap">
-      <div class="list" id="stueck-list" data-page-size={PAGE_SIZE}>
+      <div class="list" id="stueck-list">
         {
-          filtered.map((s, i) => (
-            <article class:list={["li", { "is-more": i >= PAGE_SIZE }]} hidden={i >= PAGE_SIZE}>
+          stuecke.map((s) => (
+            <article
+              class="li"
+              data-slug={s.slug}
+              data-titel={s.titel}
+              data-untertitel={s.untertitel}
+              data-kuerzel={s.kuerzel}
+              data-kategorien={s.kategorien.join("|")}
+              data-dauer={s.spielart_geschaetzt}
+              data-m={typeof s.besetzung_m === "number" ? String(s.besetzung_m) : ""}
+              data-w={typeof s.besetzung_w === "number" ? String(s.besetzung_w) : ""}
+              data-ort={s.buehnenbild || ""}
+              hidden
+            >
               <div class="lt">
                 <span class="g">{s.untertitel || s.kategorien[0]}</span>
                 <span>{s.spielart_geschaetzt}</span>
@@ -377,21 +227,13 @@ const hasMore = filtered.length > PAGE_SIZE;
         }
       </div>
 
-      {
-        filtered.length === 0 && (
-          <p class="empty">
-            Keine Treffer. <a href={overviewHref()}>Filter zurücksetzen</a>
-          </p>
-        )
-      }
+      <p class="empty" id="empty-state" hidden>
+        Keine Treffer. <a href={overviewHref()}>Filter zurücksetzen</a>
+      </p>
 
-      {
-        hasMore && (
-          <div class="loadmore">
-            <button type="button" id="load-more">Weitere Stücke laden</button>
-          </div>
-        )
-      }
+      <div class="loadmore" id="load-more-wrap" hidden>
+        <button type="button" id="load-more">Weitere Stücke laden</button>
+      </div>
     </div>
   </section>
 
@@ -422,20 +264,315 @@ const hasMore = filtered.length > PAGE_SIZE;
 </BaseLayout>
 
 <script>
-  const btn = document.getElementById("load-more");
+  type Params = {
+    q: string;
+    genre: string;
+    dauer: string;
+    herren: string;
+    damen: string;
+    spielort: string;
+    ensemble: string;
+    sort: string;
+  };
+
+  const root = document.querySelector<HTMLElement>("[data-overview-filters]");
+  const form = document.getElementById("filter-form") as HTMLFormElement | null;
   const list = document.getElementById("stueck-list");
-  if (btn && list) {
-    const size = Number(list.dataset.pageSize || 24);
-    btn.addEventListener("click", () => {
-      const hidden = list.querySelectorAll<HTMLElement>(".li[hidden]");
-      Array.from(hidden)
-        .slice(0, size)
-        .forEach((el) => {
+  const chipsEl = document.getElementById("filter-chips");
+  const countEl = document.getElementById("result-count");
+  const emptyEl = document.getElementById("empty-state");
+  const loadWrap = document.getElementById("load-more-wrap");
+  const loadBtn = document.getElementById("load-more");
+  const sortEl = document.getElementById("sort") as HTMLSelectElement | null;
+
+  if (!root || !form || !list) {
+    // no-op
+  } else {
+    const base = root.dataset.base || "/theaterstuecke";
+    const pageSize = Number(root.dataset.pageSize || 24);
+    const hasCast = root.dataset.hasCast === "1";
+    const hasVenue = root.dataset.hasVenue === "1";
+    const items = Array.from(list.querySelectorAll<HTMLElement>(".li"));
+    let visibleSlugs: string[] = [];
+    let shown = 0;
+
+    function readParams(): Params {
+      const sp = new URLSearchParams(location.search);
+      return {
+        q: (sp.get("q") || "").trim(),
+        genre: sp.get("genre") || "alle",
+        dauer: sp.get("dauer") || "alle",
+        herren: sp.get("herren") || "beliebig",
+        damen: sp.get("damen") || "beliebig",
+        spielort: sp.get("spielort") || "egal",
+        ensemble: sp.get("ensemble") || "beliebig",
+        sort: sp.get("sort") || "az",
+      };
+    }
+
+    function syncForm(p: Params) {
+      const set = (name: string, value: string) => {
+        const el = form!.elements.namedItem(name) as
+          | HTMLInputElement
+          | HTMLSelectElement
+          | null;
+        if (el) el.value = value;
+      };
+      set("q", p.q);
+      set("genre", p.genre);
+      set("dauer", p.dauer);
+      set("herren", hasCast ? p.herren : "beliebig");
+      set("damen", hasCast ? p.damen : "beliebig");
+      set("spielort", hasVenue ? p.spielort : "egal");
+      set("ensemble", p.ensemble);
+      if (sortEl) sortEl.value = p.sort;
+    }
+
+    function dauerOk(piece: string, filter: string) {
+      if (!filter || filter === "alle") return true;
+      if (filter === "Kurzstück") return piece === "Sketch" || piece === "Kurzstück";
+      if (filter === "Sketch") return piece === "Sketch" || piece === "Kurzstück";
+      return piece === filter;
+    }
+
+    function genreOk(kats: string[], genre: string) {
+      if (!genre || genre === "alle") return true;
+      if (genre === "Kinder & Jugend" || genre === "Für Jugendliche") {
+        return kats.includes("Für Jugendliche");
+      }
+      return kats.includes(genre);
+    }
+
+    function castOk(value: string, filter: string) {
+      if (!filter || filter === "beliebig") return true;
+      if (value === "") return false;
+      const n = Number(value);
+      if (filter === "7+") return n >= 7;
+      return n === Number(filter);
+    }
+
+    function ensembleOk(kats: string[], m: string, w: string, ensemble: string) {
+      if (!ensemble || ensemble === "beliebig") return true;
+      if (ensemble === "kinder-jugend") return kats.includes("Für Jugendliche");
+      // Größenfilter brauchen Besetzungszahlen — ohne Stammdaten nicht anwenden
+      if (!hasCast) return true;
+      if (m === "" && w === "") return false;
+      const total = (m === "" ? 0 : Number(m)) + (w === "" ? 0 : Number(w));
+      if (ensemble === "bis-6") return total > 0 && total <= 6;
+      if (ensemble === "7-10") return total >= 7 && total <= 10;
+      if (ensemble === "ueber-10") return total > 10;
+      return true;
+    }
+
+    function matches(el: HTMLElement, p: Params) {
+      const titel = el.dataset.titel || "";
+      const untertitel = el.dataset.untertitel || "";
+      const kuerzel = el.dataset.kuerzel || "";
+      const kats = (el.dataset.kategorien || "").split("|").filter(Boolean);
+      const dauer = el.dataset.dauer || "";
+      const m = el.dataset.m || "";
+      const w = el.dataset.w || "";
+      const ort = el.dataset.ort || "";
+
+      if (p.q) {
+        const needle = p.q.toLowerCase();
+        const hay = [titel, untertitel, kuerzel, ...kats].join(" ").toLowerCase();
+        if (!hay.includes(needle)) return false;
+      }
+      if (!genreOk(kats, p.genre)) return false;
+      if (!dauerOk(dauer, p.dauer)) return false;
+      if (hasCast) {
+        if (!castOk(m, p.herren)) return false;
+        if (!castOk(w, p.damen)) return false;
+      }
+      if (hasVenue && p.spielort !== "egal") {
+        if (ort.toLowerCase() !== p.spielort.toLowerCase()) return false;
+      }
+      if (!ensembleOk(kats, m, w, p.ensemble)) return false;
+      return true;
+    }
+
+    function sortItems(arr: HTMLElement[], sort: string) {
+      return [...arr].sort((a, b) => {
+        if (sort === "genre") {
+          const ga = (a.dataset.kategorien || "").split("|")[0] || "";
+          const gb = (b.dataset.kategorien || "").split("|")[0] || "";
+          const g = ga.localeCompare(gb, "de");
+          if (g) return g;
+        }
+        return (a.dataset.titel || "").localeCompare(b.dataset.titel || "", "de");
+      });
+    }
+
+    function hrefWithout(p: Params, keys: string[]) {
+      const next: Record<string, string> = { ...p };
+      for (const k of keys) {
+        if (k === "q") next.q = "";
+        else if (k === "genre") next.genre = "alle";
+        else if (k === "dauer") next.dauer = "alle";
+        else if (k === "herren") next.herren = "beliebig";
+        else if (k === "damen") next.damen = "beliebig";
+        else if (k === "spielort") next.spielort = "egal";
+        else if (k === "ensemble") next.ensemble = "beliebig";
+        else if (k === "sort") next.sort = "az";
+      }
+      return buildUrl(next);
+    }
+
+    function buildUrl(p: Params) {
+      const q = new URLSearchParams();
+      if (p.q) q.set("q", p.q);
+      if (p.genre && p.genre !== "alle") q.set("genre", p.genre);
+      if (p.dauer && p.dauer !== "alle") q.set("dauer", p.dauer);
+      if (hasCast && p.herren && p.herren !== "beliebig") q.set("herren", p.herren);
+      if (hasCast && p.damen && p.damen !== "beliebig") q.set("damen", p.damen);
+      if (hasVenue && p.spielort && p.spielort !== "egal") q.set("spielort", p.spielort);
+      if (p.ensemble && p.ensemble !== "beliebig") q.set("ensemble", p.ensemble);
+      if (p.sort && p.sort !== "az") q.set("sort", p.sort);
+      const s = q.toString();
+      return s ? `${base}?${s}` : base;
+    }
+
+    function renderChips(p: Params) {
+      if (!chipsEl) return;
+      const chips: { label: string; href: string }[] = [];
+      if (p.q) chips.push({ label: `„${p.q}"`, href: hrefWithout(p, ["q"]) });
+      if (p.genre !== "alle") chips.push({ label: p.genre, href: hrefWithout(p, ["genre"]) });
+      if (p.dauer !== "alle") chips.push({ label: p.dauer, href: hrefWithout(p, ["dauer"]) });
+      if (hasCast && p.herren !== "beliebig") {
+        chips.push({
+          label: p.herren === "7+" ? "ab 7 Herren" : `${p.herren} Herren`,
+          href: hrefWithout(p, ["herren"]),
+        });
+      }
+      if (hasCast && p.damen !== "beliebig") {
+        chips.push({
+          label: p.damen === "7+" ? "ab 7 Damen" : `${p.damen} Damen`,
+          href: hrefWithout(p, ["damen"]),
+        });
+      }
+      if (hasVenue && p.spielort !== "egal") {
+        chips.push({ label: p.spielort, href: hrefWithout(p, ["spielort"]) });
+      }
+      if (p.ensemble === "kinder-jugend") {
+        chips.push({ label: "Kinder & Jugend", href: hrefWithout(p, ["ensemble"]) });
+      } else if (p.ensemble !== "beliebig") {
+        chips.push({ label: `Ensemble ${p.ensemble}`, href: hrefWithout(p, ["ensemble"]) });
+      }
+
+      if (!chips.length) {
+        chipsEl.innerHTML = "";
+        return;
+      }
+      chipsEl.innerHTML =
+        `<span class="lbl">Aktive Filter:</span>` +
+        chips
+          .map(
+            (c) =>
+              `<a class="chip" href="${c.href}">${c.label} <i class="ti ti-x" aria-hidden="true"></i></a>`,
+          )
+          .join("") +
+        `<a class="chip clear" href="${base}">alle zurücksetzen</a>`;
+    }
+
+    function paint() {
+      items.forEach((el) => {
+        el.hidden = true;
+        el.classList.add("is-more");
+      });
+      const order = new Map(visibleSlugs.map((s, i) => [s, i]));
+      const matched = items
+        .filter((el) => order.has(el.dataset.slug || ""))
+        .sort(
+          (a, b) =>
+            (order.get(a.dataset.slug || "") || 0) -
+            (order.get(b.dataset.slug || "") || 0),
+        );
+
+      // Keep DOM order aligned with sort for load-more slicing
+      matched.forEach((el) => list!.appendChild(el));
+
+      shown = 0;
+      const reveal = () => {
+        const next = matched.slice(shown, shown + pageSize);
+        next.forEach((el) => {
           el.hidden = false;
           el.classList.remove("is-more");
         });
-      if (!list.querySelector(".li[hidden]")) btn.parentElement?.remove();
+        shown += next.length;
+        if (loadWrap) loadWrap.hidden = shown >= matched.length;
+      };
+      reveal();
+
+      if (countEl) countEl.textContent = String(matched.length);
+      if (emptyEl) emptyEl.hidden = matched.length > 0;
+      if (loadBtn) {
+        loadBtn.onclick = () => reveal();
+      }
+    }
+
+    function apply(push: boolean) {
+      const p = readParams();
+      syncForm(p);
+      renderChips(p);
+      const matched = sortItems(
+        items.filter((el) => matches(el, p)),
+        p.sort,
+      );
+      visibleSlugs = matched.map((el) => el.dataset.slug || "");
+      paint();
+      if (push) {
+        const url = buildUrl(p);
+        history.replaceState(null, "", url);
+      }
+    }
+
+    function applyFromForm(pushState: boolean) {
+      const fd = new FormData(form!);
+      const p: Params = {
+        q: String(fd.get("q") || "").trim(),
+        genre: String(fd.get("genre") || "alle"),
+        dauer: String(fd.get("dauer") || "alle"),
+        herren: String(fd.get("herren") || "beliebig"),
+        damen: String(fd.get("damen") || "beliebig"),
+        spielort: String(fd.get("spielort") || "egal"),
+        ensemble: String(fd.get("ensemble") || "beliebig"),
+        sort: sortEl?.value || "az",
+      };
+      const url = buildUrl(p);
+      if (pushState) history.pushState(null, "", url);
+      else history.replaceState(null, "", url);
+      syncForm(p);
+      renderChips(p);
+      const matched = sortItems(
+        items.filter((el) => matches(el, p)),
+        p.sort,
+      );
+      visibleSlugs = matched.map((el) => el.dataset.slug || "");
+      paint();
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      applyFromForm(true);
     });
+
+    sortEl?.addEventListener("change", () => {
+      applyFromForm(true);
+    });
+
+    chipsEl?.addEventListener("click", (e) => {
+      const a = (e.target as HTMLElement).closest("a");
+      if (!a || !chipsEl.contains(a)) return;
+      e.preventDefault();
+      history.pushState(null, "", a.getAttribute("href") || base);
+      apply(false);
+    });
+
+    window.addEventListener("popstate", () => apply(false));
+
+    // Initial paint from URL (homepage search + deep links)
+    apply(false);
   }
 </script>
 
@@ -522,6 +659,11 @@ const hasMore = filtered.length > PAGE_SIZE;
     font-weight: 500;
     cursor: text;
   }
+  .fb .f select:disabled {
+    color: var(--muted);
+    cursor: not-allowed;
+    opacity: 0.72;
+  }
   .fb .f select {
     appearance: none;
     -webkit-appearance: none;
@@ -595,6 +737,11 @@ const hasMore = filtered.length > PAGE_SIZE;
     color: var(--wine);
     text-decoration: underline;
     padding: 5px 4px;
+  }
+  .filter-note {
+    margin: 0 0 14px;
+    font-size: 12.5px;
+    color: var(--muted);
   }
   .result-meta {
     display: flex;
