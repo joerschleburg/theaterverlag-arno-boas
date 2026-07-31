@@ -338,7 +338,7 @@ const definedTermLd = {
     margin: 0 0 16px;
     max-width: 68ch;
   }
-  .body a {
+  .body a:not(.btn) {
     color: var(--wine);
     font-weight: 600;
   }
@@ -431,12 +431,12 @@ const definedTermLd = {
     align-items: center;
     justify-content: center;
     background: var(--wine);
-    color: #fff;
+    color: #fff !important;
+    font-weight: 700;
     text-decoration: none;
     border: 1px solid var(--wine);
     padding: 13px 18px;
     font-size: 12px;
-    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 6px;
@@ -444,14 +444,15 @@ const definedTermLd = {
   .btn:hover {
     background: var(--wine-dark);
     border-color: var(--wine-dark);
+    color: #fff !important;
   }
   .btn.ghost {
     background: transparent;
-    color: var(--ink);
+    color: var(--ink) !important;
     border-color: var(--ink);
   }
   .btn.ghost:hover {
-    color: var(--wine);
+    color: var(--wine) !important;
     border-color: var(--wine);
     background: transparent;
   }
