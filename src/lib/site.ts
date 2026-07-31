@@ -6,6 +6,7 @@ export const SITE = {
   email: "info@theaterverlag-arno-boas.de",
   phone: "07933/20093",
   fax: "07933/20094",
+  vatId: "DE263971681",
   address: {
     street: "Finsterlohr 46",
     zip: "97993",
