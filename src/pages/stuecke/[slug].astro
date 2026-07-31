@@ -34,6 +34,11 @@ const related = getRelatedStuecke(stueck, 3);
 const genrePrimary = stueck.kategorien[0] || "Theaterstück";
 const genreFilter = genreFilterLabel(genrePrimary);
 const genreDisplay = stueck.kategorien.map(genreFilterLabel).join(", ");
+const besetzungHinweis =
+  stueck.besetzung_hinweis &&
+  !/^\d+$/.test(String(stueck.besetzung_hinweis).trim())
+    ? String(stueck.besetzung_hinweis).trim()
+    : undefined;
 
 const specs: { label: string; value: string }[] = [
   { label: "Genre", value: genreDisplay },
@@ -62,8 +67,8 @@ const faqs = [
     ? [
         {
           question: `Was bedeutet die Besetzung „${besetzung}"?`,
-          answer: stueck.besetzung_hinweis
-            ? `Sie nennt die Zahl der Herren- und Damenrollen. Hinweis zur Besetzung: ${stueck.besetzung_hinweis}`
+          answer: besetzungHinweis
+            ? `Sie nennt die Zahl der Herren- und Damenrollen. Hinweis zur Besetzung: ${besetzungHinweis}`
             : "Sie nennt die Zahl der Herren- und Damenrollen. Viele Stücke lassen sich flexibel besetzen.",
         },
       ]
@@ -221,13 +226,12 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
             )
         }
         {
-          stueck.besetzung_hinweis &&
-            !/^\d+$/.test(String(stueck.besetzung_hinweis).trim()) && (
-              <>
-                <h2>Besetzungshinweis</h2>
-                <p>{stueck.besetzung_hinweis}</p>
-              </>
-            )
+          besetzungHinweis && (
+            <div class="cast-note">
+              <span class="cn-label">Besetzungshinweis</span>
+              <p>{besetzungHinweis}</p>
+            </div>
+          )
         }
 
         <h2>Bestellung &amp; Aufführung</h2>
@@ -278,6 +282,14 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
             ))
           }
         </ul>
+        {
+          besetzungHinweis && (
+            <div class="spec-note">
+              <span>Besetzungshinweis</span>
+              <p>{besetzungHinweis}</p>
+            </div>
+          )
+        }
         {
           typeof stueck.preis_rollensatz === "number" ? (
             <div class="price">
@@ -432,6 +444,27 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
     margin: 0 0 14px;
     max-width: 62ch;
   }
+  .cast-note {
+    margin: 28px 0 8px;
+    padding: 16px 18px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--wine);
+  }
+  .cast-note .cn-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--wine);
+    margin-bottom: 6px;
+  }
+  .cast-note p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--ink);
+    max-width: none;
+  }
   .order {
     display: grid;
     gap: 14px;
@@ -502,6 +535,27 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
   .specs li span:last-child {
     text-align: right;
     font-weight: 600;
+    color: var(--ink);
+  }
+  .spec-note {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--paper-2);
+    border-radius: 8px;
+  }
+  .spec-note span {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--wine);
+    margin-bottom: 4px;
+  }
+  .spec-note p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.45;
     color: var(--ink);
   }
   .price {
