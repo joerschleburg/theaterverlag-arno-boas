@@ -1,6 +1,7 @@
 import raw from "../data/stuecke.json";
 import { GENRE_INDEX } from "./site";
 import { path } from "./paths";
+import { AUTOREN } from "./autoren";
 
 export type Stueck = {
   titel: string;
@@ -76,17 +77,7 @@ export function overviewHref(params: Record<string, string | undefined> = {}) {
 }
 
 /** Bekannte Autorenseiten (Slug-Match über Normalisierung). */
-const KNOWN_AUTHOR_SLUGS = [
-  "arno-boas",
-  "jochen-wiltschko",
-  "christian-lange",
-  "thorsten-boehner",
-  "klaus-troebs",
-  "christian-ziegler",
-  "georges-neuen",
-  "wilhelm-wolpert",
-  "thomas-gehring",
-] as const;
+const KNOWN_AUTHOR_SLUGS = new Set(AUTOREN.map((a) => a.slug));
 
 function normalizePerson(name: string) {
   return name
@@ -104,9 +95,7 @@ function normalizePerson(name: string) {
 export function autorHref(autor?: string): string | undefined {
   if (!autor) return undefined;
   const slug = normalizePerson(autor);
-  return (KNOWN_AUTHOR_SLUGS as readonly string[]).includes(slug)
-    ? path(`/autoren/${slug}`)
-    : undefined;
+  return KNOWN_AUTHOR_SLUGS.has(slug) ? path(`/autoren/${slug}`) : undefined;
 }
 
 export function formatBesetzung(s: Stueck): string | undefined {

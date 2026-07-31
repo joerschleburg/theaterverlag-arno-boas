@@ -11,6 +11,8 @@ import {
   autorPhotoSrc,
   getAutorBySlug,
 } from "../../lib/autoren";
+import { getStuecke, stueckHref } from "../../lib/stuecke";
+import { genreFilterLabel } from "../../lib/site";
 
 export function getStaticPaths() {
   return AUTOREN.map((a) => ({ params: { slug: a.slug } }));
@@ -20,11 +22,15 @@ const author = getAutorBySlug(Astro.params.slug!);
 if (!author) {
   return Astro.redirect(path("/autoren"));
 }
+
+const works = getStuecke()
+  .filter((s) => (s.autor || "").trim() === author.name)
+  .sort((a, b) => a.titel.localeCompare(b.titel, "de"));
 ---
 
 <BaseLayout
   title={author.name}
-  description={`${author.name} — Theaterverlag Arno Boas.`}
+  description={`${author.name} — Autorin/Autor beim Theaterverlag Arno Boas.`}
 >
   <SiteHeader active="/autoren" />
 
@@ -51,11 +57,34 @@ if (!author) {
         <p class="bio">
           {
             author.bio ||
-              "Kurzbio und Werkverzeichnis folgen."
+              (works.length
+                ? `${works.length} ${works.length === 1 ? "Stück" : "Stücke"} im Repertoire des Theaterverlags Arno Boas.`
+                : "Kurzbio folgt.")
           }
         </p>
       </div>
     </div>
+
+    {
+      works.length > 0 && (
+        <section class="works">
+          <h2>Werkverzeichnis</h2>
+          <ul>
+            {works.map((s) => (
+              <li>
+                <a href={stueckHref(s.slug)}>
+                  <span class="wt">{s.titel}</span>
+                  <span class="wm">
+                    {genreFilterLabel(s.kategorien[0] || "")}
+                    {s.spielart_geschaetzt ? ` · ${s.spielart_geschaetzt}` : ""}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
   </article>
 
   <NewsletterSignup />
@@ -79,24 +108,20 @@ if (!author) {
   }
   .hero-row {
     display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 48px;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
     align-items: start;
   }
   .ph {
     position: relative;
     aspect-ratio: 3 / 4;
-    background: var(--paper-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 20px 44px rgba(20, 12, 6, 0.18);
+    background: var(--paper-2);
   }
   .ph img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 18%;
     display: block;
   }
   .stock-note {
@@ -104,35 +129,83 @@ if (!author) {
     left: 10px;
     bottom: 10px;
     background: rgba(26, 22, 17, 0.72);
-    color: #f5efe4;
+    color: #f2e9d8;
     font-size: 10px;
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 700;
     padding: 5px 8px;
-    border-radius: 4px;
   }
   h1 {
-    font-size: clamp(36px, 5vw, 58px);
-    line-height: 0.95;
-    margin: 10px 0 12px;
+    font-size: clamp(34px, 4.5vw, 52px);
+    margin: 10px 0 8px;
+    line-height: 1.05;
   }
   .role {
     color: var(--wine);
     font-weight: 600;
-    margin: 0 0 18px;
+    margin: 0 0 14px;
   }
   .bio {
     color: var(--muted);
+    font-size: 17px;
     max-width: 52ch;
     margin: 0;
+  }
+  .works {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .works h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    margin: 0 0 18px;
+  }
+  .works ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid var(--ink);
+  }
+  .works li {
+    border-bottom: 1px solid var(--border);
+  }
+  .works a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 0;
+    text-decoration: none;
+    color: inherit;
+  }
+  .works a:hover .wt {
+    color: var(--wine);
+  }
+  .wt {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 22px);
+  }
+  .wm {
+    flex: none;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
   }
   @media (max-width: 720px) {
     .hero-row {
       grid-template-columns: 1fr;
+      gap: 22px;
     }
     .ph {
       max-width: 260px;
+    }
+    .works a {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
     }
   }
 </style>
