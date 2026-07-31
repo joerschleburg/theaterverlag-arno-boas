@@ -9,6 +9,8 @@ import { SITE } from "../lib/site";
 
 const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 
+const manuscriptHref = path("/autoren") + "#manuskript";
+
 const faqs = [
   {
     question: "Wie erreiche ich den Theaterverlag Arno Boas?",
@@ -19,6 +21,12 @@ const faqs = [
     question: "Wie bestelle ich eine Leseprobe oder frage eine Aufführung an?",
     answer:
       "Am besten über die Merkliste: Stücke sammeln und gebündelt anfragen. So ist sofort klar, ob Sie eine Leseprobe, ein Ansichtsexemplar, einen Rollensatz oder eine Aufführung wünschen.",
+  },
+  {
+    question: "Wie sende ich ein Manuskript an den Verlag?",
+    answer:
+      "Bitte nicht über das Kontaktformular — Manuskripte nehmen wir ausschließlich als PDF per E-Mail an info@theaterverlag-arno-boas.de entgegen (Betreff „Manuskript einsenden“). Format, Fristen und Aufnahmebedingungen stehen auf der Autorenseite unter „Manuskript“.",
+    answerHtml: `Bitte nicht über das Kontaktformular — Manuskripte nehmen wir ausschließlich als PDF per E-Mail an <a href="mailto:${SITE.email}">${SITE.email}</a> entgegen (Betreff „Manuskript einsenden“). Format, Fristen und Aufnahmebedingungen stehen auf der <a href="${manuscriptHref}">Autorenseite unter „Manuskript“</a>.`,
   },
   {
     question: "Wo hat der Theaterverlag Arno Boas seinen Sitz?",
@@ -204,6 +212,11 @@ const faqLd = {
           die <a href="#merkliste" data-merk-trigger>Merkliste</a> – dort wählen
           Sie je Stück, was Sie möchten (Leseprobe, Rollensatz, Aufführung).
         </div>
+        <div class="knote">
+          Manuskript einsenden? Bitte <b>nicht</b> über dieses Formular, sondern
+          als PDF per E-Mail — Details unter
+          <a href={manuscriptHref}>Autoren → Manuskript</a>.
+        </div>
       </aside>
     </div>
   </section>
@@ -226,7 +239,7 @@ const faqLd = {
                   <i class="ti ti-plus" aria-hidden="true" />
                 </span>
               </summary>
-              <p>{item.answer}</p>
+              <p set:html={item.answerHtml ?? item.answer} />
             </details>
           ))
         }
