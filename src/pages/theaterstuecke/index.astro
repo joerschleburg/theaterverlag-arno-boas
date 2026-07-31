@@ -171,6 +171,7 @@ const genres = GENRE_FILTER_OPTIONS;
               data-slug={s.slug}
               data-titel={s.titel}
               data-untertitel={s.untertitel}
+              data-autor={s.autor || ""}
               data-kuerzel={s.kuerzel}
               data-kategorien={s.kategorien.join("|")}
               data-dauer={s.spielart_geschaetzt}
@@ -386,6 +387,7 @@ const genres = GENRE_FILTER_OPTIONS;
     function matches(el: HTMLElement, p: Params) {
       const titel = el.dataset.titel || "";
       const untertitel = el.dataset.untertitel || "";
+      const autor = el.dataset.autor || "";
       const kuerzel = el.dataset.kuerzel || "";
       const kats = (el.dataset.kategorien || "").split("|").filter(Boolean);
       const dauer = el.dataset.dauer || "";
@@ -395,7 +397,9 @@ const genres = GENRE_FILTER_OPTIONS;
 
       if (p.q) {
         const needle = p.q.toLowerCase();
-        const hay = [titel, untertitel, kuerzel, ...kats].join(" ").toLowerCase();
+        const hay = [titel, untertitel, autor, kuerzel, ...kats]
+          .join(" ")
+          .toLowerCase();
         if (!hay.includes(needle)) return false;
       }
       if (!genreOk(kats, p.genre)) return false;
