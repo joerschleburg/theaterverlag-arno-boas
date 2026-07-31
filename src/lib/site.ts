@@ -36,7 +36,6 @@ export const GENRE_FILTER_OPTIONS = [
   "alle",
   "Komödie",
   "Krimi",
-  "Krimikomödie",
   "Märchen",
   "Drama",
   "Weihnachten",
