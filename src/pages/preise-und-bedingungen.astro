@@ -1,9 +1,12 @@
 ---
+import { path } from "../lib/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import StickyKatalog from "../components/StickyKatalog.astro";
 import NewsletterSignup from "../components/NewsletterSignup.astro";
+
+const formulareHref = path("/formulare");
 
 const faqs = [
   {
@@ -35,6 +38,7 @@ const faqs = [
     question: "Was ist eine Aufführungsmeldung?",
     answer:
       "Mit der Aufführungsmeldung teilen Sie uns geplante und stattgefundene Vorstellungen mit — inklusive Besucherzahl und Eintrittseinnahmen. Spätestens 14 Tage nach der letzten Aufführung melden Sie uns das bitte unaufgefordert; daraufhin erhalten Sie die Rechnung. Eine bereits geleistete Anzahlung auf die Premiere ziehen wir von der Endsumme ab. Das Formular finden Sie unter Formulare — online oder als PDF zum Ausdrucken.",
+    answerHtml: `Mit der Aufführungsmeldung teilen Sie uns geplante und stattgefundene Vorstellungen mit — inklusive Besucherzahl und Eintrittseinnahmen. Spätestens 14 Tage nach der letzten Aufführung melden Sie uns das bitte unaufgefordert; daraufhin erhalten Sie die Rechnung. Eine bereits geleistete Anzahlung auf die Premiere ziehen wir von der Endsumme ab. Das Formular finden Sie unter <a href="${formulareHref}">Formulare</a> — online oder als PDF zum Ausdrucken.`,
   },
   {
     question: "Was ist der Unterschied zwischen Selbstkopie und Komplettrollensatz?",
@@ -370,7 +374,7 @@ const faqLd = {
                   <i class="ti ti-plus" aria-hidden="true" />
                 </span>
               </summary>
-              <p>{item.answer}</p>
+              <p set:html={item.answerHtml ?? item.answer} />
             </details>
           ))
         }
