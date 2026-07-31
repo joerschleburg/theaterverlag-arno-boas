@@ -327,7 +327,10 @@ const genres = GENRE_FILTER_OPTIONS;
     }
 
     function normalizeGenreParam(genre: string) {
-      return genre === "Für Jugendliche" ? "Kinder & Jugend" : genre;
+      if (genre === "Für Jugendliche") return "Kinder & Jugend";
+      // Altes Genre entfernt — auf Krimi umleiten
+      if (genre === "Krimikomödie") return "Krimi";
+      return genre;
     }
 
     function syncForm(p: Params) {
