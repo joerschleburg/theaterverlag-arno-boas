@@ -7,26 +7,30 @@ import StickyKatalog from "../components/StickyKatalog.astro";
 import NewsletterSignup from "../components/NewsletterSignup.astro";
 import { SITE } from "../lib/site";
 
+const manuscriptHref = path("/autoren") + "#manuskript";
+const preiseHref = path("/preise-und-bedingungen");
+const repertoireHref = path("/theaterstuecke");
+
 const faqs = [
   {
-    question: "Was ist ein Theaterverlag?",
+    question: "Brauche ich einen Aufführungsvertrag?",
     answer:
-      "Ein Theaterverlag (auch Bühnenverlag) vertritt Theaterstücke: Er vermittelt Aufführungsrechte an Bühnen, betreut Autorinnen und Autoren und stellt Textmaterial wie Leseproben und Rollensätze bereit.",
+      "Ja. Vor der ersten Aufführung eines urheberrechtlich geschützten Stücks wird ein Aufführungsvertrag geschlossen. Aufführungen ohne Vertrag sind nicht gestattet — auch bei Wohltätigkeit oder ohne Eintritt.",
   },
   {
-    question: "Was ist der Unterschied zwischen Theaterverlag und Buchverlag?",
+    question: "Was kostet die Aufführung ungefähr?",
     answer:
-      "Ein Buchverlag verkauft in der Regel gedruckte oder digitale Lesetexte. Ein Theaterverlag vermarktet vor allem das Recht zur öffentlichen Aufführung und liefert dafür die nötigen Materialien an Ensembles.",
+      "Bei abendfüllenden Stücken des Theaterverlags Arno Boas beträgt die Aufführungsgebühr 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt); dazu kommen ggf. Kosten für den Rollensatz. Einakter und Kurzstücke haben Pauschalen. Alle Details stehen unter Preise & Bedingungen.",
   },
   {
-    question: "Braucht eine Amateurtheatergruppe einen Theaterverlag?",
+    question: "Was zählt als öffentliche Aufführung?",
     answer:
-      "Ja, sobald ein urheberrechtlich geschütztes Stück öffentlich aufgeführt wird. Ohne Vertrag bzw. Aufführungserlaubnis sind Aufführungen in der Regel nicht gestattet.",
+      "Öffentlich ist eine Aufführung in der Regel dann, wenn sie nicht im privaten Kreis stattfindet — etwa vor Publikum im Saal, bei Vereinsfesten oder Schulveranstaltungen. Ob Eintritt verlangt wird, spielt für die Erlaubnispflicht meist keine Rolle.",
   },
   {
-    question: "Was macht der Theaterverlag Arno Boas?",
+    question: "Wie reiche ich als Autorin oder Autor ein Manuskript ein?",
     answer:
-      "Er ist ein Bühnenverlag fürs Amateurtheater mit über 250 Stücken: Komödien, Krimis, Märchen, Dramen und mehr — in verständlicher Umgangssprache, leicht in jeden Dialekt übertragbar oder auf Hochdeutsch spielbar.",
+      "Beim Theaterverlag Arno Boas ausschließlich als PDF per E-Mail. Format, Fristen und Aufnahmebedingungen stehen auf der Autorenseite unter „Manuskript“.",
   },
 ];
 
@@ -45,7 +49,7 @@ const articleLd = {
   "@type": "Article",
   headline: "Was ist ein Theaterverlag?",
   description:
-    "Erklärung: Was Theaterverlage bzw. Bühnenverlage tun, wofür Aufführungsrechte nötig sind und wie Amateurtheater damit arbeiten.",
+    "Erklärung: Was Theaterverlage bzw. Bühnenverlage tun, Ablauf von der Stückwahl bis zum Vertrag, wichtige Begriffe und warum Amateurtheater Aufführungsrechte brauchen.",
   inLanguage: "de",
   author: {
     "@type": "Organization",
@@ -76,7 +80,7 @@ const definedTermLd = {
 
 <BaseLayout
   title="Was ist ein Theaterverlag?"
-  description="Theaterverlag erklärt: Aufgaben eines Bühnenverlags, Aufführungsrechte, Rollensätze — und wie Amateurtheater damit arbeiten."
+  description="Theaterverlag erklärt: Aufgaben eines Bühnenverlags, Aufführungsrechte, Ablauf für Amateurtheater, wichtige Begriffe und der Weg vom Stück zur Aufführung."
   jsonLd={[articleLd, definedTermLd, faqLd]}
 >
   <SiteHeader />
@@ -133,7 +137,8 @@ const definedTermLd = {
       </li>
       <li>
         <b>Abrechnung der Aufführungsgebühren</b> — Für die Nutzung des Werks
-        fallen Gebühren an; der Verlag regelt das mit den Bühnen.
+        fallen Gebühren an; der Verlag regelt das mit den Bühnen und leitet den
+        Anteil der Urheberinnen und Urheber weiter.
       </li>
     </ul>
 
@@ -161,6 +166,99 @@ const definedTermLd = {
       Amateurtheater.
     </p>
 
+    <h2>Vom Stück zur Aufführung — der typische Ablauf</h2>
+    <ol class="steps">
+      <li>
+        <b>Stück finden</b> — Im Repertoire nach Genre, Dauer, Besetzung oder
+        Autorin/Autor suchen.
+      </li>
+      <li>
+        <b>Lesen</b> — Zu abendfüllenden Titeln oft eine kostenlose PDF-Leseprobe;
+        das komplette Ansichtsexemplar lässt sich unverbindlich anfordern.
+      </li>
+      <li>
+        <b>Anfragen</b> — Über Merkliste oder Kontakt klären, was Sie brauchen:
+        Leseprobe, Rollensatz, Aufführung oder Beratung.
+      </li>
+      <li>
+        <b>Vertrag</b> — Vor der Premiere wird ein Aufführungsvertrag geschlossen
+        (Termine, Zahl der Vorstellungen, Bedingungen).
+      </li>
+      <li>
+        <b>Spielen &amp; abrechnen</b> — Material nutzen, aufführen,
+        Aufführungsgebühren laut Vertrag abführen.
+      </li>
+    </ol>
+
+    <h2>Wichtige Begriffe</h2>
+    <dl class="glossary">
+      <div>
+        <dt>Aufführungsrecht / Aufführungsvertrag</dt>
+        <dd>
+          Die Erlaubnis, ein Stück öffentlich zu spielen. Sie wird in der Regel
+          schriftlich im Aufführungsvertrag festgehalten.
+        </dd>
+      </div>
+      <div>
+        <dt>Aufführungsgebühr (Tantieme)</dt>
+        <dd>
+          Entgelt für die Nutzung des Werks — oft ein Prozentsatz der
+          Eintrittseinnahmen oder eine Pauschale, mindestens ein festgelegter
+          Betrag je Vorstellung.
+        </dd>
+      </div>
+      <div>
+        <dt>Leseprobe / Ansichtsexemplar</dt>
+        <dd>
+          Text zum Kennenlernen vor der Entscheidung. Leseproben sind oft
+          Auszüge; das Ansichtsexemplar zeigt das komplette Stück zur Prüfung.
+        </dd>
+      </div>
+      <div>
+        <dt>Selbstkopie</dt>
+        <dd>
+          Sie erhalten das komplette Stück und fertigen die Rollenhefte selbst
+          an.
+        </dd>
+      </div>
+      <div>
+        <dt>Komplettrollensatz</dt>
+        <dd>
+          Fertig gedruckte Hefte für alle Rollen plus Regie-Exemplar — direkt
+          einsatzbereit für die Probe.
+        </dd>
+      </div>
+    </dl>
+
+    <h2>Was ist erlaubt — und was nicht?</h2>
+    <p>
+      <strong>Erlaubt</strong> ist die öffentliche Aufführung eines geschützten
+      Stücks in der Regel nur mit Vertrag und nach den Bedingungen des Verlags.
+      Dazu gehört auch, das vorgesehene Textmaterial zu nutzen und die
+      Aufführungsgebühren zu zahlen.
+    </p>
+    <p>
+      <strong>Nicht erlaubt</strong> sind unter anderem: Aufführen ohne
+      Genehmigung, unkontrolliertes Kopieren oder Weitergeben der Rollenhefte
+      außerhalb der vereinbarten Nutzung sowie das „einfach aus dem Netz
+      ziehen“ und Proben starten. Verstöße gegen das Urheberrecht können
+      zivil- und strafrechtlich relevant sein.
+    </p>
+    <p>
+      Ob Eintritt verlangt wird oder die Vorstellung dem guten Zweck dient,
+      ändert an der Erlaubnispflicht in der Regel nichts: Auch dann brauchen
+      Sie einen Vertrag.
+    </p>
+
+    <h2>Autoren und Manuskripte</h2>
+    <p>
+      Theaterverlage nehmen auch neue Stücke an. Wer schreiben möchte, reicht
+      ein Manuskript ein; der Verlag prüft Spielbarkeit und Programmfit. Beim
+      {SITE.name} gilt: ausschließlich als <strong>PDF per E-Mail</strong>,
+      Prüfung bis zu acht Wochen — Details stehen auf der
+      <a href={manuscriptHref}>Autorenseite unter „Manuskript“</a>.
+    </p>
+
     <h2>Beispiel: Theaterverlag Arno Boas</h2>
     <p>
       Der {SITE.name} ist seit {SITE.founded} ein Bühnenverlag für das
@@ -171,15 +269,14 @@ const definedTermLd = {
     </p>
     <p>
       Ensembles können Stücke filtern, merken und anfragen; zu abendfüllenden
-      Titeln gibt es kostenlose PDF-Leseproben. Autorinnen und Autoren können
-      Manuskripte als PDF einreichen.
+      Titeln gibt es kostenlose PDF-Leseproben. Preise und Bedingungen sind
+      transparent dokumentiert.
     </p>
     <div class="cta-row">
-      <a class="btn" href={path("/theaterstuecke")}>Zum Repertoire</a>
+      <a class="btn" href={repertoireHref}>Zum Repertoire</a>
       <a class="btn ghost" href={path("/ueber-den-verlag")}>Über den Verlag</a>
-      <a class="btn ghost" href={path("/preise-und-bedingungen")}
-        >Preise &amp; Bedingungen</a
-      >
+      <a class="btn ghost" href={preiseHref}>Preise &amp; Bedingungen</a>
+      <a class="btn ghost" href={manuscriptHref}>Manuskript einsenden</a>
     </div>
   </section>
 
@@ -188,7 +285,7 @@ const definedTermLd = {
   <section class="wrap narrow faq-sec">
     <div class="faq-h">
       <span class="cap-label">Häufige Fragen</span>
-      <h2>Kurz beantwortet</h2>
+      <h2>Rechte, Kosten &amp; Einreichung</h2>
     </div>
     <div class="faq">
       {
@@ -241,6 +338,10 @@ const definedTermLd = {
     margin: 0 0 16px;
     max-width: 68ch;
   }
+  .body a {
+    color: var(--wine);
+    font-weight: 600;
+  }
   .body ul {
     margin: 0 0 18px;
     padding: 0;
@@ -253,7 +354,7 @@ const definedTermLd = {
     padding-left: 18px;
     position: relative;
   }
-  .body li::before {
+  .body ul li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -265,6 +366,59 @@ const definedTermLd = {
   }
   .body li b {
     color: var(--ink);
+  }
+  .steps {
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    gap: 14px;
+    max-width: 68ch;
+  }
+  .steps li {
+    padding-left: 42px;
+    position: relative;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--wine);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .glossary {
+    margin: 0 0 18px;
+    display: grid;
+    gap: 16px;
+    max-width: 68ch;
+  }
+  .glossary div {
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary dt {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--ink);
+    margin: 0 0 4px;
+  }
+  .glossary dd {
+    margin: 0;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
   }
   .cta-row {
     display: flex;
