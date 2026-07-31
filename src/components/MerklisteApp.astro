@@ -207,9 +207,11 @@ const privacyHref = path("/datenschutz");
 
   function renderSheet() {
     const list = items();
+    overlay.dataset.step = sheetStep;
     sheetSub.textContent =
       list.length + " " + (list.length === 1 ? "Stück" : "Stücke");
     if (!list.length) {
+      overlay.dataset.step = "empty";
       sheetList.innerHTML =
         '<div class="sheet-empty">Ihre Merkliste ist noch leer.</div>';
       sheetFoot.innerHTML = "";
@@ -682,8 +684,13 @@ const privacyHref = path("/datenschutz");
     width: 100%;
     max-width: 720px;
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  }
+  /* Platz für geöffnetes Leistungs-Dropdown — auch bei nur einem Stück */
+  #merk-overlay[data-step="list"] .sheet-list {
+    min-height: 360px;
+    padding-bottom: 248px;
   }
   #merk-overlay .sheet-h {
     display: flex;
@@ -775,7 +782,7 @@ const privacyHref = path("/datenschutz");
     border-radius: 10px;
     box-shadow: 0 16px 40px rgba(20, 12, 6, 0.2);
     padding: 6px;
-    z-index: 6;
+    z-index: 20;
     display: none;
   }
   #merk-overlay .wsel-wrap.open .wpop {
