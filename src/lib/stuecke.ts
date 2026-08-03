@@ -50,6 +50,21 @@ export function getStueckeMeta() {
   return data.meta;
 }
 
+/** Kurzer Teaser aus der Inhaltsbeschreibung für Listen. */
+export function teaserFromInhalt(inhalt?: string, max = 160): string {
+  if (!inhalt) return "";
+  let text = inhalt
+    .replace(/^Normal\s+\d+(?:\s+\d+)?\s*/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text) return "";
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const at = cut.lastIndexOf(" ");
+  const base = at > Math.floor(max * 0.55) ? cut.slice(0, at) : cut;
+  return `${base.replace(/[\s.,;:!?–—-]+$/u, "")}…`;
+}
+
 export function countByGenreMatch(match: readonly string[]): number {
   const set = new Set(match);
   return data.stuecke.filter((s) => s.kategorien.some((k) => set.has(k))).length;

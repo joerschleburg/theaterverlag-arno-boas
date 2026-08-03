@@ -5,7 +5,12 @@ import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import StickyKatalog from "../../components/StickyKatalog.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
-import { getStuecke, overviewHref, stueckHref } from "../../lib/stuecke";
+import {
+  getStuecke,
+  overviewHref,
+  stueckHref,
+  teaserFromInhalt,
+} from "../../lib/stuecke";
 import { GENRE_FILTER_OPTIONS, genreFilterLabel } from "../../lib/site";
 
 const stuecke = getStuecke();
@@ -165,7 +170,9 @@ const genres = GENRE_FILTER_OPTIONS;
     <div class="wrap">
       <div class="list" id="stueck-list">
         {
-          stuecke.map((s) => (
+          stuecke.map((s) => {
+            const teaser = teaserFromInhalt(s.inhalt);
+            return (
             <article
               class="li"
               data-slug={s.slug}
@@ -175,6 +182,7 @@ const genres = GENRE_FILTER_OPTIONS;
               data-kuerzel={s.kuerzel}
               data-kategorien={s.kategorien.join("|")}
               data-dauer={s.spielart_geschaetzt}
+              data-inhalt={s.inhalt || ""}
               data-m={typeof s.besetzung_m === "number" ? String(s.besetzung_m) : ""}
               data-w={typeof s.besetzung_w === "number" ? String(s.besetzung_w) : ""}
               data-ort={s.spielort || ""}
@@ -186,6 +194,7 @@ const genres = GENRE_FILTER_OPTIONS;
               </div>
               <a class="lh" href={stueckHref(s.slug)}>{s.titel}</a>
               <div class="ls">{s.untertitel}</div>
+              {teaser ? <p class="ld">{teaser}</p> : null}
               <div class="lb">
                 <span class="lm">
                   {typeof s.besetzung_m === "number" || typeof s.besetzung_w === "number"
@@ -210,7 +219,8 @@ const genres = GENRE_FILTER_OPTIONS;
                 </span>
               </div>
             </article>
-          ))
+            );
+          })
         }
       </div>
 
@@ -400,7 +410,8 @@ const genres = GENRE_FILTER_OPTIONS;
 
       if (p.q) {
         const needle = p.q.toLowerCase();
-        const hay = [titel, untertitel, autor, kuerzel, ...kats]
+        const inhalt = el.dataset.inhalt || "";
+        const hay = [titel, untertitel, autor, kuerzel, inhalt, ...kats]
           .join(" ")
           .toLowerCase();
         if (!hay.includes(needle)) return false;
@@ -841,6 +852,17 @@ const genres = GENRE_FILTER_OPTIONS;
     margin-top: 9px;
     font-size: 14.5px;
     color: var(--text);
+  }
+  .ld {
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 52ch;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .lb {
     margin-top: 14px;
