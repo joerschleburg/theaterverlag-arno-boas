@@ -171,7 +171,7 @@ const genres = GENRE_FILTER_OPTIONS;
       <div class="list" id="stueck-list">
         {
           stuecke.map((s) => {
-            const teaser = teaserFromInhalt(s.inhalt);
+            const teaser = teaserFromInhalt(s.inhalt, 220);
             return (
             <article
               class="li"
@@ -860,7 +860,7 @@ const genres = GENRE_FILTER_OPTIONS;
     color: var(--muted);
     max-width: 52ch;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
