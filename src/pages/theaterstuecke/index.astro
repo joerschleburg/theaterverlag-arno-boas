@@ -17,7 +17,6 @@ import {
 import { GENRE_FILTER_OPTIONS, genreFilterLabel } from "../../lib/site";
 
 const stuecke = getStuecke();
-const PAGE_SIZE = 24;
 const overviewBase = path("/theaterstuecke");
 
 const hasCastData = stuecke.some(
@@ -29,7 +28,7 @@ const faqs = [
   {
     question: "Welche Theaterstücke gibt es für Amateurtheater?",
     answer:
-      "Über 250 Bühnenstücke von rund 40 Autorinnen und Autoren: Komödie, Krimi, Märchen, Drama, Weihnachten, Tragikomödie, Kinder & Jugend und Für Senioren.",
+      "Über 250 Bühnenstücke von über 40 Autorinnen und Autoren: Komödie, Krimi, Märchen, Drama, Weihnachten, Tragikomödie, Kinder & Jugend und Für Senioren.",
   },
   {
     question: "Gibt es Stücke für kleine Ensembles?",
@@ -84,7 +83,7 @@ const genres = GENRE_FILTER_OPTIONS;
     </div>
   </section>
 
-  <div class="filterbar" data-overview-filters data-base={overviewBase} data-page-size={PAGE_SIZE} data-has-cast={hasCastData ? "1" : "0"} data-has-venue={hasVenueData ? "1" : "0"}>
+  <div class="filterbar" data-overview-filters data-base={overviewBase} data-has-cast={hasCastData ? "1" : "0"} data-has-venue={hasVenueData ? "1" : "0"}>
     <div class="wrap">
       <form class="fb" method="get" action={overviewBase} id="filter-form">
         <div class="f wide">
@@ -137,7 +136,7 @@ const genres = GENRE_FILTER_OPTIONS;
           <label for="dauer">Dauer</label>
           <select id="dauer" name="dauer">
             {
-              ["alle", "Abendfüllend", "Einakter", "Kurzstück"].map((opt) => (
+              ["alle", "Abendfüllend", "Einakter", "Kurzstück", "Sketch"].map((opt) => (
                 <option value={opt}>{opt}</option>
               ))
             }
@@ -253,10 +252,6 @@ const genres = GENRE_FILTER_OPTIONS;
       <p class="empty" id="empty-state" hidden>
         Keine Treffer. <a href={overviewHref()}>Filter zurücksetzen</a>
       </p>
-
-      <div class="loadmore" id="load-more-wrap" hidden>
-        <button type="button" id="load-more">Weitere Stücke laden</button>
-      </div>
     </div>
   </section>
 
@@ -308,19 +303,15 @@ const genres = GENRE_FILTER_OPTIONS;
   const countLabelEl = document.getElementById("result-label");
   const metaEl = document.getElementById("result-meta");
   const emptyEl = document.getElementById("empty-state");
-  const loadWrap = document.getElementById("load-more-wrap");
-  const loadBtn = document.getElementById("load-more");
 
   if (!root || !form || !list) {
     // no-op
   } else {
     const base = root.dataset.base || "/theaterstuecke";
-    const pageSize = Number(root.dataset.pageSize || 24);
     const hasCast = root.dataset.hasCast === "1";
     const hasVenue = root.dataset.hasVenue === "1";
     const items = Array.from(list.querySelectorAll<HTMLElement>(".li"));
     let visibleSlugs: string[] = [];
-    let shown = 0;
 
     function readParams(): Params {
       const sp = new URLSearchParams(location.search);
@@ -388,8 +379,6 @@ const genres = GENRE_FILTER_OPTIONS;
 
     function dauerOk(piece: string, filter: string) {
       if (!filter || filter === "alle") return true;
-      if (filter === "Kurzstück") return piece === "Sketch" || piece === "Kurzstück";
-      if (filter === "Sketch") return piece === "Sketch" || piece === "Kurzstück";
       return piece === filter;
     }
 
@@ -542,7 +531,6 @@ const genres = GENRE_FILTER_OPTIONS;
     function paint() {
       items.forEach((el) => {
         el.hidden = true;
-        el.classList.add("is-more");
       });
       const order = new Map(visibleSlugs.map((s, i) => [s, i]));
       const matched = items
@@ -553,25 +541,12 @@ const genres = GENRE_FILTER_OPTIONS;
             (order.get(b.dataset.slug || "") || 0),
         );
 
-      // Keep DOM order aligned with sort for load-more slicing
-      matched.forEach((el) => list!.appendChild(el));
-
-      shown = 0;
-      const reveal = () => {
-        const next = matched.slice(shown, shown + pageSize);
-        next.forEach((el) => {
-          el.hidden = false;
-          el.classList.remove("is-more");
-        });
-        shown += next.length;
-        if (loadWrap) loadWrap.hidden = shown >= matched.length;
-      };
-      reveal();
+      matched.forEach((el) => {
+        el.hidden = false;
+        list!.appendChild(el);
+      });
 
       if (emptyEl) emptyEl.hidden = matched.length > 0;
-      if (loadBtn) {
-        loadBtn.onclick = () => reveal();
-      }
     }
 
     function apply(push: boolean) {
@@ -983,29 +958,6 @@ const genres = GENRE_FILTER_OPTIONS;
     align-items: center;
     gap: 6px;
     text-decoration: none;
-  }
-
-  .loadmore {
-    text-align: center;
-    padding: 40px 0 0;
-  }
-  .loadmore button {
-    background: transparent;
-    border: 1px solid var(--ink);
-    border-radius: 100px;
-    padding: 13px 30px;
-    font-family: var(--font-body);
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--ink);
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .loadmore button:hover {
-    background: var(--ink);
-    color: #fff;
   }
 
   .empty {

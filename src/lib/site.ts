@@ -14,7 +14,7 @@ export const SITE = {
   },
   founded: 1997,
   description:
-    "Bühnenverlag für das Amateurtheater mit über 250 Stücken von rund 40 Autorinnen und Autoren.",
+    "Bühnenverlag für das Amateurtheater mit über 250 Stücken von über 40 Autorinnen und Autoren.",
   /** Preview/Staging: false. Vor dem Go-live auf true setzen. */
   indexable: false,
 } as const;

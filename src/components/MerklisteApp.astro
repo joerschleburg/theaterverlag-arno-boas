@@ -46,6 +46,12 @@ const privacyHref = path("/datenschutz");
 </div>
 
 <script>
+  import {
+    readHcaptchaToken,
+    renderHcaptcha,
+    resetHcaptcha,
+  } from "../lib/hcaptcha-client";
+
   type CatalogItem = {
     slug: string;
     titel: string;
@@ -90,6 +96,8 @@ const privacyHref = path("/datenschutz");
   } catch {
     wishes = {};
   }
+
+  let merklisteCaptchaId: string | number | undefined;
 
   const persist = () => {
     try {
@@ -272,9 +280,21 @@ const privacyHref = path("/datenschutz");
         <div class="fld"><label>Geplanter Aufführungszeitraum</label><input id="m_date" type="text" placeholder="z. B. Frühjahr 2027 (optional)"></div>
         <div class="fld"><label>Nachricht</label><textarea id="m_msg" placeholder="Ihre Anmerkungen (optional)"></textarea></div>
         <label class="chkrow" id="m_chkrow"><input id="m_ok" type="checkbox"><span>Ich habe die <a href="${root.dataset.privacy || "/datenschutz"}">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. <span class="req">*</span></span></label>
+        <div class="botcheck" id="m_botcheck"><span class="botcheck-label">Bitte bestätigen Sie: Ich bin kein Roboter. <span class="req">*</span></span><div id="m_captcha"></div><input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"></div>
       </div>`;
     sheetFoot.innerHTML =
       '<button class="prim" type="button" data-absenden><i class="ti ti-send"></i> Anfrage absenden</button>';
+    const captchaEl = document.getElementById("m_captcha");
+    merklisteCaptchaId = undefined;
+    if (captchaEl) {
+      void renderHcaptcha(captchaEl)
+        .then((id) => {
+          merklisteCaptchaId = id;
+        })
+        .catch(() => {
+          /* Absenden bleibt ohne Token blockiert */
+        });
+    }
   }
 
   function renderDone() {
@@ -308,8 +328,22 @@ const privacyHref = path("/datenschutz");
       row?.classList.add("err");
       bad = true;
     } else row?.classList.remove("err");
+    const hp = document.querySelector<HTMLInputElement>(
+      "#merk-overlay input[name='botcheck']",
+    );
+    if (hp?.checked) return;
+    const token = readHcaptchaToken(merklisteCaptchaId);
+    const botWrap = document.getElementById("m_botcheck");
+    if (!token) {
+      botWrap?.classList.add("err");
+      bad = true;
+    } else botWrap?.classList.remove("err");
     if (bad) {
-      showToast("Bitte Name, gültige E-Mail und Einwilligung ausfüllen");
+      showToast(
+        token
+          ? "Bitte Name, gültige E-Mail und Einwilligung ausfüllen"
+          : "Bitte bestätigen Sie: Ich bin kein Roboter.",
+      );
       return;
     }
 
@@ -359,12 +393,14 @@ const privacyHref = path("/datenschutz");
             email: mail.value,
             replyto: mail.value,
             to: root.dataset.to,
+            "h-captcha-response": token,
             message: lines.join("\n"),
           }),
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.message || "Fehler");
       } catch {
+        resetHcaptcha(merklisteCaptchaId);
         showToast("Senden fehlgeschlagen — bitte später erneut versuchen");
         return;
       }
@@ -1047,6 +1083,25 @@ const privacyHref = path("/datenschutz");
   #merk-overlay .chkrow a {
     color: var(--wine);
     text-decoration: underline;
+  }
+  #merk-overlay .botcheck {
+    margin-top: 18px;
+  }
+  #merk-overlay .botcheck-label {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  #merk-overlay .botcheck.err .botcheck-label {
+    color: #c0392b;
+  }
+  #merk-overlay .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
   }
   @media (max-width: 720px) {
     #merk-overlay .sheet-item {

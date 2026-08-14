@@ -167,6 +167,21 @@ const faqLd = {
               für die Zukunft widersprechen. <span class="req">*</span></span
             >
           </label>
+          <div class="botcheck" id="k_botcheck">
+            <span class="botcheck-label"
+              >Bitte bestätigen Sie: Ich bin kein Roboter.
+              <span class="req">*</span></span
+            >
+            <div id="k_captcha"></div>
+            <input
+              class="hp"
+              type="checkbox"
+              name="botcheck"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+          </div>
           <button class="send" type="submit">
             <i class="ti ti-send" aria-hidden="true"></i> Nachricht senden
           </button>
@@ -253,6 +268,12 @@ const faqLd = {
 </BaseLayout>
 
 <script>
+  import {
+    readHcaptchaToken,
+    renderHcaptcha,
+    resetHcaptcha,
+  } from "../lib/hcaptcha-client";
+
   const form = document.getElementById("kform") as HTMLFormElement | null;
   if (form) {
     const params = new URLSearchParams(location.search);
@@ -261,6 +282,19 @@ const faqLd = {
       const subj = document.getElementById("k_subj") as HTMLInputElement | null;
       if (subj && !subj.value) subj.value = betreff;
     }
+
+    const captchaEl = document.getElementById("k_captcha");
+    let captchaId: string | number | undefined;
+    if (captchaEl) {
+      void renderHcaptcha(captchaEl)
+        .then((id) => {
+          captchaId = id;
+        })
+        .catch(() => {
+          /* Widget erscheint nicht — Absenden bleibt ohne Token blockiert */
+        });
+    }
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("k_name") as HTMLInputElement;
@@ -268,6 +302,10 @@ const faqLd = {
       const msg = document.getElementById("k_msg") as HTMLTextAreaElement;
       const ok = document.getElementById("k_ok") as HTMLInputElement;
       const row = document.getElementById("k_chkrow");
+      const botWrap = document.getElementById("k_botcheck");
+      const hp = form.querySelector<HTMLInputElement>('input[name="botcheck"]');
+      if (hp?.checked) return;
+
       let bad = false;
       [name, mail, msg].forEach((el) => {
         if (!el.value.trim()) {
@@ -286,6 +324,11 @@ const faqLd = {
         row?.classList.add("err");
         bad = true;
       } else row?.classList.remove("err");
+      const token = readHcaptchaToken(captchaId);
+      if (!token) {
+        botWrap?.classList.add("err");
+        bad = true;
+      } else botWrap?.classList.remove("err");
       if (bad) return;
 
       const key = form.dataset.web3Key || "";
@@ -303,6 +346,7 @@ const faqLd = {
         email: mail.value,
         replyto: mail.value,
         to: form.dataset.to,
+        "h-captcha-response": token,
         message: [
           "Kontaktanfrage über die Website",
           "",
@@ -330,6 +374,7 @@ const faqLd = {
           const data = await res.json();
           if (!data.success) throw new Error(data.message || "Fehler");
         } catch {
+          resetHcaptcha(captchaId);
           alert(
             "Senden fehlgeschlagen. Bitte versuchen Sie es später erneut oder schreiben Sie an info@theaterverlag-arno-boas.de.",
           );
@@ -430,6 +475,25 @@ const faqLd = {
   .chkrow a {
     color: var(--wine);
     text-decoration: underline;
+  }
+  .botcheck {
+    margin-top: 18px;
+  }
+  .botcheck-label {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  .botcheck.err .botcheck-label {
+    color: #c0392b;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
   }
   .send {
     margin-top: 22px;
