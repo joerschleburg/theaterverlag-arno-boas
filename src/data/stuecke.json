@@ -3,7 +3,7 @@
     "verlag": "Theaterverlag Arno Boas",
     "quelle": "https://theaterverlag-arno-boas.de/uebersicht-ueber-alle-stuecke",
     "stand": "2026-07-30",
-    "anzahl_stuecke": 230,
+    "anzahl_stuecke": 228,
     "hinweis": "Besetzung (m/w), Spieldauer und Kürzel aus der Live-Übersicht importiert. Spielort folgt aus Detailseiten, sofern vorhanden.",
     "kategorien_taxonomie": [
       "Komödie",
@@ -51,11 +51,10 @@
     "leseprobe_import": {
       "source": "detail pages h2 Leseprobe download links",
       "found": 152,
-      "missing": 78,
+      "missing": 77,
       "failed": 0,
       "downloaded": 152,
       "missingSlugs": [
-        "abseits",
         "agentur-weihnachtsengel",
         "am-bahnschalter",
         "auch-der-herbst-hat-schone-tage",
@@ -210,30 +209,11 @@
       }
     },
     {
-      "titel": "Abseits",
-      "slug": "abseits",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/abseits",
-      "kuerzel": "k-16",
-      "untertitel": "Komödie über die (verkehrte) Fußballwelt",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Kurzstück",
-      "besetzung_m": 1,
-      "besetzung_w": 1,
-      "spieldauer_min": 15,
-      "spieldauer_text": "15",
-      "spielort": "Saal",
-      "buehnenbild": "1 Wohnzimmer mit Tür nach draußen",
-      "autor": "Thorsten Böhner",
-      "inhalt": "Das (Beziehungs-)Problem „Fußball“ wird hier in emanzipierter Weise mit vertauschten Rollen analysiert. Das heißt: Solange wir vom „Rollentausch“ sprechen, hat sich der Fußball auch noch nicht emanzipiert… oder doch? Oder wie? Und überhaupt: „Wichtig is´ im Wohnzimmer!“ oder „Die Ehe ist ein Spiel über mehrere Jahre und am Ende gewinnen immer die Frauen!“ Hier auch?"
-    },
-    {
       "titel": "Achtung, Nikolaus",
       "slug": "achtung-nikolaus",
       "url": "https://theaterverlag-arno-boas.de/stuecke/achtung-nikolaus",
       "kuerzel": "w-13",
-      "untertitel": "Einakter von Christian Ziegler",
+      "untertitel": "Weihnachtsstück von Christian Ziegler",
       "kategorien": [
         "Weihnachten"
       ],
@@ -327,7 +307,7 @@
       "slug": "allen-alles-recht-gemacht",
       "url": "https://theaterverlag-arno-boas.de/stuecke/allen-alles-recht-gemacht",
       "kuerzel": "e-57",
-      "untertitel": "Einakter über eine verunglückte Geburtstagsfeten-Vorbereitung",
+      "untertitel": "Komödie über eine verunglückte Geburtstagsfeten-Vorbereitung",
       "kategorien": [
         "Komödie"
       ],
@@ -616,7 +596,7 @@
       "slug": "auf-den-letzten-drucker",
       "url": "https://theaterverlag-arno-boas.de/stuecke/auf-den-letzten-drucker",
       "kuerzel": "e-52",
-      "untertitel": "Einakter über eine missglückte Entführung",
+      "untertitel": "Drama über eine missglückte Entführung",
       "kategorien": [
         "Drama"
       ],
@@ -1212,7 +1192,7 @@
       "slug": "der-fast-vergessene-weihnachtsengel",
       "url": "https://theaterverlag-arno-boas.de/stuecke/der-fast-vergessene-weihnachtsengel",
       "kuerzel": "w-07",
-      "untertitel": "Einakter",
+      "untertitel": "Komödie",
       "kategorien": [
         "Komödie",
         "Für Jugendliche",
@@ -2935,7 +2915,7 @@
       "slug": "geteiltes-glueck-ist-gar-kein-glueck",
       "url": "https://theaterverlag-arno-boas.de/stuecke/geteiltes-glueck-ist-gar-kein-glueck",
       "kuerzel": "e-64",
-      "untertitel": "Einakter über eine gute Tat, die nach hinten los geht",
+      "untertitel": "Komödie über eine gute Tat, die nach hinten los geht",
       "kategorien": [
         "Komödie"
       ],
@@ -3217,7 +3197,7 @@
       "slug": "herr-leopold",
       "url": "https://theaterverlag-arno-boas.de/stuecke/herr-leopold",
       "kuerzel": "e-62",
-      "untertitel": "Einakter über den alltäglichen Irrsinn eines Versicherungsvertreters",
+      "untertitel": "Komödie über den alltäglichen Irrsinn eines Versicherungsvertreters",
       "kategorien": [
         "Komödie"
       ],
@@ -3267,7 +3247,7 @@
       "slug": "hier-ist-eden",
       "url": "https://theaterverlag-arno-boas.de/stuecke/hier-ist-eden",
       "kuerzel": "e-09",
-      "untertitel": "Einakter",
+      "untertitel": "Tragikomödie",
       "kategorien": [
         "Tragikomödie"
       ],
@@ -3498,7 +3478,7 @@
       "slug": "in-der-tur-geirrt",
       "url": "https://theaterverlag-arno-boas.de/stuecke/in-der-tur-geirrt",
       "kuerzel": "e-56",
-      "untertitel": "Einakter über den Wahnsinn bei der Wohnungssuche",
+      "untertitel": "Komödie über den Wahnsinn bei der Wohnungssuche",
       "kategorien": [
         "Komödie"
       ],
@@ -3861,7 +3841,7 @@
       "slug": "meister-lampe-wird-vermisst",
       "url": "https://theaterverlag-arno-boas.de/stuecke/meister-lampe-wird-vermisst",
       "kuerzel": "gn-52",
-      "untertitel": "Kindertheaterstück von Klaus Tröbs, angelehnt an die Geschichte von Hase und Igel",
+      "untertitel": "",
       "kategorien": [
         "Für Jugendliche"
       ],
@@ -3879,30 +3859,6 @@
         "format": "pdf",
         "file": "/leseproben/meister-lampe-wird-vermisst.pdf",
         "source": "https://theaterverlag-arno-boas.de/wp-content/uploads/Hase-und-igel-ansicht-50.pdf"
-      }
-    },
-    {
-      "titel": "Millen ze verkaafen (Müllers Mühle)",
-      "slug": "millen-ze-verkaafen",
-      "url": "https://theaterverlag-arno-boas.de/stuecke/millen-ze-verkaafen",
-      "kuerzel": "gn-13a",
-      "untertitel": "Komödie von Christian Lange, in einer luxemburgischen Übersetzung von Georges Neuen",
-      "kategorien": [
-        "Komödie"
-      ],
-      "spielart_geschaetzt": "Abendfüllend",
-      "besetzung_m": 3,
-      "besetzung_w": 4,
-      "spieldauer_min": 120,
-      "spieldauer_text": "120",
-      "spielort": "beides",
-      "buehnenbild": "Ein altes Mühlengehöft. Die Bühnenrückwand bildet die Hausfront: Eingangstür, Fenster mit Fensterläden, ein verwahrloster Sitzplatz (alte Bank) davor. Rechts ist an das Haupthaus ein Nebengebäude angebaut: Stallfront mit Tür und kleinem Fenster. Wenn möglich: ein (Styropor) Mühlstein lehnt an der Wand. Ein Hackeklotz mit Beil steht daneben, einige Holzscheite liegen verstreut umher. Links begrenzt ein höherer Lattenzaun mit Pforte die Bühne (kann bei Bedarf auch als Mauer oder Hecke mit Durchgang/Tür dargestellt werden ) Typisch ländliches Handwerkszeug liegt/steht auf der Bühne herum. In der großen Pause muss alles leicht in einen ordentlichen/renovierten Zustand versetzt werden",
-      "autor": "Christian Lange",
-      "inhalt": "Der verwitwete Krimiautor Heinz Müller und seine Tochter Sabine kaufen eine alte Mühle vor den Toren eines Städtchens. Heinz Müller will hier seine Schreibblockade überwinden, seine Tochter will aus der Mühle ein Restaurant machen. Die beiden kaufen die Mühle, obwohl für die im Nebengebäude lebende, ehemalige Stallmagd Anna ein Wohnrecht eingeräumt ist. Dadurch kann der Preis gedrückt werden, und da Anna alt und krank ist, wird sie nach Meinung von Vater und Tochter keine sehr lange Belastung darstellen. Da allerdings haben sie sich gewaltig getäuscht. Und nicht nur darin, denn sie fallen einem raffinierten Plan zum Opfer…",
-      "leseprobe": {
-        "format": "pdf",
-        "file": "/leseproben/millen-ze-verkaafen.pdf",
-        "source": "https://theaterverlag-arno-boas.de/wp-content/uploads/Millen-ze-verkafen-50.pdf"
       }
     },
     {
@@ -4832,7 +4788,7 @@
       "slug": "ub-immer-treu-und-redlichkeit",
       "url": "https://theaterverlag-arno-boas.de/stuecke/ub-immer-treu-und-redlichkeit",
       "kuerzel": "e-55",
-      "untertitel": "Einakter von Christian Lange",
+      "untertitel": "Komödie von Christian Lange",
       "kategorien": [
         "Komödie"
       ],

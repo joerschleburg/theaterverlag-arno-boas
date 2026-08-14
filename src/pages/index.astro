@@ -87,22 +87,17 @@ const faqs = [
   {
     question: "Wo finde ich passende Stücke für unsere Theatergruppe?",
     answer:
-      "Im Repertoire unter „Theaterstücke“. Dort können Sie nach Genre und Dauer suchen und Stücke in die Merkliste legen. So vergleichen Sie mehrere Titel und fragen sie gebündelt an.",
-  },
-  {
-    question: "Kann ich ein Stück vor der Aufführung lesen?",
-    answer:
-      "Ja. Zu jedem Stück gibt es eine kostenlose Leseprobe mit 50 % des Inhalts zum direkten Download — ohne Anmeldung, als PDF oder Word. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.",
+      "Im Repertoire unter „Theaterstücke“. Dort können Sie nach Genre und Dauer suchen und Stücke in die Merkliste legen.",
   },
   {
     question: "Was kostet die Aufführung eines Theaterstücks?",
     answer:
-      "Die Gebühr richtet sich nach Spielart und Zahl der Aufführungen — bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt). Alle Details finden Sie unter „Preise & Bedingungen\".",
+      "Die Gebühr richtet sich nach Länge des Stückes und Zahl der Aufführungen — bei abendfüllenden Stücken 10 % der Eintrittseinnahmen, mindestens 50 € je Aufführung (zzgl. 7 % MwSt). Alle Details finden Sie unter „Preise & Bedingungen\".",
   },
   {
-    question: "Wie bestelle ich ein Theaterstück oder frage eine Aufführung an?",
+    question: "Wie bestelle ich ein Theaterstück zur Ansicht?",
     answer:
-      "Die Leseprobe (50 % des Inhalts) laden Sie direkt auf der Stückseite. Für Ansichtsexemplar, Rollensatz oder Beratung legen Sie die Stücke in die Merkliste und senden eine Anfrage. Alternativ erreichen Sie uns telefonisch oder per E-Mail.",
+      "Legen Sie die gewünschten Stücke in die Merkliste und senden Sie eine Anfrage über das Formular. Alternativ erreichen Sie uns telefonisch oder per E-Mail.",
   },
 ];
 
@@ -286,11 +281,10 @@ const orgLd = {
         <div
           class="about-img"
           role="img"
-          aria-label="Aufführung aus dem Verlagsrepertoire"
+          aria-label="Bühnenfoto"
           style={`background-image: url('${path("/images/hero_2.jpg")}')`}
         >
         </div>
-        <p class="cap">Aus einer Aufführung im Verlagsrepertoire</p>
       </div>
     </div>
   </section>
@@ -652,13 +646,6 @@ const orgLd = {
     background-color: #2a1a20;
     background-position: center;
     background-size: cover;
-  }
-  .cap {
-    font-size: 11.5px;
-    color: var(--muted);
-    margin-top: 12px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
   }
 
   .faq {

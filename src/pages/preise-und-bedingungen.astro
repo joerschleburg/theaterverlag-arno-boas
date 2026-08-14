@@ -7,16 +7,6 @@ import NewsletterSignup from "../components/NewsletterSignup.astro";
 
 const faqs = [
   {
-    question: "Was kostet die Aufführung eines Theaterstücks?",
-    answer:
-      "Bei abendfüllenden Stücken beträgt die Aufführungsgebühr 10 % der Eintrittseinnahmen, mindestens jedoch 50 € je Aufführung (zzgl. 7 % MwSt). Wählen Sie den Komplettrollensatz, kommt der Heftpreis hinzu (15–18,50 € je Textheft, genauer Preis beim jeweiligen Stück).",
-  },
-  {
-    question: "Was kostet die Aufführung eines Einakters, Kurzstücks oder Sketches?",
-    answer:
-      "Bei Selbstkopie: Einakter 40 € / 30 €, Kurzstücke 30 € / 15 €, Sketche 20 € / 12 € (erste / jede weitere Aufführung). Beim Komplettrollensatz zahlen Sie den Heftpreis (Spieler + 1 Regie-Exemplar) zuzüglich einer Pauschale je Aufführung: Einakter 30 €, Kurzstücke 25 €, Sketche 20 €. Alle Preise zzgl. 7 % MwSt; bei einigen Stücken gelten abweichende Preise.",
-  },
-  {
     question: "Müssen wir auch ohne Eintritt Aufführungsgebühren zahlen?",
     answer:
       "Ja. Die Aufführungsgebühren werden auch bei Wohltätigkeitsveranstaltungen und Vorstellungen ohne Eintritt fällig.",
@@ -29,17 +19,17 @@ const faqs = [
   {
     question: "Brauchen wir einen Aufführungsvertrag?",
     answer:
-      "Ja. Vor der ersten Aufführung wird ein Aufführungsvertrag abgeschlossen, der unter anderem Zahl und Datum der geplanten Aufführungen festhält. Aufführungen ohne Vertrag sind nicht gestattet.",
+      "Ja. Spätestens 4 Wochen vor der ersten Aufführung wird ein Aufführungsvertrag abgeschlossen, der unter anderem Zahl und Datum der geplanten Aufführungen festhält. Aufführungen ohne Vertrag sind nicht gestattet.",
   },
   {
-    question: "Was ist eine Aufführungsmeldung?",
+    question: "Was ist ein Abrechnungsformular?",
     answer:
-      "Spätestens 14 Tage nach der letzten Aufführung teilen Sie uns unaufgefordert auf dem Vordruck, den Sie zusammen mit dem Aufführungsvertrag erhalten, die Zahl der Besucher sowie die Einnahmen aus dem Verkauf der Eintrittskarten mit — daraufhin erhalten Sie die Rechnung.",
+      "Mit dem Abrechnungsformular teilen Sie stattgefundene Vorstellungen mit — inklusive Besucherzahl und Eintrittseinnahmen. Spätestens 14 Tage nach der letzten Aufführung melden Sie uns das bitte unaufgefordert; daraufhin erhalten Sie die Rechnung.",
   },
   {
     question: "Was ist der Unterschied zwischen Selbstkopie und Komplettrollensatz?",
     answer:
-      "Bei der Selbstkopie erhalten Sie das komplette Stück und vervielfältigen die Rollen selbst. Beim Komplettrollensatz liefern wir fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar; der Preis richtet sich nach der Zahl der benötigten Texthefte.",
+      "Bei der Selbstkopie erhalten Sie das komplette Stück und vervielfältigen die Rollen selbst. Beim Komplettrollensatz liefern wir fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar.",
   },
 ];
 
@@ -77,7 +67,7 @@ const faqLd = {
   <section class="sec">
     <div class="wrap narrow">
       <div class="sec-head">
-        <span class="cap-label">In fünf Schritten</span>
+        <span class="cap-label">In vier Schritten</span>
         <h2>So kommen Sie zur Aufführung</h2>
         <p class="journey-lead">
           Tippen Sie die Stationen ab — wie eine kleine Probenliste bis zur Premiere.
@@ -89,7 +79,7 @@ const faqLd = {
           <div class="jp-track" aria-hidden="true">
             <div class="jp-fill" data-journey-fill></div>
           </div>
-          <span data-journey-label>1 von 5 Stationen</span>
+          <span data-journey-label>1 von 4 Stationen</span>
         </div>
 
         <ol class="steps">
@@ -103,8 +93,8 @@ const faqLd = {
               <span class="step-body">
                 <span class="step-title">Stück finden</span>
                 <span class="step-text"
-                  >Im Repertoire stöbern und die Leseprobe (50 % des Inhalts)
-                  herunterladen.</span
+                  >Im Repertoire stöbern und die Leseprobe (PDF)
+                  anfordern.</span
                 >
               </span>
             </button>
@@ -119,8 +109,8 @@ const faqLd = {
               <span class="step-body">
                 <span class="step-title">In Ruhe lesen</span>
                 <span class="step-text"
-                  >Die Leseprobe sofort, das komplette Ansichtsexemplar vier
-                  Wochen unverbindlich – Verlängerung jederzeit.</span
+                  >Vier Wochen unverbindlich zur Ansicht – Verlängerung
+                  jederzeit möglich.</span
                 >
               </span>
             </button>
@@ -128,14 +118,15 @@ const faqLd = {
           <li class="step" data-step="3">
             <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
               <span class="n" aria-hidden="true">
-                <i class="ti ti-mail step-ic"></i>
+                <i class="ti ti-file-text step-ic"></i>
                 <span class="step-num">3</span>
                 <i class="ti ti-check step-ok"></i>
               </span>
               <span class="step-body">
-                <span class="step-title">Anfragen</span>
+                <span class="step-title">Vertrag</span>
                 <span class="step-text"
-                  >Über die Merkliste sammeln und gebündelt anfragen.</span
+                  >Spätestens 4 Wochen vor der ersten Aufführung den
+                  Aufführungsvertrag abschließen.</span
                 >
               </span>
             </button>
@@ -143,24 +134,8 @@ const faqLd = {
           <li class="step" data-step="4">
             <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
               <span class="n" aria-hidden="true">
-                <i class="ti ti-file-text step-ic"></i>
-                <span class="step-num">4</span>
-                <i class="ti ti-check step-ok"></i>
-              </span>
-              <span class="step-body">
-                <span class="step-title">Vertrag</span>
-                <span class="step-text"
-                  >Vor der ersten Aufführung den Aufführungsvertrag
-                  abschließen.</span
-                >
-              </span>
-            </button>
-          </li>
-          <li class="step" data-step="5">
-            <button type="button" class="step-btn" data-step-toggle aria-pressed="false">
-              <span class="n" aria-hidden="true">
                 <i class="ti ti-masks-theater step-ic"></i>
-                <span class="step-num">5</span>
+                <span class="step-num">4</span>
                 <i class="ti ti-check step-ok"></i>
               </span>
               <span class="step-body">
@@ -200,11 +175,9 @@ const faqLd = {
         </div>
         <div class="way">
           <i class="ti ti-books" aria-hidden="true"></i>
-          <h3>Komplettrollensatz</h3>
+          <h3>Kompletten Rollensatz bestellen</h3>
           <p>
-            Fertig gedruckte Hefte für alle Spieler plus ein Regie-Exemplar. Der
-            Preis richtet sich nach der Zahl der Texthefte (derzeit 15–18,50 € je
-            Heft; genauer Preis beim Stück).
+            Fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar.
           </p>
         </div>
       </div>
@@ -299,11 +272,11 @@ const faqLd = {
         <b>Alle Preise zzgl. 7 % Mehrwertsteuer.</b> Bei einigen Stücken gelten
         abweichende Preise – Näheres finden Sie direkt beim jeweiligen Stück. Bei
         abendfüllenden Stücken melden Sie uns spätestens 14 Tage nach der letzten
-        Aufführung unaufgefordert auf dem Vordruck (liegt dem Aufführungsvertrag
-        bei) Besucherzahl und Eintrittseinnahmen; daraufhin erhalten Sie die
-        Rechnung. Die Gebühren werden auch bei Wohltätigkeitsveranstaltungen und
-        Vorstellungen ohne Eintritt fällig. Für halb- und professionelle Bühnen
-        gelten gesonderte Regelungen.
+        Aufführung unaufgefordert auf dem Abrechnungsformular (liegt dem
+        Aufführungsvertrag bei) Besucherzahl und Eintrittseinnahmen; daraufhin
+        erhalten Sie die Rechnung. Die Gebühren werden auch bei
+        Wohltätigkeitsveranstaltungen und Vorstellungen ohne Eintritt fällig. Für
+        halb- und professionelle Bühnen gelten gesonderte Regelungen.
       </p>
     </div>
   </section>
@@ -429,10 +402,10 @@ const faqLd = {
       if (label) {
         label.textContent =
           n === 0
-            ? "0 von 5 Stationen"
+            ? `0 von ${total} Stationen`
             : n === total
-              ? "5 von 5 — bereit für die Premiere"
-              : `${n} von 5 Stationen`;
+              ? `${total} von ${total} — bereit für die Premiere`
+              : `${n} von ${total} Stationen`;
       }
       if (done) done.hidden = n !== total;
       root.dataset.progress = String(n);
@@ -758,7 +731,7 @@ const faqLd = {
     font-size: 14.5px;
     font-weight: 600;
   }
-  .journey[data-progress="5"] .journey-done {
+  .journey[data-progress="4"] .journey-done {
     animation: journey-in 0.4s ease;
   }
   @keyframes journey-in {

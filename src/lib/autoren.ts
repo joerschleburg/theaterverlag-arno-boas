@@ -104,13 +104,6 @@ export const AUTOREN: Autor[] = [
     photoStock: true,
   },
   {
-    slug: "hans-maisch",
-    name: "Hans Maisch",
-    role: "Autor",
-    photo: "/images/autoren/hans-maisch.jpg",
-    photoStock: true,
-  },
-  {
     slug: "helga-kerth-foerster",
     name: "Helga Kerth-Förster",
     role: "Autorin",
@@ -122,13 +115,6 @@ export const AUTOREN: Autor[] = [
     name: "Henry Doll",
     role: "Autor",
     photo: "/images/autoren/henry-doll.jpg",
-    photoStock: true,
-  },
-  {
-    slug: "hermann-waldenburger",
-    name: "Hermann Waldenburger",
-    role: "Autor",
-    photo: "/images/autoren/hermann-waldenburger.jpg",
     photoStock: true,
   },
   {
@@ -209,13 +195,6 @@ export const AUTOREN: Autor[] = [
     photoStock: true,
   },
   {
-    slug: "krista-bremen",
-    name: "Krista Bremen",
-    role: "Autorin",
-    photo: "/images/autoren/krista-bremen.jpg",
-    photoStock: true,
-  },
-  {
     slug: "martin-schoerle",
     name: "Martin Schörle",
     role: "Autor",
@@ -241,20 +220,6 @@ export const AUTOREN: Autor[] = [
     name: "Nicola Quaß",
     role: "Autorin",
     photo: "/images/autoren/nicola-quass.jpg",
-    photoStock: true,
-  },
-  {
-    slug: "paul-greb",
-    name: "Paul Greb",
-    role: "Autor",
-    photo: "/images/autoren/paul-greb.jpg",
-    photoStock: true,
-  },
-  {
-    slug: "paula-baumann",
-    name: "Paula Baumann",
-    role: "Autorin",
-    photo: "/images/autoren/paula-baumann.jpg",
     photoStock: true,
   },
   {
@@ -339,13 +304,6 @@ export const AUTOREN: Autor[] = [
     name: "Walter Tausendpfund",
     role: "Autor",
     photo: "/images/autoren/walter-tausendpfund.jpg",
-    photoStock: true,
-  },
-  {
-    slug: "walter-wendt",
-    name: "Walter Wendt",
-    role: "Autor",
-    photo: "/images/autoren/walter-wendt.jpg",
     photoStock: true,
   },
   {
