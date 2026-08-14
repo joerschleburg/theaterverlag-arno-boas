@@ -12,7 +12,6 @@ const WISH_KEY = "tvab_wishes";
 export const WISH_OPTS = [
   "Ansichtsexemplar",
   "Rollensatz bestellen",
-  "Aufführung anfragen",
   "Beratung / Preisauskunft",
 ] as const;
 
@@ -69,7 +68,6 @@ export function buildInquiryMessage(opts: {
   group: string;
   email: string;
   phone: string;
-  period: string;
   message: string;
   items: { titel: string; kuerzel: string; genre: string; wishes: string[] }[];
 }) {
@@ -78,10 +76,9 @@ export function buildInquiryMessage(opts: {
     "",
     "Kontakt",
     `Name: ${opts.name}`,
-    `Theatergruppe / Verein: ${opts.group || "—"}`,
+    `Theatergruppe / Verein: ${opts.group}`,
     `E-Mail: ${opts.email}`,
     `Telefon: ${opts.phone || "—"}`,
-    `Geplanter Aufführungszeitraum: ${opts.period || "—"}`,
     "",
     "Gewünschte Stücke & Leistungen",
   ];

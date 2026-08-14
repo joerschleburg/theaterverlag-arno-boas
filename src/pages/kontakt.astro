@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Wie lade ich eine Leseprobe oder frage eine Aufführung an?",
     answer:
-      "Die Leseprobe (50 % des Inhalts) laden Sie direkt auf der Stückseite herunter — ohne Anmeldung. Für Ansichtsexemplar, Rollensatz oder Aufführung sammeln Sie Stücke in der Merkliste und fragen gebündelt an.",
+      "Die Leseprobe (50 % des Inhalts) laden Sie direkt auf der Stückseite herunter — ohne Anmeldung. Für Ansichtsexemplar, Rollensatz oder Beratung sammeln Sie Stücke in der Merkliste und fragen gebündelt an.",
   },
   {
     question: "Wie sende ich ein Manuskript an den Verlag?",
@@ -110,12 +110,15 @@ const faqLd = {
               />
             </div>
             <div class="fld">
-              <label for="k_group">Theatergruppe / Verein</label>
+              <label for="k_group"
+                >Theatergruppe / Verein <span class="req">*</span></label
+              >
               <input
                 id="k_group"
                 name="theatergruppe"
                 type="text"
-                placeholder="optional"
+                placeholder="Name der Gruppe oder des Vereins"
+                required
               />
             </div>
           </div>
@@ -225,7 +228,7 @@ const faqLd = {
         <div class="knote">
           Sie möchten ein bestimmtes Stück anfragen? Am schnellsten geht das über
           die <a href="#merkliste" data-merk-trigger>Merkliste</a> – dort wählen
-          Sie je Stück, was Sie möchten (Ansichtsexemplar, Rollensatz, Aufführung).
+          Sie je Stück, was Sie möchten (Ansichtsexemplar, Rollensatz, Beratung).
           Die Leseprobe (50 % des Inhalts) laden Sie direkt herunter.
         </div>
         <div class="knote">
@@ -298,6 +301,7 @@ const faqLd = {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("k_name") as HTMLInputElement;
+      const group = document.getElementById("k_group") as HTMLInputElement;
       const mail = document.getElementById("k_mail") as HTMLInputElement;
       const msg = document.getElementById("k_msg") as HTMLTextAreaElement;
       const ok = document.getElementById("k_ok") as HTMLInputElement;
@@ -307,7 +311,7 @@ const faqLd = {
       if (hp?.checked) return;
 
       let bad = false;
-      [name, mail, msg].forEach((el) => {
+      [name, group, mail, msg].forEach((el) => {
         if (!el.value.trim()) {
           el.classList.add("err");
           bad = true;
@@ -332,8 +336,6 @@ const faqLd = {
       if (bad) return;
 
       const key = form.dataset.web3Key || "";
-      const group = (document.getElementById("k_group") as HTMLInputElement)
-        .value;
       const tel = (document.getElementById("k_tel") as HTMLInputElement).value;
       const subj =
         (document.getElementById("k_subj") as HTMLInputElement).value ||
@@ -341,7 +343,7 @@ const faqLd = {
 
       const payload = {
         access_key: key,
-        subject: `Neue Kontaktanfrage — ${group || name.value}`,
+        subject: `Neue Kontaktanfrage — ${group.value}`,
         from_name: name.value,
         email: mail.value,
         replyto: mail.value,
@@ -351,7 +353,7 @@ const faqLd = {
           "Kontaktanfrage über die Website",
           "",
           `Name: ${name.value}`,
-          `Theatergruppe / Verein: ${group || "—"}`,
+          `Theatergruppe / Verein: ${group.value}`,
           `E-Mail: ${mail.value}`,
           `Telefon: ${tel || "—"}`,
           `Betreff: ${subj}`,

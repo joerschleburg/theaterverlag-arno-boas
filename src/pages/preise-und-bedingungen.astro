@@ -9,12 +9,12 @@ const faqs = [
   {
     question: "Was kostet die Aufführung eines Theaterstücks?",
     answer:
-      "Bei abendfüllenden Stücken beträgt die Aufführungsgebühr 10 % der Eintrittseinnahmen, mindestens jedoch 50 € je Aufführung (zzgl. 7 % MwSt). Wählen Sie den kompletten Rollensatz, kommt der Heftpreis hinzu (15–18,50 € je Textheft, genauer Preis beim jeweiligen Stück).",
+      "Bei abendfüllenden Stücken beträgt die Aufführungsgebühr 10 % der Eintrittseinnahmen, mindestens jedoch 50 € je Aufführung (zzgl. 7 % MwSt). Wählen Sie den Komplettrollensatz, kommt der Heftpreis hinzu (15–18,50 € je Textheft, genauer Preis beim jeweiligen Stück).",
   },
   {
-    question: "Was kostet die Aufführung eines Einakters oder Kurzstücks?",
+    question: "Was kostet die Aufführung eines Einakters, Kurzstücks oder Sketches?",
     answer:
-      "Einakter werden pauschal abgerechnet: 40 € für die erste, 28 € für jede weitere Aufführung. Kurzstücke kosten 18 €/11 € (Selbstkopie) bzw. 30 €/14 € (Komplettrollensatz), Sketche 15 €/9 € bzw. 27 €/12 €. Alle Preise verstehen sich zzgl. 7 % MwSt.",
+      "Bei Selbstkopie: Einakter 40 € / 30 €, Kurzstücke 30 € / 15 €, Sketche 20 € / 12 € (erste / jede weitere Aufführung). Beim Komplettrollensatz zahlen Sie den Heftpreis (Spieler + 1 Regie-Exemplar) zuzüglich einer Pauschale je Aufführung: Einakter 30 €, Kurzstücke 25 €, Sketche 20 €. Alle Preise zzgl. 7 % MwSt; bei einigen Stücken gelten abweichende Preise.",
   },
   {
     question: "Müssen wir auch ohne Eintritt Aufführungsgebühren zahlen?",
@@ -34,12 +34,12 @@ const faqs = [
   {
     question: "Was ist eine Aufführungsmeldung?",
     answer:
-      "Mit der Aufführungsmeldung teilen Sie uns geplante und stattgefundene Vorstellungen mit — inklusive Besucherzahl und Eintrittseinnahmen. Spätestens 14 Tage nach der letzten Aufführung melden Sie uns das bitte unaufgefordert; daraufhin erhalten Sie die Rechnung. Eine bereits geleistete Anzahlung auf die Premiere ziehen wir von der Endsumme ab.",
+      "Spätestens 14 Tage nach der letzten Aufführung teilen Sie uns unaufgefordert auf dem Vordruck, den Sie zusammen mit dem Aufführungsvertrag erhalten, die Zahl der Besucher sowie die Einnahmen aus dem Verkauf der Eintrittskarten mit — daraufhin erhalten Sie die Rechnung.",
   },
   {
     question: "Was ist der Unterschied zwischen Selbstkopie und Komplettrollensatz?",
     answer:
-      "Bei der Selbstkopie erhalten Sie das komplette Stück und vervielfältigen die Rollen selbst. Beim Komplettrollensatz liefern wir fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar.",
+      "Bei der Selbstkopie erhalten Sie das komplette Stück und vervielfältigen die Rollen selbst. Beim Komplettrollensatz liefern wir fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar; der Preis richtet sich nach der Zahl der benötigten Texthefte.",
   },
 ];
 
@@ -188,23 +188,23 @@ const faqLd = {
       </div>
       <p class="sec-intro">
         Sie haben grundsätzlich die Wahl, den kompletten Rollensatz zu bestellen
-        oder sich die Texthefte selbst zu kopieren – die Entscheidung liegt bei
-        Ihnen. Unabhängig davon wird vor der ersten Aufführung ein
-        Aufführungsvertrag geschlossen, der Zahl und Datum der geplanten
-        Aufführungen festhält.
+        oder sich die Texthefte selbst zu kopieren. Unabhängig davon muss vor der
+        ersten Aufführung ein Vertrag abgeschlossen werden, der unter anderem die
+        Zahl und das Datum der geplanten Aufführungen beinhaltet.
       </p>
       <div class="ways">
         <div class="way">
           <i class="ti ti-copy" aria-hidden="true"></i>
-          <h3>Texthefte selbst kopieren</h3>
+          <h3>Selbstkopie der Texthefte</h3>
           <p>Sie erhalten das komplette Stück und vervielfältigen die Rollen selbst.</p>
         </div>
         <div class="way">
           <i class="ti ti-books" aria-hidden="true"></i>
-          <h3>Kompletten Rollensatz bestellen</h3>
+          <h3>Komplettrollensatz</h3>
           <p>
-            Fertig gedruckte Hefte für alle Rollen plus ein Regie-Exemplar.
-            Heftpreis je nach Stück (15–18,50 €).
+            Fertig gedruckte Hefte für alle Spieler plus ein Regie-Exemplar. Der
+            Preis richtet sich nach der Zahl der Texthefte (derzeit 15–18,50 € je
+            Heft; genauer Preis beim Stück).
           </p>
         </div>
       </div>
@@ -226,80 +226,84 @@ const faqLd = {
             <span>ab ca. 60 Min.</span>
           </div>
           <div class="pcell">
-            <span class="pl">Aufführungsgebühr (beide Varianten)</span>
+            <span class="pl">Selbstkopie der Texthefte</span>
             <span class="pv"
               ><b>10 %</b> der Eintrittseinnahmen,<br />mindestens <b>50 €</b> je
               Aufführung</span
             >
           </div>
           <div class="pcell">
-            <span class="pl">Bei Komplettrollensatz zusätzlich</span>
+            <span class="pl">Komplettrollensatz</span>
             <span class="pv"
-              ><b>15–18,50 €</b> je Textheft<br />(genauer Preis beim Stück)</span
+              >Heftpreis (Spieler + 1 Regie), <b>15–18,50 €</b> je Heft<br />plus
+              dieselbe Gebühr: <b>10 %</b> / mind. <b>50 €</b> je Aufführung</span
             >
           </div>
         </div>
         <div class="prow">
           <div class="pspiel">
             <h4>Einakter</h4>
-            <span>ca. 20–60 Min.</span>
+            <span>ca. 15–60 Min.</span>
           </div>
           <div class="pcell">
-            <span class="pl">Aufführungsgebühr (pauschal)</span>
+            <span class="pl">Selbstkopie der Texthefte</span>
             <span class="pv"
-              >1. Aufführung <b>40 €</b><br />jede weitere <b>28 €</b></span
+              >1. Aufführung <b>40 €</b><br />jede weitere <b>30 €</b></span
             >
           </div>
           <div class="pcell">
-            <span class="pl">Rollensatz</span>
+            <span class="pl">Komplettrollensatz</span>
             <span class="pv"
-              >Preis nach Zahl der Hefte<br />(genauer Preis beim Stück)</span
+              >Heftpreis (Spieler + 1 Regie)<br />plus <b>30 €</b> je Aufführung</span
             >
           </div>
         </div>
         <div class="prow">
           <div class="pspiel">
             <h4>Kurzstücke</h4>
-            <span>ca. 10–20 Min.</span>
+            <span>ca. 10–15 Min.</span>
           </div>
           <div class="pcell">
             <span class="pl">Selbstkopie der Texthefte</span>
             <span class="pv"
-              >1. Aufführung <b>18 €</b><br />jede weitere <b>11 €</b></span
+              >1. Aufführung <b>30 €</b><br />jede weitere <b>15 €</b></span
             >
           </div>
           <div class="pcell">
             <span class="pl">Komplettrollensatz</span>
             <span class="pv"
-              >1. Aufführung <b>30 €</b><br />jede weitere <b>14 €</b></span
+              >Heftpreis (Spieler + 1 Regie)<br />plus <b>25 €</b> je Aufführung</span
             >
           </div>
         </div>
         <div class="prow">
           <div class="pspiel">
             <h4>Sketche</h4>
-            <span>bis 10 Min.</span>
+            <span>bis ca. 10 Min.</span>
           </div>
           <div class="pcell">
             <span class="pl">Selbstkopie der Texthefte</span>
             <span class="pv"
-              >1. Aufführung <b>15 €</b><br />jede weitere <b>9 €</b></span
+              >1. Aufführung <b>20 €</b><br />jede weitere <b>12 €</b></span
             >
           </div>
           <div class="pcell">
             <span class="pl">Komplettrollensatz</span>
             <span class="pv"
-              >1. Aufführung <b>27 €</b><br />jede weitere <b>12 €</b></span
+              >Heftpreis (Spieler + 1 Regie)<br />plus <b>20 €</b> je Aufführung</span
             >
           </div>
         </div>
       </div>
       <p class="note">
         <b>Alle Preise zzgl. 7 % Mehrwertsteuer.</b> Bei einigen Stücken gelten
-        abweichende Preise – Näheres finden Sie direkt beim jeweiligen Stück. Die
-        Gebühren werden auch bei Wohltätigkeitsveranstaltungen und Vorstellungen
-        ohne Eintritt fällig. Für halb- und professionelle Bühnen gelten
-        gesonderte Regelungen.
+        abweichende Preise – Näheres finden Sie direkt beim jeweiligen Stück. Bei
+        abendfüllenden Stücken melden Sie uns spätestens 14 Tage nach der letzten
+        Aufführung unaufgefordert auf dem Vordruck (liegt dem Aufführungsvertrag
+        bei) Besucherzahl und Eintrittseinnahmen; daraufhin erhalten Sie die
+        Rechnung. Die Gebühren werden auch bei Wohltätigkeitsveranstaltungen und
+        Vorstellungen ohne Eintritt fällig. Für halb- und professionelle Bühnen
+        gelten gesonderte Regelungen.
       </p>
     </div>
   </section>

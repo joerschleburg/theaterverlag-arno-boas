@@ -66,10 +66,9 @@ const privacyHref = path("/datenschutz");
   const OPTS = [
     "Ansichtsexemplar",
     "Rollensatz bestellen",
-    "Aufführung anfragen",
     "Beratung / Preisauskunft",
   ];
-  const LEGACY_WISH = "Leseprobe (PDF)";
+  const LEGACY_WISHES = ["Leseprobe (PDF)", "Aufführung anfragen"];
   const LP_LABEL = "Leseprobe (50 % des Inhalts)";
 
   const root = document.getElementById("merk-root");
@@ -90,8 +89,14 @@ const privacyHref = path("/datenschutz");
   try {
     const raw = JSON.parse(localStorage.getItem(WISH_KEY) || "{}");
     for (const [k, v] of Object.entries(raw)) {
-      if (Array.isArray(v)) wishes[k] = (v as string[]).filter((x) => x !== LEGACY_WISH);
-      else if (typeof v === "string" && v && v !== LEGACY_WISH) wishes[k] = [v];
+      if (Array.isArray(v))
+        wishes[k] = (v as string[]).filter((x) => !LEGACY_WISHES.includes(x));
+      else if (
+        typeof v === "string" &&
+        v &&
+        !LEGACY_WISHES.includes(v)
+      )
+        wishes[k] = [v];
     }
   } catch {
     wishes = {};
@@ -234,7 +239,7 @@ const privacyHref = path("/datenschutz");
     if (sheetStep === "done") return renderDone();
 
     sheetList.innerHTML =
-      '<div class="instr">Die Leseprobe (50&nbsp;% des Inhalts) laden Sie direkt — ohne Anmeldung. Über das Dropdown fragen Sie Ansichtsexemplar, Rollensatz oder Aufführung an.</div>' +
+      '<div class="instr">Die Leseprobe (50&nbsp;% des Inhalts) laden Sie direkt — ohne Anmeldung. Über das Dropdown fragen Sie Ansichtsexemplar, Rollensatz oder Beratung an.</div>' +
       list
         .map((p) => {
           const w = wishes[p.slug] || [];
@@ -274,10 +279,9 @@ const privacyHref = path("/datenschutz");
       '<button class="backlink" type="button" data-zurueck><i class="ti ti-arrow-left"></i> Zurück zur Auswahl</button>' +
       `<div class="form">
         <div class="two"><div class="fld"><label>Name <span class="req">*</span></label><input id="m_name" type="text" placeholder="Vor- und Nachname"></div>
-        <div class="fld"><label>Theatergruppe / Verein</label><input id="m_group" type="text" placeholder="optional"></div></div>
+        <div class="fld"><label>Theatergruppe / Verein <span class="req">*</span></label><input id="m_group" type="text" placeholder="Name der Gruppe oder des Vereins"></div></div>
         <div class="two"><div class="fld"><label>E-Mail <span class="req">*</span></label><input id="m_mail" type="email" placeholder="name@beispiel.de"></div>
         <div class="fld"><label>Telefon</label><input id="m_tel" type="tel" placeholder="optional"></div></div>
-        <div class="fld"><label>Geplanter Aufführungszeitraum</label><input id="m_date" type="text" placeholder="z. B. Frühjahr 2027 (optional)"></div>
         <div class="fld"><label>Nachricht</label><textarea id="m_msg" placeholder="Ihre Anmerkungen (optional)"></textarea></div>
         <label class="chkrow" id="m_chkrow"><input id="m_ok" type="checkbox"><span>Ich habe die <a href="${root.dataset.privacy || "/datenschutz"}">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. <span class="req">*</span></span></label>
         <div class="botcheck" id="m_botcheck"><span class="botcheck-label">Bitte bestätigen Sie: Ich bin kein Roboter. <span class="req">*</span></span><div id="m_captcha"></div><input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"></div>
@@ -307,11 +311,12 @@ const privacyHref = path("/datenschutz");
 
   async function absenden() {
     const name = document.getElementById("m_name") as HTMLInputElement;
+    const groupEl = document.getElementById("m_group") as HTMLInputElement;
     const mail = document.getElementById("m_mail") as HTMLInputElement;
     const ok = document.getElementById("m_ok") as HTMLInputElement;
     const row = document.getElementById("m_chkrow");
     let bad = false;
-    [name, mail].forEach((el) => {
+    [name, groupEl, mail].forEach((el) => {
       if (!el.value.trim()) {
         el.classList.add("err");
         bad = true;
@@ -341,16 +346,15 @@ const privacyHref = path("/datenschutz");
     if (bad) {
       showToast(
         token
-          ? "Bitte Name, gültige E-Mail und Einwilligung ausfüllen"
+          ? "Bitte Name, Theatergruppe, gültige E-Mail und Einwilligung ausfüllen"
           : "Bitte bestätigen Sie: Ich bin kein Roboter.",
       );
       return;
     }
 
     const list = items().filter((p) => (wishes[p.slug] || []).length);
-    const group = (document.getElementById("m_group") as HTMLInputElement).value;
+    const group = groupEl.value;
     const tel = (document.getElementById("m_tel") as HTMLInputElement).value;
-    const period = (document.getElementById("m_date") as HTMLInputElement).value;
     const message = (document.getElementById("m_msg") as HTMLTextAreaElement)
       .value;
 
@@ -359,10 +363,9 @@ const privacyHref = path("/datenschutz");
       "",
       "Kontakt",
       `Name: ${name.value}`,
-      `Theatergruppe / Verein: ${group || "—"}`,
+      `Theatergruppe / Verein: ${group}`,
       `E-Mail: ${mail.value}`,
       `Telefon: ${tel || "—"}`,
-      `Geplanter Aufführungszeitraum: ${period || "—"}`,
       "",
       "Gewünschte Stücke & Leistungen",
     ];
@@ -388,7 +391,7 @@ const privacyHref = path("/datenschutz");
           },
           body: JSON.stringify({
             access_key: key,
-            subject: `Neue Anfrage über die Website — ${group || name.value}`,
+            subject: `Neue Anfrage über die Website — ${group}`,
             from_name: name.value,
             email: mail.value,
             replyto: mail.value,
