@@ -1,5 +1,5 @@
 ---
-import { getStuecke } from "../lib/stuecke";
+import { getStuecke, leseprobeFormatLabel, leseprobeHref } from "../lib/stuecke";
 import { SITE, genreFilterLabel } from "../lib/site";
 import { path } from "../lib/paths";
 
@@ -8,6 +8,8 @@ const catalog = getStuecke().map((s) => ({
   titel: s.titel,
   kuerzel: s.kuerzel,
   genre: genreFilterLabel(s.kategorien[0] || ""),
+  leseprobeHref: leseprobeHref(s) || "",
+  leseprobeFormat: leseprobeFormatLabel(s.leseprobe?.format),
 }));
 
 const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
@@ -49,17 +51,20 @@ const privacyHref = path("/datenschutz");
     titel: string;
     kuerzel: string;
     genre: string;
+    leseprobeHref: string;
+    leseprobeFormat: string;
   };
 
   const KEY = "tvab_merk";
   const WISH_KEY = "tvab_wishes";
   const OPTS = [
-    "Leseprobe (PDF)",
     "Ansichtsexemplar",
     "Rollensatz bestellen",
     "Aufführung anfragen",
     "Beratung / Preisauskunft",
   ];
+  const LEGACY_WISH = "Leseprobe (PDF)";
+  const LP_LABEL = "Leseprobe (50 % des Inhalts)";
 
   const root = document.getElementById("merk-root");
   if (!root) {
@@ -79,8 +84,8 @@ const privacyHref = path("/datenschutz");
   try {
     const raw = JSON.parse(localStorage.getItem(WISH_KEY) || "{}");
     for (const [k, v] of Object.entries(raw)) {
-      if (Array.isArray(v)) wishes[k] = v as string[];
-      else if (typeof v === "string" && v) wishes[k] = [v];
+      if (Array.isArray(v)) wishes[k] = (v as string[]).filter((x) => x !== LEGACY_WISH);
+      else if (typeof v === "string" && v && v !== LEGACY_WISH) wishes[k] = [v];
     }
   } catch {
     wishes = {};
@@ -221,12 +226,16 @@ const privacyHref = path("/datenschutz");
     if (sheetStep === "done") return renderDone();
 
     sheetList.innerHTML =
-      '<div class="instr">Wählen Sie je Stück, was Sie möchten — Mehrfachauswahl möglich.</div>' +
+      '<div class="instr">Die Leseprobe (50&nbsp;% des Inhalts) laden Sie direkt — ohne Anmeldung. Über das Dropdown fragen Sie Ansichtsexemplar, Rollensatz oder Aufführung an.</div>' +
       list
         .map((p) => {
           const w = wishes[p.slug] || [];
+          const lp = p.leseprobeHref
+            ? `<a class="lp-dl" href="${p.leseprobeHref}" download title="${LP_LABEL}${p.leseprobeFormat ? ` · ${p.leseprobeFormat}` : ""}"><i class="ti ti-download" aria-hidden="true"></i> ${p.leseprobeFormat || "Download"}</a>`
+            : `<span class="lp-dl off" title="Datei folgt in Kürze">folgt</span>`;
           return `<div class="sheet-item">
           <div class="si-main"><div class="g">${p.genre}</div><div class="t">${p.titel}${p.kuerzel ? ` <span class="kz">${p.kuerzel}</span>` : ""}</div></div>
+          ${lp}
           <div class="wsel-wrap" data-id="${p.slug}">
             <button class="wsel ${w.length ? "on" : ""}" type="button"><span class="lbl">${label(p.slug)}</span><i class="ti ti-chevron-down"></i></button>
             <div class="wpop">${OPTS.map((o) => `<div class="wopt ${w.includes(o) ? "on" : ""}" data-id="${p.slug}" data-opt="${o}"><span class="box"><i class="ti ti-check"></i></span>${o}</div>`).join("")}</div>
@@ -730,6 +739,40 @@ const privacyHref = path("/datenschutz");
     flex: 1;
     min-width: 0;
   }
+  #merk-overlay .lp-dl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: none;
+    min-width: 92px;
+    padding: 12px 12px;
+    border: 1px solid var(--hair);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: var(--wine);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  #merk-overlay .lp-dl:hover {
+    background: var(--wine);
+    color: #fff;
+    border-color: var(--wine);
+  }
+  #merk-overlay .lp-dl.off {
+    color: var(--muted);
+    font-weight: 600;
+    cursor: default;
+    opacity: 0.65;
+  }
+  #merk-overlay .lp-dl.off:hover {
+    background: #fff;
+    color: var(--muted);
+    border-color: var(--hair);
+  }
   #merk-overlay .g {
     font-size: 11px;
     letter-spacing: 1.4px;
@@ -1012,9 +1055,15 @@ const privacyHref = path("/datenschutz");
     #merk-overlay .si-main {
       flex: 1 1 calc(100% - 40px);
     }
-    #merk-overlay .wsel-wrap {
-      width: 100%;
+    #merk-overlay .lp-dl {
       order: 3;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    #merk-overlay .wsel-wrap {
+      width: auto;
+      flex: 2 1 160px;
+      order: 4;
     }
     .merk-wrap:hover .flyout {
       display: none;

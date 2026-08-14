@@ -24,6 +24,12 @@ export type Stueck = {
   inhalt?: string;
   featured?: boolean;
   neu?: boolean;
+  /** Kostenlose Leseprobe (50 % des Inhalts), PDF oder Word. */
+  leseprobe?: {
+    format: "pdf" | "doc" | "docx";
+    file: string;
+    source?: string;
+  };
 };
 
 type StueckeFile = {
@@ -126,6 +132,18 @@ export function formatSpielort(spielort?: string): string | undefined {
   if (!spielort) return undefined;
   if (spielort === "beides") return "Saal und Freilicht";
   return spielort;
+}
+
+export const LESEPROBE_LABEL = "Leseprobe (50 % des Inhalts)";
+
+export function leseprobeHref(s: Stueck): string | undefined {
+  return s.leseprobe?.file ? path(s.leseprobe.file) : undefined;
+}
+
+export function leseprobeFormatLabel(format?: string): string {
+  if (format === "doc" || format === "docx") return "Word";
+  if (format === "pdf") return "PDF";
+  return "";
 }
 
 export function getRelatedStuecke(stueck: Stueck, limit = 3): Stueck[] {

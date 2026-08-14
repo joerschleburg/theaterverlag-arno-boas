@@ -12,6 +12,9 @@ import {
   getRelatedStuecke,
   getStueckBySlug,
   getStuecke,
+  LESEPROBE_LABEL,
+  leseprobeFormatLabel,
+  leseprobeHref,
   overviewHref,
   stueckHref,
 } from "../../lib/stuecke";
@@ -34,6 +37,8 @@ const related = getRelatedStuecke(stueck, 3);
 const genrePrimary = stueck.kategorien[0] || "Theaterstück";
 const genreFilter = genreFilterLabel(genrePrimary);
 const genreDisplay = stueck.kategorien.map(genreFilterLabel).join(", ");
+const sampleHref = leseprobeHref(stueck);
+const sampleFormat = leseprobeFormatLabel(stueck.leseprobe?.format);
 const besetzungHinweis =
   stueck.besetzung_hinweis &&
   !/^\d+$/.test(String(stueck.besetzung_hinweis).trim())
@@ -58,10 +63,9 @@ specs.push({ label: "Dialekt", value: "frei übertragbar" });
 const faqs = [
   {
     question: `Wie bekomme ich eine Leseprobe zu „${stueck.titel}"?`,
-    answer:
-      stueck.spielart_geschaetzt === "Abendfüllend"
-        ? "Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar können Sie vier Wochen unverbindlich anfordern."
-        : "Fragen Sie eine Leseprobe oder ein Ansichtsexemplar über die Merkliste oder das Kontaktformular an. Zu den abendfüllenden Stücken gibt es zusätzlich eine kostenlose PDF-Leseprobe mit rund der Hälfte des Stücks.",
+    answer: sampleHref
+      ? `Die Leseprobe zeigt 50 % des Inhalts und steht zum direkten Download bereit — ohne Anmeldung, als ${sampleFormat || "PDF oder Word"}. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.`
+      : "Die Leseprobe (50 % des Inhalts) folgt in Kürze als direkter Download — ohne Anmeldung, als PDF oder Word. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.",
   },
   ...(besetzung
     ? [
@@ -86,7 +90,7 @@ const faqs = [
   {
     question: `Wie frage ich „${stueck.titel}" an?`,
     answer:
-      "Über „Für Aufführung anfragen\" oder indem Sie das Stück merken und gebündelt mit weiteren Titeln anfragen — wahlweise für Leseprobe, Ansichtsexemplar, Rollensatz oder Aufführung.",
+      "Über „Für Aufführung anfragen\" oder indem Sie das Stück merken und gebündelt mit weiteren Titeln anfragen — wahlweise für Ansichtsexemplar, Rollensatz oder Aufführung. Die Leseprobe (50 % des Inhalts) laden Sie direkt herunter.",
   },
 ];
 
@@ -239,11 +243,21 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
           <div class="oi">
             <i class="ti ti-file-text" aria-hidden="true" />
             <div>
-              <b>Kostenlose Leseprobe</b>
+              <b>{LESEPROBE_LABEL}</b>
               <span
-                >Zu abendfüllenden Stücken: etwa die Hälfte als PDF — unverbindlich
-                anfragbar.</span
+                >Kostenloser Download, ohne Anmeldung. Format je Stück PDF oder
+                Word.{sampleFormat ? ` Hier: ${sampleFormat}.` : ""}</span
               >
+              {
+                sampleHref ? (
+                  <a class="oi-dl" href={sampleHref} download>
+                    {LESEPROBE_LABEL} herunterladen
+                    {sampleFormat ? ` (${sampleFormat})` : ""}
+                  </a>
+                ) : (
+                  <span class="oi-soon">Download folgt in Kürze.</span>
+                )
+              }
             </div>
           </div>
           <div class="oi">
@@ -310,7 +324,21 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
           )
         }
         <div class="cta">
-          <a class="btn primary" href={path("/kontakt")}>
+          {
+            sampleHref ? (
+              <a class="btn primary" href={sampleHref} download>
+                <i class="ti ti-download" aria-hidden="true" />
+                {LESEPROBE_LABEL}
+                {sampleFormat ? ` · ${sampleFormat}` : ""}
+              </a>
+            ) : (
+              <span class="btn primary is-off" title="Datei folgt in Kürze">
+                <i class="ti ti-download" aria-hidden="true" />
+                {LESEPROBE_LABEL} folgt
+              </span>
+            )
+          }
+          <a class="btn ghost" href={path("/kontakt")}>
             <i class="ti ti-mail" aria-hidden="true" /> Für Aufführung anfragen
           </a>
           <button
@@ -495,6 +523,21 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
     font-size: 14px;
     color: var(--muted);
   }
+  .oi-dl {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--wine);
+    font-weight: 700;
+    font-size: 13.5px;
+    text-decoration: none;
+    border-bottom: 2px solid var(--wine);
+  }
+  .oi-soon {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
 
   .aside {
     position: sticky;
@@ -614,6 +657,11 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
     color: var(--ink);
     border-color: var(--ink);
     position: relative;
+  }
+  .btn.primary.is-off {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
   }
   .btn.ghost.bookmark.on {
     background: var(--wine);

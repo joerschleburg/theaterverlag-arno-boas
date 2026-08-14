@@ -7,6 +7,9 @@ import StickyKatalog from "../../components/StickyKatalog.astro";
 import NewsletterSignup from "../../components/NewsletterSignup.astro";
 import {
   getStuecke,
+  LESEPROBE_LABEL,
+  leseprobeFormatLabel,
+  leseprobeHref,
   overviewHref,
   stueckHref,
   teaserFromInhalt,
@@ -41,7 +44,7 @@ const faqs = [
   {
     question: "Kann ich vor der Entscheidung eine Leseprobe bekommen?",
     answer:
-      "Ja. Zu den abendfüllenden Stücken gibt es eine kostenlose Leseprobe als PDF mit rund der Hälfte des Stücks. Das komplette Ansichtsexemplar können Sie vier Wochen unverbindlich anfordern.",
+      "Ja. Zu jedem Stück gibt es eine kostenlose Leseprobe mit 50 % des Inhalts zum direkten Download — ohne Anmeldung, als PDF oder Word. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.",
   },
   {
     question: "Dürfen wir die Stücke im Dialekt spielen?",
@@ -172,6 +175,8 @@ const genres = GENRE_FILTER_OPTIONS;
         {
           stuecke.map((s) => {
             const teaser = teaserFromInhalt(s.inhalt, 220);
+            const sampleHref = leseprobeHref(s);
+            const sampleFormat = leseprobeFormatLabel(s.leseprobe?.format);
             return (
             <article
               class="li"
@@ -204,6 +209,27 @@ const genres = GENRE_FILTER_OPTIONS;
                   {typeof s.spieldauer_min === "number" ? ` · ca. ${s.spieldauer_min} Min.` : ""}
                 </span>
                 <span class="la">
+                  {
+                    sampleHref ? (
+                      <a
+                        class="lp"
+                        href={sampleHref}
+                        download
+                        aria-label={`${LESEPROBE_LABEL} zu ${s.titel}${sampleFormat ? ` (${sampleFormat})` : ""}`}
+                      >
+                        <i class="ti ti-download" aria-hidden="true" />
+                        <span class="tip">{LESEPROBE_LABEL}</span>
+                      </a>
+                    ) : (
+                      <span
+                        class="lp off"
+                        title="Leseprobe folgt in Kürze"
+                        aria-label={`${LESEPROBE_LABEL} folgt`}
+                      >
+                        <i class="ti ti-download" aria-hidden="true" />
+                      </span>
+                    )
+                  }
                   <button
                     type="button"
                     class="mk"
@@ -896,6 +922,46 @@ const genres = GENRE_FILTER_OPTIONS;
     cursor: pointer;
     position: relative;
     padding: 0;
+  }
+  .la .lp {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--hair);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    font-size: 16px;
+    background: #fff;
+    text-decoration: none;
+    position: relative;
+  }
+  .la .lp:hover {
+    background: var(--wine);
+    color: #fff;
+    border-color: var(--wine);
+  }
+  .la .lp.off {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .la .lp .tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .la .lp:hover .tip {
+    opacity: 1;
   }
   .la .mk:hover {
     background: var(--ink);

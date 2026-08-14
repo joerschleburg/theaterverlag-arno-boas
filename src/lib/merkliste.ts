@@ -10,7 +10,6 @@ export type MerkItem = {
 const KEY = "tvab_merk";
 const WISH_KEY = "tvab_wishes";
 export const WISH_OPTS = [
-  "Leseprobe (PDF)",
   "Ansichtsexemplar",
   "Rollensatz bestellen",
   "Aufführung anfragen",
