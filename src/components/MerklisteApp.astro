@@ -245,7 +245,7 @@ const privacyHref = path("/datenschutz");
           const w = wishes[p.slug] || [];
           const lp = p.leseprobeHref
             ? `<a class="lp-dl" href="${p.leseprobeHref}" download title="${LP_LABEL}${p.leseprobeFormat ? ` · ${p.leseprobeFormat}` : ""}"><i class="ti ti-download" aria-hidden="true"></i> ${p.leseprobeFormat || "Download"}</a>`
-            : `<span class="lp-dl off" title="Datei folgt in Kürze">folgt</span>`;
+            : "";
           return `<div class="sheet-item">
           <div class="si-main"><div class="g">${p.genre}</div><div class="t">${p.titel}${p.kuerzel ? ` <span class="kz">${p.kuerzel}</span>` : ""}</div></div>
           ${lp}

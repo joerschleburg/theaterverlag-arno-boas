@@ -219,15 +219,7 @@ const genres = GENRE_FILTER_OPTIONS;
                         <i class="ti ti-download" aria-hidden="true" />
                         <span class="tip">{LESEPROBE_LABEL}</span>
                       </a>
-                    ) : (
-                      <span
-                        class="lp off"
-                        title="Leseprobe folgt in Kürze"
-                        aria-label={`${LESEPROBE_LABEL} folgt`}
-                      >
-                        <i class="ti ti-download" aria-hidden="true" />
-                      </span>
-                    )
+                    ) : null
                   }
                   <button
                     type="button"

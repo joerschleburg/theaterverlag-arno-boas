@@ -113,9 +113,22 @@ function normalizePerson(name: string) {
     .replace(/^-|-$/g, "");
 }
 
+/** Verstorbene / ohne Autorenseite — Name bleibt am Stück, aber ohne Link. */
+const AUTHORS_WITHOUT_PAGE = new Set(
+  [
+    "Hans Maisch",
+    "Hermann Waldenburger",
+    "Krista Bremen",
+    "Paul Greb",
+    "Paula Baumann",
+    "Walter Wendt",
+  ].map(normalizePerson),
+);
+
 export function autorHref(autor?: string): string | undefined {
   if (!autor) return undefined;
   const slug = normalizePerson(autor);
+  if (AUTHORS_WITHOUT_PAGE.has(slug)) return undefined;
   return KNOWN_AUTHOR_SLUGS.has(slug) ? path(`/autoren/${slug}`) : undefined;
 }
 

@@ -65,7 +65,7 @@ const faqs = [
     question: `Wie bekomme ich eine Leseprobe zu „${stueck.titel}"?`,
     answer: sampleHref
       ? `Die Leseprobe zeigt 50 % des Inhalts und steht zum direkten Download bereit — ohne Anmeldung, als ${sampleFormat || "PDF oder Word"}. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.`
-      : "Die Leseprobe (50 % des Inhalts) folgt in Kürze als direkter Download — ohne Anmeldung, als PDF oder Word. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.",
+      : "Zu diesem Stück steht derzeit keine Leseprobe zum Download bereit. Das komplette Ansichtsexemplar können Sie über die Merkliste vier Wochen unverbindlich anfordern.",
   },
   ...(besetzung
     ? [
@@ -240,26 +240,24 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
 
         <h2>Bestellung &amp; Aufführung</h2>
         <div class="order">
-          <div class="oi">
-            <i class="ti ti-file-text" aria-hidden="true" />
-            <div>
-              <b>{LESEPROBE_LABEL}</b>
-              <span
-                >Kostenloser Download, ohne Anmeldung. Format je Stück PDF oder
-                Word.{sampleFormat ? ` Hier: ${sampleFormat}.` : ""}</span
-              >
-              {
-                sampleHref ? (
+          {
+            sampleHref ? (
+              <div class="oi">
+                <i class="ti ti-file-text" aria-hidden="true" />
+                <div>
+                  <b>{LESEPROBE_LABEL}</b>
+                  <span
+                    >Kostenloser Download, ohne Anmeldung. Format je Stück PDF
+                    oder Word.{sampleFormat ? ` Hier: ${sampleFormat}.` : ""}</span
+                  >
                   <a class="oi-dl" href={sampleHref} download>
                     {LESEPROBE_LABEL} herunterladen
                     {sampleFormat ? ` (${sampleFormat})` : ""}
                   </a>
-                ) : (
-                  <span class="oi-soon">Download folgt in Kürze.</span>
-                )
-              }
-            </div>
-          </div>
+                </div>
+              </div>
+            ) : null
+          }
           <div class="oi">
             <i class="ti ti-copy" aria-hidden="true" />
             <div>
@@ -331,12 +329,7 @@ const pageDescription = descParts.join(" · ").slice(0, 300);
                 {LESEPROBE_LABEL}
                 {sampleFormat ? ` · ${sampleFormat}` : ""}
               </a>
-            ) : (
-              <span class="btn primary is-off" title="Datei folgt in Kürze">
-                <i class="ti ti-download" aria-hidden="true" />
-                {LESEPROBE_LABEL} folgt
-              </span>
-            )
+            ) : null
           }
           <a class="btn ghost" href={path("/kontakt")}>
             <i class="ti ti-mail" aria-hidden="true" /> Anfrage stellen
