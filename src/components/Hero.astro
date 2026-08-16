@@ -24,8 +24,17 @@ const heroFallback = `${heroBase}/hero_1.jpg`;
 <script>
   const hero = document.querySelector<HTMLElement>("[data-hero]");
   const base = hero?.dataset.heroBase || "/images";
-  const imgs = [1, 2, 3, 4, 5].map((n) => `${base}/hero_${n}.jpg`);
-  const pick = imgs[Math.floor(Math.random() * imgs.length)];
+  const imgs = [1, 2, 3].map((n) => `${base}/hero_${n}.jpg`);
+  const KEY = "tvab-hero-idx";
+  let idx = 0;
+  try {
+    const prev = Number(localStorage.getItem(KEY));
+    idx = Number.isFinite(prev) ? (prev + 1) % imgs.length : 0;
+    localStorage.setItem(KEY, String(idx));
+  } catch {
+    idx = Math.floor(Math.random() * imgs.length);
+  }
+  const pick = imgs[idx];
   if (hero) {
     hero.style.backgroundImage =
       "linear-gradient(100deg,rgba(12,8,5,.82) 0%,rgba(12,8,5,.42) 46%,rgba(12,8,5,.12) 72%,rgba(12,8,5,.3) 100%)," +
